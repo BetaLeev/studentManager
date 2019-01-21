@@ -1,0 +1,50 @@
+[
+    {
+      "goodName": "香辣鸡腿堡",
+      "goodPrice": 3
+    },
+    {
+      "goodName": "可乐",
+      "goodPrice": 1
+    },
+    {
+      "goodName": "田园鸡腿堡",
+      "goodPrice": 4
+    },
+    {
+      "goodName": "和风汉堡",
+      "goodPrice": 1
+    },
+    {
+      "goodName": "大块薯条",
+      "goodPrice": 2
+    },
+    {
+      "goodName": "脆皮炸鸡腿",
+      "goodPrice": 4
+    },
+    {
+      "goodName": "脆皮玉米",
+      "goodPrice": 1
+    },
+    {
+      "goodName": "魔法鸡块",
+      "goodPrice": 2
+    },
+    {
+      "goodName": "荒野炸鸡",
+      "goodPrice": 3
+    },
+    {
+      "goodName": "新鲜乳汁",
+      "goodPrice": 10
+    },
+    {
+      "goodName": "干炸蘑菇",
+      "goodPrice": 6
+    },
+    {
+      "goodName": "奥尔良烤鸭",
+      "goodPrice": 4
+    }
+  ]

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>自助点餐系统</title>
+    <link rel="stylesheet" href="./resource/css/index.css">
+    <link rel="stylesheet" href="./resource/bootstrap/css/bootstrap.min.css">
+    <script src="./resource/js/jq.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <div class="nav" id="left">
+            <ul>
+                <li><i class="icon iconfont icon-goumai"></i>
+                    <div>收银</div>
+                </li>
+                <li><i class="icon iconfont icon-dianpu"></i>
+                    <div>店铺</div>
+                </li>
+                <li><i class="icon iconfont icon-hanbao"></i>
+                    <div>商品</div>
+                </li>
+                <li><i class="icon iconfont icon-huiyuanqia"></i>
+                    <div>会员</div>
+                </li>
+                <!--<li><i class="icon iconfont icon-zuanshi"></i><div>统计</div></li>-->
+                <li><i class="icon iconfont icon-gongnengjianyi"></i>
+                    <div>设置</div>
+                </li>
+            </ul>
+        </div>
+        <div class="nav" id="middle">
+            <div class="buyMenu">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#">点餐</a></li>
+                    <li role="presentation"><a href="#">预定</a></li>
+                    <li role="presentation"><a href="#">外卖</a></li>
+                </ul>
+            </div>
+            <!-- <center> -->
+            <div class="buyTitle">
+                <ul>
+                    <li class="buyName">商品名称</li>
+                    <li class="buyVar">数量</li>
+                    <li class="buyVar">金额</li>
+                    <li class="buyVar">操作</li>
+                </ul>
+            </div>
+
+
+            <div class="buyList" id="buyList"></div>
+
+            <div class="buyCheck">
+                <br>
+                <p>数量：<span id="allCount">0</span>金额：<span id="allMoney">0</span></p>
+                <ul class="pagination" id="page"></ul>
+            </div>
+
+            <div class="buyOperator">
+                <button type="button" class="btn btn-danger">挂单</button>
+                <button type="button" class="btn btn-warning">重选</button>
+                <button type="button" class="btn btn-success">结账</button>
+            </div>
+            <!-- </center> -->
+        </div>
+        <div class="nav" id="right">
+            <div class="rightContainer">
+                <h4>商品</h4>
+                <br>
+                <div class="goodsList">
+                    <ul id="showGoodsList">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./resource/js/index.js"></script>
+</body>
+
+</html>
