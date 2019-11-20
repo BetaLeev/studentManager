@@ -1,0 +1,206 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>使用帮助</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .aui-bar,
+        .aui-bar span {
+            color: #4b4b4b !important;
+        }
+        .aui-pull-right img{
+          width: 20px;
+          height: 20px;
+          margin-top:15px;
+        }
+    .option {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        border-bottom: 1px solid #f1f1f1;
+    }
+
+    .option .title {
+        position: relative;
+        width: 100%;
+        height: 70px;
+        box-sizing: border-box;
+        padding-left: 16px;
+        line-height: 70px;
+        font-size: 0.875rem;
+        color: #707070;
+        text-align: left;
+    }
+    .title_son{
+        position: relative;
+        width: 100%;
+        height: 50px;
+        box-sizing: border-box;
+        padding-left: 16px;
+        line-height: 50px;
+        font-size: 14px;
+        color: #444;
+        background: rgba(238,237,236,0.2);
+        text-align: left;
+        border-top:1px solid #ddd;
+    }
+    .arrow-panel {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        width: 24px;
+        height: 50px;
+        background-image:url(./img/right.png);
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+        background-position: right center;
+    }
+
+    .option .arrow-panel .text {
+        box-sizing: border-box;
+        width: auto;
+        height: 60px;
+        padding-right: 20px;
+        line-height: 60px;
+        font-size: 13px;
+        color: #888;
+        text-align: left;
+    }
+
+    .button {
+        width: auto;
+        height: 50px;
+        margin-left: 32px;
+        margin-right: 32px;
+        margin-top: 16px;
+        background-color: #f00;
+        line-height: 50px;
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 8px;
+    }
+    .title_son_box{
+        position: relative;
+        width: 100%;
+        height:auto;
+    }
+    .highlight {
+        opacity: 0.7;
+    }
+    </style>
+</head>
+
+<body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+      <div class="aui-pull-left aui-btn">
+          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+      </div>
+      <div class="aui-title">使用帮助</div>
+      <div class="aui-pull-right aui-btn">
+          <img src="./image/kefu.png" alt="">
+      </div>
+  </header>
+    <section id="section_box">
+    </section>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../script/common.js" charset="utf-8"></script>
+<script type="text/javascript">
+    var section_box_obj = document.getElementById("section_box")
+    var older_number = "";
+    var list_word = ["在线保修","订工位","订会议室","订洽谈室","扫码支付","常见问题"];
+    var list_son_title=["<div id='title_son_box_1' hidden='true'>\
+                <div class='title_son' tapmode onclick='fngodetail(1)'>如何进行在线报修？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(2)'>报修后迟迟没有维修师傅上门怎么办？</div>\
+            </div>","<div id='title_son_box_2' hidden='true'>\
+                <div class='title_son' tapmode onclick='fngodetail(3)'>如何预订移动工位？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(4)'>如何获得会议室钥匙？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(5)'>如何添加工位数量？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(6)'>如何取消预定？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(7)'>如何订小团队的工位？</div>\
+            </div>","<div id='title_son_box_3' hidden='true'>\
+                <div class='title_son' tapmode onclick='fngodetail(8)'>如何预订会议室？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(9)'>如何取消预订？</div>\
+            </div>","<div id='title_son_box_4' hidden='true'>\
+                <div class='title_son' tapmode onclick='fngodetail(10)'>如何预订洽谈室？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(11)'>如何查看我预订的会议室？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(12)'>时间超时了怎么办？</div>\
+            </div>","<div id='title_son_box_5' hidden='true'>\
+                <div class='title_son' tapmode onclick='fngodetail(13)'>什么是扫码支付？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(14)'>如何使用扫码支付？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(15)'>为什么要用扫码支付？</div>\
+            </div>","<div id='title_son_box_6' hidden='true'>\
+                <div class='title_son' tapmode onclick='fngodetail(16)'>如何更新软件？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(17)'>如何修改头像？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(18)'>如何查看订单？</div>\
+                <div class='title_son' tapmode onclick='fngodetail(19)'>如何反馈软件使用遇到的问题？</div>\
+            </div>"]
+    var content_value = '';
+    for(var i=0;i<list_word.length;i++){
+        content_value += '<div id="option'+(i+1).toString()+'">\
+            <div class="title" tapmode onclick="fnshow('+(i+1).toString()+')">'+list_word[i]+'</div>\
+            <div id="arrow-panel_'+(i+1).toString()+'">\
+                <div class="text"></div>\
+            </div>'+list_son_title[i]+'\
+        </div>'
+    }
+    section_box_obj.innerHTML = content_value
+    for(var i=0;i<list_word.length;i++){
+    var option_item_obj =document.getElementById('option'+(i+1).toString())
+    var arrow_panel_item_obj = document.getElementById('arrow-panel_'+(i+1).toString())
+    option_item_obj.setAttribute('class','option');
+    arrow_panel_item_obj.setAttribute('class','arrow-panel');
+    }
+apiready = function() {
+
+};
+function fnshow(number){
+    if(number!=older_number){
+        var obj_item_choose = document.getElementById('title_son_box_'+number)
+        obj_item_choose.removeAttribute('hidden');
+        if(older_number!=""){
+            var older_item_choose = document.getElementById('title_son_box_'+older_number)
+            older_item_choose.setAttribute('hidden','true');
+            var older_icon_obj = document.getElementById("arrow-panel_"+older_number)
+            older_icon_obj.style.backgroundImage='url(../image/arrow_right.png)'
+            var icon_obj = document.getElementById("arrow-panel_"+number)
+            icon_obj.style.backgroundImage='url(../image/down.png)'
+        }else{
+            var icon_obj = document.getElementById("arrow-panel_"+number)
+            icon_obj.style.backgroundImage='url(../image/down.png)'
+        }
+        older_number = number
+    }else{
+        var obj_item_choose = document.getElementById('title_son_box_'+number);
+        var icon_obj = document.getElementById("arrow-panel_"+older_number)
+        icon_obj.style.backgroundImage='url(../image/arrow_right.png)'
+        obj_item_choose.setAttribute('hidden','true');
+        older_number = ""
+    }
+}
+// 详情
+function fngodetail(number){
+    api.openWin({
+        name: 'detail_help',
+        url: 'detail_help.html',
+        pageParam: {
+            name: number
+        }
+    });
+}
+</script>
+
+</html>

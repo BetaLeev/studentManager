@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>详情页详细数据</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: auto;
+            background: rgba(228,224,215,0.2);
+        }
+        .box_1,.box_2{
+            background-color: #ffffff;
+            border-radius: 2px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px;
+        }
+        .box_1{
+            width: 80%;
+            height:auto;
+            margin:0 auto;
+            margin-top: 20px;
+            padding-bottom: 8px;
+        }
+        .box_2{
+            position: relative;
+            padding:20px;
+            width: 90%;
+            left: -3px;
+            z-index: 9999;
+            height:auto;
+            margin:0 auto;
+        }
+        .box_2 p{
+            font-size: 16px;
+            font-weight: 400;
+            font-family: "微软雅黑"
+        }
+    </style>
+</head>
+<body>
+    <div class="box_1">
+        <div class="box_2">
+            <p id="text_content"></p>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+    var text_content = document.getElementById("text_content");
+    var content_list = ["请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112","请联系客服电话：010-83677112",]
+    apiready = function(){
+        text_content.innerHTML = content_list[api.pageParam.name-1]
+    }
+</script>
+</html>

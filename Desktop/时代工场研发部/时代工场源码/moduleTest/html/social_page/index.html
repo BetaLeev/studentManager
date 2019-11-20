@@ -1,0 +1,172 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <title>社交菜单</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            background: #fff
+        }
+
+        header {
+            padding-top: 25px;
+            width: 100%;
+            height: 70px;
+            z-index: 9999;
+            background: #fdd66e !important;
+        }
+
+        .aui-title {
+            margin: 0 auto !important;
+            right: 0 !important;
+            left: 0 !important;
+            width: 80% !important;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .menu p {
+            text-align: center;
+            font-size: 1rem;
+            line-height: 50px;
+            color: #707070;
+        }
+
+        .active {
+            font-size: 1.2rem !important;
+            line-height: 50px;
+            font-weight: bold;
+            margin-top: -3px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-search" tapmode onclick=""></span>
+        </div>
+        <div class="aui-title">
+            <div class="menu">
+                <p class="navbar" tapmode onclick="setCurrent(0)">推荐</p>
+                <p class="navbar active" tapmode onclick="setCurrent(1)">此刻</p>
+                <p class="navbar" tapmod onclick="setCurrent(2)">资讯</p>
+                <p class="navbar" tapmod onclick="goNextWin('./social_linkman.html')">联系人</p>
+            </div>
+        </div>
+        <div class="aui-pull-right aui-btn">
+            <span id='plus-to-close' class="aui-iconfont aui-icon-plus"></span>
+    </header>
+    <script src="../../script/api.js" charset="utf-8"></script>
+    <script src="../../script/common.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        $api.addEvt($api.dom('#plus-to-close'), 'click', function() {
+            if ($api.hasCls($api.dom('#plus-to-close'), 'aui-icon-plus')) {
+                openPopMenu();
+                $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-plus');
+                $api.addCls($api.dom('#plus-to-close'), 'aui-icon-close');
+            } else {
+                $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-close');
+                $api.addCls($api.dom('#plus-to-close'), 'aui-icon-plus');
+            }
+        })
+    </script>
+
+    <script type="text/javascript">
+        function openPopMenu() {
+            api.openFrame({
+                name: 'pop菜单',
+                url: './frame/pop_menu.html',
+                rect: {
+                    x: 280,
+                    y: 50,
+                    w: 320,
+                    h: 480
+                },
+            })
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        apiready = function() {
+            open();
+            setCurrent(0)
+            api.addEventListener({
+                name: 'tabframe'
+            }, function(ret, err) {
+                if (ret.index == 3) {
+                    open();
+                } else {
+
+                    closeGroup();
+                }
+            });
+        }
+
+        function setCurrent(path) {
+            var navs = document.getElementsByClassName('navbar');
+            for (var j = 0; j < navs.length; j++) {
+                $api.removeCls(navs[j], 'active');
+            }
+            $api.addCls(navs[path], 'active');
+            api.setFrameGroupIndex({
+                name: '社交组',
+                index: path
+            })
+        }
+
+        function closeGroup() {
+            api.closeFrameGroup({
+                name: '社交组'
+            });
+        }
+
+        function open() {
+            api.openFrameGroup({
+                name: '社交组',
+                rect: {
+                    x: 0,
+                    y: 70,
+                    w: 'auto',
+                    h: 600
+                },
+                frames: [{
+                    name: '推荐',
+                    url: './social_recommand.html',
+                    bgColor: '#fff'
+                }, {
+                    name: '此刻',
+                    url: './social_now.html',
+                    bgColor: '#fff'
+                }, {
+                    name: '新闻',
+                    url: './social_news.html',
+                    bgColor: '#fff'
+                }]
+            }, function(ret, err) {
+                var index = ret.index;
+            });
+        }
+    </script>
+
+</body>
+
+</html>

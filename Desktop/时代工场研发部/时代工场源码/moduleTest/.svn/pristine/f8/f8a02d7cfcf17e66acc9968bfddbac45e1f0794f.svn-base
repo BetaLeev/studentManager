@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>详情页详细数据</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+       <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: auto;
+            font-family: SourceHanSansSC;
+        }
+        #content_box{
+            width:100%;
+            height: auto;
+        }
+        .top_box{
+            width:98%;
+            height:60px;
+            margin: 0 auto;
+        }
+        .top_title{
+            width:auto;
+            height: 30px;
+            padding:0;
+        }
+        .top_title span{
+            width:auto;
+            height: 100%;
+            margin-left: 10px;
+            font-weight: 400;
+            color: rgb(16, 16, 16);
+        }
+        .top_bottom{
+            width:90%;
+            margin-left: 10px;
+        }
+        .top_bottom .author{
+            color:#7e75ba;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .top_bottom .publish_time{
+            margin-left: 10px;
+            color:black;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .top_img_box,.middle_pic{
+            width:98%;
+            height:150px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+        .top_img_box img,.middle_pic img{
+            width:94%;
+            height:150px;
+            object-fit: cover;
+            margin-left: 10px;
+        }
+        .article_box{
+            margin: 0 auto;
+            width: 98%;
+            height: auto;
+            padding:0;
+        }
+        .article_block_item{
+            width:90%;
+            height:auto;
+            border:1px solid rgb(16, 16, 16);
+            border-top:none;
+            padding:5px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            border:1px solid #e6e6e6;
+            border-top:none;
+        }
+        .article_p{
+             text-indent: 2em;
+             font-size:14px;
+             line-height: 22px;
+        }
+        .foot{
+            width:100%;
+            height: 400px;
+        }
+        .foot_title_box{
+            width:99%;
+            height:80px;
+        }
+        .foot_title{
+            width: 40%;
+            height: 20px;
+            margin: 0 auto;
+            font-size: 16px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .wetchat_box,.wechat_gzh_box{
+            width:98%;
+            height: 200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .wetchat_box img,.wechat_gzh_box img{
+            width:150px;
+            height: 150px;
+            margin:0 auto;
+            object-fit: cover;
+        }
+        .sm_gzh_p{
+            color: red;
+            font-size: 16px;
+        }
+        .fgx{
+            width:100%;
+            height: 1px;
+            margin-top: 5px;
+            background-color:#e7e4e4;
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 活动内容 -->
+    <div id="content_box">
+        <div class="top_box">
+            <div class="top_title">
+                <span id="title"></span>
+            </div>
+            <div class="top_bottom">
+                <span class="author" id='author'></span>
+                <span class="publish_time" id='publish_time'></span>
+            </div>
+        </div>  
+        <div class="top_img_box" id='top_pic'>
+            
+        </div>
+        <div class="article_box" id="article_box">
+            
+        </div>
+        <div class="foot">
+            <div class="foot_title_box">
+                <p class="foot_title">时代工场</p>
+                <p class="foot_title">企业身边的好朋友</p>
+            </div>
+            <div class="wetchat_box">
+                <img src="http://a563f04226ce88fd176a.qiniucdn.apicloud-system.com/apicloud/e48bbc96672496fbfb906da7870a278e.png" />
+                <p>欢迎添加此微信咨询详情</p>
+            </div> 
+            <div class="fgx"></div> 
+            <div class="wechat_gzh_box">
+                <img src="http://a563f04226ce88fd176a.qiniucdn.apicloud-system.com/apicloud/c4b6b9464b791fc4bc53552534a64ae5.jpg" />
+                <p class="sm_gzh_p">扫描二维码-关注时代工场公众号-有惊喜</p>
+            </div>
+        </div>  
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/SHA1.js"></script>
+<script type="text/javascript" src="../../script/APICloud-rest.js"></script>
+<script type="text/javascript">
+    var title = document.getElementById("title");
+    var author = document.getElementById("author");
+    var top_pic = document.getElementById("top_pic");
+    var publish_time = document.getElementById("publish_time");
+    var article_box = document.getElementById("article_box");
+    var UILoading;
+    var flowerid;
+    apiready = function(){
+        UILoading = api.require('UILoading');
+        UILoading.flower({
+            center: {
+                x: api.winWidth/2,
+                y: api.winHeight/2
+            },
+            mask:"rgba(0,0,0,0.1)",
+            size: 30,
+            fixed: true
+            }, function(ret) {
+                flowerid = ret.id
+            });
+        var now = Date.now();
+        var appKey = SHA1("A6006620792786"+"UZ"+"B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E"+"UZ"+now)+"."+now
+        api.ajax({
+            url: 'https://d.apicloud.com/mcm/api/file?filter={"where":{"name":"zixun_detail_list.json"},"skip":0,"limit":20}',
+            method: 'get',
+            cache:false,
+            headers:{
+                 "X-APICloud-APPId": "A6006620792786",
+                 "X-APICloud-APPKey": appKey
+            }
+        },function(ret1, err){
+            if(ret1){
+                api.ajax({
+            url: ret1[0].url,
+            method: 'get'
+        },function(ret, err){
+            UILoading.closeFlower ({
+                id: flowerid
+            });
+            if( ret ){
+                var json_data =ret.data;
+            if(json_data[api.pageParam.name]){
+                title.innerHTML = json_data[api.pageParam.name]["top_title"];
+                author.innerHTML = json_data[api.pageParam.name]["author"];
+                top_pic.innerHTML ="<img src='"+json_data[api.pageParam.name]['top_img']+"' />" ;
+                publish_time.innerHTML = json_data[api.pageParam.name]["publish_time"];
+                article_box.innerHTML = json_data[api.pageParam.name]["article_content"];
+            }else{
+                alert("未查找到数据！")
+            }
+            }else{
+                alert(err.msg);
+            }
+        });
+            }else{
+                alert(err.msg)
+            }
+        });
+    };
+</script>
+</html>

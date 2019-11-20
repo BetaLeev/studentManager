@@ -1,0 +1,238 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <title>当前空间详情页</title>
+
+    <style>
+        body {
+            position: relative
+        }
+
+        html,
+        body,
+        h4,
+        p,
+        h5 {
+            color: #727272;
+            padding: 0;
+            margin: 0;
+        }
+
+        h4 {
+            font-size: 1rem;
+        }
+
+        header {
+            position: fixed !important;
+            padding-top: 25px !important;
+            height: 50px;
+            background: rgba(255, 255, 255, .1) !important;
+        }
+
+        header * {
+            color: #fff !important;
+        }
+
+        a {
+            text-decoration: none;
+            color: #869ed2;
+        }
+
+        .comment-rate {
+            float: right;
+            color: #869ed2;
+        }
+
+        .banner {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .banner>img {
+            width: 100%;
+            background-origin: content-box;
+        }
+
+        .container {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .plate {
+            padding: 12px;
+            border-bottom: 1px solid #ececec;
+        }
+
+        .plate:last-child {
+            border-bottom: none;
+        }
+
+        .name {
+            position: relative;
+        }
+
+        .top-rate {
+            position: absolute;
+            ;
+            right: 10px;
+            color: yellow;
+        }
+
+        .top-rate p {
+            font-size: 1rem;
+            color: #fed669;
+        }
+
+        .top-rate img {
+            width: auto;
+            float: left;
+            height: 15px;
+            margin-top: 8px;
+        }
+
+        .small-p {
+            margin: 3px;
+            font-size: .6rem;
+        }
+
+        .title {
+            font-size: .8rem;
+            padding-bottom: 10px;
+        }
+
+        .text {
+            font-size: .6rem;
+        }
+
+        .price {
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+        /*图标区域*/
+
+        .device-icon {
+            width: 100%;
+            margin: 0 auto;
+            display: -webkit-flex;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .icon-item {
+            height: 64px;
+            padding: 5px;
+            padding: 5px;
+            text-align: center;
+            width: 16%;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .icon-item span {
+        margin-top: 10px;
+            font-size: .5rem;
+            text-align: center;
+        }
+
+        .icon-item>img {
+          padding-bottom: 4px;
+            height: 36px;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .btn-in {
+            bottom: 0px;
+            position: absolute;
+            height: 60px;
+            width: 100%;
+            line-height: 60px;
+            font-size: 1.2rem;
+            text-align: center;
+            outline: none;
+            border: none;
+            color: black;
+            background: #fdd66e;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <!-- <div class="aui-title">Title</div> -->
+        <div class="aui-pull-right aui-btn">
+            <span class="aui-iconfont aui-icon-forward"></span> &nbsp&nbsp
+            <span class="aui-iconfont aui-icon-like"></span>
+        </div>
+    </header>
+
+    <div class="banner">
+        <img src="../../image1/findhouse1.png" alt="">
+    </div>
+
+    <div class="container">
+        <div class="name plate">
+            <div class="top-rate">
+                <p><img src="../../image/five-star.png" alt=""> <span>5分</span></p>
+            </div>
+            <h4>时代工厂No.1</h4>
+            <p class="small-p">会展服务，企业海外发展咨询顾问</p>
+            <p class="small-p">北京市丰台区（航丰路1号院2号楼）时代财富天地c座305</p>
+            <p class="small-p">8人会议室，一小时起订</p>
+            <p class="small-p">地铁/周边</p>
+            <p class="price">¥ 220 起</p>
+        </div>
+        <div class="device plate">
+            <p class="title">会议室配置</p>
+            <div class="device-icon">
+                <div class="icon-item">
+                    <img src="../../image/door.png" alt="">
+                    <span>封闭式</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/people.png" alt="">
+                    <span>最多8人</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/wifi.png" alt="">
+                    <span>网络</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/white-borad.png" alt="">
+                    <span>白板</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/drink.png" alt="">
+                    <span>免费茶饮</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/tv.png" alt="">
+                    <span>电视</span>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="plate" style="height:230px;">
+            <p class="title">开放时间</p>
+            <p class="title">超时提醒</p>
+            <p class="title">取消规则</p>
+        </div>
+    </div>
+    <footer>
+        <button class="btn-in" onclick="goNextWin('./choose_date.html')">预定时间</button>
+    </footer>
+    <script src="../../script/api.js" charset="utf-8"></script>
+    <script src="../../script/common.js" charset="utf-8"></script>
+
+</body>
+
+</html>

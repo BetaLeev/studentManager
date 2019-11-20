@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+  <title>管理群 Leon</title>
+  <style>
+  body{
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+  }
+  header {
+      padding-top: 25px !important;
+      border-bottom: 0.5px solid  #f7f7f7 !important;
+  }
+
+  header * {
+      color: #4b4b4b !important;
+  }
+      .aui-iconfont,
+      .aui-bar {
+          color: black !important;
+      }
+    .social_chat_neirong{
+      width: 100%;
+      height: 285px;
+      margin-top: 5px;
+      background-color: #fff;
+
+    }
+    .social_chat_gongneng{
+      width: 95%;
+      height: 70px;
+      border-bottom: 2px solid #f7f7f7;
+      float: right;
+    }
+    .gongneng1{
+      width: 15px;
+      height: 25px;
+      line-height:70px;
+      margin-left:280px;
+      margin-top: -45px;
+    }
+    .social_chat_gongneng span{
+      font-size: 20px;
+      line-height:70px;
+      color: #707070;
+    }
+    .gongneng{
+      width: 15px;
+      height: 25px;
+      line-height:70px;
+      margin-left:280px;
+      margin-top:-45px;
+    }
+    .huadong{
+      width: 100px;
+      height: 30px;
+      font-size: 20px;
+      border-radius:20px;
+      margin-left:230px;
+      margin-top:-45px;
+      color: #707070;
+    }
+  </style>
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+      <div class="aui-pull-left aui-btn">
+          <span class="aui-iconfont aui-icon-left"></span>
+      </div>
+      <div class="aui-title">群管理</div>
+      <!-- <div class="aui-pull-right ">
+          <span id='publish-btn'>完成</span>
+      </div> -->
+  </header>
+  <div class="social_chat_neirong">
+        <div class="social_chat_gongneng"><span>群聊名称</span><div class="huadong">群聊123</div></div>
+      <div class="social_chat_gongneng"><span>设置群头像</span><img class="gongneng" src="./img/xiayibu.png" alt=""></div>
+      <div class="social_chat_gongneng" id="qunzhu"><span>群主位置转让</span><img class="gongneng1" src="./img/xiayibu.png" alt=""></div>
+  </div>
+</body>
+<script src="../../script/api.js" charset="utf-8"></script>
+<script type="text/javascript">
+    apiready = function() {
+        $api.addEvt($api.byId('qunzhu'), 'click', function() {
+            api.openWin({
+                name: '选择新群主',
+                url: './social_foundChat_owner.html'
+
+            });
+
+        })
+
+    }
+</script>
+</html>

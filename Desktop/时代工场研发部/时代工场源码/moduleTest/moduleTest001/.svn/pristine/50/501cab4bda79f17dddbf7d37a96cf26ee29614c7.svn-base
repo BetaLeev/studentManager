@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>办公室</title>
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+        /*筛选条件css*/
+        .paixu_shaixuan_box{
+            width: 100%;
+            height: 20px;
+            position: relative;
+            display: flex;
+            margin-top: 5px;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: -webkit-box;
+        }
+        .paixu_box,.shaixuan_box{
+            width: 46%;
+            margin-left:3%;
+            height: auto;
+        }
+        #choosepaixu_box,#chooseshaixun_box{
+            background:#ffffff;
+            z-index: 99999;
+            position: relative;
+            top:-27px;
+            left: -3px;
+        }
+        .flag_ico{
+            background-image: url('../../image/todown.png');
+            background-repeat: no-repeat;
+            height: 30px;
+            background-size: auto 10px;
+            background-position: 8px center;
+            width: 30px;
+            position: relative;
+            top: -25px;
+            left: 72%;
+        }
+        input{
+            border:0;
+            width: 80%;
+            background-color:transparent;
+            outline: none;
+        }
+        ul{
+            padding: 0; 
+            margin: 0;
+            width:90%;
+            box-shadow: 1px 1px 1px 1px #DCDCDC;
+        }
+        .paixu_word_item,.shaixuan_word_item{
+            width: auto;
+            list-style-type: none;
+            margin-left: 0;
+            border-bottom: 1px solid #DCDCDC;
+            padding:2px;
+        }
+        /*驿站列表css*/
+        #stageBox{
+                width: 100%;
+			    height: auto;
+			    display: block;
+			    position: relative;
+			    top:0px;
+                z-index:0;
+                opacity: 1;
+        }
+        .stageItem{
+            pointer-events: auto;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+            width:100%;
+            height: 101.942px;
+            justify-content: space-between;
+            flex-direction: row;
+            justify-content: space-between;
+            -webkit-box-pack:justify;
+            font-size: 14px;
+            background-color: rgb(250, 250, 250);
+            border-color: transparent;
+            border-radius: 2px;
+            margin-top:10px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px;
+        }
+        .stageItem img{
+            width:44%;
+            height: 85px;
+            display: block;
+            border-radius: inherit;
+            transition: inherit;
+            margin-left: 5px;
+            border: 1px solid black;
+        }
+        .stageItem .right{
+            width:50%;
+            height: 85px;
+            display: block;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        .stageItemTitle{
+            height: auto;
+            font-size: 14px;
+            text-align: justify;
+            line-height: 20px;
+            font-weight: normal;
+            font-style: normal;
+            color: #101010;
+            margin:0;
+            width:100%;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+        .peizhi{
+            color: rgba(16, 16, 16, 0.65);
+            margin-top:0;
+        }
+        .price{
+            color: #125e88;
+        }
+        .youshi,.price{
+            margin-top:2px;
+        }
+        .peizhi,.youshi,.price{
+            font-size: 12px;
+            
+        }
+        .stageItem .right .stageItemBottom {
+            height: auto;
+            width:auto;
+            bottom: -10px;
+        }
+        .stageItem .right .stageItemBottom .zixunType{
+            color: rgb(255, 152, 0);
+            font-size: 12px;
+            line-height: 17px;
+            font-weight: normal;
+            font-style: normal;
+            margin-right: 10px;
+        }
+        .stageItem .right .stageItemBottom .publishTime{color: rgba(16, 16, 16, 0.82);
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: normal;
+        font-style: normal;
+        }
+        .foot{
+        	width:100%;
+        	height:24px;
+        	text-align: center;
+        	position: relative;
+        	top:50px;
+        	
+        }
+        .foot span{
+        	color: rgba(16, 16, 16, 0.39);
+        	font-family: SourceHanSansSC;
+			font-weight: 400;
+			font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+	<!-- 下拉菜单 -->
+    <div class="paixu_shaixuan_box">
+        <!-- 排序 -->
+        <div class="paixu_box">
+            <input type="text" name="paixu_word" value="" id='paixu_word' tapmode onclick="showpaixuList()"/>
+            <div class="flag_ico" tapmode onclick="showpaixuList()"></div>
+            <!-- 隐藏部分 -->
+            <ul id="choosepaixu_box" hidden="true">
+            </ul>
+        </div>
+        <!-- 筛选 -->
+        <div class="shaixuan_box">
+            <input type="text" name="shaixuan_word" value="" id='shaixuan_word' tapmode onclick="showshaixuanList()"/>
+            <div class="flag_ico" tapmode onclick="showshaixuanList()"></div>
+            <!-- 隐藏部分 -->
+            <ul id="chooseshaixun_box" hidden="true">
+            </ul>
+        </div>
+    </div> 
+
+    <!-- 驿站列表 -->
+    <div id="stageBox">
+            
+            
+    </div>
+    <!-- 底部 -->
+    <div class="foot">
+		<span id="foot_text"></span>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/SHA1.js"></script>
+<script type="text/javascript" src="../../script/APICloud-rest.js"></script>
+<script type="text/javascript">
+	var paixu_words = ["默认排序","价格从低到高","价格从高到低","人数从少到多","人数从多到少"];
+    var shaixuan_words = ["筛选","使用日期","使用时间","使用历史","请输入会议人数(人)"];
+    var UILoading;
+    var flowerid;
+    var paixu_word = document.getElementById("paixu_word");
+    var shaixuan_word = document.getElementById("shaixuan_word");
+    var foot_text = document.getElementById("foot_text");
+    paixu_word.setAttribute('readonly','readonly');
+    shaixuan_word.setAttribute('readonly','readonly');
+    paixu_word.setAttribute('value',paixu_words[0]);
+    shaixuan_word.setAttribute('value',shaixuan_words[0]);
+    var choosepaixu_box = document.getElementById("choosepaixu_box");
+    var chooseshaixun_box = document.getElementById("chooseshaixun_box");
+    var html_paixu = "";
+    var html_listdata = document.getElementById("stageBox");
+    for(var i=0;i<paixu_words.length;i++){
+     html_paixu += "<li class='paixu_word_item' onclick=fnpaixu("+i+")>"+paixu_words[i]+"</li>";
+    }
+    choosepaixu_box.innerHTML = html_paixu;
+
+    var html_shaixuan = "";
+    for(var i=0;i<shaixuan_words.length;i++){
+     html_shaixuan += "<li class='shaixuan_word_item' onclick=fnshaixuan("+i+")>"+shaixuan_words[i]+"</li>";
+    };
+    chooseshaixun_box.innerHTML = html_shaixuan;
+
+    function loadData(){
+        UILoading = api.require('UILoading');
+        UILoading.flower({
+            center: {
+                x: api.winWidth/2,
+                y: api.winHeight/2
+            },
+            mask:"rgba(0,0,0,0.1)",
+            size: 30,
+            fixed: true
+            }, function(ret) {
+                flowerid = ret.id
+            });
+        api.ajax({
+            url: api.pageParam.name,
+            method: 'get'
+        },function(ret, err){
+            UILoading.closeFlower ({
+                id: flowerid
+            });
+            if( ret ){
+                 var json_data = ret.data;
+                 var data_html = "";
+                 if(json_data.length!=0){
+                    for(var i=0;i<json_data.length;i++){
+                    data_html+="<div class='stageItem' tapmode onclick=goStagedetailPage('"+json_data[i]['url']+"')>\
+                    <img src='"+json_data[i]['pic']+"'/>\
+                <div class='right'>\
+                    <p class='stageItemTitle'>"+json_data[i]['title']+"</p>\
+                    <p class='peizhi'>"+json_data[i]['peizhi']+"</p>\
+                    <p class='youshi'>"+json_data[i]['youshi']+"</p>\
+                    <p class='price'>"+json_data[i]['price']+"</p>\
+                </div>\
+                </div>"
+                }
+
+                 html_listdata.innerHTML = data_html;
+                 foot_text.innerHTML = "没有更多了";
+                 }else{
+                    foot_text.innerHTML = "没有找到数据";
+                 } 
+            }else{
+                alert(err.msg);
+                foot_text.innerHTML = "没有找到数据";
+            }
+            api.refreshHeaderLoadDone();
+        });
+    }
+    apiready = function(){
+        loadData();
+        api.setRefreshHeaderInfo({
+        visible: true,
+        loadingImg: '../../image/navtabbar/loading_more.gif',
+        bgColor: '#fff',
+        textColor: '#cdcdcd',
+        textDown: '下拉刷新...',
+        textUp: '松开刷新...',
+        showTime: true
+    }, function(ret, err){
+        loadData();
+    });
+    };
+    function fnpaixu(index){
+        paixu_word.setAttribute('value',paixu_words[index]);
+        html_listdata.innerHTML='';
+        loadData();
+        choosepaixu_box.setAttribute('hidden','true');
+    };
+    function fnshaixuan(index){
+        shaixuan_word.setAttribute('value',shaixuan_words[index]);
+        html_listdata.innerHTML='';
+        loadData();
+        chooseshaixun_box.setAttribute('hidden','true');
+    };
+    function goStagedetailPage(address){
+        var now = Date.now();
+        var appKey = SHA1("A6006620792786"+"UZ"+"B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E"+"UZ"+now)+"."+now
+        api.ajax({
+            url: 'https://d.apicloud.com/mcm/api/file?filter={"where":{"name":"workingroom.json"},"skip":0,"limit":20}',
+            method: 'get',
+            cache:false,
+            headers:{
+                 "X-APICloud-APPId": "A6006620792786",
+                 "X-APICloud-APPKey": appKey
+            }
+        },function(ret1, err){
+            if(ret1){
+                if(ret1.length!=0){
+                    var userloginstatu = api.getPrefs({sync: true,key:'userloginstatu'});
+        if(userloginstatu){
+            api.openWin({
+            name: 'detailPage',
+            url: 'detailmodule.html',
+            rect: {
+                x: 0,
+                y: 45,
+                w: api.winWidth,
+                h: api.winHeight
+            },
+            pageParam: {
+                name: address,
+                filename:ret1[0].url,
+            },
+            bounces: false,
+            bgColor: '#ffffff',
+            vScrollBarEnabled: true,
+            hScrollBarEnabled: true,
+        });
+        }else{
+            api.openWin({
+                name: 'login',
+                url: '../../html/login.html',
+                pageParam:{
+                name:address,
+                filename:ret1[0].url,
+                page_url:'modules/detailmodule.html'
+            }
+            });
+            
+        }
+                }else{
+
+                }
+            }else{
+                alert(err.msg)
+            }
+
+        });
+    };
+    function showpaixuList(){
+        if(!chooseshaixun_box.getAttribute('hidden')){
+            chooseshaixun_box.setAttribute('hidden','true');
+        }
+        if(choosepaixu_box.getAttribute('hidden')=="true"){
+            choosepaixu_box.removeAttribute('hidden');
+        }else{
+            choosepaixu_box.setAttribute('hidden','true');
+        }
+    };
+    function showshaixuanList(){
+        if(!choosepaixu_box.getAttribute('hidden')){
+            choosepaixu_box.setAttribute('hidden','true');
+        }
+        if(chooseshaixun_box.getAttribute('hidden')=="true"){
+            chooseshaixun_box.removeAttribute('hidden');
+        }else{
+            chooseshaixun_box.setAttribute('hidden','true');
+        }
+    };
+</script>
+</html>

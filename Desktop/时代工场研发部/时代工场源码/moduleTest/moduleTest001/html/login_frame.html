@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>登录Frame</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+    body {
+        text-align: center;
+    }
+
+    .row {
+        width: auto;
+        height: 70px;
+        box-sizing: border-box;
+        margin-left: 32px;
+        margin-right: 32px;
+        padding-top: 40px;
+        border-bottom: 1px solid #888;
+    }
+
+    .input {
+        width: 100%;
+        height: 20px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .btn {
+        width: auto;
+        height: 50px;
+        margin-left: 32px;
+        margin-right: 32px;
+        margin-top: 32px;
+        background-color: #125E88;
+        line-height: 50px;
+        color: #fff;
+        font-size: 24px;
+        text-align: center;
+        border-radius: 8px;
+    }
+    .btn-third-party{
+        display: inline-block;
+        width: auto;
+        height: 50px;
+        box-sizing: border-box;
+        margin-top: 32px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 8px 8px 8px 36px;
+        font-size: 20px;
+        color: #888;
+        text-align: center;
+        line-height: 32px;
+        border: 1px solid #aaa;
+        background-image: url('../image/share_friend.png');
+        background-repeat: no-repeat;
+        background-size: auto 20px;
+        background-position: 8px center;
+        border-radius: 8px;
+    }
+
+    .highlight {
+        opacity: 0.7;
+    }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <input id="phonenumber" class="input" type="text" placeholder="请输入您的手机号">
+    </div>
+    <div class="row">
+        <input id="password" class="input" type="password" placeholder="请输入您的密码">
+    </div>
+    <div class="btn" onclick="fnLogin()">登录</div>
+    <div class="btn-third-party" tapmode onclick="fnwechat_login()">使用微信登录</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/SHA1.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest.js"></script>
+<script type="text/javascript">
+var UILoading;
+var flowerid;
+apiready = function() {
+    UILoading = api.require('UILoading');
+};
+// 微信一键登入
+// 微信登入
+function fnwechat_login(){
+    // var weiXin = api.require('weiXin');
+    // weiXin.registerApp(function(ret,err){
+    //     if (ret.status) {
+            
+    //     } else{
+    //     }
+    // });
+    // weiXin.auth(function(ret,err){ 
+    //      if (ret.status) {
+    //         weiXin.getUserInfo(function(ret, err) {
+    //             if (ret.status) {
+    //                 api.alert(JSON.stringfiy(ret));
+    //             } else {
+    //                 api.alert(err.msg);
+    //             }
+    //         });
+    //      }else{
+    //         alert(err.msg);
+    //      }
+    // });
+    api.toast({
+        msg: '微信登入功能维护中...',
+        duration: 2000,
+        location: 'middle'
+    });
+}
+// 验证输入
+function checkinput(vphonenumber,vpassword){
+    if(vphonenumber.length!=0&&vpassword.length!=0){
+        return true;
+    }else{
+        alert("输入不能为空")
+        return false;
+    }
+}
+function fnLogin(){
+        var vphonenumber = $api.val($api.byId("phonenumber")).replace(/^\s*|\s*$/g,'');
+        var vpassword = $api.val($api.byId("password")).replace(/^\s*|\s*$/g,'');
+        var flag_check = checkinput(vphonenumber,vpassword);
+        if(flag_check){
+            UILoading.flower({
+            center: {
+                x: api.winWidth/2,
+                y: api.winHeight/2
+            },
+            mask:"rgba(0,0,0,0.1)",
+            size: 30,
+            fixed: true
+            }, function(ret) {
+                flowerid = ret.id
+            });
+            var now = Date.now();
+            var appKey = SHA1("A6006620792786"+"UZ"+"B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E"+"UZ"+now)+"."+now;
+            api.ajax({
+                url: 'https://www.apicloud.com/mcm/api/user/login',
+                method: 'post',
+                headers: {
+                "X-APICloud-APPId": "A6006620792786",
+                "X-APICloud-APPKey": appKey
+                },
+                data: {
+                    values:{
+                        username:vphonenumber,
+                        password:vpassword
+                    }
+                }
+            },
+            function(ret, err){
+                if (ret) {
+                    UILoading.closeFlower ({
+                       id: flowerid
+                   });
+                    api.toast({
+                        msg: '登入成功~',
+                        duration: 2000,
+                        location: 'middle'
+                    });
+                    if(!api.getPrefs({sync:true,key:'bind_flag'})){
+                        var push = api.require('push');
+                        push.bind({
+                            userName: vphonenumber,
+                            userId: vphonenumber
+                        },function(ret,err){
+                            api.setPrefs({
+                                key: 'bind_flag',
+                                value: 'true'
+                            });
+                        });
+                    }
+                    var imgpath = api.getPrefs({sync:true,key:vphonenumber.toString()});
+                        if(imgpath){
+                            api.execScript({
+                            name: 'root',
+                            frameName: 'frame_my',
+                            script: "change_userimg('"+imgpath+"')"
+                        });
+                    }
+                    api.setPrefs({
+                        key: 'userloginstatu',
+                        value: true
+                    });
+                    api.setPrefs({
+                        key: 'user_phone',
+                        value: vphonenumber
+                    });
+                    if(api.pageParam.filename){
+                        api.closeWin({
+                            name: api.winName
+                        });
+                        if(api.pageParam.title){
+                            api.openWin({
+                                name: 'detailPage',
+                                url: api.pageParam.page_url,
+                                pageParam: {
+                                    name: api.pageParam.name,
+                                    title:api.pageParam.title,
+                                    filename:api.pageParam.filename,
+                                    winname:api.winName
+                                }
+                            });
+                        }else{
+                            api.openWin({
+                            name: 'detailPage',
+                            url: api.pageParam.page_url,
+                            pageParam: {
+                                name: api.pageParam.name,
+                                filename:api.pageParam.filename,
+                                winname:api.winName
+                            }
+                        });
+                        } 
+                    }else{
+                        api.execScript({
+                            name: 'root',
+                            frameName: 'frame_my',
+                            script: "change_phone_login('"+vphonenumber+"')"
+                        });
+                       
+                        api.closeWin({
+                        name: api.winName
+                    });
+                    }
+                } else {
+                    UILoading.closeFlower ({
+                       id: flowerid
+                   });
+                    if(err.statusCode==401){
+                        alert("输入的手机号或密码错误！");
+                    }else if(err.statusCode==401){
+                        alert("当前网络不佳，请检查网络")
+                    }
+                }
+
+            }
+            );
+    }
+  
+    };
+</script>
+</html>

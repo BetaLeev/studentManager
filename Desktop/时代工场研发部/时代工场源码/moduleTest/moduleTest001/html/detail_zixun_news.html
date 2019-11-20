@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>咨询</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: auto;
+        }
+        /*头部css*/
+        #header{
+            width:99%;
+            height:30px;
+            background-color: white;
+            border-bottom: 1px solid #DCDCDC;
+            margin:0 auto;
+            top:30px;
+        }
+        .back{
+            height:25px;
+            line-height:25px;
+            width:30%;
+            float: left;
+            /*top:30px;*/
+        }
+        .title{
+            height:25px;
+            line-height:25px;
+            width:40%;
+            float: left;
+        }
+        .share{
+            height:25px;
+            line-height:25px;
+            width:30%;
+            float: right;
+        }
+        .back img{
+            height: 25px;
+            width: 25px;
+            margin-left: 10px;
+            font-family:SourceHanSansSC;
+            font-weight:400; font-size:18px;
+            color:rgb(16, 16, 16); font-style:normal; 
+            letter-spacing:1px; line-height:25px;
+            text-decoration:none;
+        }
+        .title{
+            text-align: center;
+        }
+        .title #title{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width:100%;
+            margin: 0 auto;
+            top:0px;
+        }
+        .share{
+            text-align: right;
+        }
+        .share #share{
+            width:60px;
+            height: 25px;
+            text-align: center;
+            /*margin-right: 10px;*/
+        }
+    </style>
+</head>
+<body>
+    <!-- 资讯详情头部 -->
+    <div id="header">
+        <div class="back">
+            <img src="../image/findaddress/back.png" tapmode onclick="api.closeWin()" />
+        </div>
+        <div class="title">
+            <span id="title"></span>
+        </div>
+        <div class="share">
+            <span id="share"></span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    var heaer = document.getElementById("header");
+    var title = document.getElementById("title");
+    var y_set;
+    apiready = function(){
+        title.innerHTML = api.pageParam.title;
+        if(api.systemType=="ios"){
+            y_set=80
+        }else{
+            y_set=60
+        }
+        $api.fixStatusBar(header);
+        api.openFrame({
+            name: 'detailepage_move_model',
+            url: 'modules/zixun_news_content_module.html',
+            rect: {
+                x: 0,
+                y: y_set,
+                w: api.winWidth,
+                h: 'auto'
+            },
+            pageParam: {
+                name: api.pageParam.name
+            },
+            bounces: true,
+            bgColor: 'rgba(0,0,0,0)',
+            vScrollBarEnabled: true,
+            hScrollBarEnabled: true
+        });
+    };
+</script>
+</html>

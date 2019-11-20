@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget id="A6006620792786"  version="00.00.01">
+    <name>moduleTest</name>
+    <description>
+        selfDifine  APPLoader for  Benson.
+    </description>
+    <author email="1748917492@qq.com" href="http://www.apicloud.com">
+        Developer
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="pageBounce" value="false"/>
+	<preference name="appBackground" value="rgba(0,0,0,0.0)"/>
+	<preference name="windowBackground" value="rgb(255,255,255)"/>
+	<preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)"/>
+	<preference name="hScrollBarEnabled" value="true"/>
+	<preference name="vScrollBarEnabled" value="true"/>
+	<preference name="autoLaunch" value="true"/>
+	<preference name="fullScreen" value="true"/>
+	<preference name="autoUpdate" value="true" />
+	<preference name="smartUpdate" value="true" />
+	<preference name="debug" value="true"/>
+	<preference name="statusBarAppearance" value="true"/>
+	<permission name="readPhoneState" />
+	<permission name="camera" />
+	<permission name="record" />
+	<permission name="location"/>
+	<permission name="fileSystem" />
+	<permission name="internet" />
+	<permission name="bootCompleted" />
+	<permission name="hardware" />
+	<!-- 配置百度地图 -->
+    <feature name="bMap">
+    <param name="android_api_key" value="OruZANz80XTArwSjSIviqnxyf1nlldfD" />
+    <param name="ios_api_key" value="dycvTMWO2340LmVRimIZMPTikaVxWFHU" />
+  	</feature>
+  <!-- 微信 -->
+  	<feature name="weiXin">
+       <param name="urlScheme" value="wxf476d7072eeddaae"/>
+        <param name="apiKey" value="wxf476d7072eeddaae"/>
+  	</feature>
+    <feature name='aliPayPlus'>
+      <param name="urlScheme" value="AliPayPlusA6006620792786" />
+    </feature>
+</widget>

@@ -1,0 +1,192 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>推荐有奖</title>
+  <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+  <link rel="stylesheet" href="../../css/common.css">
+  <style>
+      body {
+          margin: 0;
+          padding: 0;
+          background-color: #fff;
+      }
+
+      .aui-bar,
+      .aui-bar span {
+          color: #4b4b4b !important;
+      }
+      .aui-btn img{
+        width: 20px;
+        height: 20px;
+      }
+      .haibao{
+        width: 100%;
+        height: 200px;
+        border-bottom: 1px solid #4b4b4b;
+        border-top: 1px solid #4b4b4b;
+      }
+      .haibao h1{
+        text-align: center;
+        line-height:200px;
+      }
+      .shenfen{
+        width: 100%;
+        height:130px;
+
+      }
+      .shenfen h1{
+        font-size:17px;
+        margin-left:20px;
+        color: #4b4b4b;
+        margin-top:20px;
+      }
+      .shenfen1{
+        width: 50%;
+        height: 50px;
+        text-align: center;
+        line-height:50px;
+        float: left;
+      }
+      .shenfen1 div{
+        width: 20px;
+        height: 20px;
+        border-radius:50%;
+        background-color: #fed765;
+        float: left;
+        margin-left: 20px;
+        margin-top:15px;
+      }
+      .shenfen1 h1{
+        font-size:17px;
+        margin-left:20px;
+        margin-top:0px;
+        color: #4b4b4b;
+        float: left;
+      }
+      .gr{
+        width: 100%;
+        height:150px;
+      }
+      .wenben {
+        margin:0 auto;
+        width: 55%;
+        height: 50px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+      .wenben input{
+        width: 100%;
+        height: 60px;
+        text-align: center;
+        color: #4b4b4b;
+        font-size:15px;
+      }
+      .yixiang{
+        width: 100%;
+        height: 60px;
+      }
+      .yixiang1{
+        width:80%;
+        height: 60px;
+        margin:0 auto;
+      }
+      .yixiang2{
+        width: 20%;
+        height: 50px;
+        float: left;
+        margin-left:10px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+      .yixiang2 input{
+        width: 100%;
+        height: 60px;
+        text-align: center;
+        color: #4b4b4b;
+        font-size:15px;
+      }
+      .yixiang3{
+        width: 23%;
+        height: 50px;
+        float: left;
+        margin-left:20px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+      .yixiang3 input{
+        width: 100%;
+        height: 60px;
+        text-align: center;
+        color: #4b4b4b;
+        font-size:15px;
+      }
+      .yixiang4{
+        width: 34%;
+        height: 50px;
+        float: left;
+        margin-left:20px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+      .yixiang4 input{
+        width: 100%;
+        height: 60px;
+        text-align: center;
+        color: #4b4b4b;
+        font-size:15px;
+      }
+      button{
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        background-color: #fed765;
+      }
+  </style>
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+      <div class="aui-pull-left aui-btn">
+          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+      </div>
+      <div class="aui-title">我的钱包</div>
+      <div class="aui-pull-right aui-btn">
+          <!-- <img src="./image/zhuanfa.png" alt=""> -->
+          <span class="aui-iconfont aui-icon-forward"></span>
+
+      </div>
+  </header>
+  <div class="haibao">
+    <h1>(赚积分活动海报)</h1>
+  </div>
+  <div class="shenfen">
+    <h1>你的身份</h1>
+    <div class="shenfen1">
+      <div></div>
+      <h1>时代工场客户</h1>
+    </div>
+    <div class="shenfen1">
+      <div></div>
+      <h1>时代工场业主</h1>
+    </div>
+    <div class="shenfen1">
+      <div></div>
+      <h1>时代工场员工</h1>
+    </div>
+    <div class="shenfen1">
+      <div></div>
+      <h1>其他人员</h1>
+    </div>
+  </div>
+  <div class="gr">
+    <div class="wenben"><input type="text" name="" value="" placeholder="请输入您的姓名"></div>
+    <div class="wenben"><input type="text" name="" value="" placeholder="请输入您的手机号"></div>
+    <div class="wenben"><input type="text" name="" value="" placeholder="请输入被推荐人的姓名"></div>
+  </div>
+  <div class="yixiang">
+    <div class="yixiang1">
+      <div class="yixiang2"><input type="text" name="" value="" placeholder="意向城市"></div>
+      <div class="yixiang3"><input type="text" name="" value="" placeholder="意向工位"></div>
+      <div class="yixiang4"><input type="text" name="" value="" placeholder="意向驿站行业"></div>
+    </div>
+  </div>
+  <button class="btn-normal">立即推荐</button>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <title>预定时间</title>
+    <style media="screen">
+    .device{
+      position: absolute;
+      bottom:0;
+      background: #fff;
+    }
+        .plate {
+            width: 90%;
+            margin: 0 auto;
+        }
+        p{
+          font-size: .75rem;
+          padding: 10px;
+        }
+
+        .device-icon {
+            width: 100%;
+            margin: 0 auto;
+            display: -webkit-flex;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .icon-item {
+            height: 74px;
+            padding: 5px;
+            padding: 5px;
+            text-align: center;
+            width: 16%;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .icon-item span {
+            margin-top: 20px;
+            font-size: .5rem;
+            text-align: center;
+        }
+
+        .icon-item>img {
+            padding-bottom: 4px;
+            height: 40px;
+            width: 80%;
+            margin: 0 auto;
+        }
+        .bottom{
+          background: #fdd66e;
+          height: 50px;
+          width: 100%;
+          display: flex;
+        }
+        .text{
+          font-size: .621rem;
+        }
+
+        .bottom span{
+          text-align: center;
+          width: 50%;
+        }
+        .button{
+          height: 50px;
+          font-size: 1rem;
+          line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title">预定时间</div>
+        <div class="aui-pull-right aui-btn">
+            <!-- <span class="aui-iconfont aui-icon-search"></span> -->
+        </div>
+    </header>
+    <div class="device ">
+      <div class="plate">
+        <p class="title">会议室配置</p>
+        <div class="device-icon">
+            <div class="icon-item">
+                <img src="../../image/door.png" alt="">
+                <span>封闭式</span>
+            </div>
+            <div class="icon-item">
+                <img src="../../image/people.png" alt="">
+                <span>最多8人</span>
+            </div>
+            <div class="icon-item">
+                <img src="../../image/wifi.png" alt="">
+                <span>网络</span>
+            </div>
+            <div class="icon-item">
+                <img src="../../image/white-borad.png" alt="">
+                <span>白板</span>
+            </div>
+            <div class="icon-item">
+                <img src="../../image/drink.png" alt="">
+                <span>免费茶饮</span>
+            </div>
+            <div class="icon-item">
+                <img src="../../image/tv.png" alt="">
+                <span>电视</span>
+            </div>
+        </div>
+      </div>
+
+        <div class="bottom">
+          <span class="text">
+             <p>10/23 10:00 - 12:00</p>
+             <p>1小时 / ¥ 220</p>
+          </span>
+          <span class="button" onclick="goNextWin('./book_detail.html')">
+            立即预定
+          </span>
+        </div>
+    </div>
+    <script src="../../script/api.js" charset="utf-8"></script>
+    <script src="../../script/common.js" charset="utf-8"></script>
+
+</body>
+
+</html>

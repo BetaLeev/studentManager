@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>我的钱包</title>
+  <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+  <link rel="stylesheet" href="../../css/common.css">
+  <style>
+      body {
+          margin: 0;
+          padding: 0;
+          background-color: #fff;
+      }
+
+      .aui-bar,
+      .aui-bar span {
+          color: #4b4b4b !important;
+      }
+      .wallet_details{
+        width: 100%;
+        height: 50px;
+        border-bottom: 0.5px solid #f1f1f1;
+
+      }
+      .yu{
+        width: 25px;
+        height: 25px;
+        float: left;
+        margin-left: 20px;
+        margin-top:10px;
+        float: left;
+      }
+      .piao{
+        width: 20px;
+        height: 25px;
+        float: left;
+        margin-left: 20px;
+        margin-top:10px;
+        float: left;
+      }
+      .qian{
+        width: 10px;
+        height: 20px;
+        margin-right: 10px;
+        margin-top:-20px;
+        float: right;
+      }
+      .qian2{
+        width: 10px;
+        height: 20px;
+        margin-right: 13px;
+        margin-top:17px;
+        float: right;
+      }
+      .yue b{
+        font-size:15px;
+        color: #4b4b4b;
+        margin-left: 7px;
+        margin-top:13px;
+        float: left;
+      }
+      .money{
+        font-size:20px;
+        margin-left: 250px;
+        margin-top:-25px;
+        color: #4b4b4b;
+        float: left;
+      }
+      .fapiao{
+        font-size:15px;
+        margin-left: 160px;
+        margin-top:15px;
+        color: #4b4b4b;
+        float: left;
+      }
+  </style>
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+      <div class="aui-pull-left aui-btn">
+          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+      </div>
+      <div class="aui-title">我的钱包</div>
+      <div class="aui-pull-right aui-btn">
+          <!-- <img src="./image/kefu.png" alt=""> -->
+      </div>
+  </header>
+  <div class="wallet_details">
+      <div class="yue">
+        <img class="yu" src="./image/yue.png" alt="">
+        <b>余额</b>
+        <span class="money">￥499.00</span>
+        <img class="qian" src="./image/xiayibu.png" alt="">
+      </div>
+  </div>
+  <div class="wallet_details">
+      <div class="yue">
+        <img class="piao" src="./image/fapiao.png" alt="">
+        <b>开发票</b>
+        <h1 class="fapiao" onclick="goNextWin('./invoice.html')">在线开发票</h1>
+        <img class="qian2" src="./image/xiayibu.png" alt="">
+      </div>
+  </div>
+  <script src="../../script/common.js" charset="utf-8"></script>
+</body>
+</html>

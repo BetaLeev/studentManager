@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>订单_frame</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+        	width: 100%;
+        	height: auto;
+        	background-color: #FFFFFF;
+            
+        }
+        /*想设置一下图片在左边，文字在右边 */
+        section .option {
+        	width: 100%;   
+        	height: auto;
+            display: flex;
+            justify-content: flex-start;
+
+        }
+        #wrap{
+            width:100%;
+            height: 100px;
+        }
+        #image {
+        	width: 70px;
+        	height: 70px;
+        	margin-left: 10px;
+            margin-top: 10px;
+            float: left;
+        }
+        .right{
+            float: left;
+            margin-left: 10px;
+        }
+        .title{
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+        .content{
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+	<section>
+		<div class="option">
+			<div id="wrap">
+			    <img id="image" src="../image/ms.png">
+                <div class="right">
+                    <p class="title">时代工场民宿</p>
+                    <p class="content">还有一天</p>
+                </div>
+		    </div>
+		</div>
+		<div class="option">
+			<img id="image" src="../image/jz.png">
+            <div class="right">
+                    <p class="title">时代工场专题讲座</p>
+                    <p class="content">限时优惠</p>
+            </div>
+		</div>
+        <div class="option">
+			<img id="image" src="../image/fh.png">
+            <div class="right">
+                <p class="title">时代工场私教课主题峰会</p>
+                <p class="content">天天特价，天天特价</p>
+            </div>
+		</div>
+	</section>
+    
+</body>
+<script type="text/javascript" src="api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        
+    };
+</script>
+</html>

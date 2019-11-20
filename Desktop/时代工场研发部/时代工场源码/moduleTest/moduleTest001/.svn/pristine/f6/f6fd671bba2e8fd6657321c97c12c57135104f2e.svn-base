@@ -1,0 +1,47 @@
+{
+    "topCitys": [
+                 {
+                 "city": "北京",
+                 "id": 110001,
+                 "pinyin": "beijing"
+                 },
+                 {
+                 "city": "上海",
+                 "id": 120001,
+                 "pinyin": "shanghai"
+                 },
+                 {
+                 "city": "西安",
+                 "id": 130001,
+                 "pinyin": "xian"
+                 }
+                 ],
+    "citys": [
+              {
+                 "city": "北京",
+                 "id": 110001,
+                 "pinyin": "beijing"
+                 },
+                 {
+                 "city": "上海",
+                 "id": 120001,
+                 "pinyin": "shanghai"
+                 },
+                 {
+                 "city": "西安",
+                 "id": 130001,
+                 "pinyin": "xian"
+                 },
+                 {
+                 "city": "牡丹江",
+                 "id": 140001,
+                 "pinyin": "mudanjiang"
+                 },
+                 {
+                 "city": "多伦多",
+                 "id": 150001,
+                 "pinyin": "duolunduo"
+                 }
+
+              ]
+}

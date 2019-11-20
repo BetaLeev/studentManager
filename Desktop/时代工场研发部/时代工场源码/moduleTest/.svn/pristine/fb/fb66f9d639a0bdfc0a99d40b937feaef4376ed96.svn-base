@@ -1,0 +1,419 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>底部导航</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+</head>
+<style>
+        .marg{
+            margin:3px 15px;
+            font-size:18px;
+        }
+        
+    </style>
+<body>
+    <div >
+        <div id="wrap">
+            <div id='header'>
+                <div class="back" tapmode="back-active" onclick="api.closeWin()" >返回</div>
+                <h1>权限管理测试</h1>
+                <div class="adpt" ></div>
+            </div> 
+            <div class='itemtitle'>一、判断权限</div>
+            <div class='marg'>请选择一个或者多个权限进行判断:</div>
+            <div class='marg'>日历&emsp;&emsp;&emsp;<input type="checkbox" name="p_list" value="calendar" /></div>
+            <div class='marg'>相机&emsp;&emsp;&emsp;<input type="checkbox" name="p_list" value="camera" /></div>
+            <div class='marg'>通讯录&emsp;&emsp;<input type="checkbox" name="p_list" value="contacts" /></div>
+            <div class='marg'>位置信息&emsp;<input type="checkbox" name="p_list" value="location" /></div>
+            <div class='marg'>麦克风&emsp;&emsp;<input type="checkbox" name="p_list" value="microphone" /></div>
+            <div class='marg'>电话&emsp;&emsp;&emsp;<input type="checkbox" name="p_list" value="phone" /></div>
+            <div class='marg'>身体传感器<input type="checkbox" name="p_list" value="sensor" /></div>
+            <div class='marg'>短信&emsp;&emsp;&emsp;<input type="checkbox" name="p_list" value="sms" /></div>
+            <div class='marg'>存储空间&emsp;<input type="checkbox" name="p_list" value="storage" /></div>
+            <div class="clickbtn" tapmode="active" onclick="hasPermission()" >点击开始判断</div>
+            <div class='itemtitle'>二、请求权限</div>
+            <div class='marg'>请选择一个或者多个权限进行请求:</div>
+            <div class='marg'>日历&emsp;&emsp;&emsp;<input type="checkbox" name="p_list_r" value="calendar" /></div>
+            <div class='marg'>相机&emsp;&emsp;&emsp;<input type="checkbox" name="p_list_r" value="camera" /></div>
+            <div class='marg'>通讯录&emsp;&emsp;<input type="checkbox" name="p_list_r" value="contacts" /></div>
+            <div class='marg'>位置信息&emsp;<input type="checkbox" name="p_list_r" value="location" /></div>
+            <div class='marg'>麦克风&emsp;&emsp;<input type="checkbox" name="p_list_r" value="microphone" /></div>
+            <div class='marg'>电话&emsp;&emsp;&emsp;<input type="checkbox" name="p_list_r" value="phone" /></div>
+            <div class='marg'>身体传感器<input type="checkbox" name="p_list_r" value="sensor" /></div>
+            <div class='marg'>短信&emsp;&emsp;&emsp;<input type="checkbox" name="p_list_r" value="sms" /></div>
+            <div class='marg'>存储空间&emsp;<input type="checkbox" name="p_list_r" value="storage" /></div>
+            <div class="clickbtn" tapmode="active" onclick="reqPermission()" >点击开始请求</div>
+            <div class='itemtitle'>三、需要权限的API操作</div>
+            <div class='marg'>1、日历</div>
+            <div class="clickbtn" tapmode="active" onclick="opWithPermission('calendar')" >点击操作日历</div>
+            <div class='marg'>2、相机</div>
+            <div class="clickbtn" tapmode="active" onclick="opWithPermission('camera')" >点击操作照相机</div>
+            <div class='marg'>3、通讯录</div>
+            <div class="clickbtn" tapmode="active" onclick="opWithPermission('contacts')" >点击操作通讯录</div>
+            <div class='marg'>4、位置信息</div>
+            <div class="clickbtn" tapmode="active" onclick="opWithPermission('location')" >点击操作位置信息</div>
+            <div class='marg'>5、麦克风</div>
+            <div class="clickbtn" tapmode="active" onclick="opWithPermission('microphone')" >点击操作麦克风</div>
+            <div class='marg'>6、电话</div>
+            <div class="clickbtn" tapmode="active" onclick="opWithPermission('phone')" >点击操作电话</div>
+            <div class='marg'>7、身体传感器</div>
+            <div class="clickbtn" tapmode="active" onclick="opWithPermission('sensor')" >点击操作身体传感器</div>
+            <div class='marg'>8、短信</div>
+            <div class="clickbtn" tapmode="active" onclick="opWithPermission('sms')" >点击操作短信</div>
+            <div class='marg'>9、存储空间</div>
+            <div class="clickbtn" tapmode="active" onclick="opWithPermission('storage')" >点击操作存储空间</div>
+            <br>
+        </div>   
+    </div>
+
+</body>
+<script type="text/javascript" src="script/api.js"></script>
+<!-- 引入一个权限管理相关的JS文件 -->
+<script type="text/javascript" src="./script/public.js"></script>
+<script type="text/javascript">
+    var numberFlag = 0;
+    var olderPage = "framehomepage";
+    var olderNumber = 0;
+    var hight_set;
+    apiready = function () {
+        var screenHeight = api.winHeight;
+        if(api.systemType=="ios"){
+            hight_set=120
+        }else{
+            hight_set=80
+            if(screenHeight==740){
+                hight_set = 85;
+            }
+        }
+        var NVTabBar = api.require('NVTabBar');
+        NVTabBar.bringToFront();
+        if(screenHeight!=640){
+            api.setStatusBarStyle({
+            style: 'dark',
+            color:'#fff'
+        });
+        }
+        NVTabBar.open({
+    styles: {
+        h: 55,
+        dividingLine: {
+            width: 0.5,
+            color: '#dbdbdb',
+        },
+        badge: {
+            bgColor: '#ff0',
+            numColor: '#fff',
+            size: 6.0,
+            centerX: 6.0,
+            centerY: 6.0
+        }
+    },
+    items: [{
+        w: api.winWidth / 5.0,
+        iconRect: {
+            w: 20.0,
+            h: 20.0,
+        },
+        icon: {
+            normal: 'image/navtabbar/home0101.png',
+            highlight: 'image/navtabbar/home0102.png',
+            selected: 'image/navtabbar/home0102.png'
+        },
+        title: {
+            text: '首页',
+            size: 12.0,
+            normal: '#2c2c2c',
+            selected: '#1296db',
+            marginB: 6.0
+        }
+    }, {
+        w: api.winWidth / 5.0,
+        iconRect: {
+            w: 20.0,
+            h: 20.0,
+        },
+        icon: {
+            normal: 'image/navtabbar/findaddress0201.png',
+            highlight: 'image/navtabbar/findaddress0202.png',
+            selected: 'image/navtabbar/findaddress0202.png'
+        },
+        title: {
+            text: '找地儿',
+            size: 12.0,
+            normal: '#2c2c2c',
+            selected: '#1296db',
+            marginB: 6.0
+        }
+    }, {
+        w: api.winWidth / 5.0,
+        iconRect: {
+            w: 20.0,
+            h: 20.0,
+        },
+        icon: {
+            normal: 'image/navtabbar/key0102.png',
+            highlight: 'image/navtabbar/key0102.png',
+            selected: 'image/navtabbar/key0101.png'
+        },
+        title: {
+            text: '一键解锁',
+            size: 12.0,
+            normal: '#2c2c2c',
+            selected: '#1296db',
+            marginB: 6.0
+        }
+    }, { 
+        w: api.winWidth / 5.0,
+        iconRect: {
+            w: 24.0,
+            h: 24.0,
+        },
+        icon: {
+            normal: 'image/navtabbar/msg0601.png',
+            highlight: 'image/navtabbar/msg0602.png',
+            selected: 'image/navtabbar/msg0602.png'
+        },
+        title: {
+            text: '会话',
+            size: 12.0,
+            normal: '#2c2c2c',
+            selected: '#1296db',
+            marginB: 6.0
+        }
+    }, {
+        w: api.winWidth / 5.0,
+        iconRect: {
+            w: 22.0,
+            h: 22.0,
+        },
+        icon: {
+            normal: 'image/navtabbar/my0301.png',
+            highlight: 'image/navtabbar/my0302.png',
+            selected: 'image/navtabbar/my0302.png'
+        },
+        title: {
+            text: '我的',
+            size: 12.0,
+            normal: '#2c2c2c',
+            selected: '#1296db',
+            marginB: 6.0
+        }
+    }],
+    selectedIndex: 0
+}, function(ret, err) {
+    if(ret){
+        if(numberFlag!=0){
+         if(ret.eventType =='click' && ret.index==0 && ret.index!=olderNumber){
+            showMenuPage("html/homepage.html",'framehomepage');
+            olderNumber = ret.index;
+            olderPage = 'framehomepage'
+         }else if(ret.eventType =='click' && ret.index==1 && ret.index!=olderNumber){
+            showMenuPage("html/findhouse.html",'framehouse');
+            olderNumber = ret.index;
+            olderPage = 'framehouse'
+         }else if(ret.eventType =='click' && ret.index==2 && ret.index!=olderNumber){
+            showMenuPage("html/lock.html",'frame_lock');
+            olderNumber = ret.index;
+            olderPage = 'frame_lock'
+         }else if(ret.eventType =='click' && ret.index==3 && ret.index!=olderNumber){
+            showMenuPage("html/message.html",'frame_message');
+            olderNumber = ret.index;
+            olderPage = 'frame_message'
+         }
+         else if(ret.eventType =='click' && ret.index==4 && ret.index!=olderNumber){
+            showMenuPage("html/my.html",'frame_my');
+            olderNumber = ret.index;
+            olderPage = 'frame_my'
+         }
+    }
+    else{
+        showMenuPage("html/homepage.html",'framehomepage');
+        numberFlag = 1;
+    }
+    }
+
+});
+    };
+    function closeFrame(frame_name){
+            api.closeFrame({
+                name: frame_name
+            });
+    };
+    // 显示菜单内容
+    function showMenuPage(pageUrl,framename){
+        if(numberFlag==1){
+            if(olderPage=='framehomepage'){
+                closeFrame('homeson')
+            }else if(olderPage=='framehouse'){
+                closeFrame('findhouse_content_frame')
+            }else if(olderPage=='frame_message'){
+                closeFrame('message_frame_module');
+            }else if(olderPage=='frame_my'){
+                closeFrame('my_module_frame');
+            }
+                closeFrame(olderPage)
+            }
+        api.openFrame({
+                    name:framename,
+                    url:pageUrl,
+                    rect:{
+                        x: 0,
+                        y: 25,
+                        w: api.winWidth,
+                        h: api.winHeight-hight_set,
+                        marginLeft: 0, //相对父 window 左外边距的距离
+                        marginTop: 0, //相对父 window 上外边距的距离
+                        marginBottom:0, //相对父 window 下外边距的距离
+                        marginRight:0 //相对父 window 右外边距的距离
+                    },
+                    bounces: false,
+                    bgColor: 'rgba(0,0,0,0)',
+                    vScrollBarEnabled: false,
+                    hScrollBarEnabled: false
+                })
+    }
+    //加入权限管理相关的JS代码
+    function hasPermission(one_per){
+            var perms = new Array();
+            if(one_per){
+                perms.push(one_per);
+            }else{
+                var prs = document.getElementsByName("p_list");
+                for(var i = 0; i < prs.length; i++){
+                    if(prs[i].checked){
+                        perms.push(prs[i].value);
+                    }
+                }
+            }
+            var rets = api.hasPermission({
+                list:perms
+            });
+            if(!one_per){
+                apialert('判断结果：' + JSON.stringify(rets));
+                return;
+            }
+            return rets;
+        }
+        
+        function reqPermission(one_per, callback){
+            var perms = new Array();
+            if(one_per){
+                perms.push(one_per);
+            }else{
+                var prs = document.getElementsByName("p_list_r");
+                for(var i = 0; i < prs.length; i++){
+                    if(prs[i].checked){
+                        perms.push(prs[i].value);
+                    }
+                }
+             }
+            api.requestPermission({
+                list: perms,
+                code: 100001
+            }, function(ret, err){
+                if(callback){
+                    callback(ret);
+                    return;
+                }
+                var str = '请求结果：\n';
+                str += '请求码: ' + ret.code + '\n';
+                str += "是否勾选\"不再询问\"按钮: " + (ret.never ? '是' : '否') + '\n';
+                str += '请求结果: \n';
+                var list = ret.list;
+                for(var i in list){
+                    str += list[i].name + '=' + list[i].granted + '\n';
+                }
+                apialert(str);
+                console.log(JSON.stringify(ret));
+            });
+        }
+        
+        function opWithPermission(perm){
+            if(!confirmPer(perm)){
+                return;
+            }
+            if('calendar' == perm){
+                //操作日历
+            }else if('camera' == perm){
+                api.getPicture({
+                    sourceType: 'camera',
+                    mediaValue: 'pic',
+                    destinationType: 'url',
+                }, function(ret, err) {
+                    if (ret) {
+                        apialert(JSON.stringify(ret));
+                    } else {
+                        apialert(JSON.stringify(err));
+                    }
+                });
+            }else if('contacts' == perm){
+                api.openContacts({
+                    test: true
+                }, function(ret, err) {
+                    if (ret && ret.status) {
+                        apialert(JSON.stringify(ret));
+                    } else {
+                        apialert(JSON.stringify(err));
+                    }
+                });
+            }else if('location' == perm){
+                api.getLocation(function(ret, err) {
+                    if (ret && ret.status) {
+                        apialert(JSON.stringify(ret));
+                    } else {
+                        apialert(JSON.stringify(err));
+                    }
+                });
+            }else if('microphone' == perm){
+                api.startRecord({
+                    path: 'fs://perm-test.amr'
+                });
+            }else if('phone' == perm){
+                api.call({
+                    type: 'tel',
+                    number: '10086'
+                });
+            }else if('sensor' == perm){
+                //操作身体传感器
+            }else if('sms' == perm){
+                api.sms({
+                    numbers: ['10086'],
+                    text: '余额',
+                    silent: true
+                });
+            }else if('storage' == perm){
+                api.readFile({
+                    path:'fs://test.txt'
+                }, function(ret, err) {
+                    if (ret.status) {
+                        console.log('readFile: ' + ret.data);
+                    } else {
+                        apialert(err.msg + ": \n" + api.fsDir);
+                    }
+                });
+            }
+        }
+        
+        function confirmPer(perm){
+            var has = hasPermission(perm);
+            if(!has || !has[0] || !has[0].granted){
+                api.confirm({
+                    title: '提醒',
+                    msg: '没有获得 ' + perm + " 权限\n是否前往设置？",
+                    buttons: ['去设置', '取消']
+                }, function(ret, err) {
+                    if(1 == ret.buttonIndex){
+                        reqPermission(perm);
+                    }
+                });
+                return false;
+            }
+            return true;
+        }
+    
+</script>
+</html>

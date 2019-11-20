@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>订会议室</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style type="text/css">
+    body
+        body,html{
+            width: 100%;
+            height:100%;
+        }
+        #header{
+            width: 100%;
+            top:10px;
+            height: 26px;
+            position: fixed;
+            text-align: center;
+            border-bottom: 2px solid #cdcdcd;
+        }
+        #header img{
+            width:20px;
+            float: left;
+            position: relative;
+            height:20px;
+            left: 15px;
+        }
+        #header span{
+            font-weight: 400;
+            width:auto;
+            font-size: 18px;
+            letter-spacing: 3px;
+            height:26px;
+            line-height:18px;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <img src="../image/findaddress/back.png" tapmode onclick="api.closeWin()">
+        <span>订会议室</span>
+    </header>
+</body>
+<script type="text/javascript" src='../script/api.js'></script>
+<script type="text/javascript">
+    var header = document.getElementById("header")
+    var y_set;
+    apiready = function(){
+        $api.fixStatusBar(header);
+        if(api.systemType=="ios"){
+            y_set=80
+        }else{
+            y_set=65
+        }
+        api.openFrame({
+            name: 'spacemodule',
+            url: 'modules/spacemodule.html',
+            rect: {
+                x: 0,
+                y: y_set,
+                w: api.winWidth,
+                h: 'auto'
+            },
+            pageParam: {
+                name: api.pageParam.name
+            },
+            bounces: true,
+            bgColor: 'rgba(0,0,0,0)',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false
+        });
+        };
+</script>
+</html>

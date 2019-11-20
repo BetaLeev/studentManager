@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>驿站module</title>
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+        .message_box{
+            width: 100%;
+            height: auto;
+        }
+        .message_box_item{
+            width: 100%;
+            height: 60px;
+            padding:10px;
+            padding-left: 0px;
+            padding-right: 0px;
+            display: flex;
+            display: -webkit-flex;
+            display: -webkit-box;
+            flex-direction: row;
+        }
+        .img_item{
+            position: relative;
+            float: left;
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            padding: 1px;
+            margin-left: 10px;
+            border: 1px solid #cdcdcd;
+        }
+        .img_item img{
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+        }
+        .right_message{
+            width:80%;
+            position: relative;
+            border-bottom: 1px solid #cdcdcd;
+            float: left;
+            margin-left: 10px;
+            height: 60px;
+        }
+        .right_title{
+            width:auto;
+            height:50%;
+        }
+        .right_content{
+            height: 50%;
+            width:85%;
+            position: relative;
+            top: -15px;
+            padding-left: 4px;
+        }
+        .title{
+            margin-left: 5px;
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+        .time_right{
+            float: right;
+            margin-right: 5%;
+            font-size: 14px;
+            font-weight: 300;
+            color:#b3b3b3;
+            margin-top:6px;
+        }
+        .right_content p{
+            width:100%;
+            height: 100%;
+            font-size: 16px;
+            font-weight: 300;
+            overflow: hidden;
+            color:#b3b3b3;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+	<!-- 会话消息盒子 -->
+    <div class="message_box">
+        <!-- 消息item -->
+        <div class="message_box_item" tapmode onclick="fngodetail('时代工场')">
+            <!-- 头像 -->
+            <div class="img_item">
+                <img src="https://www.apicloud.com/icon/30/70/307087a4f1cd748eb41ba725927505ab.png" />
+            </div>
+            <div class="right_message">
+                <div class="right_title">
+                    <span class="title">时代工场</span>
+                    <span class="time_right">
+                        20:55
+                    </span>
+                </div>
+                <div class="right_content">
+                    <p>更快了解我，点这里就对了~</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+    
+    }
+    function fngodetail(title_name){
+        api.openWin({
+            name: 'message_detail',
+            url: '../../html/message_detail.html',
+            pageParam: {
+                name: title_name
+            },
+            bounces:false
+        });
+    }
+        
+</script>
+</html>

@@ -1,0 +1,364 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <title>详情页</title>
+    <style>
+        header {
+            position: fixed !important;
+            padding-top: 25px !important;
+            height: 50px;
+            background: rgba(255, 255, 255, .1) !important;
+        }
+
+        header * {
+            color: #fff !important;
+        }
+
+        .comment-rate {
+            float: right;
+            color: #869ed2;
+        }
+
+        .banner {
+            height: 210px;
+            width: 100%;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .banner>img {
+            /*height: 100%;*/
+            background-size: cover;
+            width: 100%;
+        }
+
+        .container {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .plate {
+            padding: 12px;
+            border-bottom: 1px solid #ececec;
+        }
+
+        .name {
+            position: relative;
+        }
+
+        .top-rate {
+            position: absolute;
+            ;
+            right: 10px;
+            color: yellow;
+        }
+
+        .top-rate p {
+            display: flex;
+            font-size: 1rem;
+        }
+
+        .top-rate img {
+            width: auto;
+            margin-top: 5px;
+            height: 20px;
+        }
+
+        html,
+        body,
+        h4,
+        p,
+        h5 {
+            color: #4B4B4B;
+            padding: 0;
+            margin: 0;
+        }
+
+        h4 {
+            font-size: 1.125rem;
+        }
+
+        .small-p {
+            width: 90%;
+            font-size: 0.675rem;
+            padding: 0;
+            margin: 0;
+        }
+
+        .title {
+            font-size: .875rem;
+            padding-bottom: 10px;
+        }
+
+        .text {
+            font-size: 0.675rem;
+        }
+
+        .price {
+            margin-top: 12px;
+            font-size: 1rem;
+        }
+        /*图标区域*/
+
+        .device-icon {
+            width: 85%;
+            margin: 0 auto;
+            display: -webkit-flex;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .icon-item {
+            height: 64px;
+            text-align: center;
+            width: 20%;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .icon-item span {
+            font-size: .6rem;
+            text-align: center;
+        }
+
+        .icon-item>img {
+            height: 34px;
+            display: block;
+            padding: 4px;
+            /*width: 100%;*/
+            margin: 0 auto;
+        }
+        /*评论区域*/
+
+        .comment-item {
+            clear: both;
+            margin: 15px 0px;
+        }
+
+        .comment-user {
+            height: 50px;
+            width: 100%;
+            clear: both;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            float: left;
+        }
+
+        .user-avatar img {
+            height: 100%;
+            width: 100%;
+            margin-top: -8px;
+        }
+
+        .user-info {
+            height: 50px;
+            margin-right: 20px;
+            float: left;
+        }
+
+        .user-name {
+            line-height: 20px;
+            font-size: 0.675rem;
+        }
+
+        .user-data {
+            font-size: .5rem;
+            line-height: 14px;
+        }
+
+        .comment-text {
+            margin-top: 10px;
+            padding-bottom: 10px;
+            text-align: left;
+        }
+        /*位置信息区域*/
+
+        .position {
+            padding: 30px;
+            width: 100%;
+            height: 370px;
+        }
+        /*底部按钮区域*/
+
+        .bottom-button-group {
+            height: 50px;
+            width: 100%;
+            display: flex;
+        }
+
+        .bottom-button-group button {
+            width: 50%;
+            height: 100%;
+        }
+
+        .btn-more {
+            background: #f7f7f7;
+            color: #fdd66e;
+        }
+
+        .btn-in {
+            color: black;
+            background: #fdd66e;
+        }
+
+        .map-text {
+            font-size: .5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-pull-right aui-btn">
+            <span class="aui-iconfont aui-icon-forward" onclick="wxShare()"></span> &nbsp&nbsp
+            <span class="aui-iconfont aui-icon-like"></span>
+        </div>
+    </header>
+
+
+    <div class="banner">
+        <img src="../../image1/findhouse1.png" alt="">
+    </div>
+
+
+    <div class="container">
+        <div class="name plate">
+            <div class="top-rate">
+                <p><img src="../../image/five-star.png" alt=""><span>5分</span></p>
+            </div>
+            <h4>时代工厂No.1</h4>
+            <p class="small-p">会展服务，企业海外发展咨询顾问</p>
+            <p class="small-p">北京市丰台区（航丰路1号院2号楼）时代财富天地c座305</p>
+            <p class="small-p">可用时间：24h</p>
+            <p class="price">¥ 499 起</p>
+        </div>
+        <div class="device plate">
+            <p class="title">配套设施</p>
+            <div class="device-icon">
+                <div class="icon-item">
+                    <img src="../../image/chair.png" alt="">
+                    <span>桌椅</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/clean.png" alt="">
+                    <span>保洁</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/eletric.png" alt="">
+                    <span>水电</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/safe.png" alt="">
+                    <span>安保</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/wifi.png" alt="">
+                    <span>网络</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/white-borad.png" alt="">
+                    <span>白板</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image//drink.png" alt="">
+                    <span>免费饮品</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image//tv.png" alt="">
+                    <span>智能电视</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/work.png" alt="">
+                    <span>办公用品</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/lunch.png" alt="">
+                    <span>微波炉</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="plate place-background">
+            <p class="title">站主企业背景</p>
+            <p class="text">中企联盟太平洋国际会展科技有限公司，是一个拥有105位专业管理咨询顾问的国际化会展科技 集团公司。我们竭诚为客户提供富有创新性，战略性，前瞻性的商业优化解决方案，提供会展全案专业服务。</p>
+        </div>
+        <div class="describle plate">
+            <p class="title">驿站介绍</p>
+            <p class="text">遍布全程随时会议，会议时间安排灵活，移动畅聊物有所值，硬件配置完善齐全。</p>
+
+        </div>
+        <div class="comment plate">
+            <p class="title">评论</p>
+            <div class="comment-container">
+                <div class="comment-item">
+                    <div class="comment-user">
+                        <div class="user-avatar">
+                            <img src="../../image/avatar-demo.png" alt="">
+                        </div>
+                        <div class="user-info">
+                            <p class="user-name">任风吹</p>
+                            <p class="user-date">2019.10.23</p>
+                        </div>
+                    </div>
+                    <p class="comment-text">站主非常nice，站主非常nice，站主非常nice，站主非常nice，
+                    </p>
+                </div>
+
+                <div class="comment-item">
+                    <div class="comment-user">
+                        <div class="user-avatar">
+                            <img src="../../image/avatar-demo.png" alt="">
+                        </div>
+                        <div class="user-info">
+                            <p class="user-name">任风吹</p>
+                            <p class="user-date">2019.10.23</p>
+                        </div>
+                    </div>
+                    <p class="comment-text">站主非常nice，站主非常nice，站主非常nice，站主非常nice，
+                    </p>
+                </div>
+                <p class="comment-more">
+                    <span><a href="" class="text-color__blue">阅读全部22条评论</a></span>
+                    <span class="comment-rate">🌟🌟🌟🌟🌟</span>
+                </p>
+
+            </div>
+        </div>
+        <div class="position plate" id='baidu' >
+            <p class="title">位置</p>
+            <p class="text">中国，北京</p>
+            <p class="map-text">详细地址：北京市丰台区（航丰路1号院5号楼）时代财富天地c座305</p>
+            <!-- <div class="map-plate"></div> -->
+            <!-- <img src="../../image2/map.png" alt=""> -->
+        </div>
+    </div>
+    <div class="bottom-button-group">
+        <button style='background: #f7f7f7;
+            color: #fdd66e;' class="btn-normal" tapmode onclick="goNextWin('./place_list.html')">更多空间</button>
+        <button style="background:  #fdd66e;
+            color:#f7f7f7" ; class="btn-normal" tapmode onclick="goNextWin('./place_detail.html')">一键入驻</button>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script src="../../script/common.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        apiready = function() {
+        initMap(1380);
+        setAnnotations();
+        }
+    </script>
+</body>
+
+</html>

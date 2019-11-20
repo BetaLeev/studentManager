@@ -1,0 +1,108 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+
+    <title>钻石卡详情</title>
+    <style>
+        body {
+            background: #ffffff;
+        }
+        header {
+            padding-top: 25px;
+            height: 50px;
+            border-bottom: 2px solid #4b4b4b;
+        }
+
+        header * {
+            color: #4b4b4b !important;
+        }
+
+        .aui-bar {
+            color: black;
+        }
+
+        .title {
+            font-size: .8rem;
+        }
+
+        .card-img>img {
+            height: 200px;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .plate {
+            min-height: 120px;
+            padding: 20px;
+            border-bottom: 2px solid #f1f1f1;
+        }
+
+        footer {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+        /*底部按钮区域*/
+
+        .bottom-button-group {
+            height: 60px;
+            width: 100%;
+            display: flex;
+        }
+
+        .bottom-button-group button {
+            width: 50%;
+            height: 100%;
+            line-height: 60px;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+            border: none;
+        }
+
+        .btn-more {
+            background: #f7f7f7;
+            color: #fdd66e;
+        }
+
+        .btn-in {
+            color: black;
+            background: #fdd66e;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title">钻石卡详情</div>
+    </header>
+    <div class="container">
+        <div class="plate card-img">
+            <img src="./img/card-demo.png" alt="">
+            <p class="card-price">¥200/个</p>
+        </div>
+        <div class="plate">
+            <p class="title">使用说明</p>
+        </div>
+        <div class="plate">
+            <p class="title">有效期：2年</p>
+        </div>
+    </div>
+    <footer>
+        <div class="bottom-button-group">
+            <button class="btn-more">更多卡片</button>
+            <button class="btn-in" onclick="goNextWin('./pay.html')">一键购买</button>
+        </div>
+    </footer>
+    <script type="text/javascript" src="../../aui-20170109-v2.1/script/api.js"></script>
+<script src="../../script/common.js" charset="utf-8"></script>
+</body>
+
+</html>

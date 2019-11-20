@@ -1,0 +1,109 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>找地儿</title>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+
+</head>
+
+<body>
+    <!-- 首页头部位置搜索框和扫码 -->
+    <!-- <header id="header">
+        <!-- <ul>
+            <li class="border-b active"> -->
+        <div id="head">
+            <div class="h1">
+                <h5>北京</h5>
+                <img src="../image1/xiala.png" alt="">
+            </div>
+            <!-- 搜索框 -->
+            <div class="h2">
+                <input id='searchInput' type="text" placeholder=" 🔍区位/企业发展需求">
+            </div>
+            <!-- 扫码 and 客服 -->
+            <div class="h3">
+
+            </div>
+        </div>
+
+    </header> -->
+    <header class="aui-bar aui-bar-nav">
+        <div class="aui-pull-left aui-btn">
+            北京
+            <span class="aui-iconfont aui-icon-down"></span>
+        </div>
+        <div class="aui-title" style="left:4rem; right: 4rem;">
+            <div class="aui-searchbar">
+                <div class="aui-searchbar-input aui-border-radius">
+                    <i class="aui-iconfont aui-icon-search"></i>
+                    <input type="search" placeholder=" 区位/企业发展需求" id="search-input">
+                    <div class="aui-searchbar-clear-btn">
+                        <i class="aui-iconfont aui-icon-close"></i>
+                    </div>
+                </div>
+                <div class="aui-searchbar-btn" tapmode>取消</div>
+            </div>
+        </div>
+        <div class="aui-pull-right aui-btn">
+            <span class="aui-iconfont aui-icon-plus"></span>
+            <div class="clicked-btn-more-list">
+                <div class="icon-item">
+                    <img src="./img/icon/pay.png" alt=""><span>扫一扫</span>
+                </div>
+                <div class="icon-item">
+                    <img src="./img/icon/kefu.png" alt=""><span>客服</span>
+                </div>
+                <div class="icon-item">
+                    <img class='msg' src="./img/icon/jiaoliu.png" alt=""><span>消息</span>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    var search = document.getElementById('searchInput');
+
+    $api.addEvt(search, 'click', function() {
+        toPlaceOptions();
+    });
+
+    var header = document.getElementById("#header");
+    apiready = function() {
+        $api.fixStatusBar(header);
+        api.openFrame({
+            name: 'findhouse_content_frame',
+            url: './modules/findhouse_content_frame.html',
+            rect: {
+                x: 0,
+                y: 50,
+                w: api.frameWidth,
+                h: api.frameHeight - 50
+            },
+            bounces: false,
+            bgColor: '#f7f4f4',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false,
+        });
+    };
+
+
+
+    function toPlaceOptions() {
+        api.openWin({
+            name: 'pleaceSearch',
+            url: './pleaceSearch/index.html',
+            // pageParam: {
+            //     name: '哈哈'//传递参数
+            // }
+        });
+
+    }
+</script>
+
+</html>

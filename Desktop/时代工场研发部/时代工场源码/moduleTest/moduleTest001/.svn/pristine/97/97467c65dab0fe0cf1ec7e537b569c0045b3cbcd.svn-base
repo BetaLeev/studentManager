@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>查询结果module</title>
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+        /*驿站列表css*/
+        #stageBox{
+                width: 100%;
+			    height: auto;
+        }
+        .stageItem{
+            pointer-events: auto;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+            width:100%;
+            height: 101.942px;
+            justify-content: space-between;
+            flex-direction: row;
+            justify-content: space-between;
+            -webkit-box-pack:justify;
+            font-size: 14px;
+            background-color: rgb(250, 250, 250);
+            border-color: transparent;
+            border-radius: 2px;
+            margin-top:5px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px;
+        }
+        .stageItem img{
+            width:44%;
+            height: 85px;
+            display: block;
+            border-radius: inherit;
+            transition: inherit;
+            margin-left: 5px;
+            border: 1px solid black;
+        }
+        .stageItem .right{
+            width:50%;
+            height: 85px;
+            display: block;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        .stageItemTitle{
+            height: auto;
+            font-size: 14px;
+            text-align: justify;
+            line-height: 20px;
+            font-weight: normal;
+            font-style: normal;
+            color: #101010;
+            margin:0;
+            width:100%;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+        .peizhi{
+            color: rgba(16, 16, 16, 0.65);
+            margin-top:0;
+        }
+        .price{
+            color: #125e88;
+        }
+        .youshi,.price{
+            margin-top:2px;
+        }
+        .peizhi,.youshi,.price{
+            font-size: 12px;
+            
+        }
+        .stageItem .right .stageItemBottom {
+            height: auto;
+            width:auto;
+            bottom: -10px;
+        }
+        .stageItem .right .stageItemBottom .zixunType{
+            color: rgb(255, 152, 0);
+            font-size: 12px;
+            line-height: 17px;
+            font-weight: normal;
+            font-style: normal;
+            margin-right: 10px;
+        }
+        .stageItem .right .stageItemBottom .publishTime{color: rgba(16, 16, 16, 0.82);
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: normal;
+        font-style: normal;
+        }
+        .foot{
+        	width:100%;
+        	height:24px;
+        	text-align: center;
+        	position: relative;
+        	top:50px;
+        	
+        }
+        .foot span{
+        	color: rgba(16, 16, 16, 0.39);
+        	font-family: SourceHanSansSC;
+			font-weight: 400;
+			font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 驿站列表 -->
+    <div id="stageBox">
+            
+            
+    </div>
+    <!-- 底部 -->
+    <div class="foot">
+		<span id='foot_text'></span>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/SHA1.js"></script>
+<script type="text/javascript" src="../../script/APICloud-rest.js"></script>
+<script type="text/javascript">
+    var UILoading;
+    var flag_first = 0;
+    var flowerid;
+    var html_listdata = document.getElementById("stageBox");
+    var foot_text = document.getElementById("foot_text");
+    var area_value;
+    var needs_value;
+    var url_value;
+    function post_request(area_value,needs_value){
+        if(needs_value=="default"){
+            url_value = 'https://d.apicloud.com/mcm/api/data_json?filter={"where":{"and":[{"area":"'+area_value+'"},{"need":"'+needs_value+'"}]},"skip":0,"limit":20}'
+        }else{
+            url_value = 'https://d.apicloud.com/mcm/api/data_json?filter={"where":{"area":"'+area_value+'"},"skip":0,"limit":20}'
+        }
+        var now = Date.now();
+        var appKey = SHA1("A6006620792786"+"UZ"+"B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E"+"UZ"+now)+"."+now
+        api.ajax({
+            url: url_value,
+            method: 'get',
+            headers:{
+                 "X-APICloud-APPId": "A6006620792786",
+                 "X-APICloud-APPKey": appKey
+            }},function(ret1,err){
+                if (ret1) {
+                    if(ret1.length!=0){
+                api.ajax({
+                    url: ret1[0].filename.url,
+                    method: 'get',
+                },function(ret, err){
+                    UILoading.closeFlower ({
+                    id: flowerid
+                });
+                    if (ret) {
+                        var json_data = ret.data;
+                         var data_html = "";
+                         for(var i=0;i<json_data.length;i++){
+                            data_html+="<div class='stageItem' tapmode onclick=goStagedetailPage('"+json_data[i]['url']+"')>\
+                            <img src='"+json_data[i]['pic']+"'/>\
+                        <div class='right'>\
+                            <p class='stageItemTitle'>"+json_data[i]['title']+"</p>\
+                            <p class='peizhi'>"+json_data[i]['peizhi']+"</p>\
+                            <p class='youshi'>"+json_data[i]['youshi']+"</p>\
+                            <p class='price'>"+json_data[i]['price']+"</p>\
+                        </div>\
+                        </div>"
+                    }
+                     html_listdata.innerHTML = data_html;
+                     foot_text.innerHTML = "没有更多了"
+                     api.refreshHeaderLoadDone();
+                    } else {
+                        UILoading.closeFlower ({
+                    id: flowerid
+                });
+                        alert( err.msg );
+                    }
+                });}else{
+                    if(flag_first==0){
+                        alert("没有搜索结果,给您推荐热门空间");
+                        flag_first+=1;
+                        post_words(area_value,api.getPrefs({sync: true,key:'user_phone'}))
+                    }else{
+                        api.ajax({
+                        url: 'https://d.apicloud.com/mcm/api/data_json?filter={"where":{"and":[{"area":"default"},{"need":"default"}]},"skip":0,"limit":20}',
+                        method: 'get',
+                        
+                        headers:{
+                             "X-APICloud-APPId": "A6006620792786",
+                             "X-APICloud-APPKey": appKey
+                        }
+                    },function(ret2, err){
+                        if (ret2) {
+
+                            api.ajax({
+                    url: ret2[0].filename.url,
+                    method: 'get',
+                },function(ret3, err){
+                    UILoading.closeFlower ({
+                    id: flowerid
+                });
+                    if (ret3) {
+                        var json_data = ret3.data;
+                         var data_html = "";
+                         for(var i=0;i<json_data.length;i++){
+                            data_html+="<div class='stageItem' tapmode onclick=goStagedetailPage('"+json_data[i]['url']+"')>\
+                            <img src='"+json_data[i]['pic']+"'/>\
+                        <div class='right'>\
+                            <p class='stageItemTitle'>"+json_data[i]['title']+"</p>\
+                            <p class='peizhi'>"+json_data[i]['peizhi']+"</p>\
+                            <p class='youshi'>"+json_data[i]['youshi']+"</p>\
+                            <p class='price'>"+json_data[i]['price']+"</p>\
+                        </div>\
+                        </div>"
+                    }
+                     html_listdata.innerHTML = data_html;
+                     foot_text.innerHTML = "没有更多了"
+                     api.refreshHeaderLoadDone();
+                    } else {
+                        alert( err.msg );
+                    }
+                });
+                        } else {
+                            alert( JSON.stringify( err ) );
+                        }
+                    });
+                    }
+                    api.refreshHeaderLoadDone();
+                }
+            } else {
+                alert(err.msg);
+            }
+        });
+    };
+    function loadData(){
+        UILoading = api.require('UILoading');
+        UILoading.flower({
+            center: {
+                x: api.winWidth/2,
+                y: api.winHeight/2
+            },
+            mask:"rgba(0,0,0,0.1)",
+            size: 30,
+            fixed: true
+            }, function(ret) {
+                flowerid = ret.id
+            });
+        area_value = api.pageParam.area_value.replace(/\s*/g,"").toUpperCase();
+        if(area_value.length==0){
+            area_value = "default"
+            needs_value = 'default'
+            post_request(area_value,needs_value)
+            
+        }else if(area_value.length!=0){
+            needs_value = ''
+            post_request(area_value,needs_value)
+        }
+        
+    }
+    apiready = function(){
+        loadData();
+        api.setRefreshHeaderInfo({
+        visible: true,
+        loadingImg: '../../image/navtabbar/loading_more.gif',
+        bgColor: '#fff',
+        textColor: '#cdcdcd',
+        textDown: '下拉刷新...',
+        textUp: '松开刷新...',
+        showTime: true
+    }, function(ret, err){
+        loadData();
+    });
+    };
+    // 收集搜索没有result的关键词，存储到数据库search_words(area、need、phone)
+    function post_words(area,phone){
+        var now = Date.now();
+        var appKey = SHA1("A6006620792786"+"UZ"+"B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E"+"UZ"+now)+"."+now
+            api.ajax({
+            url: 'https://www.apicloud.com/mcm/api/search_words',
+            method: 'post',
+            headers:{
+                 "X-APICloud-APPId": "A6006620792786",
+                 "X-APICloud-APPKey": appKey
+            },
+            data:{
+                values:{
+                    area:area,
+                    need:'',
+                    phone:phone
+                }
+            }
+        },function(ret, err){
+            var now = Date.now();
+            var appKey = SHA1("A6006620792786"+"UZ"+"B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E"+"UZ"+now)+"."+now
+            api.ajax({
+                        url: 'https://d.apicloud.com/mcm/api/data_json?filter={"where":{"and":[{"area":"default"},{"need":"default"}]},"skip":0,"limit":20}',
+                        method: 'get',
+                        
+                        headers:{
+                             "X-APICloud-APPId": "A6006620792786",
+                             "X-APICloud-APPKey": appKey
+                        }
+                        },function(ret2, err){
+                            if (ret2) {
+                                api.ajax({
+                        url: ret2[0].filename.url,
+                        method: 'get',
+                    },function(ret3, err){
+                        UILoading.closeFlower ({
+                                id: flowerid
+                            });
+                        if (ret3) {
+                            var json_data = ret3.data;
+                             var data_html = "";
+                             for(var i=0;i<json_data.length;i++){
+                                data_html+="<div class='stageItem' tapmode onclick=goStagedetailPage('"+json_data[i]['url']+"')>\
+                                <img src='"+json_data[i]['pic']+"'/>\
+                            <div class='right'>\
+                                <p class='stageItemTitle'>"+json_data[i]['title']+"</p>\
+                                <p class='peizhi'>"+json_data[i]['peizhi']+"</p>\
+                                <p class='youshi'>"+json_data[i]['youshi']+"</p>\
+                                <p class='price'>"+json_data[i]['price']+"</p>\
+                            </div>\
+                            </div>"
+                        }
+                         html_listdata.innerHTML = data_html;
+                         foot_text.innerHTML = "没有更多了"
+                         api.refreshHeaderLoadDone();
+                        } else {
+                            alert( err.msg );
+                        }
+                    });
+                            } else {
+                                alert( JSON.stringify( err ) );
+                            }
+                        });
+        });
+        
+    }
+    function goStagedetailPage(address){
+        var now = Date.now();
+        var appKey = SHA1("A6006620792786"+"UZ"+"B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E"+"UZ"+now)+"."+now
+        api.ajax({
+            url: 'https://d.apicloud.com/mcm/api/file?filter={"where":{"name":"all_stage.json"},"skip":0,"limit":20}',
+            method: 'get',
+            
+            headers:{
+                 "X-APICloud-APPId": "A6006620792786",
+                 "X-APICloud-APPKey": appKey
+            }
+        },function(ret1, err){
+            if(ret1){
+                if(ret1.length!=0){
+                    var userloginstatu = api.getPrefs({sync: true,key:'userloginstatu'});
+                    var userloginstatu = api.getPrefs({sync: true,key:'userloginstatu'});
+                    var userloginstatu = api.getPrefs({sync: true,key:'userloginstatu'});
+                    if(userloginstatu){
+                        api.openWin({
+                        name: 'detailPage',
+                        url: 'detailmodule.html',
+                        rect: {
+                            x: 0,
+                            y: 45,
+                            w: api.winWidth,
+                            h: api.winHeight
+                        },
+                        pageParam: {
+                            name: address,
+                            filename:ret1[0].url,
+                        },
+                        bounces: false,
+                        bgColor: '#ffffff',
+                        vScrollBarEnabled: true,
+                        hScrollBarEnabled: true,
+                    });
+                    }else{
+                        api.openWin({
+                            name: 'login',
+                            url: '../../html/login.html',
+                            pageParam:{
+                            name:address,
+                            filename:ret1[0].url,
+                            page_url:'modules/detailmodule.html'
+                        }
+                        });
+                        
+                    }
+                }else{
+
+                }
+            }else{
+                alert(err.msg)
+            }
+
+        });
+    };
+</script>
+</html>

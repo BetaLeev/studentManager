@@ -1,0 +1,217 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <script type="text/javascript" src="../../aui-20170109-v2.1/script/api.js"></script>
+<link rel="stylesheet" href="../../css/common.css">
+    <title>入驻详情页</title>
+    <style>
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .plate {
+            min-height: 50px;
+            width: 100%;
+            padding: 0 5%;
+            background: #ffffff;
+            border-bottom: 1px solid #f1f1f1;
+            /*border-bottom: 1px solid #9FAOAO;*/
+        }
+
+        p,
+        h2 {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+          position: relative;
+            background: #f7f7f7;
+            padding: 0;
+            margin: 0
+        }
+
+        .book-detail {
+            height: 180px;
+            padding-top: 10px;
+            clear: both;
+        }
+
+        .big-font {
+            font-size: 1.2rem;
+        }
+
+        .book-detail-content {
+            float: left;
+            width: 52%;
+            margin-right: 10px;
+        }
+
+        .name {
+            margin-bottom: 2px;
+        }
+
+        .rate {
+            margin-top: 10px;
+            font-size: .5rem;
+        }
+
+        .rate-star {
+            padding-right: 5px;
+            color: #285b7f;
+        }
+
+        .book-detail-img {
+            float: left;
+            width: 42%;
+            height: 120px
+        }
+
+        .book-detail-img>img {
+            border-radius: 3px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .book-detail-content p {
+            font-size: .7rem;
+        }
+        /*入驻详情*/
+
+        .in-count {
+            float: right;
+            font-size: .875rem;
+            display: block;
+            padding-right: 1.4rem;
+        }
+
+        .in-count::before {
+            content: '➕';
+            height: 20px;
+            width: 20px;
+            color: white;
+            right: 1rem;
+            position: absolute;
+        }
+
+        .in-count::after {
+            content: '➖';
+            right: 3.2rem;
+            height: 20px;
+            color: white;
+            width: 20px;
+            position: absolute;
+        }
+
+        .can-time {
+            color: #fdd66e;
+        }
+        /*消费详情*/
+
+        .plate-title {
+            line-height: 50px;
+            font-size: .8rem;
+        }
+
+        .cost-detail {}
+
+        .cost-detail p {
+            line-height: 55px;
+            height: 55px;
+            clear: both;
+        }
+        /*消费总计*/
+        .cost-sum{
+          height: 120px;
+        }
+        .cost-sum>p {
+            line-height: 60px;
+            font-size: 0.875rem;
+        }
+
+        .sum {
+            float: right;
+            font-size: 1.125rem;
+        }
+
+        /*预定入驻*/
+        .confirm_book {
+            position: absolute;
+            bottom: 0;
+            outline: none;
+            border: none;
+            width: 100%;
+            text-align: center;
+            background: #fdd66e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title">
+          入驻详情
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="plate book-detail">
+            <h2 class="book-detail-title">
+            时代工场NO.1
+          </h2>
+            <div class="book-detail-content">
+                <h4 class="name">
+                <!-- 时代工场NO.1 -->
+              </h4>
+                <p>会展服务，企业海外发展咨询顾问</p>
+                <p>可用时间: <span class="can-time">24h</span></p>
+                <p class="rate"><span class="rate-star">*******</span> 22条评价</p>
+            </div>
+            <div class="book-detail-img"><img src="../../image1/NO.1.jpg" alt=""></div>
+        </div>
+
+        <div class="plate book-time" onclick="goNextWin('./choose_date.html')">
+            <p class="plate-title">入驻时间 <i class="aui-pull-right aui-iconfont aui-icon-right"></i></p>
+        </div>
+
+        <div class="plate book-count">
+            <p class="plate-title">入驻数量 <span class="in-count">1</span></p>
+        </div>
+
+        <div class="plate cost-detail">
+            <p class="plate-title">
+                费用与税款明细 ❓
+            </p>
+            <p class="big-font"> <code class="sign_money">¥</code> 499.00 x 1 月 <span class="sum"> <code class="sign_money">¥</code>199</span></p>
+            <p> <code class="sign_money"></code> 节日特惠 9.5折 <span class="sum"> <code class="sign_money">¥</code>233</span></p>
+            <p> <code class="sign_money"></code> 会员折扣特惠 9.5折 <span class="sum"> <code class="sign_money">¥</code>421</span></p>
+        </div>
+
+        <div class="plate cost-sum">
+            <p> 总价（CNY） <span class="sum"> <code class="sign_money">¥</code> 474</span></p>
+        </div>
+    </div>
+    <footer>
+        <button class="btn-normal confirm_book">预订入驻</button>
+    </footer>
+    <script src="../../script/common.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $api.addEvt($api.dom('.confirm_book'), 'click', function() {
+            api.openWin({
+                name: '预定入驻',
+                url: './book_detail.html'
+            })
+        });
+    </script>
+</body>
+
+</html>

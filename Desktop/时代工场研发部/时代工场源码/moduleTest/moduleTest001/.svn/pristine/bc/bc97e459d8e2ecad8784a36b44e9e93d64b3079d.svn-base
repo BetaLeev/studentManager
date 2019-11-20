@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: auto;
+        }
+        /*头部css*/
+        #header{
+            top:30px;
+            width:99%;height:35px;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+            -webkit-flex-flow: row;
+            flex-flow: row;
+            flex-direction: row;
+            justify-content: space-between;
+            -webkit-box-pack:justify;
+            background-color: white;
+        }
+        #header .back,#header .title,#header .share{
+            width:auto;
+            display: flex;
+            display: -webkit-box;
+            display: -webkit-flex;
+        }
+        #header .back{
+            width:25px;
+            height: 25px;
+            margin-left: 10px;
+            margin-top: 8px;
+
+        }
+        #header .title{
+            -webkit-box-pack:center;
+            font-family:SourceHanSansSC; 
+            font-weight:400; font-size:18px;
+            text-align: center;
+             color:rgb(16, 16, 16); font-style:normal;
+            letter-spacing:1px; line-height:42px; text-decoration:none;
+        }
+        #header .share{
+            -webkit-box-pack:right;
+            font-family:SourceHanSansSC;
+            font-weight:400; font-size:18px;
+            color:rgb(16, 16, 16); font-style:normal; 
+            letter-spacing:1px; line-height:42px;
+            text-decoration:none;
+            margin-right: 5px;
+        }
+        .btn_zixun{
+            position: fixed;
+            bottom: 0px;
+            width:100%;
+            height: 44px;
+            left: 0px;
+            z-index: 1;
+            background-color: rgb(18,94,136);
+            font-size: 14px;
+            padding: 0px;
+            text-align: center;
+            line-height: 44px;
+            font-weight: normal;
+            font-style: normal;
+        }
+        .btn_zixun span{
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 找地儿头部 -->
+    <div id="header">
+        <img class="back" src="../../image/findaddress/back.png" tapmode onclick="api.closeWin()" />
+        <span class="title">详情</span>
+        <span class="share" tapmode onclick="showsharelist()">分享</span>
+        
+    </div>
+    <div class="btn_zixun" tapmode onclick="fnaction_order()">
+        <span>预约咨询</span>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+    var heaer = document.getElementById("header");
+    var y_set;
+    apiready = function(){
+        $api.fixStatusBar(header);
+        if(api.systemType=="ios"){
+            y_set=80
+        }else{
+            y_set=65
+        }
+        api.openFrame({
+            name: api.pageParam.name,
+            url: 'detailcontentmoudle.html',
+            rect: {
+                x: 0,
+                y: y_set,
+                w: api.frameWidth,
+                h: api.winHeight-110
+            },
+            pageParam: {
+                name: api.pageParam.name,
+                filename:api.pageParam.filename
+            },
+            bounces: false,
+            bgColor: 'rgba(248,248,255,0)',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false,
+        });
+    };
+    function showsharelist(){
+        api.openFrame({
+            name: 'animation_frame_share',
+            url: 'shareframemoudle.html',
+            rect: {
+                x: 0,
+                y:0,
+                w: api.winWidth,
+                h: 'auto'
+            },
+            bounces: false,
+            bgColor: 'rgba(0,0,0,0.1)',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false
+        });
+    }
+   function fnaction_order(){
+    api.openWin({
+        name: 'order_time_page',
+        url: '../../html/order_time_page.html',
+    });
+        
+   };
+</script>
+</html>

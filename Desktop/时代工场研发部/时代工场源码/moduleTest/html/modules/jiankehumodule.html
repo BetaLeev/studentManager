@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>荐客户表单页</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: auto;
+        }
+        .form{
+            width:99%;
+            padding: 0;
+            margin: 0;
+            height:300px;
+            margin-top:30%;
+        }
+        .line{
+            width:80%;
+            margin:0 auto;
+            height:50px;
+        }
+        .line input{
+            width:70%;
+            height: 26px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);outline:none;
+            border:1px solid #c9d1d9;
+            border-left: none;
+            border-radius: 3px;
+            padding-left:5px;
+        }
+        .pic{
+            width:80%;
+            margin: 0 auto;
+            height:150px;
+        }
+        .pic img{
+            height: 100%;
+            width: 100%;
+        }
+        .btn_group{
+            width:100%;
+            height:40px;
+            position: absolute;
+            bottom:0px;
+        }
+        .btn_group button{
+            width: 50%;
+            float: left;
+            height: 100%;
+            text-align: center;
+            border-radius: 5px;
+        }
+        #cancel{
+            border-top:1px solid #c9d1d9;
+            color:#125E88;
+        }
+        #commit{
+            background-color:#125E88;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+        <div class="line">
+            <label class="lb_name">姓&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
+            <input id="name" type="text" name="name" placeholder="请输入您推荐客户的姓名" value=""></input>
+        </div>
+        <div class="line">
+            <label class="lb_tel">手机号:</label>
+            <input id="tel" type="text" name="tel" placeholder="请输入您推荐客户的手机号" value=""></input>
+        </div>
+        <div class="pic">
+            <img src="https://org.modao.cc/uploads4/images/3053/30531429/v2_pmc7gs.jpg"/>
+        </div>
+    </div>
+    <div class="btn_group">
+        <button id='cancel' tapmode onclick="api.closeWin()">取消</button>
+        <button id="commit" tapmode onclick="fnCommit()">提交</button>
+    </div>  
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/SHA1.js"></script>
+<script type="text/javascript" src="../../script/APICloud-rest.js"></script>
+<script type="text/javascript">
+    var Obj_customer_name = document.getElementById("name");
+    var Obj_customer_tel = document.getElementById("tel");
+    var UILoading;
+    var flowerid;
+    apiready = function(){
+        UILoading = api.require('UILoading');
+    };
+    function fnCommit(){
+        var customer_name = Obj_customer_name.value.replace(/^\s*|\s*$/g,'');
+        var customer_tel = Obj_customer_tel.value.replace(/^\s*|\s*$/g,'');
+        var references_phone = api.getPrefs({sync: true,key:'user_phone'});
+        if(references_phone){
+            if(customer_name.length!=0&&customer_tel.length!=0){
+                if(customer_tel.length!=11||!(/^1[3456789]\d{9}$/).test(customer_tel)){
+                    alert("输入的手机号格式不正确")
+                }else{
+                    postCustomer(customer_name,customer_tel,references_phone);
+                }
+            }else{
+                alert("输入不能为空")
+            }
+        }else{
+            api.openWin({
+                name: 'login',
+                url: '../../html/login.html',
+                pageParam:{
+                page_url:'../../html/jiankehu.html'
+            }
+            });
+        }
+    };
+    function postCustomer(customername,customer_tel,references_phone){
+        UILoading.flower({
+            center: {
+                x: api.winWidth/2,
+                y: api.winHeight/2
+            },
+            mask:"rgba(0,0,0,0.1)",
+            size: 30,
+            fixed: true
+            }, function(ret) {
+                flowerid = ret.id
+            });
+        var now = Date.now();
+        var appKey = SHA1("A6006620792786"+"UZ"+"B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E"+"UZ"+now)+"."+now;
+        api.ajax({
+            url: 'https://www.apicloud.com/mcm/api/recommend_custom',
+            method: 'POST',
+            headers:{
+            "X-APICloud-AppId": "A6006620792786",
+            "X-APICloud-AppKey":appKey
+            },
+            data:{
+                values:{
+                    customer_name:customername,
+                    customer_phone:customer_tel,
+                    references_phone:references_phone
+                    }
+            }
+        },
+        function(ret, err){
+            if (ret) {
+                UILoading.closeFlower ({
+                    id: flowerid
+                });
+                api.toast({
+                    msg: '提交成功',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+                Obj_customer_name.value = "";
+                Obj_customer_tel.value = "";
+            } else {
+                alert(JSON.stringify(err));
+                UILoading.closeFlower ({
+                    id: flowerid
+                });
+            }
+
+        }
+        );
+    };
+</script>
+</html>

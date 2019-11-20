@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>法律条款</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+    header {
+        width: 100%;
+        height: 30px;
+        margin-top:10px;
+        margin-bottom: 5px;
+        overflow: hidden;
+        border-bottom:1px solid #cdcdcd;
+    }
+    
+    header .back {
+        position: absolute;
+        bottom: 0;
+        left: 10px;
+        width: 30px;
+        height: 30px;
+        background: url(../image/findaddress/back.png);
+        background-size: 26px 26px;
+        background-repeat: no-repeat;
+    }
+    
+    header h1 {
+        width: 100%;
+        height: 26px;
+        font-weight: 500;
+        line-height: 26px;
+        text-align: center;
+        color: #000000;
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+    
+    section {
+        position: relative;
+    }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="back" tapmode onclick="api.closeWin();"></div>
+        <h1 id='title'></h1>
+    </header>
+    <section>
+    </section>
+</body>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    var title = document.getElementById("title");
+    var div_title ={"znmssyxy.txt":"智能门锁使用协议","xzfwgmxy.txt":"行政服务产品购买协议","rjyhxy.txt":"软件用户协议","hcsyxy.txt":"时代工场会场使用协议","hyssyxy.txt":"时代工场会议室使用协议","yhzcxy.txt":"时代工场用户注册协议","yhgmxsxy.txt":"优惠权益服务包用户购买上协议",}
+apiready = function() {
+    var api_name = api.pageParam.name
+    title.innerHTML = div_title[api_name]
+    var header = $api.byId('header');
+    $api.fixStatusBar(header);
+    var headerH = $api.offset(header).h;
+    api.openFrame({
+        name: 'law_frame',
+        url: 'modules/law_frame.html',
+        rect: {
+            x: 0,
+            y: headerH+10,
+            w: 'auto',
+            h: 'auto'
+        },
+        pageParam: {
+            name:api_name
+        },
+        bounces: false
+    });
+};
+</script>
+
+</html>

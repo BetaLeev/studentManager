@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>关于时代工场</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        body,html{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: "微软雅黑";
+        }
+        .top{
+            width: 100%;
+            height:auto;
+            margin-top:50px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        .top img{
+            width: 120px;
+            height:120px;
+            object-fit: cover;
+            position: relative;
+        }
+        .top p{
+            font-size: 18px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: #474e46;
+        }
+        .content{
+            width: 96%;
+            height:auto;
+            font-size: 14px;
+            padding-left: 2%;
+            padding-right: 2%;
+        }
+        .content p{
+            width: 100%;
+            letter-spacing: 2px;
+            color: #8e908e;
+            line-height:1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <img src="../../image/sdgclogo.png">
+        <p>版本号&nbsp;：V1.0.0</p>
+    </div>
+    <div class="content">
+    <p>时代工场旨在打造企业社交智能云空间服务平台，线上线下资源立体整合，以共享办公空间为链接，盘活企业闲置办公资源，帮助企业解决发展性需求，为创业者搭建快速发展通道。</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+
+    };
+
+</script>
+</html>

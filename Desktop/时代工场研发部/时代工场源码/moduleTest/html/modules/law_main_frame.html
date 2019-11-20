@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>法律条款与隐私协议</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <style>
+    .option {
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .option .icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 40px;
+        height: 60px;
+        background-repeat: no-repeat;
+        background-position: 12px center;
+        background-size: auto 20px;
+    }
+    
+   
+    
+    .option .title {
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        height: 60px;
+        padding-left: 10px;
+        font-size: 14px;
+        color: #444;
+        text-align: left;
+        line-height: 60px;
+    }
+    
+    .option .arrow-panel {
+        position: absolute;
+        top: 0;
+        right: 12px;
+        width: auto;
+        height: 60px;
+        background-image: url(../../image/arrow_right.png);
+        background-repeat: no-repeat;
+        background-size: 16px 24px;
+        background-position: right center;
+    }
+    
+    .option .arrow-panel .text {
+        box-sizing: border-box;
+        padding-right: 20px;
+        width: auto;
+        height: 60px;
+        line-height: 60px;
+        font-size: 13px;
+        color: #888;
+        text-align: left;
+    }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="option" tapmode onclick="fngolaw('znmssyxy.txt')">
+            <div class="icon icon-coupon"></div>
+            <div class="title">智能门锁使用协议</div>
+            <div class="arrow-panel">
+                <div class="text"></div>
+            </div>
+        </div>
+        <div class="option" tapmode onclick="fngolaw('xzfwgmxy.txt')">
+            <div class="icon icon-address"></div>
+            <div class="title">行政服务产品购买协议</div>
+            <div class="arrow-panel">
+                <div class="text"></div>
+            </div>
+        </div>
+        <div class="option" tapmode onclick="fngolaw('rjyhxy.txt')">
+            <div class="icon icon-address"></div>
+            <div class="title">软件用户协议</div>
+            <div class="arrow-panel">
+                <div class="text"></div>
+            </div>
+        </div>
+        <div class="option" tapmode onclick="fngolaw('hcsyxy.txt')">
+            <div class="icon icon-address"></div>
+            <div class="title">时代工场会场使用协议</div>
+            <div class="arrow-panel">
+                <div class="text"></div>
+            </div>
+        </div>
+        <div class="option" tapmode onclick="fngolaw('hyssyxy.txt')">
+            <div class="icon icon-address"></div>
+            <div class="title">时代工场会议室使用协议</div>
+            <div class="arrow-panel">
+                <div class="text"></div>
+            </div>
+        </div>
+        <div class="option" tapmode onclick="fngolaw('yhzcxy.txt')">
+            <div class="icon icon-address"></div>
+            <div class="title">时代工场用户注册协议</div>
+            <div class="arrow-panel">
+                <div class="text"></div>
+            </div>
+        </div>
+        <div class="option" tapmode onclick="fngolaw('yhgmxsxy.txt')">
+            <div class="icon icon-address"></div>
+            <div class="title">优惠权益服务包用户购买上协议</div>
+            <div class="arrow-panel">
+                <div class="text"></div>
+            </div>
+        </div>
+    </section>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+apiready = function() {
+
+};
+function fngolaw(filename){
+    api.openWin({
+        name: 'law_page',
+        url: '../../html/law_page.html',
+        pageParam: {
+            name: filename,
+        },
+        bounces:false
+    });
+}
+</script>
+
+</html>

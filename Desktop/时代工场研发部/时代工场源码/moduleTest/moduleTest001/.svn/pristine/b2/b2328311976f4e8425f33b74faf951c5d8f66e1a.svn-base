@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/homepage.css" />
+</head>
+
+<body>
+    <!-- 首页头部位置和扫码 -->
+    <header id="header">
+        <div class="address">
+            <img src="../image/homepic/address.png" />
+            <span id="city" tapmode onclick="fnChooseCitiy()"></span>
+        </div>
+        <!-- 首页头部图标 -->
+        <div class="title">
+            <text>erawork</text>
+        </div>
+        <div class="scanner" tapmode onclick="fnScanner()">
+            <img src="../image/homepic/scanner.png" />
+        </div>
+        <!-- 分享按钮 -->
+         <div class="share" tapmode onclick="fnshare()">
+            <img src="../image/homepic/share_app.png" />
+        </div>
+    </header>
+</body>
+<script type="text/javascript" src='../script/api.js'></script>
+<script type="text/javascript">
+    var header = document.getElementById("#header");
+    var body = document.getElementsByTagName("body");
+    var hight_set;
+    apiready = function() {
+        $api.fixStatusBar(header);
+        if(api.systemType=="ios"){
+            hight_set=155
+        }else{
+            hight_set=120
+        }
+        var city_name = api.getGlobalData({key: 'now_city_name'});
+        if(!city_name){
+            var bmap = api.require('bMap');
+            bmap.getLocation({
+                accuracy: '10m',
+                autoStop: true,
+                filter: 1
+            }, function(ret, err) {
+                if (ret.status) {
+                    bmap.getNameFromCoords({
+                        lon: ret.lon,
+                        lat: ret.lat
+                    }, function(ret, err) {
+                        if (ret.status) {
+                            changecityvalue(ret.city);
+                            api.setGlobalData({
+                                key: 'now_city_name',
+                                value: ret.city
+                            });
+                            api.setGlobalData({
+                                key:'GPS_city_name',
+                                value:ret.city
+                            })
+                        } else {
+                            changecityvalue("北京");
+                        }
+                    });
+                } else {
+                    changecityvalue('北京');
+                    alert("定位失败,默认定位到北京");
+                }
+            });
+            }else{
+                changecityvalue(city_name);
+            }
+        
+        api.openFrame({
+            name: 'homeson',
+            url: '../html/modules/homemodule.html',
+            rect: {
+                x: 0,
+                y: 65,
+                w: api.winWidth,
+                h: api.winHeight-hight_set
+            },
+            pageParam: {
+                name: 'test'
+            },
+            bounces: true,
+            bgColor: 'rgba(0,0,0,0)',
+            vScrollBarEnabled: true,
+            hScrollBarEnabled: true
+        });
+    };
+    // 改变城市value
+    function changecityvalue(city_name){
+        var city = document.getElementById("city");
+        $api.text(city,city_name);
+    }
+    // 选择城市
+    function fnChooseCitiy() {
+        api.openWin({
+            rect: {
+                x: 0,
+                y: 30,
+                w: api.winWidth,
+                h: api.winHeight
+            },
+            pageParam: {
+                name: api.winName
+            },
+            name: 'choosecity',
+            url: 'choosecity.html',
+        });
+    };
+    function fnScanner(){
+        var FNScanner = api.require('FNScanner');
+        FNScanner.open({
+            autorotation: true
+        }, function(ret, err) {
+            if (ret) {
+                if(ret.eventType=='cancel'){
+                }else if(ret.eventType=='cameraError'){
+                    alert('访问摄像头失败');
+                }else if(ret.eventType=='albumError'){
+                    alert('访问相册失败')
+                }else if(ret.eventType=='success'){
+                    var aliPayPlus = api.require('aliPayPlus');
+                    aliPayPlus.config({
+                    }, function(ret, err) {
+                        if(ret.status==true){
+                            aliPayPlus.pay({
+                        subject: '订单名',
+                        body: '订单描述',
+                        amount: '0.01',
+                        tradeNO: '15043201648501',
+                        rsa2:true
+                    }, function(ret, err) {
+                        api.alert({
+                            title: '支付结果',
+                            msg: JSON.stringify(ret),
+                            buttons: ['确定']
+                        });
+                    });
+                        }
+                    });
+                    
+                }
+            } else {
+                alert(err.msg);
+            }
+        });
+    };
+     function fnshare(){
+        api.openFrame({
+            name: 'animation_frame_share',
+            url: 'modules/shareframemoudle.html',
+            rect: {
+                x: 0,
+                y:0,
+                w: api.winWidth,
+                h: 'auto'
+            },
+            bounces: false,
+            bgColor: 'rgba(0,0,0,0.1)',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false
+        });
+     };
+</script>
+
+</html>

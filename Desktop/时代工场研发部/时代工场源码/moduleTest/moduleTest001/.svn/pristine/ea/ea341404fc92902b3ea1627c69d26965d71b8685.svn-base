@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+    header {
+        padding:0;
+        width: 100%;
+        height: 50px;
+        top:30px;
+        background-color: #125E88;
+        position: absolute;
+        margin: 0 auto;
+    }
+    header .title{
+        width: 80px;
+        height: 98%;
+        position: absolute;
+        color:#fff;
+        top:0;
+        line-height:50px;
+        left:40%;
+        font-size: 18px
+    }
+    header .right {
+        float: right;
+         width: 80px;
+        height: 50px;
+        position: absolute;
+        top: 0px;
+        right: 5px;
+        width: 50px;
+        height: 50px;
+        color: #fff;
+        font-size: 15px;
+        line-height:50px;
+    }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class='title'><span>会员登录</span></div>
+        <div class="right" onclick="fnOpenRegisterWin()">注册</div>
+    </header>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript"> 
+apiready = function() {
+    api.setStatusBarStyle({
+            style: 'dark',
+            color:'#ffffff',
+        });
+   var header = $api.dom("#header");
+    $api.fixStatusBar(header);
+    var headerH = $api.offset(header).h;
+    if(api.pageParam.filename){
+        api.openFrame({
+                 name:'loginFrame',
+                 url:'./login_frame.html',
+                 rect:{
+                    x: 0,
+                    y: headerH,
+                    W: "auto",
+                    h:"auto"
+                 },
+                 pageParam:{
+                    name:api.pageParam.name,
+                    filename:api.pageParam.filename,
+                    page_url:api.pageParam.page_url
+                 },
+                 bgColor: 'rgba(0,0,0,0)',
+
+            });
+        if(api.pageParam.title){
+            api.openFrame({
+                 name:'loginFrame',
+                 url:'./login_frame.html',
+                 rect:{
+                    x: 0,
+                    y: headerH,
+                    W: "auto",
+                    h:"auto"
+                 },
+                 pageParam:{
+                    name:api.pageParam.name,
+                    title:api.pageParam.title,
+                    filename:api.pageParam.filename,
+                    page_url:api.pageParam.page_url
+                 },
+                 bgColor: 'rgba(0,0,0,0)',
+
+            });
+        }
+    }else{
+        api.openFrame({
+                 name:'loginFrame',
+                 url:'./login_frame.html',
+                 rect:{
+                    x: 0,
+                    y: headerH,
+                    W: "auto",
+                    h:"auto"
+                 },
+                 bgColor: 'rgba(0,0,0,0)',
+
+            });
+    }
+    
+
+    
+};
+function close_now_win(){
+    api.closeWin({
+        name: api.winName
+    });
+}
+function fnOpenRegisterWin(){
+    if(api.pageParam.filename){
+        if(api.pageParam.title){
+            api.openWin({
+                name: 'register',
+                url: 'register.html',
+                pageParam:{
+                    winname:api.winName,
+                    name:api.pageParam.name,
+                    title:api.pageParam.title,
+                    framename:api.frameName,
+                    filename:api.pageParam.filename,
+                    page_url:api.pageParam.page_url
+                }
+            });
+        }else{
+            api.openWin({
+                name: 'register',
+                url: 'register.html',
+                pageParam:{
+                    winname:api.winName,
+                    name:api.pageParam.name,
+                    framename:api.frameName,
+                    filename:api.pageParam.filename,
+                    page_url:api.pageParam.page_url
+                }
+            });
+        }
+    }else{
+        api.openWin({
+            name: 'register',
+            url: 'register.html',
+            pageParam:{
+                winname:api.winName,
+                framename:api.frameName
+            }
+        });
+    }
+    };
+</script>
+
+</html>

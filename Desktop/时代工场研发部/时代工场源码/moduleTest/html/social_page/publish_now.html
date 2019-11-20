@@ -1,0 +1,157 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <title>发布此刻</title>
+    <style>
+    body{
+      background: #ffffff;
+    }
+
+        .aui-iconfont,
+        .aui-bar {
+            color: black !important;
+        }
+
+        .container {
+            margin-top: 20px;
+            padding: 30px;
+            font-size: 1.1rem;
+            color: gray;
+        }
+
+        .title {
+            border-bottom: 1px solid gray;
+            padding-bottom: 5px;
+            margin-bottom: 40px;
+        }
+
+        .text {
+            height: 500px;
+
+        }
+
+        .voice-input-plate {
+            border-top: 1px solid #f5f5f5;
+            border-bottom: 1px solid #f5f5f5;
+            position: relative;
+            padding: 0 20px;
+            display: flex;
+            height: 70px;
+            background: #fff;
+        }
+
+        .voice-input-plate div {
+            margin: 0 auto;
+            height: 60px;
+            line-height: 60px;
+        }
+
+        .voice-input-plate img {
+            margin-top: 15px;
+            height: 30px;
+            width: 30px;
+        }
+
+        .voice-input input {
+            width: 200px;
+            height: 35px;
+            background: #f7f7f7;
+            margin-top: 15px;
+            border-radius: 3px;
+        }
+
+        .bottom-drawer {
+          position: absolute;
+          bottom: 0px;
+          width: 100%;
+            display: flex;
+            background: #f4f4f4;
+            padding-top: 30px;
+        }
+
+        .bottom-drawer div {
+          margin-top: 30px;
+            vertical-align: middle;
+            text-align: center;
+            margin: 0 auto;
+            width: 25%;
+            height: 120px
+        }
+
+        .bottom-drawer img {
+            padding: 14px;
+            background: #ffffff;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            margin: 0 auto;
+            width: 76px;
+            height: 76px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="cliseCurrentWin()"></span>
+        </div>
+        <div class="aui-title">此刻</div>
+        <div class="aui-pull-right ">
+            <span onclick="goNextWin('./publish_success.html')">发布</span>
+        </div>
+    </header>
+    <div class="container">
+        <div class="text">
+            <span>分享美好瞬间</span>
+        </div>
+
+    </div>
+    <div class="voice-input-plate">
+        <div><img src="../publish_page/img/icon/voice.png" alt=""></div>
+        <div class="voice-input"> <input type="text"></div>
+        <div> <img src="../publish_page/img/icon/small.png" alt=""></div>
+        <div> <img src="../publish_page/img/icon/plus.png" alt=""></div>
+    </div>
+
+    <div class="bottom-drawer">
+        <div>
+            <img src="../publish_page/img/icon/pic.png" alt="">
+            <p>照片</p>
+        </div>
+
+        <div>
+            <img src="../publish_page/img/icon/alert.png" alt="">
+            <p>提醒</p>
+        </div>
+
+        <div>
+            <img src="../publish_page/img/icon/collect.png" alt="">
+            <p>收藏</p>
+        </div>
+
+        <div>
+            <img src="../publish_page/img/icon/people.png" alt="">
+            <p>个人名片</p>
+        </div>
+    </div>
+    <script src="../../script/api.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      apiready = function(){
+        $api.addEvt($api.dom('#publish-btn'), 'click', function(){
+          api.openWin({
+              name: '发布成功',
+              url: './publish_success.html',
+          });
+
+        });
+
+      }
+    </script>
+
+</body>
+
+</html>

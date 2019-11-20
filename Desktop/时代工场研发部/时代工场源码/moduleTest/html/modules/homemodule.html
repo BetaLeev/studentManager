@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>首页body1</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/homepage.css"/>
+     <style>
+        body{
+            width:100%;
+            height: 100%;
+            margin:0;
+            padding:0;
+        }
+        /*#main{
+            width: 100%;
+            height: 500px;
+        }*/
+        .lunbo{
+            width:100%;
+            height: 160px;
+            position: relative;
+            width: calc(375px * 5);
+            top:0;
+            left:0;
+
+            animation: move 20s ease-out infinite alternate;
+        }
+        .lunbo img{
+            position: absolute;
+            float: left;
+            width:375px;
+            height:160px;
+            z-index:1;
+            /*overflow: hidden;*/
+        }
+       /* @keyframes move{
+            0%,20% {        margin-left: 0px;       }
+            25%,40% {       margin-left: -375px;    }
+            45%,60% {       margin-left: -750px;    }
+            65%,80% {       margin-left: -1500px;    }
+            85%,100% {      margin-left: -3000px;   }
+        }*/
+        .zoumadeng{
+            width: 100%;
+            height:20px;
+            background-color: #FED765;
+            position: absolute;
+            top:160px;
+        }
+        .zoumadeng1{
+            width:28%;
+            height: 20px;
+            font-size:0.5px;
+            text-align: center;
+            line-height:20px;
+            float: left;
+            margin-top:3px;
+            margin-left:20px;
+        }
+        .city{
+            width:315px;
+            height:350px;
+            margin-top:20px;
+
+        }
+        .erji_city{
+            width: 300px;
+            height:50px;
+            /*border:1px solid red;*/
+            position: absolute;
+            top:14px;
+            float: left;
+        }
+        .erji_city span{
+            font-size:10px;
+        }
+        .erji_city1{
+            width: 200px;
+            border-top: 1px solid #8a8a8a;
+            margin-left: 40px;
+            margin-top:-8px;
+        }
+        .xuanxiangka{
+            width:100%;
+            height: 375px;
+            position: absolute;
+            top:180px;
+        }
+       /* .xuanxiangka0{
+            border-right: 2px solid #fff;
+            border-bottom:1px solid black;
+        }
+*/        /*.xuanxiangka1{
+            border-right: 1px solid black;
+        }*/
+        nav{
+            width:60px;
+            height: 375px;
+            font-size:12px;
+            /*margin-top:160px;*/
+            background:#F2F2F2;
+            /*border-right: 1px solid black;*/
+        }
+        section{
+            text-align: center;
+            line-height:50px;
+        }
+        dd{
+            width:315px;
+            height: 375px;
+            background:#fff;
+            font-size:13px;
+            position: absolute;
+            left:70px;
+            top:0;
+        }
+        .look0{
+            width: 315px;
+            height: 350px;
+            margin-top: 50px;
+        }
+        .look{
+            width: 300px;
+            height: 110px;
+            /*margin-left:10px;*/
+            float: left;
+            margin-top:-10px;
+        }
+        .look img{
+            width: 149px;
+            height: 90px;
+            float: left;
+            margin-right:10px;
+            margin-top:10px;
+        }
+        .look p{
+            font-size: 15px;
+            margin-top:10px;
+            margin-left:10px;
+        }
+        .look span{
+            font-size: 1px;
+
+            color: #707070;
+        }
+        /*#erji span:hover{
+
+        }*/
+    </style>
+</head>
+<body>
+    <div id="main" class="flex-con">
+        <!-- 轮播 -->
+        <div class="lunbo">
+            <ul class="list">
+                <li><img src="../../image1/zhutu.jpg" alt=""/></li>
+                <!-- <li><img src="../../image1/INFINITI1.jpg" alt=""/></li>
+                <li><img src="../../image1/oupei.jpg" alt=""/></li>
+                <li><img src="../../image1/INFINITI.jpg" alt=""/></li>
+                <li><img src="../../image1/INFINITI2.jpg" alt=""/></li> -->
+            </ul>
+        </div>
+        <div class="zoumadeng">
+            <!-- <marquee behavior="alternate" direction="left">你租的不是工位，是钱途</marquee> -->
+            <div class="zoumadeng1">1000+ 驿站服务</div>
+            <div class="zoumadeng1">儿童教育，影视培训</div>
+            <div class="zoumadeng1">50000余个会议中心</div>
+        </div>
+        <!-- 选项卡 -->
+        <div class="xuanxiangka">
+            <nav>
+            <section class="xuanxiangka0">北京</section>
+            <section class="xuanxiangka1">山西</section>
+            <section class="xuanxiangka1">多伦多</section>
+            <section class="xuanxiangka1">会员卡</section>
+        </nav>
+        <dd id="erji">
+            <div class="city">
+                <div class="erji_city">
+                    <span>北京</span>
+                    <div class="erji_city1"><hr></div>
+                </div>
+                <div class="look0">
+                    <div class="look">
+                    <img src="../../image1/NO.1.jpg" alt="">
+                    <p>时代工厂NO.1</p>
+                    <span>企业海外发展咨询服务</span>
+                    <p>￥499起</p>
+                </div>
+                <div class="look">
+                    <img src="../../image1/chenshi.jpg" alt="">
+                    <p>时代工厂晨时驿站</p>
+                    <span>儿童教育，影视培训</span>
+                    <p>￥399起</p>
+                </div>
+                <div class="look">
+                    <img src="../../image1/woben.jpg" alt="">
+                    <p>时代工厂我本驿站</p>
+                    <span>健康管理，企业内训</span>
+                    <p>￥399起</p>
+                </div>
+                </div>
+
+            </div>
+        </dd>
+        <dd id="erji">
+            <div class="city">
+                <div class="erji_city">
+                    <span>山西</span>
+                    <div class="erji_city1"><hr></div>
+                </div>
+                <div class="look0">
+                    <div class="look">
+                    <img src="../../image1/linfeng.jpg" alt="">
+                    <p>时代工厂林凤驿站</p>
+                    <span>企业海外发展咨询服务</span>
+                    <p>￥499起</p>
+                </div>
+                <div class="look">
+                    <img src="../../image1/zhanteng.jpg" alt="">
+                    <p>时代工厂展腾驿站</p>
+                    <span>儿童教育，影视培训</span>
+                    <p>￥399起</p>
+                </div>
+                <div class="look">
+                    <img src="../../image1/oupei.jpg" alt="">
+                    <p>时代工厂欧佩驿站</p>
+                    <span>健康管理，企业内训</span>
+                    <p>￥399起</p>
+                </div>
+                </div>
+
+            </div>
+        </dd>
+        <dd id="erji">
+            <div class="city">
+                <div class="erji_city">
+                    <span>多伦多</span>
+                    <div class="erji_city1"><hr></div>
+                </div>
+                <div class="look0">
+                    <div class="look">
+                    <img src="../../image1/INFINITI.jpg" alt="">
+                    <p>时代工厂INFINITI驿站</p>
+                    <span>企业海外发展咨询服务</span>
+                    <p>￥499起</p>
+                </div>
+                <div class="look">
+                    <img src="../../image1/xinflix.jpg" alt="">
+                    <p>时代工厂Xinflix驿站</p>
+                    <span>儿童教育，影视培训</span>
+                    <p>￥399起</p>
+                </div>
+                <div class="look">
+                    <img src="../../image1/NINESKY.jpg" alt="">
+                    <p>时代工厂NINESKY驿站</p>
+                    <span>健康管理，企业内训</span>
+                    <p>￥399起</p>
+                </div>
+                </div>
+
+            </div>
+        </dd>
+        <dd id="erji">
+            <div class="city">
+                <div class="erji_city">
+                    <span>会员卡</span>
+                    <div class="erji_city1"><hr></div>
+                </div>
+                <div class="look0">
+                    <div class="look">
+                    <img src="../../image1/bottombtn0102.png" alt="">
+                    <p>钻石卡</p>
+                    <span>企业海外发展咨询服务</span>
+                    <p>￥600/个</p>
+                </div>
+                <div class="look">
+                    <img src="../../image1/bottombtn0202.png" alt="">
+                    <p>金卡</p>
+                    <span>儿童教育，影视培训</span>
+                    <p>￥400/个</p>
+                </div>
+                <div class="look">
+                    <img src="../../image1/bottombtn0302.png" alt="">
+                    <p>银卡</p>
+                    <span>健康管理，企业内训</span>
+                    <p>￥200/个</p>
+                </div>
+                </div>
+
+            </div>
+        </dd>
+        <dd id="erji">
+            <div class="city">
+                <div class="erji_city">
+                    <span>北京</span>
+                    <div class="erji_city1"><hr></div>
+                </div>
+                <div class="look0">
+                    <div class="look">
+                    <img src="../../image1/NO.1.jpg" alt="">
+                    <p>时代工厂NO.1</p>
+                    <span>企业海外发展咨询服务</span>
+                    <p>￥499起</p>
+                </div>
+                <div class="look">
+                    <img src="../../image1/chenshi.jpg" alt="">
+                    <p>时代工厂晨时驿站</p>
+                    <span>儿童教育，影视培训</span>
+                    <p>￥399起</p>
+                </div>
+                <div class="look">
+                    <img src="../../image1/woben.jpg" alt="">
+                    <p>时代工厂我本驿站</p>
+                    <span>健康管理，企业内训</span>
+                    <p>￥399起</p>
+                </div>
+                </div>
+
+            </div>
+        </dd>
+        </div>
+
+    </div>
+</body>
+
+    <script>
+    //二级菜单
+//获取导航栏nav
+    var aSection = document.getElementsByTagName('section');
+//获取ul们
+    var aDd = document.getElementsByTagName('dd')
+//给 section加入鼠标移入事件
+    for(var i=0;i<aSection.length;i++){
+        aSection[i].index  = i;//0~5
+        aSection[i].onclick = function(){
+            //此时让对应的那个ul显示
+            // console.log(i)  //6
+            console.log(this)//obj  aSection[i]
+            // console.log(obj.name)
+            console.log(this.index)//获取到当前aSection[i]所对应的下标  也是ul的下标
+            for(var k=0;k<aDd.length;k++){
+                aDd[k].style.display = 'none'
+            }
+            aDd[this.index].style.display = 'block';
+        }
+
+        // aSection[i].onmouseleave = function(){
+        //     aDd[this.index].style.display = 'none';
+        // }
+    }
+
+    // //是我二级菜单自己的事情，与他人无关
+    // for(var i=0;i<aDd.length;i++){
+    //     aDd[i].onmouseenter = function(){
+    //         this.style.display = 'block';
+    //     }
+    //     aDd[i].onmouseleave = function(){
+    //         this.style.display = 'none';
+    //     }
+    // }
+</script>
+</html>
