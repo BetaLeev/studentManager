@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>问题提交</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: auto;
+        }
+        .form_post{
+            width: 100%;
+            height: auto;
+        }
+        .top_div{
+            width: 100%;
+            height: 30px;
+        }
+        .top_div span{
+            width: auto;
+            height: 30px;
+            line-height: 30px;
+            position: relative;
+            left: 15px;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .img_box{
+            width: 100%;
+            height: 100px;
+        }
+        #img_box{
+            width: 90px;
+            position: relative;
+            left: 15px;
+            margin-top:5px;
+            text-align: center;
+            height: 100px;
+            border:1px dashed #cdcdcd;
+        }
+        .img_before{
+            width: 50px;
+            height: 50px;
+            margin-top: 25px;
+
+        }
+        .img_after{
+            width: 100%;
+            height: 100%;
+        }
+        .content_div{
+            width: 100%;
+            height: 30px;
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .content_div span{
+            left:15px;
+            position: relative;
+        }
+        .box_area{
+            width: 94%;
+            left: 15px;
+            position: relative;
+        }
+        .area_input{
+            width: 94%;
+            padding-left: 15px;
+            height: 100px;
+            font-size: 16px;
+            padding-top: 5px;
+            outline: none;
+            border: 1px dashed #cdcdcd;
+        }
+        .bottom_box{
+            margin-top:10px;
+            width: 99%;
+            height: 40px;
+            text-align: center;
+        }
+        .bottom_box span{
+            width: 60%;
+            height: 40px;
+            background-color: #125E88;
+            color:white;
+            font-size: 16px;
+            line-height: 40px;
+            letter-spacing: 3px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form_post">
+        <div class="top_div"><span>图片(必选)：</span></div>
+        <div class="img_box">
+            <div id="img_box">
+            </div>  
+        </div>
+        <div class="content_div"><span>随便写写：</span></div>
+        <div class="box_area">
+            <textarea class="area_input" id='area_value'></textarea>
+        </div>
+        <div class="bottom_box">
+            <span tapmode onclick="fnpostform()">提交</span>    
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/SHA1.js"></script>
+<script type="text/javascript" src="../../script/APICloud-rest.js"></script>
+<script type="text/javascript">
+    var system_name;
+    var UILoading;
+    var flowerid;
+    var img_obj = document.getElementById("img_box");
+    var textarea_obj = document.getElementById("area_value");
+    var img_flag = false;
+    var file_url;;
+    var textarea_value;
+    img_obj.innerHTML ="<img class='img_before' src='../../image/zengjia.png' />"
+    var imgurl;
+    var height;
+apiready = function(){
+    height = api.winHeight
+    system_name = api.systemType
+    UILoading = api.require('UILoading');
+}
+    img_obj.onclick=function(){
+        if(img_flag==false){
+            var UIAlbumBrowser = api.require('UIAlbumBrowser');
+                    UIAlbumBrowser.open({
+                        max: 1,
+                        type:'image',
+                        styles: {
+                            bg: '#ffffff',
+                            mark: {
+                                icon: '',
+                                position: 'bottom_left',
+                                size: 20
+                            },
+                            nav: {
+                                bg: 'rgba(255,255,255,1)',
+                                titleColor: '#000000',
+                                titleSize: 18,
+                                cancelColor: '#000000',
+                                cancelSize: 16,
+                                finishColor: '#000000',
+                                finishSize: 16
+                            }
+                        },
+                        rotation: true
+                    }, function(ret) {
+                        if (ret) {
+                           if(ret.list){
+                            if(ret.list[0].path){
+                                imgurl = ret.list[0].path
+                                img_obj.innerHTML ="<img class='img_after' src='"+imgurl+"' />"
+                                img_flag = true;
+                            }
+                           }
+                        }
+                    });
+        }else{
+            img_obj.innerHTML ="<img class='img_before' src='../../image/zengjia.png' />"
+            img_flag = false
+        }
+    };
+    // 上传图片
+    function postimg(){
+        var size_value = api.winWidth.toString()+"x"+height.toString()
+        UILoading.flower({
+            center: {
+                x: api.winWidth/2,
+                y: api.winHeight/2
+            },
+            mask:"rgba(0,0,0,0.1)",
+            size: 30,
+            fixed: true
+            }, function(ret) {
+                flowerid = ret.id
+            });
+        var imgname = imgurl.split('/')[imgurl.split('/').length-1];
+        var now = Date.now();
+        var appKey = SHA1("A6006620792786"+"UZ"+"B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E"+"UZ"+now)+"."+now;
+        api.ajax({
+            url: 'https://www.apicloud.com/mcm/api/file',
+            method: 'POST',
+            headers:{
+            "X-APICloud-AppId": "A6006620792786",
+            "X-APICloud-AppKey":appKey
+            },
+            data: {
+                values: { 
+                    name: imgname,
+                    
+                },
+                files:{
+                    file:imgurl
+                }
+            }
+        },function(ret, err){
+            UILoading.closeFlower ({
+                       id: flowerid
+                   });
+            if (ret) {
+                var now = Date.now();
+                var appKey = SHA1("A6006620792786"+"UZ"+"B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E"+"UZ"+now)+"."+now;
+                api.ajax({
+            url: 'https://www.apicloud.com/mcm/api/trouble_infor',
+            method: 'post',
+            headers:{
+            "X-APICloud-AppId": "A6006620792786",
+            "X-APICloud-AppKey":appKey
+            },
+            data: {
+                values: { 
+                    system:system_name,
+                    describe:textarea_value,
+                    screensize:size_value,
+                    imgurl:ret
+                }
+            }
+        },function(ret1, err1){
+            if (ret1) {
+                api.toast({
+                    msg: '提交成功，等待修复',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+                img_obj.innerHTML ="<img class='img_before' src='../../image/zengjia.png' />"
+                img_flag = false;
+                textarea_obj.value = ''
+            } else {
+                alert(err1.msg);
+            }
+        });
+            } else {
+                alert(err.msg);
+            }
+        });
+    };
+    function fnpostform(){
+        textarea_value = textarea_obj.value;
+        if(imgurl.length!=0&&textarea_value.length!=0){
+            postimg();
+        }else{
+            api.toast({
+                msg: '有信息未填写',
+                duration: 2000,
+                location: 'bottom'
+            });
+        } 
+    };
+</script>
+</html>

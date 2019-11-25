@@ -1,0 +1,205 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <title>发布经验列表</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .experincepublish_head {
+            width: 100%;
+            height: 100px;
+            background: #fff;
+            border-bottom: 2px solid #b5b5b6;
+        }
+
+        .experincepublish_return {
+            width: 20%;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            float: left;
+        }
+
+        .experincepublish_return img {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 55px;
+        }
+
+        .experincepublish_title {
+            width: 60%;
+            height: 100px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 100px;
+            float: left;
+        }
+
+        .experincepublish_title h1 {
+            color: #707070;
+        }
+
+        .experincepublish_body {
+            width: 100%;
+            height: 600px;
+        }
+
+        .experincepublish_body h1 {
+            font-size: .875rem;
+            padding-top: 10px;
+            padding-left: 25px;
+
+            color: #707070;
+        }
+
+        .experincepublish_body1 {
+            width: 90%;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        .experincepublish_list1 {
+            width: 50%;
+            padding: 10px;
+            float: left;
+        }
+
+        .experincepublish_list1 img {
+            width: 200px;
+            height: 188px;
+            border-radius: 5px;
+        }
+
+        .experincepublish_list1 b {
+
+            font-size: 16px;
+            color: #185078;
+            margin-top: 10px;
+        }
+
+        .experincepublish_list1_b {
+            width: 100px;
+            height: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .experincepublish_list1 span {
+            /*width: 100px;
+        height: 30px;*/
+            font-size: 13px;
+            margin-top: 5px;
+            color: #b5b5b6;
+        }
+
+        .experincepublish_list1_1 {
+            width: 50%;
+            height: 20px;
+            font-size: 5px;
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .experincepublish_list1_1 img {
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+            <div class="aui-pull-left aui-btn">
+                <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+            </div>
+            <div class="aui-title">发布故事</div>
+        </header>
+
+    <div class="experincepublish_body">
+        <h1>全部故事</h1>
+        <div class="experincepublish_body1" onclick="goNextWin('./publish_page_detail.html')">
+            <div class="experincepublish_list1">
+                <img src="./img/peitu1.jpg" alt="">
+                <div class="experincepublish_list1_b"><b>我本驿站</b></div>
+                <div class="experincepublish_list1_span"><span>建于1960年，在加拿大安大略省尼亚加拉大瀑布附近的朝野水上公园坐山望湖……</span></div>
+                <div class="experincepublish_list1_1">
+                    <img src="../../image/avatar-demo.png" alt="">
+                    <img src="../../image/good_active.png" alt=""><span>14</span>
+                    <img src="../../image/comment.png" alt=""><span>2</span>
+                </div>
+            </div>
+
+            <div class="experincepublish_list1">
+                <img src="../../image/other/peitu2.jpg" alt="">
+                <div class="experincepublish_list1_b"><b>英狮驿站</b></div>
+                <div class="experincepublish_list1_span"><span>建于1960年，在加拿大安大略省尼亚加拉大瀑布附近的朝野水上公园坐山望湖……</span></div>
+                <div class="experincepublish_list1_1">
+                  <img src="../../image/avatar-demo.png" alt="">
+                  <img src="../../image/good_active.png" alt=""><span>14</span>
+                  <img src="../../image/comment.png" alt=""><span>2</span>
+                </div>
+            </div>
+
+            <div class="experincepublish_list1">
+                <img src="../../image/other/peitu3.jpg" alt="">
+                <div class="experincepublish_list1_b"><b>我本驿站</b></div>
+                <div class="experincepublish_list1_span"><span>建于1960年，在加拿大安大略省尼亚加拉大瀑布附近的朝野水上公园坐山望湖……</span></div>
+                <div class="experincepublish_list1_1">
+                  <img src="../../image/avatar-demo.png" alt="">
+                  <img src="../../image/good.png" alt=""><span>14</span>
+                  <img src="../../image/comment.png" alt=""><span>2</span>
+                </div>
+            </div>
+
+            <div class="experincepublish_list1">
+                <img src="../../image/other/peitu4.jpg" alt="">
+                <div class="experincepublish_list1_b"><b>英狮驿站</b></div>
+                <div class="experincepublish_list1_span"><span>建于1960年，在加拿大安大略省尼亚加拉大瀑布附近的朝野水上公园坐山望湖……</span></div>
+                <div class="experincepublish_list1_1">
+                  <img src="../../image/avatar-demo.png" alt="">
+                  <img src="../../image/good_active.png" alt=""><span>14</span>
+                  <img src="../../image/comment.png" alt=""><span>2</span>
+              </div>
+            </div>
+
+            <div class="experincepublish_list1">
+                <img src="../../image/other/peitu5.jpg" alt="">
+                <div class="experincepublish_list1_b"><b>我本驿站</b></div>
+                <div class="experincepublish_list1_span"><span>建于1960年，在加拿大安大略省尼亚加拉大瀑布附近的朝野水上公园坐山望湖……</span></div>
+                <div class="experincepublish_list1_1">
+                  <img src="../../image/avatar-demo.png" alt="">
+                  <img src="../../image/good_active.png" alt=""><span>14</span>
+                  <img src="../../image/comment.png" alt=""><span>2</span>
+              </div>
+            </div>
+
+            <div class="experincepublish_list1">
+                <img src="../../image/other/peitu6.jpg" alt="">
+                <div class="experincepublish_list1_b"><b>英狮驿站</b></div>
+                <div class="experincepublish_list1_span"><span>建于1960年，在加拿大安大略省尼亚加拉大瀑布附近的朝野水上公园坐山望湖……</span></div>
+                <div class="experincepublish_list1_1">
+                  <img src="../../image/avatar-demo.png" alt="">
+                  <img src="../../image/good_active.png" alt=""><span>14</span>
+                  <img src="../../image/comment.png" alt=""><span>2</span>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../script/common.js" charset="utf-8"></script>
+</body>
+
+</html>

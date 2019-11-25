@@ -1,0 +1,428 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.js">
+    <style>
+        body {
+            text-align: center;
+        }
+
+        header {
+            padding-top: 25px !important;
+            border-bottom: 1px solid #4b4b4b;
+            background-color: #f0f0f0;
+        }
+
+        header * {
+            color: #4b4b4b !important;
+        }
+
+        .aui-bar,
+        .aui-bar span {
+            color: #4b4b4b !important;
+        }
+
+        .top {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .row {
+            box-sizing: border-box;
+            width: auto;
+            height: 70px;
+            margin-left: 45px;
+            margin-right: 45px;
+            padding-top: 30px;
+
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .input {
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #b5b5b6;
+            /*text-align: center;*/
+        }
+
+        .wjmm {
+            width: 100%;
+            float: right;
+            margin-top: 10px;
+            margin-right: 80px;
+            font-size: 14px;
+            text-align: right;
+            color: #707070;
+        }
+
+        .login-btn {
+          position: relative;
+            width: 40%;
+            height: 50px;
+            outline: none;
+            border: none;
+            background-color: #FED765;
+            color: #4b4b4b;
+            font-size: 1rem;
+            line-height: 50px;
+            margin-top: 30px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .qtdl {
+            width: 100%;
+            /*height: 100px;*/
+            position: absolute;
+            bottom: 0;
+            /*margin-bottom: 0px;*/
+        }
+
+        .wz {
+            width: 99%;
+            margin-top: 160px;
+            text-align: center;
+        }
+
+        .wz .line {
+            display: inline-block;
+            width: 30%;
+            border-top: 1px solid #ccc;
+        }
+
+        .wz .txt {
+            color: #686868;
+            vertical-align: -4px;
+        }
+
+        #image {
+            margin-top: -10px;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #image .weixin {
+            position: relative;
+            margin-top: 16px;
+            margin-left: -3%;
+            box-sizing: border-box;
+            width: 23%;
+            height: 50px;
+            background-repeat: no-repeat;
+            background-image: url(../../image/wechat.png);
+            background-size: 50% 80%;
+            background-position: center center;
+        }
+
+        #image .weibo {
+            position: relative;
+            margin-top: 14px;
+            margin-left: 0%;
+            box-sizing: border-box;
+            width: 25%;
+            height: 50px;
+            background-repeat: no-repeat;
+            background-image: url(../../image/weibo.png);
+            background-size: 45% 80%;
+            background-position: center center;
+        }
+
+        #image .youxiang {
+            position: relative;
+            margin-top: 12px;
+            margin-left: 1%;
+            box-sizing: border-box;
+            width: 24%;
+            height: 50px;
+            background-repeat: no-repeat;
+            background-image: url(../../image/email.png);
+            background-size: 50% 80%;
+            background-position: center center;
+        }
+
+        #wrap {
+            width: 100%;
+            height: 30px;
+            margin-top: -14px;
+            margin-left: 0px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #wrap #weixin {
+            position: relative;
+            box-sizing: border-box;
+            margin-left: -3%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #wrap #weibo {
+            position: relative;
+            margin-left: 3%;
+            width: 20%;
+            height: 15px;
+            text-align: center;
+        }
+
+        #wrap #youxiang {
+            position: relative;
+            margin-left: 4%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        .highlight {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title">会员登录</div>
+        <div class="aui-pull-right aui-btn">
+            <span onclick="goNextWin('./register.html')">注册</span>
+        </div>
+    </header>
+    <div class="top">
+        <div class="row">
+            <input id="phonenumber" class="input" type="text" placeholder="请输入您的手机号/邮箱">
+        </div>
+        <div class="row">
+            <input id="password" class="input" type="password" placeholder="请输入您的账户密码">
+        </div>
+        <div class="wjmm" tapmode onclick="fnfortpassword()">忘记密码?</div>
+    </div>
+    <button class='btn-normal login-btn' onclick="goNextWin('./login_success.html')">登陆</button>
+    <div class="qtdl">
+        <div class="wz">
+            <span class="line"></span>
+            <span class="txt">其它登录</span>
+            <span class="line"></span>
+        </div>
+        <div id="image">
+            <span class="weixin" onclick="wechatLogin()">
+            </span>
+            <span class="weibo">
+            </span>
+            <span class="youxiang">
+            </span>
+        </div>
+        <div id="wrap">
+            <span id="weixin">微信</span>
+            <span id="weibo">微博</span>
+            <span id="youxiang">邮箱</span>
+        </div>
+
+    </div>
+    <!--  <div class="btn-third-party" tapmode onclick="fnwechat_login()">使用微信登录</div> -->
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/SHA1.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest.js"></script>
+<script src="../../script/common.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+    var UILoading;
+    var flowerid;
+    apiready = function() {
+        UILoading = api.require('UILoading');
+    };
+    // 微信一键登入
+    // 微信登入
+    //忘记密码
+    function fnfortpassword() {
+        api.openWin({
+            name: 'loginxgpassword',
+            url: '../html/loginxgpassword.html',
+
+        })
+    }
+
+    function fnwechat_login() {
+        // var weiXin = api.require('weiXin');
+        // weiXin.registerApp(function(ret,err){
+        //     if (ret.status) {
+
+        //     } else{
+        //     }
+        // });
+        // weiXin.auth(function(ret,err){
+        //      if (ret.status) {
+        //         weiXin.getUserInfo(function(ret, err) {
+        //             if (ret.status) {
+        //                 api.alert(JSON.stringfiy(ret));
+        //             } else {
+        //                 api.alert(err.msg);
+        //             }
+        //         });
+        //      }else{
+        //         alert(err.msg);
+        //      }
+        // });
+        api.toast({
+            msg: '微信登入功能维护中...',
+            duration: 2000,
+            location: 'middle'
+        });
+    }
+    // 验证输入
+    function checkinput(vphonenumber, vpassword) {
+        if (vphonenumber.length != 0 && vpassword.length != 0) {
+            return true;
+        } else {
+            alert("输入不能为空")
+            return false;
+        }
+    }
+
+    function fnLogin() {
+        var vphonenumber = $api.val($api.byId("phonenumber")).replace(/^\s*|\s*$/g, '');
+        var vpassword = $api.val($api.byId("password")).replace(/^\s*|\s*$/g, '');
+        var flag_check = checkinput(vphonenumber, vpassword);
+        if (flag_check) {
+            UILoading.flower({
+                center: {
+                    x: api.winWidth / 2,
+                    y: api.winHeight / 2
+                },
+                mask: "rgba(0,0,0,0.1)",
+                size: 30,
+                fixed: true
+            }, function(ret) {
+                flowerid = ret.id
+            });
+            var now = Date.now();
+            var appKey = SHA1("A6006620792786" + "UZ" + "B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E" + "UZ" + now) + "." + now;
+            api.ajax({
+                    url: 'https://www.apicloud.com/mcm/api/user/login',
+                    method: 'post',
+                    headers: {
+                        "X-APICloud-APPId": "A6006620792786",
+                        "X-APICloud-APPKey": appKey
+                    },
+                    data: {
+                        values: {
+                            username: vphonenumber,
+                            password: vpassword
+                        }
+                    }
+                },
+                function(ret, err) {
+                    if (ret) {
+                        UILoading.closeFlower({
+                            id: flowerid
+                        });
+                        api.toast({
+                            msg: '登入成功~',
+                            duration: 2000,
+                            location: 'middle'
+                        });
+                        if (!api.getPrefs({
+                                sync: true,
+                                key: 'bind_flag'
+                            })) {
+                            var push = api.require('push');
+                            push.bind({
+                                userName: vphonenumber,
+                                userId: vphonenumber
+                            }, function(ret, err) {
+                                api.setPrefs({
+                                    key: 'bind_flag',
+                                    value: 'true'
+                                });
+                            });
+                        }
+                        var imgpath = api.getPrefs({
+                            sync: true,
+                            key: vphonenumber.toString()
+                        });
+                        if (imgpath) {
+                            api.execScript({
+                                name: 'root',
+                                frameName: 'frame_my',
+                                script: "change_userimg('" + imgpath + "')"
+                            });
+                        }
+                        api.setPrefs({
+                            key: 'userloginstatu',
+                            value: true
+                        });
+                        api.setPrefs({
+                            key: 'user_phone',
+                            value: vphonenumber
+                        });
+                        if (api.pageParam.filename) {
+                            api.closeWin({
+                                name: api.winName
+                            });
+                            if (api.pageParam.title) {
+                                api.openWin({
+                                    name: 'detailPage',
+                                    url: api.pageParam.page_url,
+                                    pageParam: {
+                                        name: api.pageParam.name,
+                                        title: api.pageParam.title,
+                                        filename: api.pageParam.filename,
+                                        winname: api.winName
+                                    }
+                                });
+                            } else {
+                                api.openWin({
+                                    name: 'detailPage',
+                                    url: api.pageParam.page_url,
+                                    pageParam: {
+                                        name: api.pageParam.name,
+                                        filename: api.pageParam.filename,
+                                        winname: api.winName
+                                    }
+                                });
+                            }
+                        } else {
+                            api.execScript({
+                                name: 'root',
+                                frameName: 'frame_my',
+                                script: "change_phone_login('" + vphonenumber + "')"
+                            });
+
+                            api.closeWin({
+                                name: api.winName
+                            });
+                        }
+                    } else {
+                        UILoading.closeFlower({
+                            id: flowerid
+                        });
+                        if (err.statusCode == 401) {
+                            alert("输入的手机号或密码错误！");
+                        } else if (err.statusCode == 401) {
+                            alert("当前网络不佳，请检查网络")
+                        }
+                    }
+
+                }
+            );
+        }
+
+    };
+</script>
+
+</html>

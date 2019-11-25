@@ -1,0 +1,202 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>找地儿</title>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <style>
+        /*导航搜索栏部分*/
+        .aui-bar {
+            padding: 0 10px;
+            height: 50px;
+        }
+
+        .aui-bar,
+        .aui-searchbar {
+            background: #fdd66e;
+        }
+
+        .aui-icon-location {
+            color: #1b4f75 !important
+        }
+
+        .aui-bar-nav,
+        .aui-iconfont {
+            color: black !important
+        }
+    </style>
+    <style>
+        .map {
+            width: 100%;
+            height: 220px;
+        }
+
+        /*.map img {
+            width: 100%;
+            height: 180px;
+        }*/
+
+        .look {
+            width: 100%;
+            padding: 10px;
+            border-bottom: 1px solid #e2e2e2;
+            color: #707070;
+        }
+
+        .look {
+            display: flex;
+            justify-content: space-around;
+        }
+      .look:last-child{
+        border-bottom: none;
+      }
+
+        .to-order {
+            border-left: 1px solid #e2e2e2;
+            padding-left: 10px;
+            height: 100%;
+            height: 120px;
+            line-height: 120px;
+            /*vertical-align: middle;*/
+        }
+
+        .look img {
+          padding-left: 10px;
+            width: 100px;
+            height: 120px;
+            margin-top: 5px;
+            /*border: 1px solid black;*/
+        }
+
+        .look p {
+            margin-top: 5px;
+        }
+
+        .img {
+            width: 100%;
+            max-width: 30%;
+            overflow: hidden;
+        }
+
+        .xinxi {
+            margin-top: 5px;
+            max-width: 35%;
+            overflow: hidden;
+        }
+
+        .big {
+            font-size: 15px;
+            margin-left: 10px;
+        }
+
+        .big1 {
+            font-size: 15px;
+            color: #FED765;
+            margin-left: 110px;
+        }
+
+        .big {
+            font-size: 15px;
+        }
+
+        .small {
+            font-size: 10px;
+        }
+
+        .small1 {
+            font-size: 8px;
+            color: #707070;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav">
+        <div class="aui-pull-left aui-btn" id='currentCity' onclick='showMoreCity()'>
+            北京
+            <span class="aui-iconfont aui-icon-down"></span>
+        </div>
+        <div class="aui-title" style="left:4rem; right: 4rem;">
+            <div class="aui-searchbar">
+                <div class="aui-searchbar-input aui-border-radius">
+                    <i class="aui-iconfont aui-icon-search"></i>
+                    <input type="search" placeholder=" 区位/企业发展需求" id="search-input" onclick="goNextWin('./search_option.html')">
+                    <div class="aui-searchbar-clear-btn">
+                        <i class="aui-iconfont aui-icon-close"></i>
+                    </div>
+                </div>
+                <div class="aui-searchbar-btn" tapmode>取消</div>
+            </div>
+        </div>
+        <div class="aui-pull-right aui-btn">
+
+        </div>
+    </header>
+    <div class="map">
+        <!-- <img src="../../image1/map.png" alt="" /> -->
+    </div>
+
+    <div class="location">
+        <div class="look" onclick="goNextWin('../home_page/detail.html')">
+            <div class="img">
+              <img src="../../image/other/linfeng.jpg" alt="">
+            </div>
+            <div class="xinxi">
+                <span class="big2">时代工场NO.1</span>
+                <p class="small">会展服务,企业海外发展咨询顾问</p>
+                <p class="small">北京市，丰台区</p>
+                <span class="small">航丰路1号院2号楼，时代财富天地B座</span>
+                <p class="small"> <i class="aui-iconfont aui-icon-location"></i> 距离 ＜100M </p>
+            </div>
+            <div class="to-order">
+                <p>去下单</p>
+            </div>
+        </div>
+        <div class="look" onclick="goNextWin('../home_page/detail.html')">
+            <div class="img">
+              <img src="../../image/other/linfeng.jpg" alt="">
+            </div>
+            <div class="xinxi">
+                <span class="big2">时代工场NO.1</span>
+                <p class="small">会展服务,企业海外发展咨询顾问</p>
+                <p class="small">北京市，丰台区</p>
+                <span class="small">航丰路1号院2号楼，时代财富天地B座</span>
+                <p class="small"> <i class="aui-iconfont aui-icon-location"></i> 距离 ＜100M </p>
+            </div>
+            <div class="to-order">
+                <p>去下单</p>
+            </div>
+        </div>  <div class="look" onclick="goNextWin('../home_page/detail.html')">
+              <div class="img">
+                <img src="../../image/other/linfeng.jpg" alt="">
+              </div>
+              <div class="xinxi">
+                  <span class="big2">时代工场NO.1</span>
+                  <p class="small">会展服务,企业海外发展咨询顾问</p>
+                  <p class="small">北京市，丰台区</p>
+                  <span class="small">航丰路1号院2号楼，时代财富天地B座</span>
+                  <p class="small"> <i class="aui-iconfont aui-icon-location"></i> 距离 ＜100M </p>
+              </div>
+              <div class="to-order">
+                  <p>去下单</p>
+              </div>
+          </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+apiready = function(){
+  initMap(70);
+  setAnnotations();
+
+}
+
+
+</script>
+
+</html>

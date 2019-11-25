@@ -1,0 +1,153 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>输入文字搜索</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        header {
+            padding-top: 25px;
+            height: 50px;
+            border-bottom: 2px solid #4b4b4b;
+        }
+
+        header * {
+            color: #4b4b4b !important;
+        }
+        .head{
+            width: 100%;
+            height: 70px;
+            background: #fff;
+            border-bottom: 1px solid #f7f7f7;
+        }
+        .head input{
+            width: 250px;
+            height:35px;
+            font-size:17px;
+            border:none;
+            background: #f7f7f7;
+            border-radius:4px;
+            margin-top:5px;
+            margin-left:20px;
+            color: #cdcdcd;
+        }
+        .head span{
+            font-size:20px;
+            margin-left:16px;
+        }
+        .yizhan{
+            width: 100%;
+            height: 245px;
+            background: #fff;
+        }
+        .yizhan b{
+            font-size: 15px;
+            margin-left:40px;
+            margin-top:10px;
+        }
+        .zixun{
+            width: 100%;
+            height: 170px;
+            background: #fff;
+        }
+        .zixun b{
+            font-size: 15px;
+            margin-left:40px;
+        }
+        .yonghu{
+            width: 100%;
+            height: 170px;
+            background: #fff;
+        }
+        .yonghu b{
+            font-size: 15px;
+            margin-left:40px;
+
+        }
+
+        .xulie{
+            width: 80%;
+            height: 60px;
+            margin: auto;
+            margin-top:10px;
+        }
+        .xuhao{
+            width: 30px;
+            height: 30px;
+            border:1px solid #000;
+            float: left;
+        }
+        .xinxi{
+            width: 50%;
+            height: 30px;
+            font-size:20px;
+            border-bottom:1px solid #f7f7f7;
+            float: left;
+            position: absolute;
+            margin-left:50px ;
+        }
+    </style>
+</head>
+<body>
+  <header>
+    <div class="head">
+        <input type="text" placeholder="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp区位/企业发展需求">
+        <span onclick="closeCurrentWin()">取消</span>
+    </div>
+  </header>
+    <div class="yizhan">
+        <b>驿站</b>
+        <div class="xulie"><div class="xuhao"></div><div class="xinxi">时代工场NO.1</div></div>
+        <div class="xulie"><div class="xuhao"></div><div class="xinxi">时代工场晨时驿站</div></div>
+        <div class="xulie"><div class="xuhao"></div><div class="xinxi">时代工场我本驿站</div></div>
+    </div>
+    <div class="zixun">
+        <b>资讯</b>
+        <div class="xulie"><div class="xuhao"></div><div class="xinxi">时代工场我本驿站</div></div>
+        <div class="xulie"><div class="xuhao"></div><div class="xinxi">时代工场我本驿站</div></div>
+    </div>
+    <div class="yonghu">
+        <b>用户</b>
+        <div class="xulie"><div class="xuhao"></div><div class="xinxi">时代工场我本驿站</div></div>
+        <div class="xulie"><div class="xuhao"></div><div class="xinxi">时代工场我本驿站</div></div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+function closeCurrentWin(name) {
+    api.closeWin({
+        name: name || api.winName
+    });
+    return
+}
+
+</script>
+<!-- <script type="text/javascript">
+    var header =  document.getElementById("#header");
+    apiready = function(){
+        $api.fixStatusBar(header);
+        api.openFrame({
+            name: 'match_address_frame',
+            url: 'modules/match_address_frame.html',
+            rect: {
+                x: 0,
+                y: 70,
+                w: api.winWidth,
+                h: 'auto'
+            },
+            pageParam: {
+                area_value:api.pageParam.area_value
+            },
+            bounces: true,
+            bgColor: 'rgba(0,0,0,0)',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false
+        });
+
+    }
+</script> -->
+</html>

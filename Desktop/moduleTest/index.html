@@ -1,0 +1,86 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>底部导航</title>
+</head>
+
+<body>
+</body>
+<!-- <script type="text/javascript" src="script/api.js"></script> -->
+<!-- 引入一个权限管理相关的JS文件 -->
+<!-- <script type="text/javascript" src="script/public.js"></script> -->
+<script>
+    apiready = function() {
+        openTabWin();
+    }
+
+    function openTabWin() {
+        var param = {
+            name: 'tab',
+            title: 'tabBar',
+            bgColor: '#000',
+            url: 'widget://html/home_page/index.html',
+            slidBackEnabled: false,
+            hideTabBar: false,
+            tabBar: {
+                animated: true,
+                scrollEnabled: false,
+                list: [{
+                    text: "首页",
+                    iconPath: "widget://image/tabbar-icon/home.png",
+                    selectedIconPath: "widget://image/tabbar-icon/home__active.png"
+                }, {
+                    text: "找地儿",
+                    iconPath: "widget://image/tabbar-icon/place.png",
+                    selectedIconPath: "widget://image/tabbar-icon/place__active.png"
+                }, {
+                    text: "发布",
+                    iconPath: "widget://image/tabbar-icon/publish.png",
+                    selectedIconPath: "widget://image/tabbar-icon/publish__active.png"
+                }, {
+                    text: "社交",
+                    iconPath: "widget://image/tabbar-icon/social.png",
+                    selectedIconPath: "widget://image/tabbar-icon/social__active.png"
+                }, {
+                    text: "我的",
+                    iconPath: "widget://image/tabbar-icon/mine.png",
+                    selectedIconPath: "widget://image/tabbar-icon/mine__active.png"
+                }],
+                frames: [{
+                    title: "首页", //tab切换时对应的标题
+                    name: "home_page",
+                    url: "./html/home_page/index.html",
+                    //其他继承自openFrame的参数
+                }, {
+                    title: "找地儿",
+                    name: "find_place",
+                    url: "./html/find_place_page/find_house.html"
+                        //其他继承自openFrame的参数
+                }, {
+                    title: "发布",
+                    name: "publish_page",
+                    url: "./html/publish_page/index.html"
+                        //其他继承自openFrame的参数
+                }, {
+                    title: "社交",
+                    name: "social_page",
+                    url: "./html/social_page/index.html"
+                        //其他继承自openFrame的参数
+                }, {
+                    title: "我的",
+                    name: "mine_page",
+                    url: "./html/mine_page/login_success.html"
+                        //其他继承自openFrame的参数
+                }]
+            }
+        }
+        api.openTabLayout(param)
+    }
+</script>
+
+</script>
+</script>
+
+</html>

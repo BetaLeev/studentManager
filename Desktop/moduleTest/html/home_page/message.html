@@ -1,0 +1,140 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <title>消息中心</title>
+    <style>
+        .news {
+            width: 95%;
+            float: right;
+            margin: auto;
+            border-bottom: 1px solid #707070;
+        }
+
+        .news1 {
+            width: 95%;
+            height: 60px;
+            margin-top: 30px;
+        }
+
+        .pic {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #707070;
+            /*margin-left:10px;*/
+            float: left;
+        }
+
+        .pic img {
+            width: 35px;
+            height: 35px;
+            float: left;
+        }
+
+        .news1 b {
+            float: left;
+            margin-left: 15px;
+        }
+
+        .news1 span {
+            float: right;
+            color: #707070;
+        }
+
+        .tishi {
+            background-color: red;
+        }
+
+        .news1 p {
+            float: left;
+            font-size: 10px;
+            margin-left: 15px;
+            margin-top: 5px;
+            color: #707070;
+        }
+
+
+        .voice-input-plate {
+            border-top: 1px solid #f5f5f5;
+            border-bottom: 1px solid #f5f5f5;
+            position: relative;
+            padding: 0 20px;
+            display: flex;
+            height: 70px;
+            justify-content: space-between;
+            background: #fff;
+        }
+
+        .voice-input-plate div {
+            margin: 0 auto;
+            height: 60px;
+            line-height: 60px;
+        }
+
+        .voice-input-plate img {
+            margin-top: 15px;
+            height: 30px;
+            width: 30px;
+        }
+
+        .voice-input input {
+            width: 60vw;
+            height: 35px;
+            background: #f7f7f7;
+            margin-top: 15px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title">信息中心</div>
+        <div class="aui-pull-right aui-btn">
+            <span class="aui-iconfont aui-icon-search"></span>
+        </div>
+    </header>
+    <div class="news">
+        <div class="news1">
+            <div class="pic"><img src="../../image/avatar-demo.png" alt=""></div>
+            <b>用户1</b><span>10-31</span>
+            <p>建于1960年，在加拿大安大略省尼亚加拉</p><span class="tishi">①</span>
+        </div>
+    </div>
+    <div class="news">
+        <div class="news1">
+            <div class="pic"><img src="../../image1/yonghutou.png" alt=""></div>
+            <b>用户2</b><span>9-31</span>
+            <p>建于1960年，在加拿大安大略省尼亚加拉</p>
+        </div>
+    </div>
+    <div class="news">
+        <div class="news1">
+            <div class="pic"><img src="../../image1/yonghutou.png" alt=""></div>
+            <b>用户3</b><span>2018-10-31</span>
+            <p>建于1960年，在加拿大安大略省尼亚加拉</p>
+        </div>
+    </div>
+  <footer>
+    <div class="voice-input-plate">
+        <div><img src="./img/icon/voice.png" alt=""></div>
+        <div class="voice-input"> <input type="text"></div>
+        <div> <img src="./img/icon/small.png" alt=""></div>
+        <div> <img src="./img/icon/plus.png" alt=""></div>
+    </div>
+  </footer>
+
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+
+<script type="text/javascript">
+</script>
+
+</html>

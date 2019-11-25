@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>找地儿</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+        /*头部css*/
+        body{
+            background-color: #f7f4f4;
+        }
+        #header{
+            width:99%;height:35px;
+            background-color: white;
+        }
+        #header .title,#header .share{
+            font-family:SourceHanSansSC;
+            font-weight:400; font-size:18px;
+            color:rgb(16, 16, 16); font-style:normal; 
+            letter-spacing:1px; line-height:42px;
+            text-decoration:none;
+            margin-right: 5px;
+        }
+        #header .title{
+            text-align: center;
+            margin: 0 auto;
+            position: relative; 
+            width: 100%;
+            
+        }
+        #header .share{
+            float: right;
+            position: relative;
+            top:-41px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <!-- 找地儿头部 -->
+    <header id="header">
+        <span class="title">智能找地儿</span>
+        <span class="share" tapmode onclick="fnshare()">分享</span>
+    </header>
+    
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    var header = document.getElementById("#header");
+    apiready = function(){
+        $api.fixStatusBar(header);
+        api.openFrame({
+            name: 'findhouse_content_frame',
+            url:'modules/findhouse_content_frame.html',
+            rect: {
+                x: 0,
+                y: 65,
+                w: api.frameWidth,
+                h: api.frameHeight-50
+            },
+            bounces: false,
+            bgColor: '#f7f4f4',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false,
+        });
+    };
+    function fnshare(){
+        api.openFrame({
+            name: 'animation_frame_share',
+            url: 'modules/shareframemoudle.html',
+            rect: {
+                x: 0,
+                y:0,
+                w: api.winWidth,
+                h: 'auto'
+            },
+            bounces: false,
+            bgColor: 'rgba(0,0,0,0.1)',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false
+        });
+     };
+</script>
+</html>

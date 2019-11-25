@@ -1,0 +1,565 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>我的</title>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        header {
+            padding-top: 25px !important;
+        }
+
+        header * {
+            color: #4b4b4b !important;
+        }
+
+        .aui-iconfont,
+        .aui-bar {
+            color: black !important;
+        }
+
+        .shezhi img {
+            width: 20px;
+            height: 20px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: auto;
+            font-family: SourceHanSansSC;
+        }
+
+        .social_clickUser_body_top {
+            width: 100%;
+            height: 100px;
+        }
+
+        .touxiang {
+            width: 66px;
+            height: 65px;
+            border-radius: 34px;
+            margin-left: 60px;
+        }
+
+        .social_clickUser_body_top span {
+            font-size: 1.125rem;
+            color: #4b4b4b;
+            width: 100%;
+            position: absolute;
+            width: 120px;
+            top: 100px;
+            margin-left: -60px;
+            left: 50%;
+        }
+
+        #image {
+            font-size: 1rem;
+            width: 100%;
+            height: 30px;
+            /*margin-top: -14px;*/
+            margin-left: 0px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #image .order {
+            position: relative;
+            box-sizing: border-box;
+            margin-left: 3%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #image .purse {
+            position: relative;
+            margin-left: 3%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #image .key {
+            position: relative;
+            margin-left: 4%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #image .buy {
+            position: relative;
+            margin-left: 2%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #wrap {
+            width: 100%;
+            height: 30px;
+            margin-top: -14px;
+            z-index: 999;
+            margin-left: 0px;
+            margin-bottom: -50px;
+            display: flex;
+            font-size: 16px;
+            justify-content: space-around;
+        }
+
+        #wrap #ordering {
+            position: relative;
+            z-index: 999;
+            box-sizing: border-box;
+            margin-left: 3%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #wrap #pursing {
+            position: relative;
+            z-index: 999;
+            margin-left: 3%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #wrap #keying {
+            position: relative;
+            z-index: 999;
+            margin-left: 4%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #wrap #buying {
+            position: relative;
+            margin-left: 2%;
+            width: 20%;
+            z-index: 999;
+            text-align: center;
+            height: 50px;
+        }
+
+        .option .arrow-panel .fenfexian {
+            box-sizing: border-box;
+            padding-right: 20px;
+            width: auto;
+            height: 15px;
+            color: #888;
+            text-align: left;
+        }
+
+        .option {
+            position: relative;
+            box-sizing: border-box;
+            font-size: 1rem;
+            left: -20px;
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .option .icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 50px;
+            background-repeat: no-repeat;
+            background-position: 12px center;
+            background-size: auto 20px;
+        }
+
+        .option .title {
+            box-sizing: border-box;
+            width: 100%;
+            height: 50px;
+            padding-left: 40px;
+            font-size: 0.875rem;
+            color: #444;
+            text-align: left;
+            line-height: 50px;
+        }
+
+        .option .arrow-panel {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            width: auto;
+            height: 60px;
+            background-image: url(./image/xiayibu.png);
+            background-repeat: no-repeat;
+            background-size: 16px 24px;
+            background-position: right center;
+        }
+
+        .arrow-panel1 {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            width: 60px;
+            height: 60px;
+            background-image: url(./img/dingdan.png);
+            background-repeat: no-repeat;
+            background-size: 20px 24px;
+            background-position: right center;
+        }
+
+        .arrow-panel2 {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            width: 60px;
+            height: 60px;
+            background-image: url(./img/qianbao.png);
+            background-repeat: no-repeat;
+            background-size: 25px 24px;
+            background-position: right center;
+        }
+
+        .arrow-panel3 {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            width: 60px;
+            height: 60px;
+            background-image: url(./img/jifen.png);
+            background-repeat: no-repeat;
+            background-size: 20px 24px;
+            background-position: right center;
+        }
+
+        .arrow-panel4 {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            width: 60px;
+            height: 60px;
+            background-image: url(./img/jiesuan.png);
+            background-repeat: no-repeat;
+            background-size: 20px 24px;
+            background-position: right center;
+        }
+
+        .option .arrow-panel .text {
+            box-sizing: border-box;
+            padding-right: 20px;
+            width: auto;
+            height: 60px;
+            line-height: 60px;
+            font-size: 13px;
+            color: #888;
+            text-align: left;
+        }
+
+        section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn" onclick="">
+          <i class="aui-iconfont aui-icon-gear"></i>
+            <!-- <span class="shezhi"><img src="./image/shezhi.png" alt=""></span> -->
+        </div>
+        <div class="aui-pull-right ">
+        </div>
+    </header>
+    <section>
+        <!-- 在这里添加一下订单、钱包、钥匙、买单的静态页面 使用横向列表float属性-->
+        <div class="social_clickUser_body_top">
+            <div id="img_box">
+
+            </div>
+            <!-- <h1>登录</h1> -->
+            <span>13333338888</span>
+        </div>
+        <div id="image">
+            <span class="order" tapmode onclick="goNextWin('./my_PublishArticle.html')">0</span>
+            <span class="purse" tapmode onclick="goNextWin('./my_collect.html')">0</span>
+            <span class="key" tapmode onclick="goNextWin('./my_attention.html')">0</span>
+            <span class="buy" tapmode onclick="goNextWin('./fans.html')">0</span>
+        </div>
+        <div id="wrap">
+            <span id="ordering" tapmode onclick="goNextWin('./my_PublishArticle.html')">发布</span>
+            <span id="pursing" tapmode onclick="goNextWin('./my_collect.html')">收藏</span>
+            <span id="keying" tapmode onclick="goNextWin('./my_attention.html')">关注</span>
+            <span id="buying" tapmode onclick="goNextWin('./fans.html')">粉丝</span>
+        </div>
+        <!-- 在下面加入分割线 -->
+        <div class="option">
+            <div class="arrow-panel ">
+                <div class="fengexian "></div>
+            </div>
+        </div>
+
+        <!-- 这个模块已经在首页的拓展模块进行调用
+        <div class="option " tapmode onclick="fnwyfbfy() ">
+            <div class="icon icon-fabufangyuan "></div>
+            <div class="title ">我要发布房源</div>
+            <div class="arrow-panel ">
+               <div class="text "></div>
+            </div>
+        </div> -->
+        <div class="option " tapmode onclick="goNextWin('./my_order.html')">
+            <div class="icon icon-bussiness "></div>
+            <div class="title ">我的订单</div>
+            <div class="arrow-panel1 ">
+                <div class="text "></div>
+            </div>
+        </div>
+        <div class="option " tapmode onclick="goNextWin('./my_wallet.html') ">
+            <div class="icon icon-qianyue "></div>
+            <div class="title ">我的钱包</div>
+            <div class="arrow-panel2 ">
+                <div class="text "></div>
+            </div>
+        </div>
+        <div class="option" tapmode onclick="goNextWin('./jifenleyuan.html')">
+            <div class="icon icon-help "></div>
+            <div class="title ">我的积分</div>
+            <div class="arrow-panel3 ">
+                <div class="text "></div>
+            </div>
+        </div>
+        <div class="option " tapmode onclick="goNextWin('./my_jiesuan.html')">
+            <div class="icon icon-yijianfankui "></div>
+            <div class="title ">我的结算</div>
+            <div class="arrow-panel4 ">
+                <div class="text "></div>
+            </div>
+        </div>
+        <div class="option " tapmode onclick="goNextWin('./recommand.html') ">
+            <div class="icon icon-tuijianyoujiang "></div>
+            <div class="title ">推荐有奖</div>
+            <div class="arrow-panel ">
+                <div class="text "></div>
+            </div>
+        </div>
+        <div class="option " tapmode onclick="">
+            <div class="icon icon-personalsetting "></div>
+            <div class="title ">卡券</div>
+            <div class="arrow-panel ">
+                <div class="text "></div>
+            </div>
+        </div>
+        <div class="option " tapmode onclick="goNextWin('usinghelp.html')">
+            <div class="icon icon-personalsetting "></div>
+            <div class="title ">使用帮助</div>
+            <div class="arrow-panel ">
+                <div class="text "></div>
+            </div>
+        </div>
+        <div class="option" tapmode onclick="goNextWin('./feedback.html')">
+            <div class="icon icon-personalsetting "></div>
+            <div class="title ">意见反馈</div>
+            <div class="arrow-panel ">
+                <div class="text "></div>
+            </div>
+        </div>
+        <div class="option " tapmode onclick="goNextWin('./personalsetting.html') ">
+            <div class="icon icon-personalsetting "></div>
+            <div class="title ">个人设置</div>
+            <div class="arrow-panel ">
+                <div class="text "></div>
+            </div>
+        </div>
+    </section>
+</body>
+<script type="text/javascript " src="../../script/api.js "></script>
+<script src="../../script/APICloud-rest.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../script/common.js" charset="utf-8"></script>
+<script src="../../script/SHA1.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+    var system_name;
+    var UILoading;
+    var flowerid;
+    var img_obj = document.getElementById("img_box");
+    var textarea_obj = document.getElementById("area_value");
+    var img_flag = false;
+    var file_url;;
+    var textarea_value;
+    img_obj.innerHTML = "<img class='touxiang' src='../../image/avatar-demo.png' alt=''>"
+    var imgurl = [];
+    var height;
+    apiready = function() {
+        height = api.winHeight
+        system_name = api.systemType
+        UILoading = api.require('UILoading');
+    }
+    img_obj.onclick = function() {
+        if (img_flag === false) {
+            var UIAlbumBrowser = api.require('UIAlbumBrowser');
+            UIAlbumBrowser.open({
+                max: 1,
+                type: 'image',
+                styles: {
+                    bg: '#ffffff',
+                    mark: {
+                        icon: '',
+                        position: 'bottom_left',
+                        size: 20
+                    },
+                    nav: {
+                        /*bg: 'rgba(255,255,255,1)',*/
+                        bg: 'rgba(0,0,0,0.6)',
+                        titleColor: '#fff',
+                        /*#000000*/
+                        titleSize: 18,
+                        cancelColor: '#fff',
+                        cancelSize: 16,
+                        finishColor: '#fff',
+                        finishSize: 16
+                    }
+                },
+                rotation: true
+            }, function(ret) {
+                console.log(JSON.stringify(ret));
+                if (ret) {
+                    var syt = api.systemType;
+                    if (syt != 'ios') {
+                        if (ret.list) {
+                            if (ret) {
+                                if (ret.list.length > 0) {
+                                    imgurl = ret.list[0].path
+                                    img_obj.innerHTML = "<img class='touxiang' src='" + imgurl + "' />"
+                                    img_flag = true;
+                                }
+
+                            }
+                        }
+                    } else {
+                        if (ret.list) {
+                            UIAlbumBrowser.transPath({
+                                path: ret.list[0].path
+                            }, function(ret, err) {
+                                if (ret) {
+                                    imgurl = ret.path
+                                    img_obj.innerHTML = "<img class='touxiang' src='" + imgurl + "' />"
+                                    img_flag = true;
+                                } else {
+                                    alert(JSON.stringify(err));
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        } else {
+            img_obj.innerHTML = "<img class='touxiang' src='../../image/avatar-demo.png' />"
+            img_flag = false
+        }
+
+    }
+
+    // 上传图片
+    // function postimg() {
+    //     var size_value = api.winWidth.toString() + "x" + height.toString()
+    //     UILoading.flower({
+    //         center: {
+    //             x: api.winWidth / 2,
+    //             y: api.winHeight / 2
+    //         },
+    //         mask: "rgba(0,0,0,0.1)",
+    //         size: 30,
+    //         fixed: true
+    //     }, function(ret) {
+    //         flowerid = ret.id
+    //     });
+    //     var imgname = imgurl.split('/')[imgurl.split('/').length - 1];
+    //     var now = Date.now();
+    //     var appKey = SHA1("A6006620792786" + "UZ" + "B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E" + "UZ" + now) + "." + now;
+    //     api.ajax({
+    //         url: 'https://www.apicloud.com/mcm/api/file',
+    //         method: 'POST',
+    //         headers: {
+    //             "X-APICloud-AppId": "A6006620792786",
+    //             "X-APICloud-AppKey": appKey
+    //         },
+    //         data: {
+    //             values: {
+    //                 name: imgname,
+    //
+    //             },
+    //             files: {
+    //                 file: imgurl
+    //             }
+    //         }
+    //     }, function(ret, err) {
+    //         UILoading.closeFlower({
+    //             id: flowerid
+    //         });
+    //         if (ret) {
+    //             var now = Date.now();
+    //             var appKey = SHA1("A6006620792786" + "UZ" + "B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E" + "UZ" + now) + "." + now;
+    //             api.ajax({
+    //                 url: 'https://www.apicloud.com/mcm/api/trouble_infor',
+    //                 method: 'post',
+    //                 headers: {
+    //                     "X-APICloud-AppId": "A6006620792786",
+    //                     "X-APICloud-AppKey": appKey
+    //                 },
+    //                 data: {
+    //                     values: {
+    //                         system: system_name,
+    //                         describe: textarea_value,
+    //                         screensize: size_value,
+    //                         imgurl: ret
+    //                     }
+    //                 }
+    //             }, function(ret1, err1) {
+    //                 if (ret1) {
+    //                     api.toast({
+    //                         msg: '提交成功，等待修复',
+    //                         duration: 2000,
+    //                         location: 'bottom'
+    //                     });
+    //                     img_obj.innerHTML = "<img class='touxiang' src='../../image/avatar-demo.png' />"
+    //                     img_flag = false;
+    //                     textarea_obj.value = ''
+    //                 } else {
+    //                     alert(err1.msg);
+    //                 }
+    //             });
+    //         } else {
+    //             alert(err.msg);
+    //         }
+    //     });
+    // };
+
+    // function fnpostform() {
+    //
+    //     textarea_value = textarea_obj.value;
+    //     if (imgurl.length != 0 && textarea_value.length != 0) {
+    //
+    //         postimg();
+    //     } else {
+    //         api.toast({
+    //             msg: '有信息未填写',
+    //             duration: 2000,
+    //             location: 'bottom'
+    //         });
+    //     }
+    //
+    // };
+</script>
+<script type="text/javascript">
+</script>
+
+</html>

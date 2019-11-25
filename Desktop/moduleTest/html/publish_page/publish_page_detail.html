@@ -1,0 +1,286 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <title>发布内容详情页</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            position: fixed !important;
+            padding-top: 25px !important;
+            height: 50px;
+            background: rgba(255, 255, 255, .1) !important;
+        }
+
+        header * {
+            color: #fff !important;
+        }
+        /*头部用户存放banner*/
+
+        .header-img {
+            height: 326px;
+            width: 100%;
+            position: relative;
+        }
+
+        .header-img>img {
+            width: 100%;
+            height: 300px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .title {
+            margin-bottom: 19px;
+        }
+        /*标题区域*/
+
+        .type-title {
+            color: #416e8c;
+            font-size: .875rem;
+        }
+
+        .subtitle {
+            /*margin-top: -4px;*/
+            width: 85%;
+            font-size: .88rem;
+        }
+        /*发布者用户区域*/
+
+        .publish_user>.user-info {
+            display: flex;
+            margin-bottom: 19px;
+        }
+
+        .publish-comment-user-info>.user-info {
+            display: flex;
+        }
+
+        .user-info img {
+            border: 1px solid #707070;
+            margin-top: 15px;
+            width: 44px;
+            height: 40px;
+        }
+
+        .user-info-name-date {
+            width: 65%;
+            padding-left: 20px;
+            margin-top: 10px;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .user-info-name-date p:nth-child(1) {
+            font-size: .875rem;
+        }
+
+        .user-info-name-date p:nth-child(2) {
+            font-size: .7rem;
+            color: gray;
+            margin-top: -10px;
+        }
+
+        .publish_text p {
+            /*color: #9f9f9f;*/
+            font-size: .8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .subscribe {
+            font-size: .875rem;
+            line-height: 15px;
+            margin-top: 10px;
+            padding: 5px;
+            border: 1px solid #fdd66e;
+            height: 35px;
+            width: 70px;
+            color: #fdd66e;
+            background: #fff;
+            border-radius: 4px;
+        }
+        /*发布者位置信息*/
+
+        .publish-bottom-pisition {
+            padding-bottom: 20px;
+            padding-top: 13px;
+            font-size: .6rem;
+            display: flex;
+        }
+
+        .publish-bottom-pisition img {
+            height: 12px;
+            width: 12px;
+            margin-right: 5px;
+        }
+        /*读人数*/
+
+        .publish-bottom-read {
+            line-height: 30px;
+            font-size: 1rem;
+            display: flex;
+        }
+
+        .publish-bottom-read img {
+            height: 20px;
+            width: 20px;
+        }
+
+        .publish-bottom {
+            padding: 20px 10px;
+            font-size: 1rem;
+            border-bottom: 1px solid #e4e4e4;
+        }
+        /*用户评论 列表*/
+
+        .comment {
+            clear: both;
+            padding-top: 20px;
+            padding-bottom: 40px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-bottom: 1px solid #e4e4e4;
+        }
+
+        .comment-title {
+            font-size: 1rem;
+        }
+
+        .comment-text {
+            padding: 10px 0px;
+            color: #9f9f9f;
+        }
+
+        .read-count {
+            font-size: .875rem;
+            padding-left: 20px;
+        }
+
+        .comment-read-more {
+            float: right;
+            color: #416e8c;
+        }
+        /*添加评论区域*/
+
+        .publish-new-comment {
+            clear: both;
+            height: 40px;
+            line-height: 40px;
+            padding: 10px 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .avatar {
+            margin-top: 10px;
+            height: 30px;
+            width: 30px;
+        }
+
+        .like {
+            margin-top: 10px;
+            padding-left: 10px;
+            height: 30px;
+            width: 30px;
+        }
+
+        .publish-new-comment input {
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 40vw;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid #9f9f9f;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <!-- <div class="aui-title">Title</div> -->
+        <div class="aui-pull-right aui-btn">
+            <span class="aui-iconfont aui-icon-forward" onclick="wxShare()"></span> &nbsp&nbsp
+            <span class="aui-iconfont aui-icon-like"></span>
+        </div>
+    </header>
+    <div class='header-img'>
+        <img src="../../image/other/image.jpg" alt="">
+
+    </div>
+    <div class="container">
+        <div class="title">
+            <p class="type-title">经验 英狮驿站</p>
+            <p class="subtitle">
+                建于1960年，在加拿大安大略省尼亚加拉瀑布附近的朝野水上公园座山望湖...
+            </p>
+        </div>
+        <div class="publish_user">
+            <div class="user-info">
+                <div><img src="../../image/avatar-demo.png" alt=""></div>
+                <div class="user-info-name-date">
+                    <p style="margin-bottom:10px">用户名1</p>
+                    <p>2019年10月31日</p>
+                </div>
+                <div>
+                    <button class="subscribe">关注</button>
+                </div>
+            </div>
+            <div class="publish_text">
+                <p>正文，建于1960年,在加拿大安大略省尼亚加拉大瀑布附近的朝野水上公园座山望湖...</p>
+                <p>时代工场帮助全球用户将其闲置空间共享到在线服务平台，线下来自世界各地的办公空间消费者可灵活选择其所需要的办公空间入驻。共享经济关注存量社会资源更有效分配和创造更多价值机会，这正是时代工场的核心价值观</p>
+                <p>每天全球各地企业或个人用户将适合办公的闲置空间发布到时代工场在线平台，用户可根据情况进行自主定价并使用时代工场平台提供的入驻服务指导吸引来自世界各地的客户。空间主人通过成为时代工场办公驿站站主分担物业成本和赚取收入，并获得客户入驻带来的商业交易机会。</p>
+            </div>
+            <div class="publish-bottom">
+                <p class="publish-bottom-pisition"><img src="../../image/position.png" alt="">4789 yonge St Unit 804, Toronto, Canada</p>
+                <div class="publish-bottom-read">
+                    <img src="../../image/avatar-demo.png" alt=""><img src="../../image/avatar-demo.png" alt=""><img src="../../image/avatar-demo.png" alt=""> <span class="read-count">75人已读</span>
+                </div>
+            </div>
+        </div>
+        <div class="comment">
+            <p class="comment-title">评论</p>
+            <div class="comment-item">
+                <div class="publish-comment-user-info">
+
+                    <div class="user-info">
+                        <div><img src="../../image/avatar-demo.png" alt=""></div>
+                        <div class="user-info-name-date">
+                            <p style="margin-bottom:10px">用户名1</p>
+                            <p>2019年10月31日</p>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+
+                    <div class="comment-text">
+                        站主非常nice，帮我解决了很多关于会展策划执行的问题。一起工作的小伙伴也很乐于帮助他人，整个工作范围很活跃。小伙伴们年纪看起来都不大，在这里办公，感觉自己又年轻了一把。
+                    </div>
+                </div>
+            </div>
+            <p class="comment-read-more">阅读全部22条评价</p>
+        </div>
+
+        <div class="publish-new-comment">
+            <img src="../../image/avatar-demo.png" alt="" class="avatar">
+            <input type="text" placeholder="添加一条评论">
+            <p style="line-height:60px">751个赞 </p>
+            <img class='like' src="../../image/good.png" alt="">
+        </div>
+    </div>
+    <script src="../../script/common.js" charset="utf-8"></script>
+</body>
+
+</html>

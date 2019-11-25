@@ -1,0 +1,372 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>站主学院</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+        #school {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            padding-top: 25px !important;
+            border-bottom: 2px solid #4b4b4b;
+        }
+
+        header * {
+            color: #4b4b4b !important;
+        }
+
+        .school_head1 {
+            width: 100%;
+            height: 100px;
+            background: #fff;
+            border-bottom: 2px solid #b5b5b6;
+        }
+
+        .school_return {
+            width: 20%;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            float: left;
+        }
+
+        .school_return img {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 70px;
+        }
+
+        .school_title {
+            width: 60%;
+            height: 100px;
+            font-size: 0.75rem;
+            text-align: center;
+            line-height: 100px;
+            float: left;
+        }
+
+        .school_title h1 {
+            color: #707070;
+        }
+
+        .school_close img {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 70px;
+        }
+
+        .school_close_erji {
+            width: 150px;
+            height: 210px;
+            display: none;
+            font-size: .75rem;
+            position: absolute;
+            right: 10px;
+            top: 100px;
+            z-index: 999;
+            background: #fff;
+        }
+
+        .school_close_erji_look {
+            width: 100px;
+            height: 70px;
+            text-align: center;
+        }
+
+        .school_close_erji_look img {
+            width: 30px;
+            height: 30px;
+            text-align: left;
+        }
+
+        .school_close_erji_look span {
+            font-size: .875rem;
+            text-align: left;
+            line-height: 70px;
+        }
+
+        .lunbo {
+            width: 100%;
+            height: 200px;
+        }
+
+        .lunbo img {
+            width: 535px;
+            height: 200px;
+        }
+
+        .br {
+            width: 100%;
+            height: 5px;
+            background: #EFEFEF;
+        }
+
+        .experincepublish_body {
+            width: 100%;
+            /*height: 300px;*/
+        }
+
+        .experincepublish_body h1 {
+            font-size: .875rem;
+            color: #707070;
+            padding-top: 20px;
+            margin-left: 26px;
+        }
+
+        .experincepublish_body_img {
+            width: 20px;
+            height: 20px;
+            /*position: absolute;*/
+            /*right: 10px;*/
+            margin-right: 30px;
+            top: 330px;
+            float: right;
+        }
+
+        .experincepublish_body_img1 {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: 10px;
+            top: 650px;
+            float: right;
+        }
+
+        .experincepublish_body1 {
+            width: 90%;
+            padding-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 auto;
+        }
+
+        .experincepublish_list1 {
+            width: 50%;
+            padding: 2.5%
+        }
+
+        .experincepublish_list1 img {
+            width: 100%;
+            height: 100px;
+            border-radius: 5px;
+        }
+
+        .experincepublish_list1 b {
+            /*width: 20px;
+          height: 20px;*/
+            font-size: .875rem;
+            color: #b5b5b6;
+            /*margin-top:10px;*/
+        }
+
+        .experincepublish_list1_b {
+            width: 100px;
+            height: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .experincepublish_list1 span {
+            /*width: 100px;
+          height: 30px;*/
+            font-size: .675rem;
+            margin-top: 5px;
+            color: #b5b5b6;
+        }
+
+        .experincepublish_list1_1 {
+            width: 60%;
+            height: 20px;
+            font-size: 5px;
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .experincepublish_list1_1 img {
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+        }
+
+        .clicked-btn-more-list::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            width: 0;
+            height: 0;
+            border: 20px solid transparent;
+            border-bottom: 20px solid #fff;
+        }
+
+        .clicked-btn-more-list {
+            display: none;
+            position: absolute;
+            padding: 5px;
+            top: 60px;
+            right: 1px;
+            width: 150px;
+            background: #ffffff;
+        }
+    </style>
+    <style>
+        .icon-item {
+            display: flex;
+            padding: 10px;
+        }
+
+        .icon-item img {
+            width: 43px;
+            height: 43px;
+            padding-right: 3px;
+        }
+        .right{
+          float: right;
+          clear: both;
+          padding-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="school_head">
+        <header class="aui-bar aui-bar-nav aui-bar-light">
+            <div class="aui-pull-left aui-btn">
+                <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+            </div>
+            <div class="aui-title">站主学院</div>
+            <div class="aui-pull-right aui-btn">
+                <span id='plus-to-close' class="aui-iconfont aui-icon-plus"></span>
+                <div class="box-shadow-basic clicked-btn-more-list">
+                    <div class="icon-item">
+                        <img src="../../image/king.png" alt="">
+                        <span>成为站主</span> </div>
+                    <div class="icon-item" tapmode onclick="goNextWin('./publish_experience.html')">
+                        <img src="../../image/experience.png" alt="">
+                        <span>交流经验</span> </div>
+                    <div class="icon-item" tapmode onclick="goNextWin('./publish_story.html')">
+                        <img src="../../image/story.png" alt="">
+                        <span>发布故事</span> </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div class="lunbo">
+        <img class='box-shadow-basic' src="../../image/other/peitu1.jpg" alt="">
+    </div>
+    <div class="experincepublish_body">
+        <h1 tapmode onclick="goNextWin('./experience_list.html')">交流经验
+       <i class="right aui-iconfont aui-icon-right"></i>
+</h1>
+        <div class="experincepublish_body1">
+            <div class="experincepublish_list1" onclick="goNextWin('./publish_page_detail.html')">
+                <img src="../../image/other/peitu1.jpg" alt="">
+                <div class="experincepublish_list1_b"><span>我本驿站</span></div>
+                <div class="experincepublish_list1_span"><span>建于1960年，在加拿大安大略省尼亚加拉大瀑布附近的朝野水上公园坐山望湖……</span></div>
+                <div class="experincepublish_list1_1">
+                    <img src="../../image/avatar-demo.png" alt="">
+                    <img src="../../image/good_active.png" alt=""><span>14</span>
+                    <img src="../../image/comment.png" alt=""><span>2</span>
+                </div>
+            </div>
+
+            <div class="experincepublish_list1">
+              <img src="../../image/other/peitu1.jpg" alt="">
+                <div class="experincepublish_list1_b"><span>英狮驿站</span></div>
+                <div class="experincepublish_list1_span"><span>建于1960年，在加拿大安大略省尼亚加拉大瀑布附近的朝野水上公园坐山望湖……</span></div>
+                <div class="experincepublish_list1_1">
+                    <img src="../../image/avatar-demo.png" alt="">
+                    <img src="../../image/good.png" alt=""><span>14</span>
+                    <img src="../../image/comment.png" alt=""><span>2</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="br"></div>
+    <div class="experincepublish_body">
+        <h1 tapmode onclick="goNextWin('./store_list.html')">发布故事
+          <i class="right aui-iconfont aui-icon-right"></i>
+
+                  <!-- <img class="experincepublish_body_img" src="./img/icon/xiayibu.png" alt=""> -->
+</h1>
+        <div class="experincepublish_body1">
+            <div class="experincepublish_list1">
+                <img src="../../image/other/peitu1.jpg" alt="">
+                <div class="experincepublish_list1_b"><span>我本驿站</span></div>
+                <div class="experincepublish_list1_span"><span>建于1960年，在加拿大安大略省尼亚加拉大瀑布附近的朝野水上公园坐山望湖……</span></div>
+                <div class="experincepublish_list1_1">
+                    <img src="../../image/avatar-demo.png" alt="">
+                    <img src="../../image/good.png" alt=""><span>14</span>
+                    <img src="../../image/comment.png" alt=""><span>2</span>
+                </div>
+            </div>
+
+            <div class="experincepublish_list1">
+                <img src="../../image/other/peitu2.jpg" alt="">
+                <div class="experincepublish_list1_b"><span>我本驿站</span></div>
+                <div class="experincepublish_list1_span"><span>建于1960年，在加拿大安大略省尼亚加拉大瀑布附近的朝野水上公园坐山望湖……</span></div>
+                <div class="experincepublish_list1_1">
+                    <img src="../../image/avatar-demo.png" alt="">
+                    <img src="../../image/good.png" alt=""><span>14</span>
+                    <img src="../../image/comment.png" alt=""><span>2</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../script/api.js" charset="utf-8"></script>
+
+<script src="../../script/common.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $api.addEvt($api.dom('#plus-to-close'), 'click', function() {
+        if ($api.hasCls($api.dom('#plus-to-close'), 'aui-icon-plus')) {
+            $api.css($api.dom('.clicked-btn-more-list'), 'display:block');
+            $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-plus');
+            $api.addCls($api.dom('#plus-to-close'), 'aui-icon-close');
+        } else {
+            $api.css($api.dom('.clicked-btn-more-list'), 'display:none');
+            $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-close');
+            $api.addCls($api.dom('#plus-to-close'), 'aui-icon-plus');
+        }
+    })
+</script>
+<script>
+    //二级菜单
+    var aClose = document.getElementsByClassName('school_close');
+    var aErji = document.getElementsByClassName('school_close_erji')
+        //给 school_close加入鼠标移入事件
+    for (var i = 0; i < aClose.length; i++) {
+        aClose[i].index = i; //0~5
+        aClose[i].onclick = function() {
+
+            // console.log(i)  //6
+            console.log(this) //obj
+                // console.log(obj.name)
+            console.log(this.index) //
+            for (var k = 0; k < aErji.length; k++) {
+                aErji[k].style.display = 'none'
+            }
+            aErji[this.index].style.display = 'block';
+        }
+
+        // aSection[i].onmouseleave = function(){
+        //     aDd[this.index].style.display = 'none';
+        // }
+    }
+</script>
+
+</html>

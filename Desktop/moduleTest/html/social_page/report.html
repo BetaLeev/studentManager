@@ -1,0 +1,117 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+
+    <title>举报页面 -- leev</title>
+    <style>
+        header {
+            padding-top: 25px !important;
+            border-bottom: 1px solid #f7f7f7;
+
+        }
+        header * {
+            color: #4b4b4b !important;
+        }
+
+        .aui-bar,
+        .aui-bar span {
+            color: #4b4b4b !important;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .report-container {
+            height: 300px;
+            width: 100%;
+            padding: 20px;
+            border-top: 1px solid #4b4b4b;
+            border-bottom: 1px solid #4b4b4b;
+        }
+
+        p {
+            color: #b5b5b6;
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .container .plus {
+            height: 100px;
+            width: 100px;
+            text-align: center;
+            border: 1px solid #4b4b4b;
+        }
+
+        .aui-icon-plus {
+            font-size: 2rem;
+            line-height: 100px;
+        }
+
+        .submit-btn {
+            position: absolute;
+            bottom: 0;
+            font-size: 1rem;
+            line-height: 60px;
+            text-align: center;
+            height: 60px;
+            width: 100%;
+            border: none;
+            outline: none;
+            background: #fed765;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </div>
+        <div class="aui-title">举报</div>
+        <div class="aui-pull-right aui-btn">
+            <span class="aui-iconfont aui-icon-question"></span>
+        </div>
+    </header>
+    <div class="report-container">
+        <p>请填写举报原因（20-200字以内）</p>
+    </div>
+    <div class="container">
+        <p>请上传图片依据（必填）</p>
+        <br>
+        <div class="plus">
+            <span class="aui-iconfont aui-icon-plus"></span>
+
+            <!-- <img src="./img/plus.png" alt=""> -->
+        </div>
+    </div>
+    <div class="bottom">
+        <button class="submit-btn" id='submit'>提交</button>
+    </div>
+    <script src="../../script/api.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        apiready = function() {
+            $api.addEvt($api.byId('submit'), 'click', function() {
+                api.openWin({
+                    name: '举报成功',
+                    url: './report_success.html'
+                        // pageParam: {
+                        //     name: 'test'
+                        // }
+                });
+
+            })
+
+        }
+    </script>
+</body>
+
+</html>

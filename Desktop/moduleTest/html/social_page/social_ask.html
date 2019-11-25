@@ -1,0 +1,235 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>社交 咨询 详情页</title>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+        }
+
+        .aui-iconfont,
+        .aui-bar {
+            color: black !important;
+        }
+
+        .aui-pull-right img {
+            width: 20px;
+            height: 20px;
+            margin-top: 15px;
+        }
+
+        .main-img {
+            width: 90%;
+            height: 300px;
+            padding: 20px;
+            margin: 0 auto;
+            height: auto;
+            box-shadow: 5px 5px 5px #f9f9f9;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        h4,
+        h5,
+        span {
+            color: #656565;
+        }
+
+        .news-detail-title {
+            font-size: 1rem;
+        }
+
+        .news-detail-subtitle {
+            margin-top: 5px;
+            position: relative;
+            font-size: .875rem;
+        }
+
+        .news-detail-date-views {
+            display: flex;
+        }
+
+        .news-detail-date-views span {
+            width: 50%;
+            color: #b5b5b6;
+        }
+
+        .date {
+            text-align: left;
+        }
+
+        .views {
+            text-align: right;
+        }
+
+        .comment-list-item {
+            padding-top: 14px;
+        }
+
+        .user-basc {
+            display: flex;
+        }
+
+        .user-avatar {
+            height: 30px;
+            width: 34px;
+            margin-right: 20px;
+            margin-top: -20px;
+        }
+
+        .user-avatar img {
+            margin-top: 8px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .user-name {
+            /*font-size: 1rem;*/
+        }
+
+        .username {
+            font-size: 1rem;
+        }
+
+        .userdate {
+            margin-top: -10px;
+            font-size: .675rem;
+        }
+
+        .subscripted {
+            position: absolute;
+            right: 15px;
+            color: #707070;
+            height: 35px;
+            background: #fff;
+            outline: none;
+            border: 1px solid #707070;
+        }
+
+        .user-desc {
+            padding-bottom: 30px;
+            margin-top: 30px;
+        }
+
+        .user-desc p {
+            margin-top: 20px;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            display: flex;
+            height: 60px;
+            border-top: 1px solid #4b4b4b;
+        }
+
+        .input {
+            padding-left: 10px;
+            width: 95%;
+            height: 30px;
+        }
+
+        .input input {
+            margin-top: 10px;
+            margin: 10px auto;
+            border: 1px sold #b5b5b6;
+            width: 90%;
+            height: 100%;
+            border-radius: 5px;
+            background: #f0f0f0;
+            outline: none;
+        }
+
+        .input,
+        .other {
+            width: 45%;
+        }
+
+        .other {
+            display: flex;
+            line-height: 60px;
+            justify-content: space-around;
+            float: left;
+            margin-top: 20px;
+        }
+
+        .other img {
+            vertical-align: center;
+            width: 20px;
+            height: 20px;
+            float: left;
+        }
+
+        .other span {
+            margin-top: -20px;
+            float: left;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </div>
+        <div class="aui-title">正文</div>
+        <div class="aui-pull-right ">
+            <i class="aui-iconfont aui-icon-question"></i>
+        </div>
+    </header>
+    <img class='main-img' src="../../image/other/lion.jpg" alt="">
+    <div class="container">
+        <h4 class="news-detail-title">购物指南----十月限时优惠</h4>
+        <h5 class="news-detail-subtitle">副标题</h5>
+        <p class="news-detail-date-views">
+            <span class="date">10.23</span>
+            <span class="views">1.3万人浏览</span>
+        </p>
+        <div class="comment-list-item">
+            <div class="user-info">
+                <div class="user-basc">
+                    <div class="user-avatar">
+                        <img src="../../image/avatar-demo.png" alt="">
+                    </div>
+                    <p class="user-name">用户名123</p>
+                    <button class="subscripted">✅已关注</button>
+                </div>
+                <div class="user-desc">
+                    <p> 时代工场视觉健康顾问张红双先生，北京清华实惠科技公司董事长。时代工场拟引进办公视觉健康智能系统，欢迎届时体验工厂视觉环境智能办公示范区。
+                    </p>
+                    <p>办公，更要健康</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer>
+        <div class="input"> <input type="text" name="" value=""> </div>
+        <div class="other">
+            <div>
+                <img src="../../image/comment-active.png" alt=""><span>评论区</span>
+
+            </div>
+            <div>
+                <img src="../../image/like.png" alt=""><span>15</span>
+
+            </div>
+            <div>
+                <img src="../../image/good_active.png" alt=""><span>51</span>
+            </div>
+        </div>
+    </footer>
+    <script src="../../script/common.js" charset="utf-8"></script>
+
+</html>

@@ -1,0 +1,481 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui-slide.css" />
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+
+        /*导航搜索栏部分*/
+
+        .aui-bar {
+            padding: 0 10px;
+            height: 50px;
+        }
+
+        .aui-bar,
+        .aui-searchbar {
+            background: #fdd66e;
+        }
+
+        .aui-bar-nav,
+        .aui-iconfont {
+            color: black !important
+        }
+        /*轮播图部分*/
+
+        #aui-slide {
+            width: 100%;
+            height: 300px;
+        }
+
+        .ad-text {
+            display: flex;
+            justify-content: space-around;
+            background: #fdd66e;
+        }
+
+        .ad-text p {
+            width: 33.33%;
+            text-align: center;
+            font-size: .5rem;
+        }
+
+        .clicked-btn-more-list::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            width: 0;
+            height: 0;
+            border: 20px solid transparent;
+            border-bottom: 20px solid #fff;
+        }
+
+        .clicked-btn-more-list {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 1px;
+            width: 120px;
+            background: #ffffff;
+        }
+
+        .icon-item {
+            display: flex;
+            padding: 10px 15px;
+            margin: 0 auto;
+            line-height: 30px;
+        }
+
+        .icon-item img {
+            height: 30px;
+            margin-right: 5px;
+            width: 35px;
+        }
+
+        .tab {
+            width: 100vw;
+            height: 420px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .taui-tab {
+            width: 22%;
+        }
+
+        .tab-container {
+            height: 420px;
+            width: 78%;
+            position: relative;
+            padding: 10px;
+            background: #ffffff;
+            border-left: 1px solid gray;
+            height: auto;
+            overflow-y: scroll;
+        }
+
+        .tab-container-item {
+            width: 100%;
+        }
+
+        .aui-tab-item {
+            font-size: .875rem;
+            text-align: center;
+        }
+
+        .aui-active {
+            font-size: 1.18rem;
+            color: black !important;
+            background: #fff;
+            border-right: none !important;
+            border-bottom: 2px solid #e4e4e4!important;
+            border-left: 4px solid #fdd66e !important;
+        }
+
+        .aui-active::after {
+            content: '';
+            position: absolute;
+            top: 0px;
+            right: -10px;
+            height: 42px;
+            background: #fff;
+            z-index: 999;
+            width: 13px;
+        }
+
+        .tab-item-plate {
+            display: flex;
+        }
+
+        .tab-item-plate div {
+            width: 50%;
+            height: 115px;
+            padding-top: 10px;
+            padding-right: 5px;
+            padding-left: 5px;
+            padding-bottom: 12px;
+        }
+
+        .tab-container-item-title {
+            text-indent: .875rem;
+            position: relative;
+        }
+
+        .tab-container-item-title::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            margin-left: 20px;
+            background-color: #e4e4e4;
+            border: 1px solid #e4e4e4;
+            width: 60%;
+        }
+
+        .tab-container-left {}
+
+        .tab-container-left img {
+            height: 100%;
+            width: 100%;
+            background-size: contain;
+        }
+
+        .tab-container-right {
+            position: relative;
+        }
+
+        .tab-container-title {
+            font-size: .75rem;
+        }
+
+        .tab-container-subtitle {
+            font-size: .5rem;
+        }
+
+        .tab-container-price {
+            position: absolute;
+            font-size: .6rem;
+            bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav">
+        <div id='currentCity' class="aui-pull-left aui-btn" tapmode onclick="showMoreCity()">
+            北京 &nbsp
+            <span class="aui-iconfont aui-icon-down"></span>
+        </div>
+        <div class="aui-title" style="left:4rem; right: 4rem;">
+            <div class="aui-searchbar">
+                <div class="aui-searchbar-input aui-border-radius">
+                    <i class="aui-iconfont aui-icon-search"></i>
+                    <input type="search" onclick="goNextWin('./search_hot.html')" placeholder=" 区位/企业发展需求" id="search-input">
+                    <div class="aui-searchbar-clear-btn">
+                        <i class="aui-iconfont aui-icon-close"></i>
+                    </div>
+                </div>
+                <div class="aui-searchbar-btn" tapmode>取消</div>
+            </div>
+        </div>
+        <div class="aui-pull-right aui-btn">
+            <span id='plus-to-close' class="aui-iconfont aui-icon-plus"></span>
+            <div class="clicked-btn-more-list">
+                <div class="icon-item" tapmode onclick='scanfHandle()'>
+                    <img src="../../image/pay.png" alt=""><span>扫一扫</span>
+                </div>
+                <div class="icon-item">
+                    <img src="../../image/kefu.png" alt=""><span>客服</span>
+                </div>
+                <div class="icon-item" tapmode onclick="goNextWin('./message.html')">
+                    <img class='msg' src="../../image/jiaoliu.png" alt=""><span>消息</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="aui-slide">
+        <div class="aui-slide-wrap">
+            <div class="aui-slide-node">
+                <img src="../../image/other/offce.jpg" alt="">
+            </div>
+            <div class="aui-slide-node">
+                <img src="../../image/other/linfeng.jpg" alt="">
+            </div>
+            <div class="aui-slide-node">
+              <img src="../../image/other/linfeng.jpg" alt="">
+            </div>
+        </div>
+        <div class="aui-slide-page-wrap">
+            <!--分页容器-->
+        </div>
+    </div>
+    <div class="ad-text">
+        <p>1000+驿站服务</p>
+        <p>儿童教育，影视培训</p>
+        <p>5000余个会议中心</p>
+    </div>
+    <div class="tab">
+        <div class="taui-tab" id="tab">
+            <div class="aui-tab-item">北京</div>
+            <div class="aui-tab-item aui-active">山西</div>
+            <div class="aui-tab-item">多伦多</div>
+            <div class="aui-tab-item">会员卡</div>
+        </div>
+        <div class="tab-container">
+            <div class="tab-container-item" onclick="goNextWin('./detail.html')">
+                <div class="tab-container-item-title">山西</div>
+                <div class="tab-item-plate">
+                    <div class="tab-container-left">
+                      <img src="../../image/other/linfeng.jpg" alt="">
+                    </div>
+                    <div class="tab-container-right">
+                        <p class="tab-container-title">时代工场林凤驿站</p>
+                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                        <p class="tab-container-price">¥499起</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-container-item">
+                <div class="tab-container-item-title">多伦多</div>
+                <div class="tab-item-plate">
+                    <div class="tab-container-left">
+                      <img src="../../image/other/offce.jpg" alt="">
+                    </div>
+                    <div class="tab-container-right">
+                        <p class="tab-container-title">时代工场林凤驿站</p>
+                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                        <p class="tab-container-price">¥499起</p>
+                    </div>
+                </div>
+                <div class="tab-item-plate">
+                    <div class="tab-container-left">
+                        <img src="./img/linfeng.jpg" alt="">
+                    </div>
+                    <div class="tab-container-right">
+                        <p class="tab-container-title">时代工场林凤驿站</p>
+                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                        <p class="tab-container-price">¥499起</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-container-item">
+                <div class="tab-container-item-title">北京</div>
+                <div class="tab-item-plate">
+                    <div class="tab-container-left">
+                        <img src="./img/NO.1.jpg" alt="">
+                    </div>
+                    <div class="tab-container-right">
+                        <p class="tab-container-title">时代工场林风驿站</p>
+                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                        <p class="tab-container-price">¥499起</p>
+                    </div>
+                </div>
+                <div class="tab-item-plate">
+                    <div class="tab-container-left">
+                      <img src="../../image/other/linfeng.jpg" alt="">
+                    </div>
+                    <div class="tab-container-right">
+                        <p class="tab-container-title">时代工场林风驿站</p>
+                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                        <p class="tab-container-price">¥499起</p>
+                    </div>
+                </div>
+                <div class="tab-item-plate">
+                    <div class="tab-container-left">
+                      <img src="../../image/other/linfeng.jpg" alt="">
+                    </div>
+                    <div class="tab-container-right">
+                        <p class="tab-container-title">时代工场林风驿站</p>
+                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                        <p class="tab-container-price">¥499起</p>
+                    </div>
+                </div>
+                <div class="tab-item-plate">
+                    <div class="tab-container-left">
+                        <img src="../../image/card-demo.png" alt="">
+                    </div>
+                    <div class="tab-container-right">
+                        <p class="tab-container-title">时代工场林风驿站</p>
+                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                        <p class="tab-container-price">¥499起</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src='../../script/api.js'></script>
+    <script type="text/javascript" src="../../aui-20170109-v2.1/script/aui-slide.js"></script>
+    <script type="text/javascript" src="../../aui-20170109-v2.1/script/aui-tab.js"></script>
+    <script src="../../script/common.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        apiready = function() {
+            deBlack();
+        }
+    </script>
+    <script type="text/javascript">
+        function showMoreCity() {
+            var UICityList = api.require('UICityList');
+            UICityList.open({
+                rect: {
+                    x: 0,
+                    y: 25,
+                    w: api.aframeWidth,
+                    h: api.frameHeight
+                },
+                resource: 'widget://json/uicitylist.json',
+                styles: {
+                    searchBar: {
+                        bgColor: '#696969',
+                        cancelColor: '#E3E3E3'
+                    },
+                    location: {
+                        color: '#696969',
+                        size: 12
+                    },
+                    sectionTitle: {
+                        bgColor: '#eee',
+                        color: '#000',
+                        size: 12
+                    },
+                    item: {
+                        bgColor: '#fff',
+                        activeBgColor: '#696969',
+                        color: '#000',
+                        size: 14,
+                        height: 40
+                    },
+                    indicator: {
+                        bgColor: '#fff',
+                        color: '#696969'
+                    }
+                },
+                currentCity: '北京',
+                locationWay: 'GPS',
+                hotTitle: '热门城市',
+                fixedOn: api.frameName,
+                placeholder: '输入城市名或首字母查询'
+            }, function(ret, err) {
+                if (ret.eventType == 'selected') {
+                    var city = ret.cityInfo.city;
+                    $api.text($api.byId('currentCity'), city)
+                    UICityList.close()
+                }
+
+            });
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        // 注意：使用本模块前，需在云编译页面勾选添加访问摄像头权限，若要访问相册也需沟通申请访问相册权限 不能同时使用的模块：wwprint
+        function scanfHandle() {
+            var FNScanner = api.require('FNScanner');
+
+            FNScanner.open({
+                autorotation: true
+            }, function(ret, err) {
+                if (ret) {
+                    if (ret.eventType == 'cancle') {
+                        FNScanner.closeView();
+                    }
+                    // alert(JSON.stringify(ret));
+                } else {
+                    alert(JSON.stringify(err));
+                    FNScanner.closeView();
+                }
+            });
+        }
+
+        function deBlack() {
+            var FNScanner = api.require('FNScanner');
+            api.addEventListener({
+                name: 'resume'
+            }, function(ret, err) {
+                FNScanner.onResume();
+                // alert('应用回到前台');
+            });
+
+            api.addEventListener({
+                name: 'pause'
+            }, function(ret, err) {
+                FNScanner.onPause();
+                // alert('应用进入后台');
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        var tab = new auiTab({
+            element: document.getElementById("tab"),
+            index: 2,
+            repeatClick: false
+        }, function(ret) {
+            console.log(ret);
+        });
+    </script>
+    <script type="text/javascript">
+        var slide = new auiSlide({
+            container: document.getElementById("aui-slide"),
+            "height": 180,
+            "speed": 300,
+            "pageShow": true,
+            "pageStyle": 'dot',
+            "loop": true,
+            "autoPlay": 3000,
+            'dotPosition': 'center',
+            currentPage: currentFun
+        })
+
+        function currentFun(index) {
+            console.log(index);
+        }
+    </script>
+
+    <script type="text/javascript">
+        // 顶部+按钮，点击事件
+        // plus-to-close
+        $api.addEvt($api.dom('#plus-to-close'), 'click', function() {
+            if ($api.hasCls($api.dom('#plus-to-close'), 'aui-icon-plus')) {
+                // topMenu();
+                $api.css($api.dom('.clicked-btn-more-list'), 'display:block');
+                $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-plus');
+                $api.addCls($api.dom('#plus-to-close'), 'aui-icon-close');
+            } else {
+                $api.css($api.dom('.clicked-btn-more-list'), 'display:none');
+                $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-close');
+                $api.addCls($api.dom('#plus-to-close'), 'aui-icon-plus');
+            }
+        })
+    </script>
+
+
+</html>

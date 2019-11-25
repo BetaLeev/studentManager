@@ -1,0 +1,58 @@
+{
+    "name": "root",
+    "bgColor": "#fff",
+    "navigationBar": {
+
+    },
+    "tabBar": {
+        "animated": true,
+        "list": [
+          {
+              "text": "首页",
+              "iconPath": "widget://image/tabbar-icon/home.png",
+              "selectedIconPath": "widget://image/tabbar-icon/home__active.png"
+          }, {
+              "text": "找地儿",
+              "iconPath": "widget://image/tabbar-icon/place.png",
+              "selectedIconPath": "widget://image/tabbar-icon/place__active.png"
+          }, {
+              "text": "发布",
+              "iconPath": "widget://image/tabbar-icon/publish.png",
+              "selectedIconPath": "widget://image/tabbar-icon/publish__active.png"
+          }, {
+              "text": "社交",
+              "iconPath": "widget://image/tabbar-icon/home.png",
+              "selectedIconPath": "widget://image/tabbar-icon/mine__active.png"
+          },
+          {
+             "text": "我的",
+             "iconPath": "widget://image/tabbar-icon/mine.png",
+             "selectedIconPath": "widget://image/tabbar-icon/mine__active.png"
+         }
+        ],
+        "frames": [
+          {
+              "title": "首页",
+              "name": "home_page",
+              "url": "./html/home_page/index.html",
+          }, {
+              "title": "找地儿",
+              "name": "find_place",
+              "url": "./html/find_place_page/index.html"
+          }, {
+              "title": "发布",
+              "name": "publish_page",
+              "url": "./html/publish_page/index.html"
+          }, {
+              "title": "社交",
+              "name": "social_page",
+              "url": "./html/social_page/index.html"
+          },
+          {
+              "title": "我的",
+              "name": "mine_page",
+              "url": "./html/mine_page/index.html"
+          }
+        ]
+    }
+}

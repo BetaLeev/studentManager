@@ -1,0 +1,192 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+
+    <title>社交推荐</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0
+        }
+
+        html,
+        body {
+            background: #fff;
+            height: auto
+        }
+        /*banner图*/
+
+        .banner {
+            height: 200px;
+            width: 100%;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+        }
+
+        .banner >img {
+            /*width: 100%;*/
+            height: 100%;
+            /*position: absolute;*/
+            /*transform: translate(0, -35%);*/
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .recommand-item {
+            border-bottom: 2px solid #f9f9f9;
+        }
+
+        .user-info {}
+
+        .user-basc {
+            display: flex;
+            height: 66px;
+        }
+
+        .user-avatar {
+            height: 40px;
+            width: 44px;
+            margin-right: 20px;
+        }
+
+        .user-avatar img {
+            margin-top: 18px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .user-name {
+            font-size: 1rem;
+            line-height: 48px;
+        }
+
+        .user-desc {}
+
+        .desc-top {
+            justify-content: space-between;
+            display: flex;
+            margin-top: -10px;
+        }
+
+        .desc-top button {
+            background-color: #fff;
+            border: 1px solid #f7f7f7;
+            color: #fdd66e;
+            height: 30px;
+            width: 60px;
+            margin-top: -50px;
+        }
+
+        .desc-img {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .desc-img>img {
+            width: 100%;
+            height: auto;
+            transform: translate(0, -35%);
+            box-shadow: 3px 3px 3px 3px #fdfdfd;
+        }
+
+        .now-item-bottom {
+            display: flex;
+            width: 100%;
+        }
+
+        .now-date,
+        .now-right {
+            width: 50%;
+        }
+
+        .now-right {
+            text-align: right;
+            padding-right: 20px;
+            display: flex;
+        }
+
+        .now-right span {
+            text-align: right;
+            padding: 5px;
+        }
+
+        .desc-views,
+        .desc-comment {
+      float: left;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="banner">
+            <img src="../../image/other/peitu1.jpg" alt="">
+        </div>
+    </header>
+    <div class="container">
+        <div class="recommand-item" onclick="goNextWin('../home_page/detail.html')">
+            <div class="user-info">
+                <div class="user-basc">
+                    <div class="user-avatar">
+                        <img src="../../image/avatar-demo.png" alt="">
+                    </div>
+                    <p class="user-name">用户名123</p>
+                </div>
+                <div class="user-desc">
+                    <div class="desc-top">
+                        <p>今天参展驿站了，对上市有了新感受</p>
+                        <button>关注</button>
+                    </div>
+                    <div class="desc-img">
+                        <img src="../../image/other/take-pic.png" alt="">
+                    </div>
+                    <div class="now-item-bottom">
+                        <p class="now-date">1小时前</p>
+                        <p class="now-right">
+                          <span><i class="aui-iconfont aui-icon-display"></i> 2014</span>
+                          <span><img class="desc-comment" src="../../image/comment.png" alt=""> 51</span>
+                      </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="recommand-item" onclick="goNextWin('../home_page/detail.html')">
+            <div class="user-info">
+                <div class="user-basc">
+                    <div class="user-avatar">
+                        <img src="../../image/avatar-demo.png" alt="">
+                    </div>
+                    <p class="user-name">用户名123</p>
+                </div>
+                <div class="user-desc">
+                    <div class="desc-top">
+                        <p>今天参展驿站了，对上市有了新感受</p>
+                        <button>关注</button>
+                    </div>
+                    <div class="desc-img">
+                        <img src="../../image/other/take-pic.png" alt="">
+                    </div>
+                    <div class="now-item-bottom">
+                        <p class="now-date">1小时前</p>
+                        <p class="now-right">
+                          <span><i class="aui-iconfont aui-icon-display"></i> 2014</span>
+                          <span><img class="desc-comment" src="../../image/comment.png" alt=""> 51</span>
+                      </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="../../script/common.js" charset="utf-8"></script>
+</body>
+
+</html>

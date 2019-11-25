@@ -1,0 +1,69 @@
+a {
+    text-decoration: none;
+}
+
+header {
+    padding-top: 25px !important;
+    height: 50px !important;
+    border-bottom: 1px solid #4b4b4b;
+}
+.hd-fixed{
+  position: fixed !important;
+}
+
+header * {
+    color: #4b4b4b !important;
+}
+
+.text-color__gray1{
+  color: #707070
+}
+.text-color__gray2{
+  color: #F7F7F7
+}
+
+
+/*偏黑色*/
+.text-color__black{
+  color: #4B4B4B
+}
+
+/*黄色*/
+.text-color__yellow{
+  color: #FED765
+}
+
+/*蓝色*/
+.text-color__blue{
+  color: #00BAFF
+}
+
+.btn-normal{
+  height: 50px;
+  text-align: center;
+  outline: none;
+  border: none;
+  font-size: 1.125rem;
+  line-height: 50px;
+}
+.btn-text{
+}
+.div-align{
+  margin:  0 auto;
+}
+.text-align{
+  text-align: center;
+}
+
+.box-shadow-basic{
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12)
+}
+
+.bottom-border{
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.aui-icon-right{
+  font-weight: bold !important;
+  color:#FED765 !important;
+}

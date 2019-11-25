@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>裁剪图片frame</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        clip_img(api.pageParam.imgpath,api.pageParam.phone_number);
+    };
+    // 相机照片裁剪
+    function clip_img(URLPath,phone_number){
+        var FNImageClip = api.require('FNImageClip');
+        FNImageClip.open({
+            rect: {
+                x: 0,
+                y: 0
+            },
+            highDefinition:true,
+            isMinWidth:true,
+            isMinHeight:true,
+            isHideGrid:true,
+            srcPath: URLPath,
+            style: {
+                mask: '',
+                clip: {
+                    w: 256,
+                    h: 256,
+                    x:api.winWidth/2-128,
+                    y:api.winHeight/2-128,
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    appearance: 'rectangle'
+                }
+            },
+            mode:"image",
+            fixedOn: api.frameName
+        }, function(ret, err){        
+        });
+    };
+    // 裁剪成功保存
+    function saveimg(imgpath){
+        var FNImageClip = api.require('FNImageClip');
+        FNImageClip.save({
+            copyToAlbum: true,
+            quality: 1
+        },function(ret, err){        
+            if(ret) {
+                api.execScript({
+                    name: 'root',
+                    frameName: 'frame_my',
+                    script: "change_userimg('"+ret.albumPath+"')"
+                });
+                api.setPrefs({
+                            key: api.pageParam.phone_number.toString(),
+                            value: ret.albumPath
+                        });
+                api.closeWin({
+                    name: api.winName
+                });
+            } else{
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+</script>
+</html>

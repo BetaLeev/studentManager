@@ -1,0 +1,167 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>付款</title>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        body {
+            width: 100%;
+            background: #F7F7F7;
+        }
+
+        header {
+            padding-top: 25px;
+            height: 50px;
+            border-bottom: 2px solid #4b4b4b;
+        }
+
+        header * {
+            color: #4b4b4b !important;
+        }
+
+        .dan {
+            width: 80%;
+            height: 350px;
+            background: #fff;
+            margin: 0 auto;
+        }
+
+        .fukuan {
+            width: 100%;
+            height: 100px;
+            line-height: 50px;
+            display: flex;
+        }
+
+        .wenzi {
+            width: 49%;
+            line-height: 100px;
+            float: left;
+        }
+
+        .wenzi span {
+            font-size: 15px;
+            color: #707070;
+            margin-left: 30px;
+        }
+
+        .tupian {
+            width: 49%;
+            line-height: 100px;
+            text-align: right;
+        }
+
+        .tupian img {
+            display: inline;
+            width: 45px;
+            height: 45px;
+            margin-top: 20px;
+            margin-right: 30px;
+        }
+
+        .jine {
+            margin-top: 30px;
+        }
+
+        .jine p {
+            margin-left: 30px;
+            font-size: 10px;
+            color: #707070;
+        }
+
+        .num {
+            width: 70%;
+            height: 50px;
+            margin: 0 auto;
+            border-bottom: 2px solid #f7f7f7;
+        }
+
+        .num b {
+            font-size: 40px;
+        }
+
+        .btn {
+            width: 70%;
+            height: 50px;
+            margin: auto;
+            background: #FED765;
+            border-radius: 5px;
+            margin-top: 40px;
+        }
+
+        .btn p {
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+        }
+
+        .beizhu {
+            width: 100%;
+            float: left;
+        }
+
+        .beizhu p {
+            margin-left: 150px;
+            margin-top: 30px;
+            font-size: 10px;
+            color: #f7f7f7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title">付款</div>
+    </header>
+
+    <div class="dan">
+        <div class="fukuan">
+            <div class="wenzi"><span>付款给时代工场</span></div>
+            <div class="tupian"><img src="../../image/logo.png" alt=""></div>
+        </div>
+        <div class="jine">
+            <p>金额</p>
+        </div>
+
+        <div class="num">
+            <b>￥</b>
+        </div>
+        <div class="btn" onclick="goNextWin('./choose_pay.html')">
+            <p>付款</p>
+        </div>
+        <div class="beizhu">
+            <p>备注</p>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../script/common.js" charset="utf-8"></script>
+
+<!-- <script type="text/javascript" src="../../script/common.js"></script> -->
+
+
+<!-- <script type="text/javascript">
+    apiready = function() {
+        $api.addEvt($api.dom('.btn'), 'click', function() {
+            api.openWin({
+                name: '支付订单',
+                url: './book_detail_order.html'
+            })
+        });
+        $api.addEvt($api.dom('.aui-icon-left'), 'click', closeThis());
+        function closeThis() {
+            api.closeWin();
+        }
+    }
+</script> -->
+
+</html>

@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>定空间</title>
+  <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+  <link rel="stylesheet" href="../../css/common.css">
+  <style>
+  .container{
+      box-shadow:1px 1px 1px 1px #e4e4e4;
+  }
+  .place-img{
+    height:190px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .place-img > img{
+    width: 100%;
+  }
+  .place-content{
+    padding:20px;
+    margin-bottom:10px;
+  }
+  .place-title{
+    display: flex;
+  }
+  .title{
+    font-size: 1rem;
+    margin-right: 14px;
+  }
+  .sub-title{
+    margin-top:9px;
+    font-size: .75rem;
+  }
+  .title-price{
+    position: absolute;
+    font-size: 1rem;
+    right: 20px;
+  }
+    .place-desc  {
+      font-size: .6rem;
+    color: #4b4b4b;}
+  </style>
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+      <div class="aui-pull-left aui-btn">
+          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+      </div>
+      <div class="aui-title">定空间</div>
+  </header>
+  <div class="container">
+    <div class="place-item" onclick="goNextWin('./current_place_detail.html')">
+    <div class="place-img">
+      <img src="../../image/other/offce.jpg" alt="">
+    </div>
+    <div class="place-content">
+      <div class="place-title">
+        <h3 class="title">会议室</h3>
+        <p class="sub-title">8人会议室</p>
+        <h3 class="title-price">¥ 220/h</h3>
+      </div>
+      <div class="place-desc">
+        <p>北京市，丰台区</p>
+        <p>航丰路1号院2号楼，时代财富天地B座 > </p>
+      </div>
+    </div>
+    </div>
+    <div class="place-item">
+    <div class="place-img">
+      <img src="../../image/other/linfeng.jpg" alt="">
+    </div>
+    <div class="place-content">
+      <div class="place-title">
+        <h3 class="title">茶室</h3>
+        <p class="sub-title">4人茶室</p>
+        <h3 class="title-price">¥ 180/h</h3>
+      </div>
+      <div class="place-desc">
+        <p>北京市，丰台区</p>
+        <p>航丰路1号院2号楼，时代财富天地B座 > </p>
+      </div>
+    </div>
+    </div>
+  </div>
+  <script src="../../script/common.js" charset="utf-8"></script>
+</body>
+</html>

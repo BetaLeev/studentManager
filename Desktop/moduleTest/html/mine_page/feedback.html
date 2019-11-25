@@ -1,0 +1,301 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>意见反馈</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+    body,html{
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 0;
+
+    }
+
+    .aui-bar,
+    .aui-bar span {
+        color: #4b4b4b !important;
+    }
+    body {
+        background-color: #fff;
+    }
+
+
+    section {
+        height: auto;
+        width: 100%;
+    }
+
+     section .option {
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-flex-flow: row;
+        flex-flow: row;
+        box-sizing: border-box;
+        width: 100%;
+        height: 60px;
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-bottom: 1px;
+        background-color: #fff;
+        border-bottom: 1px solid #f1f1f1;
+    }
+    .textplace{
+        width: 75%;
+        height: 54px;
+        font-size: 14px;
+        font-weight: 400;
+        background: white;
+        padding-top: 5px;
+        /*padding-left: 16px;*/
+        outline: none;
+        color: #707070;
+
+
+    }
+    textarea{
+        width: 90%;
+        height: 54px;
+        font-size: 14px;
+        font-weight: 400;
+        background: white;
+        padding-top: 5px;
+        padding-left: 16px;
+        outline:none;
+    }
+    section .option .name {
+        width: auto;
+        margin-left: 0;
+        line-height: 60px;
+    }
+
+    section .option .input {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        height: 60px;
+        box-sizing: border-box;
+        padding-top: 22px;
+        margin-left:15px;
+    }
+
+    section .option .input input {
+        font-size: 14px;
+        width: 100%;
+        height: 20px;
+        line-height: 14px;
+        vertical-align: top;
+        border: none;
+        outline:none;
+        position: relative;
+        top: -1px;
+        left: 5px;
+    }
+    .option1 {
+      position: relative;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-flex-flow: row;
+      flex-flow: row;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100px;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-bottom: 1px;
+      background-color: #fff;
+      border-bottom: 1px solid #f1f1f1;
+    }
+    section .option1 .name {
+        width: auto;
+        margin-left: 0;
+        line-height: 60px;
+    }
+    section .option1 .input {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        height: 60px;
+        box-sizing: border-box;
+        padding-top: 22px;
+    }
+
+    section .option1 .input input {
+        font-size: 14px;
+        width: 100%;
+        height: 20px;
+        line-height: 14px;
+        vertical-align: top;
+        border: none;
+        outline:none;
+        position: relative;
+        top: -1px;
+        left: 5px;
+    }
+    /*.dtn_box{
+        width: 100%;
+        background: #ffffff;
+        position: absolute;
+        bottom: 0px;
+    }*/
+
+    .button {
+        width: 100%;
+        height: 50px;
+        background-color: #FED765;
+        line-height: 50px;
+        color: #000000;
+        margin: 0 auto;
+        font-size: 1rem;
+        text-align: center;
+        border-radius: 8px;
+        position: absolute;
+        bottom: 0px;
+    }
+
+    .highlight {
+        opacity: 0.7;
+    }
+    </style>
+</head>
+
+<body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+      <div class="aui-pull-left aui-btn">
+          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+      </div>
+      <div class="aui-title">意见反馈</div>
+      <div class="aui-pull-right aui-btn">
+      </div>
+  </header>
+    <section>
+        <div class="option">
+            <div class="name">空间名称:</div>
+            <div class="input">
+                <input id="space_name" type="text" placeholder="选填">
+            </div>
+        </div>
+        <div class="option1">
+            <!-- 这里面的布局需要调整一下 -->
+           <div class="name">内容描述:</div>
+           <div class="textplace">
+           	<textarea id='content' type="text" placeholder="请在这里留下您的宝贵意见或者您遇到的问题。"></textarea>
+           </div>
+       </div>
+        <!-- 这个文本域有点问题，需要调试一下，注意...整个Body可能会出现向左滑动的现象(出现这个现象的原因是底部的Button=样式的margin-left,margin-right的影响，现在已经解决)。 -->
+
+
+        <div class="option">
+            <div class="name">称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;呼:</div>
+            <div class="input">
+                <input name='nick_name' id="nick_name" type="text" placeholder="请填写您的称呼">
+            </div>
+        </div>
+        <div class="dtn_box">
+            <div class="button" tapmode onclick="fnpostform();">提交</div>
+        </div>
+    </section>
+</body>
+<script type="text/javascript"  src="../../script/common.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/SHA1.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest.js"></script>
+<script type="text/javascript">
+    var space_name_value;
+    var content_value;
+    var phone_value;
+    var nick_name;
+    var space_name_obj = document.getElementById("space_name")
+    var content_obj = document.getElementById("content")
+    var nick_name_obj = document.getElementById("nick_name")
+    var UILoading;
+    var flowerid;
+apiready = function() {
+   UILoading = api.require('UILoading');
+};
+function checkinput(content_value,nick_name){
+    if(content_value.length!=0&&nick_name.length!=0){
+        return true;
+    }else{
+        alert("输入不能为空")
+        return false;
+    }
+}
+function fnpostform(){
+    phone_value = api.getPrefs({sync: true,key:'user_phone'});
+    content_value = content_obj.value.replace(/^\s*|\s*$/g,'');
+    space_name_value = space_name_obj.value.replace(/^\s*|\s*$/g,'');
+    nick_name = nick_name_obj.value.replace(/^\s*|\s*$/g,'');
+    var flag_check = checkinput(content_value,nick_name);
+    if(flag_check){
+        UILoading.flower({
+            center: {
+                x: api.winWidth/2,
+                y: api.winHeight/2
+            },
+            mask:"rgba(0,0,0,0.1)",
+            size: 30,
+            fixed: true
+            }, function(ret) {
+                flowerid = ret.id
+            });
+        var now = Date.now();
+        var appKey = SHA1("A6006620792786"+"UZ"+"B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E"+"UZ"+now)+"."+now;
+        api.ajax({
+            url: 'https://www.apicloud.com/mcm/api/suggestion',
+            method: 'POST',
+            headers:{
+            "X-APICloud-AppId": "A6006620792786",
+            "X-APICloud-AppKey":appKey
+            },
+            data:{
+                values:{
+                    phone:phone_value,
+                    customer_name:nick_name,
+                    space_name:space_name_value,
+                    content:content_value
+                    }
+            }
+        },
+        function(ret, err){
+            if (ret) {
+                UILoading.closeFlower ({
+                    id: flowerid
+                });
+                api.toast({
+                    msg: '提交成功',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+                space_name_obj.value = "";
+                content_obj.value = "";
+                nick_name_obj.value = "";
+            } else {
+                alert(JSON.stringify(err));
+                UILoading.closeFlower ({
+                    id: flowerid
+                });
+            }
+
+        }
+        );
+    }else{
+
+    }
+
+
+}
+
+</script>
+
+</html>

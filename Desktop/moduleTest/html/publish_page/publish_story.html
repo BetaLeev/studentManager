@@ -1,0 +1,151 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <title>发布故事</title>
+    <style>
+
+        .aui-iconfont,
+        .aui-bar {
+            color: black !important;
+        }
+
+        .container {
+            margin-top: 20px;
+            padding: 30px;
+            font-size: .875rem;
+            color: gray;
+        }
+
+        .title {
+            border-bottom: 1px solid gray;
+            padding-bottom: 5px;
+            margin-bottom: 40px;
+        }
+
+        .text {
+            height: 200px;
+        }
+
+        .voice-input-plate {
+            border-top: 1px solid #f5f5f5;
+            border-bottom: 1px solid #f5f5f5;
+            position: relative;
+            padding: 0 20px;
+            display: flex;
+            height: 70px;
+            justify-content: space-between;
+            background: #fff;
+        }
+
+        .voice-input-plate div {
+            margin: 0 auto;
+            height: 60px;
+            line-height: 60px;
+        }
+
+        .voice-input-plate img {
+            margin-top: 15px;
+            height: 30px;
+            width: 30px;
+        }
+
+        .voice-input input {
+            width: 60vw;
+            height: 35px;
+            background: #f7f7f7;
+            margin-top: 15px;
+            border-radius: 3px;
+        }
+
+        .bottom-drawer {
+          width: 100vw;
+            display: flex;
+            justify-content: space-around;
+            background: #f4f4f4;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .bottom-drawer div {
+            padding-top: 37px;
+            padding-bottom: 20px;
+            text-align: center;
+            width: 20%;
+        }
+
+        .bottom-drawer img {
+            padding: 14px;
+            background: #ffffff;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            margin: 0 auto;
+            width: 66px;
+            height: 66px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title">发故事</div>
+        <div class="aui-pull-right ">
+            <span id='publish-btn' onclick="goNextWin('./publish_success.html')">发布</span>
+        </div>
+    </header>
+    <div class="container">
+        <div class="title">
+            <span>标题</span>
+            <!-- <input type="text"> -->
+        </div>
+        <div class="text">
+            <span>正文</span>
+        </div>
+
+    </div>
+    <div class="voice-input-plate">
+        <div><img src="./img/icon/voice.png" alt=""></div>
+        <div class="voice-input"> <input type="text"></div>
+        <div> <img src="./img/icon/small.png" alt=""></div>
+        <div> <img src="./img/icon/menu-plus.png" alt=""></div>
+    </div>
+
+    <!-- <div class="bottom-drawer">
+        <div>
+            <img src="./img/icon/pic.png" alt="">
+            <p>照片</p>
+        </div>
+
+        <div>
+            <img src="./img/icon/alert.png" alt="">
+            <p>提醒</p>
+        </div>
+
+        <div>
+            <img src="./img/icon/collect.png" alt="">
+            <p>收藏</p>
+        </div>
+
+        <div>
+            <img src="./img/icon/people.png" alt="">
+            <p>个人名片</p>
+        </div>
+    </div> -->
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+
+    <script src="../../script/api.js" charset="utf-8"></script>
+    <script src="../../script/common.js" charset="utf-8"></script>
+
+
+
+</body>
+
+</html>

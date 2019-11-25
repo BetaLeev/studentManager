@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../../css/common.css">
+    <title>Document</title>
+    <style>
+        body,
+        html {
+            padding: 0;
+            margin: 0
+        }
+
+        .draw {
+            width: 100%;
+            position: absolute;
+            bottom: 0px;
+        }
+
+        .draw button {
+          /*z-index: 999;*/
+            border-bottom: 1px solid #eaeaea;
+            width: 100%;
+            height: 55px;
+            margin: 1px;
+            text-align: center;
+            color: ##4e4e4e;
+            background: #FED765
+        }
+    </style>
+</head>
+
+<body>
+    <div class="draw">
+        <div class="draw-header">
+        </div>
+        <button class='btn-normal' onclick="open_bmap('时代工场', 116.293468, 39.837832)">百度地图</button>
+        <button class='btn-normal' onclick="open_gdmap('时代工场', 116.293468, 39.837832)">高德地图</button>
+        <button class='btn-normal' onclick="cancleDrawMenu() ">取消操作</button>
+    </div>
+    <script src="../../../script/api.js" charset="utf-8"></script>
+    <script src="../../../script/common.js" charset="utf-8"></script>
+
+</body>
+
+</html>

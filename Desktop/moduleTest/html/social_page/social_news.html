@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>资讯 -- leev</title>
+    <style>
+        .container {
+            padding: 20px;
+            background: #fff;
+        }
+
+        .news-item {
+            padding-bottom: 5px;
+            width: 95%;
+            border-bottom: 2px solid #f4f4f4;
+        }
+
+        .news-title {
+            font-size: 1.125rem;
+        }
+
+        .news-img {
+            height: 360px;
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            box-shadow: 3px 3px 3px 3px #f4f4f4;
+        }
+
+        .news-date {
+            font-size: .8rem;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="news-item" onclick="routerTo()">
+            <p class="news-title">购物指南 ---- 十月限时优惠</p>
+            <img class='news-img' src="../../image/other/lion.jpg" alt="">
+            <p class="news-date">2019-10-23</p>
+        </div>
+        <div class="news-item">
+            <p class="news-title">购物指南 ---- 十月限时优惠</p>
+            <img class='news-img' src="../../image/other/lion.jpg" alt="">
+            <p class="news-date">2019-10-23</p>
+        </div>
+    </div>
+    <script src="../../script/api.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        function routerTo() {
+            api.openWin({
+                name: 'newssss',
+                url: './social_news_detail.html'
+            })
+        }
+    </script>
+</body>
+
+</html>

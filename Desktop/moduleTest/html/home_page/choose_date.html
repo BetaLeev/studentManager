@@ -1,0 +1,93 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <title>选择日期</title>
+    <style>
+        button {
+            position: absolute;
+            top: 400px;
+            left: 50%;
+            background: #fed765;
+            width: 200px;
+            margin-left: -100px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title">选择日期</div>
+        <div class="aui-pull-right aui-btn">
+            <!-- <span class="aui-iconfont aui-icon-search"></span> -->
+        </div>
+    </header>
+    <button class="btn-normal" onclick="goNextWin('./choose_time.html')">选择时间</button>
+    <script src="../../script/api.js" charset="utf-8"></script>
+    <script src="../../script/common.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        apiready = function() {
+            openCa()
+        }
+
+        function openCa() {
+            var UICalendar = api.require('UICalendar');
+
+            UICalendar.open({
+                // multipleSelect: true,
+                rect: {
+                    x: 30,
+                    y: 75,
+                    w: api.frameWidth - 60,
+                    h: 300
+                },
+                styles: {
+                    bg: 'rgba(123,456,0,0)',
+                    week: {
+                        weekdayColor: '#3b3b3b',
+                        weekendColor: '#3b3b3b',
+                        size: 18
+                    },
+                    date: {
+                        color: '#3b3b3b',
+                        selectedColor: '#fff',
+                        selectedBg: '#fed765',
+                        size: 18
+                    },
+                    today: {
+                        color: 'rgb(230,46,37)',
+                        bg: ''
+                    },
+                    specialDate: {
+                        color: '#a8d500',
+                        bg: 'widget://image/a.png'
+                    }
+                },
+                specialDate: [{
+                    date: '2015-06-01'
+                }],
+                isBefore: true,
+                switchMode: 'vertical',
+                fixedOn: api.frameName,
+                fixed: false
+            }, function(ret, err) {
+                if (ret) {
+                    alert(JSON.stringify(ret));
+                } else {
+                    // alert(JSON.stringify(err));
+                }
+            });
+        }
+    </script>
+    <script src="../../script/common.js" charset="utf-8"></script>
+</body>
+
+</html>

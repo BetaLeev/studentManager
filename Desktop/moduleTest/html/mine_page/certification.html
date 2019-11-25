@@ -1,0 +1,151 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>实名认证</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background-color: #f0f0f0;
+        }
+
+        header {
+            padding-top: 25px !important;
+            border-bottom: 1px solid #f7f7f7;
+            background-color: #f0f0f0;
+
+        }
+        header * {
+            color: #4b4b4b !important;
+        }
+
+        .aui-bar,
+        .aui-bar span {
+            color: #4b4b4b !important;
+        }
+
+
+        section {
+            height: auto;
+            width: 100%;
+        }
+
+        section .option01 {
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-flex-flow: row;
+            flex-flow: row;
+            box-sizing: border-box;
+            width: 100%;
+            height: 20px;
+            padding-left: 16px;
+            padding-right: 16px;
+            margin-bottom: 1px;
+        }
+
+        section .option01 .name {
+            width: 100%;
+            line-height: 20px;
+            font-size: 0.875rem; 
+            text-align: center;
+            color: #707070;
+            margin-top: 10px;
+        }
+
+        section .img01 {
+            width: 40%;
+            height: 100px;
+            text-align: left;
+            margin-left: 4%;
+            margin-top: 60px;
+        }
+
+        section .img02 {
+            width: 40%;
+            height: 100px;
+            text-align: right;
+            margin-right: 4%;
+            float: right;
+            margin-top: -100px;
+        }
+
+        #wrap {
+            width: 100%;
+            height: 80px;
+            line-height: 50px;
+            color: #707070;
+            justify-content: space-around;
+        }
+
+        #wrap .face {
+            float: left;
+            width: 49%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        #wrap .faceback {
+            float: right;
+            width: 49%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .button {
+            width: 88%;
+            height: 50px;
+            margin: 0 auto;
+            background-color: #FED765;
+            line-height: 50px;
+            color: #4B4B4B;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .highlight {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+      <div class="aui-pull-left aui-btn">
+          <span class="aui-iconfont aui-icon-left" onclick='closeCurrentWin()'></span>
+      </div>
+      <div class="aui-title">实名认证</div>
+      <div class="aui-pull-right aui-btn">
+      </div>
+  </header>
+    <section>
+        <div class="option01">
+            <div class="name">请上传身份证信息完成实名认证</div>
+        </div>
+        <img class="img01" src="../../image/other/id-card-01.png" />
+        <img class="img02" src="../../image/other/id-card-02.png" />
+        <div id="wrap">
+            <span class="face">身份证人像面</span>
+            <span class="faceback">身份证国徽面</span>
+        </div>
+        <div class="button" tapmode onclick="fnLogout();">提交信息</div>
+    </section>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../script/common.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+</script>
+</html>

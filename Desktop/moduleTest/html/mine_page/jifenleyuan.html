@@ -1,0 +1,187 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>积分乐园</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .aui-bar,
+        .aui-bar span {
+            color: #4b4b4b !important;
+        }
+        .option {
+            width: 100%;
+            height: 50px;
+            line-height:50px;
+            border-bottom:1px solid #707070;
+        }
+
+        .option .tp1 {
+            position: absolute;
+            margin-top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: url(../../image/my-integral.png);
+            background-size: 20px 26px;
+            background-repeat: no-repeat;
+        }
+        .option .tp2 {
+            position: absolute;
+            margin-top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: url(../../image/earn-integral.png);
+            background-size: 26px 26px;
+            background-repeat: no-repeat;
+        }
+        .option .tp3 {
+            position: absolute;
+            margin-top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: url(../../image/integral-ex.png);
+            background-size: 26px 26px;
+            background-repeat: no-repeat;
+        }
+        .option .tp4 {
+            position: absolute;
+            margin-top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: url(../../image/game.png);
+            background-size: 26px 20px;
+            background-repeat: no-repeat;
+        }
+        .option .tp5 {
+            position: absolute;
+            margin-top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: url(../../image/yuanbao.png);
+            background-size: 26px 20px;
+            background-repeat: no-repeat;
+        }
+        .option .tp6 {
+            position: absolute;
+            margin-top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: url(../../image/safe-ex.png);
+            background-size: 20px 26px;
+            background-repeat: no-repeat;
+        }
+        .option .tp7 {
+            position: absolute;
+            margin-top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: url(../../image/red-wallet.png);
+            background-size: 20px 26px;
+            background-repeat: no-repeat;
+        }
+
+
+        .option .wz {
+            font-size: 14px;
+            margin-left: 50px;
+            color: #4B4B4B;
+            text-align:center;
+        }
+        .option .num {
+            float: right;
+            width: 23%;
+            font-size: 14px;
+            margin-right: 25px;
+            color: #FED765;
+            text-align: center;
+
+        }
+        .option .jf {
+            width: 20%;
+            float: right;
+            font-size: 14px;
+            margin-right: -120px;
+            color: #4B4B4B;
+            text-align: center;
+
+        }
+
+        .option .right {
+            position: absolute;
+            margin-top: 15px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: url(./image/xiayibu.png);
+            background-size: 13px 20px;
+            background-repeat: no-repeat;
+         }
+    </style>
+
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+      <div class="aui-pull-left aui-btn">
+          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+      </div>
+      <div class="aui-title">积分乐园</div>
+      <div class="aui-pull-right aui-btn">
+          <!-- <img src="./image/kefu.png" alt=""> -->
+      </div>
+  </header>
+     <div class="option">
+        <span class="tp1"></span>
+        <span class="wz">积分值</span>
+        <span class="num">100</span>
+        <span class="jf">积分</span>
+     </div>
+     <div class="option">
+        <span class="tp2"></span>
+        <span class="wz" onclick="goNextWin('./zhuanjifen.html')">赚积分</span>
+        <span class="right"></span>
+     </div>
+     <div class="option">
+        <span class="tp3"></span>
+        <span class="wz">积分兑换</span>
+        <span class="right"></span>
+     </div>
+     <div class="option">
+        <span class="tp4"></span>
+        <span class="wz">游戏</span>
+        <span class="right"></span>
+     </div>
+     <div class="option">
+        <span class="tp5"></span>
+        <span class="wz">夺宝</span>
+        <span class="right"></span>
+     </div>
+     <div class="option">
+        <span class="tp6"></span>
+        <span class="wz">兑保险</span>
+        <span class="right"></span>
+     </div>
+     <div class="option">
+        <span class="tp7"></span>
+        <span class="wz">红包</span>
+        <span class="right"></span>
+     </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../script/common.js" charset="utf-8"></script>
+
+</html>

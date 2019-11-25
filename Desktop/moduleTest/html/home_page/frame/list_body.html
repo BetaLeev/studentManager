@@ -1,0 +1,218 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../../aui-20170109-v2.1/css/aui.css" />
+    <title>列标体内容</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .tab {
+            width: 100vw;
+            height:500px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            /*overflow: hidden;*/
+            background: red;
+
+        }
+
+        .taui-tab {
+            width: 25%;
+            /*height: 300px;*/
+        }
+        .tab-container {
+            width: 75%;
+            position: relative;
+            padding: 10px;
+            /*background: #ffffff;*/
+            /*background: red;*/
+            border-left: 1px solid gray;
+            height: auto;
+            overflow-y: scroll;
+
+        }
+        .tab-container-item {
+            width: 100%;
+        }
+
+        .aui-tab-item {
+            text-align: center;
+        }
+
+        .aui-active {
+            font-size: .8rem;
+            color: black !important;
+            background: #fff;
+            border-right: none !important;
+            border-bottom: 2px solid #e4e4e4!important;
+            border-left: 4px solid #fdd66e !important;
+        }
+
+        .aui-active::after {
+            content: '';
+            position: absolute;
+            top: 0px;
+            right: -10px;
+            height: 42px;
+            background: #fff;
+            z-index: 999;
+            width: 13px;
+        }
+
+        .tab-item-plate {
+            display: flex;
+        }
+
+        .tab-item-plate div {
+            width: 50%;
+            height: 120px;
+            padding: 10px;
+        }
+
+        .tab-container-item-title {
+            text-indent: 1rem;
+            position: relative;
+        }
+
+        .tab-container-item-title::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            margin-left: 20px;
+            background-color:#e4e4e4;
+            border: 1px solid #e4e4e4;
+            width: 60%;
+            height: 1px;
+        }
+
+        .tab-container-left img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .tab-container-right {
+            position: relative;
+        }
+
+        .tab-container-title {
+            font-size: .9rem;
+        }
+
+        .tab-container-subtitle {
+            font-size: .5rem;
+        }
+
+        .tab-container-price {
+            position: absolute;
+            font-size: .6rem;
+            bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="tab">
+      <div class="taui-tab" id="tab">
+          <div class="aui-tab-item ">北京</div>
+          <div class="aui-tab-item aui-active">山西</div>
+          <div class="aui-tab-item">多伦多</div>
+        <div class="aui-tab-item">会员卡</div>
+      </div>
+      <div class="tab-container">
+          <div class="tab-container-item">
+              <div class="tab-container-item-title">山西</div>
+              <div class="tab-item-plate">
+                  <div class="tab-container-left">
+                      <img src="../img/NINESKY.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林风驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="tab-container-item">
+              <div class="tab-container-item-title">多伦多</div>
+              <div class="tab-item-plate">
+                  <div class="tab-container-left">
+                      <img src="../img/NO.1.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林风驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+              <div class="tab-item-plate">
+                  <div class="tab-container-left">
+                      <img src="../img/linfeng.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林风驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="tab-container-item">
+              <div class="tab-container-item-title">北京</div>
+              <div class="tab-item-plate">
+                  <div class="tab-container-left">
+                      <img src="../img/NO.1.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林风驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+              <div class="tab-item-plate">
+                  <div class="tab-container-left">
+                      <img src="../img/linfeng.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林风驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+          </div>
+
+
+      </div>
+    </div> -->
+    <script type="text/javascript" src='../../../script/api.js'></script>
+
+    <script type="text/javascript" src="../../../aui-20170109-v2.1/script/aui-tab.js"></script>
+    <script type="text/javascript">
+        var tab = new auiTab({
+            element: document.getElementById("tab"),
+            index: 2,
+            repeatClick: false
+        }, function(ret) {
+            console.log(ret);
+        });
+    </script>
+    <script type="text/javascript">
+        $api.addEvt($api.dom('.tab-container-item'), 'click', function() {
+            api.openWin({
+                name: 'test',
+                url: '../detail.html'
+            })
+        });
+    </script>
+</body>
+
+</html>

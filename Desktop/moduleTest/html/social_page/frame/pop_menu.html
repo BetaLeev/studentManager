@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>隐藏菜单</title>
+  <style>
+  .clicked-btn-more-list::before {
+      content: '';
+      left: 50%;
+      position: absolute;
+      top: -30px;
+      width: 0;
+      height: 0;
+      border: 20px solid transparent;
+      border-bottom: 20px solid #fff;
+  }
+  .clicked-btn-more-list {
+    padding: 5px;
+      position: absolute;
+      top: 20px;
+      height: 230px;
+      width: 140px;
+      background: #fff;
+  }
+  .icon-item{
+    padding: 5px;
+  }
+
+
+  .icon-item span{
+    text-align: center;
+    line-height: 30px;
+padding-left: 3px;
+    letter-spacing: 2px
+  }
+  .icon-item img{
+    height: 30px;
+    vertical-align: middle;
+    width: 30px;
+    padding: 3px;
+  }
+  </style>
+</head>
+<body>
+  <div class="clicked-btn-more-list">
+      <div class="icon-item">
+          <img src="../../../image/take-photo.png" alt=""><span>发此刻</span>
+      </div>
+      <div class="icon-item">
+          <img src="../../../image/group-chat.png" alt=""><span>建群聊</span>
+      </div>
+      <div class="icon-item" tapmode>
+          <img src="../../../image/scan.png" alt=""><span>扫一扫</span>
+      </div>
+      <div class="icon-item" tapmode>
+          <img src="../../../image/invite.png" alt=""><span>邀请参观</span>
+      </div>
+      <div class="icon-item" tapmode>
+          <img src="../../../image/free-invite.png" alt=""><span>免费参观</span>
+      </div>
+  </div>
+</body>
+</html>

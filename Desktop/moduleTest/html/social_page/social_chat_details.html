@@ -1,0 +1,210 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>群聊信息 Leon</title>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <style>
+        body {
+            background: #f0f0f0;
+        }
+
+        header {
+            padding-top: 25px !important;
+            border-bottom: 1px solid #f7f7f7 !important;
+        }
+
+        header * {
+            color: #4b4b4b !important;
+        }
+
+        .aui-iconfont,
+        .aui-bar {
+            color: black !important;
+        }
+
+        .social_chat_yonghu {
+            width: 100%;
+            height: 110px;
+            margin-top: 2px;
+            background-color: #fff;
+        }
+
+        .social_chat_yonghu1 {
+            width: 50px;
+            height: 50px;
+            float: left;
+            border: 1px solid #9fa0a0;
+            border-radius: 5px;
+            margin-left: 35px;
+            margin-top: 20px;
+        }
+
+        .social_chat_yonghu2 {
+            width: 50px;
+            height: 50px;
+            float: left;
+            border: 1px solid #9fa0a0;
+            border-radius: 5px;
+            margin-left: 35px;
+            margin-top: 20px;
+        }
+
+        .social_chat_yonghu1 img {
+            width: 50px;
+            height: 50px;
+            float: left;
+        }
+
+        .social_chat_yonghu2 img {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            margin-top: 10px;
+            float: left;
+        }
+
+        .s1 {
+            font-size: 15px;
+            position: absolute;
+            left: 45px;
+            top: 155px;
+            color: #707070;
+        }
+
+        .s2 {
+            font-size: 15px;
+            position: absolute;
+            left: 125px;
+            top: 155px;
+            color: #707070;
+        }
+
+        .s3 {
+            font-size: 15px;
+            position: absolute;
+            right: 110px;
+            top: 155px;
+            color: #707070;
+        }
+
+        .social_chat_neirong {
+            width: 100%;
+            height: 280px;
+            margin-top: 5px;
+            background-color: #fff;
+        }
+
+        .social_chat_gongneng {
+            width: 95%;
+            height: 70px;
+            border-bottom: 2px solid #f7f7f7;
+            float: right;
+        }
+
+        .gongneng1 {
+            width: 20px;
+            height: 20px;
+            line-height: 70px;
+            margin-left: 370px;
+        }
+
+        .social_chat_gongneng span {
+            font-size: 18px;
+            line-height: 70px;
+            color: #707070;
+        }
+
+        .gongneng {
+            width: 15px;
+            height: 25px;
+            line-height: 70px;
+            margin-left: 300px;
+            margin-top: -45px;
+        }
+
+        .huadong {
+            width: 70px;
+            height: 40px;
+            /*border-radius:20px;*/
+            /*border: 1px solid #707070;*/
+            margin-left: 240px;
+            margin-top: -50px;
+        }
+        /*.huadong1{
+      width: 30px;
+      height: 30px;
+      border-radius:50%;
+      border: 1px solid #707070;
+      margin-right:250px;
+    }*/
+
+        .social_chat_tuichu {
+            width: 100%;
+            height: 300px;
+        }
+
+        .social_chat_tuichu button {
+            width: 160px;
+            height: 50px;
+            background-color: #fff;
+            color: #707070;
+            font-size: 20px;
+            border: 1px solid #707070;
+            border-radius: 30px;
+            margin-left: 100px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </div>
+        <div class="aui-title">群聊信息(3)</div>
+
+    </header>
+    <div class="social_chat_yonghu">
+        <div class="social_chat_yonghu1"><img src="../../image/avatar-demo.png" alt=""></div><b class="s1">用户1</b>
+        <div class="social_chat_yonghu1"><img src="../../image/avatar-demo.png" alt=""></div><b class="s2">用户2</b>
+        <div class="social_chat_yonghu1"><img src="../../image/avatar-demo.png" alt=""></div><b class="s3">用户3</b>
+        <div class="social_chat_yonghu2"><img src="../../image/avatar-demo.png" alt=""></div>
+    </div>
+    <div class="social_chat_neirong">
+        <div class="social_chat_gongneng" id="qunguanli"><span>群管理</span><img class="gongneng" src="../../image/xiayibu.png" alt=""></div>
+        <div class="social_chat_gongneng" id="qunerweima"><span>群二维码</span><img class="gongneng" src="../../image/xiayibu.png" alt=""></div>
+        <div class="social_chat_gongneng"><span>消息免打扰</span><img class="huadong" src="../../image/huadong.png" alt=""></div>
+        <div class="social_chat_gongneng"><span>置顶聊天</span><img class="huadong" src="../../image/huadongopen.png" alt=""></div>
+    </div>
+    <div class="social_chat_tuichu">
+        <button type="button" name="button">解散/退出</button>
+    </div>
+</body>
+<script src="../../script/api.js" charset="utf-8"></script>
+<script type="text/javascript">
+    apiready = function() {
+        $api.addEvt($api.byId('qunguanli'), 'click', function() {
+            api.openWin({
+                name: '群管理',
+                url: './social_foundChat_manage.html'
+
+            });
+
+        })
+        $api.addEvt($api.byId('qunerweima'), 'click', function() {
+            api.openWin({
+                name: '二维码名片',
+                url: './social_foundChat_scanQR.html'
+
+            });
+
+        })
+
+    }
+</script>
+
+</html>

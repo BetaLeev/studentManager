@@ -1,0 +1,101 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+
+    <link rel="stylesheet" href="../../css/common.css">
+    <title>支付订单</title>
+    <style>
+        body {
+            background: #f7f7f7;
+        }
+
+        .choose-pay {
+            margin-top: 10px;
+        }
+
+        .top-container {
+            text-align: center;
+        }
+
+        .time {
+            font-size: 0.625rem;
+            padding: 10px;
+        }
+
+        .price {
+            font-size: 2rem;
+            padding: 12px;
+        }
+
+        .price>span {
+            font-size: .55rem;
+        }
+
+        .order-num {
+            font-size: .545rem;
+        }
+
+        .choose-pay button {
+            width: 100%;
+            margin-bottom: 10px;
+            border: none;
+            outline: none;
+            line-height: 60px;
+            height: 60px;
+            font-size: 1rem;
+            background: #fff;
+        }
+
+        .read {
+            width: 90%;
+            margin: 0 auto;
+            font-size: .525rem;
+            color: gray;
+        }
+
+        .read>span {
+            color: blue;
+        }
+
+        .btn {
+            width: 100%;
+            background: #f7d16b;
+            bottom: 0px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title"> 支付订单</div>
+    </header>
+    <div class="top-container">
+        <p class="time">支付剩余时间 30:00</p>
+        <h2 class="price"><span>¥</span> 474.00</h2>
+        <p class="order-num">
+            时代工场 No.1 订单编号 : 2019100101022
+        </p>
+    </div>
+    <div class="choose-pay">
+        <button onclick="goNextWin('./card_detail.html')">时代卡</button>
+        <button onclick="wxPay()">微信支付</button>
+        <button onclick="aliPay()">支付宝支付</button>
+        <button onclick="applePay()">设置Apple Pay</button>
+    </div>
+    <p class="read">我已同意入驻政策， 安全责任条款和取消政策，我也同意支付以下所示的总金额。
+    </p>
+    <div class="btn btn-normal">
+        确认支付 <b>¥ 474.00</b>
+    </div>
+    <script src="../../script/common.js" charset="utf-8"></script>
+</body>
+
+</html>

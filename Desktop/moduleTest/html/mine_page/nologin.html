@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>我的--未登录</title>
+  <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+  <link rel="stylesheet" href="../../css/common.css">
+  <style>
+  body{
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+  }
+      .aui-iconfont,
+      .aui-bar {
+          color: black !important;
+      }
+    .shezhi img{
+      width: 20px;
+      height: 20px;
+      }
+    .social_clickUser_body{
+      width: 100%;
+      height: 577px;
+    }
+    .social_clickUser_body_top{
+      width: 100%;
+      height: 125px;
+    }
+    .touxiang{
+      width: 115px;
+      height: 100px;
+      margin: 0 auto;
+      margin-top:50px;
+
+    }
+    .social_clickUser_body_top h1{
+      font-size:1rem;
+      color: #707070;
+      margin-top: 20px;
+      text-align: center;
+
+    }
+    .xingbie{
+      width: 15px;
+      height: 15px;
+      margin-left:230px;
+      margin-top:12px;
+    }
+    .shuliang{
+      width: 100%;
+      height: 20px;
+      float: left;
+      margin-top:80px;
+    }
+    .shuliang span{
+      width: 25%;
+      height: 20px;
+      font-size:20px;
+      color: #4b4b4b;
+      float: left;
+      text-align: center;
+    }
+    .social_clickUser_body_center{
+      width: 100%;
+      height: 60px;
+      float: left;
+      color: #cbcbcb;
+    }
+    .social_clickUser_body_center div{
+      width:25%;
+      height: 60px;
+      float: left;
+      font-size:17px;
+      text-align: center;
+      line-height:40px;
+      color: #cbcbcb;
+      border-bottom: 1px solid #f1f1f1;
+    }
+
+    .social_clickUser_body_bottom{
+      width: 100%;
+      height: 200px;
+      margin-top:200px;
+
+    }
+    .pingfen{
+      width: 88%;
+      height: 50px;
+      margin:auto;
+    }
+    .pingfen h1{
+        font-size:.875rem;
+        color: #cbcbcb;
+        line-height:50px;
+        float: left;
+    }
+    .pingfen img{
+      width: 25px;
+      height: 25px;
+
+      margin-right:10px;
+      margin-top:15px;
+      float: right;
+    }
+
+
+  </style>
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+      <div class="aui-pull-left aui-btn">
+           <i class="aui-iconfont aui-icon-gear"></i>
+          <!-- <span class="shezhi"><img src="./image/shezhi.png" alt="" onclick=""></span> -->
+      </div>
+      <div class="aui-pull-right ">
+
+          <span id='publish-btn' onclick="goNextWin('./register.html')">注册</span>
+      </div>
+  </header>
+  <div class="social_clickUser_body">
+      <div class="social_clickUser_body_top" onclick="goNextWin('./login.html')">
+          <img class="touxiang" src="../../image/avatar-demo.png" alt="">
+          <h1>登录</h1>
+      </div>
+      <div class="shuliang"><span>0</span><span>0</span><span>0</span><span>0</span></div>
+      <div class="social_clickUser_body_center">
+          <div class="huozan1"><span>发布</span></div>
+          <div class="huozan2"><span>收藏</span></div>
+          <div class="huozan3"><span>关注</span></div>
+          <div class="huozan4"><span>粉丝</span></div>
+      </div>
+      <div class="social_clickUser_body_bottom">
+        <div class="pingfen">
+          <h1>我的订单</h1>
+          <img src="../../image/my-order.png" alt="">
+        </div>
+        <div class="pingfen">
+          <h1>我的钱包</h1>
+          <img src="../../image/my-wallet.png" alt="">
+        </div>
+        <div class="pingfen">
+          <h1>我的积分</h1>
+          <img src="../../image/my-integral.png" alt="">
+        </div>
+        <div class="pingfen">
+          <h1>我的结算</h1>
+          <img src="../../image/my-settle.png" alt="">
+        </div>
+
+      </div>
+  </div>
+  <script src="../../script/common.js" charset="utf-8"></script>
+</body>
+</html>

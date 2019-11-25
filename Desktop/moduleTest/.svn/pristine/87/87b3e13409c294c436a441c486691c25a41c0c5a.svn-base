@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>分享页面</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        body,html{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: rgba(0,0,0,0.1);
+        }
+        #sharebox{
+            color:#9a9ea2;
+            background-color: rgb(250, 250, 250);
+            width:100%;
+            position: fixed;
+            bottom:0px;
+            height:160px;
+        }
+        .share_textheader,.list_sahre,.btn_cancel{
+            position: relative;
+        }
+        .share_textheader{
+            width: 100%;
+            height:20px;
+            text-align: center;
+            font-size: 16px;
+            margin-top:10px;
+            letter-spacing: 2px;
+
+        }
+        .list_sahre{
+            width: 100%;
+            height:60px;
+            margin-top:15px;
+        }
+        .itemshare{
+            width:25%;
+            height:100%;
+            float: left;
+            margin-left: 17%;
+        }
+        .itemshare .img_box{
+            width:100%;
+            height:40px;
+            text-align: center;
+        }
+        .itemshare .img_box img{
+            width:40px;
+            height:40px;
+        }
+        .share_name{
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            margin-top:10px;
+            letter-spacing: 1px;
+            font-size: 12px;
+        }
+        .cancel_btn{
+            position: relative;
+            width: 100%;
+            height:60px;
+            background-color:#ddded8;
+            text-align: center;
+            margin-top:16px;    
+        }
+        .cancel_btn span{
+            width:100%;
+            line-height:40px;
+            height:60px;
+            text-align: center;
+            color:#9a9ea2;
+            background-color:#ddded8;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div id="sharebox" class=''>
+        <div class="share_textheader">
+            <span>分享到</span>
+        </div>
+        <div class="list_sahre">
+            <div class="itemshare" id='wechat_friend' tapmode onclick="fnshare_friend()">
+                <div class="img_box">
+                    <img src="../../image/share_friend.png"/>
+                </div>
+                <div class="share_name">
+                    <span>微信</span>
+                </div>  
+            </div>
+            <div class="itemshare" id='wechat_timeline' tapmode onclick="fnshare_timeline()">
+                <div class="img_box">
+                    <img src="../../image/share_timeline.png"/>
+                </div>
+                <div class="share_name">
+                    <span>朋友圈</span>
+                </div> 
+            </div>  
+        </div>
+        <div class="cancel_btn" tapmode onclick="sharecancel()">
+            <span>取消</span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+    var sharebox = document.getElementById("sharebox");
+    sharebox.addEventListener('click',function(event){
+        event = event || window.event;
+        event.stopPropagation();
+    })
+    document.addEventListener('click',function(){
+        sharecancel();
+    })
+    apiready = function(){
+    };
+    function fnshare_timeline(){
+        var weiXin = api.require('weiXin');
+        weiXin.registerApp(function(ret, err) {
+                if (ret.status) {
+
+                }else{
+                    alert('无法进行微信分享！')
+                }
+            });
+            weiXin.sendRequest({
+                scene: 'timeline',
+                contentType: 'web_page',
+                title: '时代工场APP',
+                description: '加入时代工场、你就是时代',
+                thumbUrl: '../../image/sharepic.png',
+                contentUrl: 'http://www.erawork.cn/'
+            }, function(ret, err) {
+                sharecancel()
+                if (ret.status) {
+                    // api.toast({
+                    //     msg: '分享成功',
+                    //     duration: 2000,
+                    //     location: 'bottom'
+                    // });
+                } else {
+                    if(err.code==2){
+                        api.toast({
+                        msg: '分享已取消',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    }else{
+                        api.toast({
+                            msg: '分享失败',
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                    }
+                }
+            });
+    };
+    function fnshare_friend(){
+        var weiXin = api.require('weiXin');
+        weiXin.registerApp(function(ret, err) {
+                if (ret.status) {
+
+                }else{
+                    alert('无法进行微信分享！')
+                }
+            });
+            weiXin.sendRequest({
+                scene: 'session',
+                contentType: 'web_page',
+                title: '时代工场APP',
+                description: '加入时代工场、加入属于你的时代',
+                thumbUrl: '../../image/sharepic.png',
+                contentUrl: 'http://www.erawork.cn/'
+            }, function(ret, err) {
+                sharecancel()
+                if (ret.status) {
+
+                } else {
+                    if(err.code==2){
+                        api.toast({
+                        msg: '分享已取消',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    }else{
+                        api.toast({
+                            msg: '分享失败',
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                    }
+                }
+            });
+    };
+    function sharecancel(){
+        api.closeFrame({
+            name: api.frameName
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,207 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>我的订单</title>
+  <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+  <link rel="stylesheet" href="../../css/common.css">
+  <style>
+      body {
+          margin: 0;
+          padding: 0;
+          background-color: #fff;
+      }
+
+      .aui-bar,
+      .aui-bar span {
+          color: #4b4b4b !important;
+      }
+      .aui-pull-right img{
+        width: 20px;
+        height: 20px;
+        margin-top:15px;
+      }
+      .top{
+        width: 100%;
+        height: 40px;
+        background-color: #fff;
+
+      }
+      .top1{
+        width: 25%;
+        height: 40px;
+        float: left;
+
+        color:#4b4b4b;
+        text-align: center;
+      }
+      .top h1{
+        font-size:0.8rem;
+        text-align: center;
+        line-height: 40px;
+      }
+      .details{
+        width: 100%;
+        height: 170px;
+        background-color: #f7f7f7;
+      }
+      /*.details1{
+
+      }*/
+      .time{
+        font-size:15px;
+        color: #4b4b4b;
+        margin-left:20px;
+      }
+      .order_details{
+        width: 90%;
+        height:140px;
+        background-color: #fff;
+        border-radius: 10px;
+        margin: 0 auto;
+      }
+      .order_details img{
+        width: 60px;
+        height: 60px;
+        margin-left:20px;
+        margin-top:30px;
+        float: left;
+      }
+      .right{
+        width:70%;
+        height: 120px;
+        margin-top:20px;
+        margin-left:10px;
+        float: left;
+      }
+      .right span{
+        font-size:10px;
+      }
+      .right h6{
+        font-size:10px;
+        color: #4b4b4b;
+      }
+      .b1{
+        font-size: 0.7375rem;
+        padding-left:50px;
+        color: #fed765;
+      }
+      .b2{
+        font-size: 1rem;
+        padding-left: 5px;
+        color: #4b4b4b;
+      }
+      .b3{
+        font-size:0.625rem;
+        margin-left:35px;
+      }
+      .right p{
+        font-size:10px;
+
+      }
+      .right img{
+        width: 10px;
+        height: 10px;
+        margin-top:8px;
+        margin-left:1px;
+      }
+      .pingjia{
+        font-size:10px;
+        margin-left:5px;
+        color: #185078;
+      }
+</style>
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+      <div class="aui-pull-left aui-btn">
+          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+      </div>
+      <div class="aui-title">我的订单</div>
+      <div class="aui-pull-right aui-btn">
+          <img src="../../image/help.png" alt="">
+      </div>
+  </header>
+  <div class="top">
+      <div class="top1"><h1>全部</h1></div>
+      <div class="top1"><h1>进行中</h1></div>
+      <div class="top1"><h1>已完成</h1></div>
+      <div class="top1"><h1>已取消</h1></div>
+  </div>
+  <div class="details">
+          <span class="time">2019.7.23</span><span class="time">10:00</span>
+          <div class="order_details">
+            <img src="../../image/other/offce.jpg" alt="">
+            <div class="right">
+              <span>订单号：201900100102010</span><b class="b1">已完成</b>
+              <h6>时代工场NO.1驿站</h6>
+              <p>北京市，丰台区</p>
+              <p>航丰路1号院2号楼，时代财富天地B座</p>
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star-empty.png" alt="">
+              <span class="pingjia">去评价</span>
+              <span class="b3">一个月，共</span><b class="b2">￥499.00</b>
+            </div>
+          </div>
+  </div>
+  <div class="details">
+          <span class="time">2019.7.23</span><span class="time">10:00</span>
+          <div class="order_details">
+            <img src="../../image/other/offce.jpg" alt="">
+            <div class="right">
+              <span>订单号：201900100102010</span><b class="b1">进行中</b>
+              <h6>时代工场NO.1驿站</h6>
+              <p>北京市，丰台区</p>
+              <p>航丰路1号院2号楼，时代财富天地B座</p>
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star-empty.png" alt="">
+              <span class="pingjia">去评价</span>
+              <span class="b3">一个月，共</span><b class="b2">￥499.00</b>
+            </div>
+          </div>
+  </div>
+  <div class="details">
+          <span class="time">2019.7.23</span><span class="time">10:00</span>
+          <div class="order_details">
+            <img src="../../image/other/offce.jpg" alt="">
+            <div class="right">
+              <span>订单号：201900100102010</span><b class="b1">未完成</b>
+              <h6>时代工场NO.1驿站</h6>
+              <p>北京市，丰台区</p>
+              <p>航丰路1号院2号楼，时代财富天地B座</p>
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star-empty.png" alt="">
+              <span class="pingjia">去评价</span>
+              <span class="b3">一个月，共</span><b class="b2">￥499.00</b>
+            </div>
+          </div>
+  </div>
+  <div class="details">
+          <span class="time">2019.7.23</span><span class="time">10:00</span>
+          <div class="order_details">
+            <img src="../../image/other/offce.jpg" alt="">
+            <div class="right">
+              <span>订单号：201900100102010</span><b class="b1">已取消</b>
+              <h6>时代工场NO.1驿站</h6>
+              <p>北京市，丰台区</p>
+              <p>航丰路1号院2号楼，时代财富天地B座</p>
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star.png" alt="">
+              <img src="../../image/blue-star-empty.png" alt="">
+
+              <span class="pingjia">去评价</span>
+              <span class="b3">一个月，共</span><b class="b2">￥499.00</b>
+            </div>
+          </div>
+  </div>
+  <script src="../../script/common.js" charset="utf-8"></script>
+</body>
+</html>
