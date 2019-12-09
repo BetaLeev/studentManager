@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
     <link rel="stylesheet" href="../../css/common.css">
-    <title>社交菜单</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
+    <title>社交首页</title>
     <style>
         body {
             padding: 0;
@@ -24,6 +26,110 @@
             height: 70px;
             z-index: 9999;
             background: #fdd66e !important;
+        }
+
+        .banner {
+            height: 200px;
+            width: 100%;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+        }
+
+        .banner>img {
+            height: 100%;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .recommand-item {
+            padding-top: 5px;
+            height: 360px;
+            border-bottom: 2px solid #f9f9f9;
+        }
+
+        .user-basc {
+            display: flex;
+            height: 55px;
+        }
+
+        .user-avatar {
+            height: 40px;
+            width: 44px;
+            margin-right: 20px;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .user-name {
+            font-size: 1rem;
+            line-height: 48px;
+        }
+
+        .user-desc {}
+
+        .desc-top {
+            justify-content: space-between;
+            display: flex;
+            margin-top: -10px;
+        }
+
+        .desc-top p {
+            padding: 3px;
+        }
+
+        .desc-top button {
+            background-color: #fff;
+            border: 1px solid #f7f7f7;
+            color: #fdd66e;
+            margin-top: -30px;
+            height: 30px;
+            width: 60px;
+        }
+
+        .desc-img {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .desc-img>img {
+            width: 100%;
+            height: auto;
+            transform: translate(0, -35%);
+            box-shadow: 3px 3px 3px 3px #fdfdfd;
+        }
+
+        .now-item-bottom {
+            display: flex;
+            width: 100%;
+            padding: 5px;
+        }
+
+        .now-date,
+        .now-right {
+            width: 50%;
+        }
+
+        .now-right {
+            text-align: right;
+            padding: 0px 30px;
+            display: flex;
+        }
+
+        .now-right span {
+            text-align: right;
+            padding: 5px;
+        }
+
+        .desc-views,
+        .desc-comment {
+            float: left;
+            width: 20px;
+            height: 20px;
         }
 
         .aui-title {
@@ -52,121 +158,585 @@
             margin-top: -3px;
             color: #fff;
         }
+
+        .aui-popup {
+            top: 70px;
+        }
+    </style>
+
+
+    <style>
+        .now {
+            padding: 14px;
+        }
+
+        .now-item {
+            margin-top: 12px;
+            padding-bottom: 13px;
+            position: relative;
+            color: #707070;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .user-info {
+            line-height: 55px;
+            height: 55px;
+        }
+
+        .user-basc {
+            height: 50px;
+            display: flex;
+            line-height: 50px;
+        }
+
+        .user-avatar {
+            height: 37px;
+            width: 44px;
+            margin-right: 20px;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .user-name {
+            font-size: 1.125rem;
+            line-height: 48px;
+        }
+
+        .desc-top {
+            justify-content: space-between;
+            display: flex;
+            margin-top: -10px;
+        }
+
+        .desc-top button {
+            background-color: #fff;
+            border: 1px solid #f7f7f7;
+            color: #fdd66e;
+            height: 30px;
+            width: 60px;
+            margin
+        }
+
+        .subscript {
+            position: absolute;
+            top: 40px;
+            width: 75px;
+            padding: 3px;
+            border-radius: 3px;
+            right: 20px;
+            font-size: .875rem;
+            color: #fdd66e;
+            background: #fff;
+            border: 1px solid #fdd66e;
+            top: 20px;
+        }
+
+        .now-pic {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .now-pic-4 {
+            width: 46%;
+            padding: 1.2%;
+            height: 166px;
+        }
+
+        .now-pic-4>img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .now-pic-1 {
+            width: 450px;
+            margin: 0 auto;
+            height: 350px;
+        }
+
+        .now-pic-1>img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .now-item-bottom {
+            display: flex;
+            height: 40px;
+            width: 100%;
+        }
+
+        .now-date,
+        .now-right {
+            width: 50%;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .now-right {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .now-right span {
+            line-height: 40px;
+            padding: 5px;
+        }
+
+        .desc-views,
+        .desc-comment {
+            margin-top: 10px;
+            float: left;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+    <style>
+        .news {
+            padding: 20px;
+            background: #fff;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .menu p {
+            text-align: center;
+            font-size: 1rem;
+            line-height: 50px;
+            color: #707070;
+        }
+
+        .active {
+            font-size: 1.2rem !important;
+            line-height: 50px;
+            font-weight: bold;
+            margin-top: -3px;
+            color: #fff;
+        }
+
+        .news-item {
+            padding-bottom: 5px;
+            width: 95%;
+            border-bottom: 2px solid #f4f4f4;
+        }
+
+        .news-title {
+            font-size: 1.125rem;
+        }
+
+        .news-img {
+            height: 250px;
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            box-shadow: 3px 3px 3px 3px #f4f4f4;
+        }
+
+        .news-date {
+            font-size: .8rem;
+            color: gray;
+        }
     </style>
 </head>
 
 <body>
-
-    <header class="aui-bar aui-bar-nav aui-bar-light">
-        <div class="aui-pull-left aui-btn">
-            <span class="aui-iconfont aui-icon-search" tapmode onclick=""></span>
-        </div>
-        <div class="aui-title">
-            <div class="menu">
-                <p class="navbar" tapmode onclick="setCurrent(0)">推荐</p>
-                <p class="navbar active" tapmode onclick="setCurrent(1)">此刻</p>
-                <p class="navbar" tapmod onclick="setCurrent(2)">资讯</p>
-                <p class="navbar" tapmod onclick="goNextWin('./social_linkman.html')">联系人</p>
+    <div id="container">
+        <header class="aui-bar aui-bar-nav aui-bar-light">
+            <div class="aui-pull-left aui-btn">
+                <span class="aui-iconfont aui-icon-search" tapmode onclick="Input()"></span>
             </div>
+            <div class="aui-title">
+                <div class="menu">
+                    <p v-for='item,index in menus' class="navbar" :class="{'active':currentIndex ===index}" @click='handleClick(index)'>{{item}}</p>
+                </div>
+            </div>
+            <div class="aui-pull-right aui-btn">
+                <span id='plus' class="aui-iconfont aui-icon-plus" aui-popup-for='menu'></span>
+
+                <div class="aui-popup aui-popup-top-right" id="menu">
+                    <div class="aui-popup-arrow"></div>
+                    <div class="aui-popup-content">
+                        <ul class="aui-list aui-list-noborder">
+                            <li class="aui-list-item">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-my aui-text-warning"></i>
+                                </div>
+                                <div class="aui-list-item-inner aui-list-item-middle">
+                                    发此刻
+                                </div>
+                            </li>
+                            <li class="aui-list-item">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-mail aui-text-info"></i>
+                                </div>
+                                <div class="aui-list-item-inner">
+                                    建群聊
+                                </div>
+                            </li>
+                            <li class="aui-list-item">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-star aui-text-danger"></i>
+                                </div>
+                                <div class="aui-list-item-inner">
+                                    扫一扫
+                                </div>
+                            </li>
+
+                            <li class="aui-list-item">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-star aui-text-danger"></i>
+                                </div>
+                                <div class="aui-list-item-inner">
+                                    邀请参观
+                                </div>
+                            </li>
+
+                            <li class="aui-list-item">
+                                <div class="aui-list-item-label-icon">
+                                    <i class="aui-iconfont aui-icon-star aui-text-danger"></i>
+                                </div>
+                                <div class="aui-list-item-inner">
+                                    免费参观
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+        </header>
+        <section>
+            <section v-if='currentIndex === 0' class="recommand">
+                <div class="banner">
+                    <img src="../../image/other/peitu1.jpg" alt="">
+                </div>
+                <div class="container" id='recommand-container'>
+                    <div class="recommand-item" v-for='item in recommandList'>
+                        <div class="user-info">
+                            <div class="user-basc">
+                                <div class="user-avatar">
+                                    <img :src="item.avatar" alt="">
+                                </div>
+                                <p class="user-name">{{item.user}}</p>
+                            </div>
+                            <div class="user-desc" onclick="goNextWin('./social_news_detail.html')">
+                                <div class="desc-top">
+                                    <p>{{item.title}}</p>
+                                    <button>关注</button>
+                                </div>
+                                <div class="desc-img">
+                                    <img :src="item.mainPic" alt="">
+                                </div>
+                                <div class="now-item-bottom">
+                                    <p class="now-date">{{item.createdAt}}</p>
+                                    <p class="now-right">
+                                        <span><i class="aui-iconfont aui-icon-display"></i>{{item.views}}</span>
+                                        <span><i class="aui-iconfont aui-icon-comment"></i>{{item.comment}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section v-if='currentIndex === 1' class="now">
+                <div class="now-item">
+                    <div class="user-info">
+                        <div class="user-basc">
+                            <div class="user-avatar">
+                                <img src="../../image/avatar-demo.png" alt="">
+                            </div>
+                            <p class="user-name">用户名123</p>
+                            <button class="subscript">关注</button>
+                        </div>
+                    </div>
+                    <div class="now-text">
+                        <p>时代工场致力于促进空间站主与入驻客户之间的社交信任，链接全球办公驿站经营背后产生的合作资源，运用人工智能大数据技术实习平台用户合作资源精准匹配。</p>
+                    </div>
+                    <div class="now-pic">
+                        <div class="now-pic-4">
+                            <img src="../../image/other/peitu1.jpg" alt="">
+                        </div>
+                        <div class="now-pic-4">
+                            <img src="../../image/other/peitu2.jpg" alt="">
+
+                        </div>
+                        <div class="now-pic-4">
+                            <img src="../../image/other/peitu3.jpg" alt="">
+
+                        </div>
+                        <div class="now-pic-4">
+                            <img src="../../image/other/peitu4.jpg" alt="">
+
+                        </div>
+                        <div class="now-item-bottom">
+                            <p class="now-date">1小时前</p>
+                            <p class="now-right">
+                                <span><i class="aui-iconfont aui-icon-display"></i> 2019</span>
+                                <span><img class="desc-comment" src="../../image/comment.png" alt=""> 51</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="now-item">
+                    <div class="user-info">
+                        <div class="user-basc">
+                            <div class="user-avatar">
+                                <img src="../../image/avatar-demo.png" alt="">
+                            </div>
+                            <p class="user-name">用户名123</p>
+                            <button class="subscript">关注</button>
+                        </div>
+                    </div>
+                    <div class="now-text">
+                        <p>时代工场致力于促进空间站主与入驻客户之间的社交信任，链接全球办公驿站经营背后产生的合作资源，运用人工智能大数据技术实习平台用户合作资源精准匹配。</p>
+                    </div>
+                    <div class="now-pic">
+                        <div class="now-pic-1">
+                            <img src="../../image/other/take-pic.png" alt="">
+                        </div>
+
+                        <div class="now-item-bottom">
+                            <p class="now-date">2小时前</p>
+                            <p class="now-right">
+                                <span><i class="aui-iconfont aui-icon-display"></i> 2019</span>
+                                <span><img class="desc-comment" src="../../image/comment.png" alt=""> 51</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section v-if='currentIndex === 2' class="news">
+                <div id='news-list'>
+                    <div class="news-item" v-for='item in newsList' @click='openWinNewsParam(item.id)'>
+                        <p class="news-title">{{item.title}} </p>
+                        <img class='news-img' :src="item.img" alt="">
+                        <p class="news-date">{{item.date}}</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
         </div>
-        <div class="aui-pull-right aui-btn">
-            <span id='plus-to-close' class="aui-iconfont aui-icon-plus"></span>
-    </header>
-    <script src="../../script/api.js" charset="utf-8"></script>
-    <script src="../../script/common.js" charset="utf-8"></script>
-    <script type="text/javascript">
-    </script>
-    <script type="text/javascript">
-        $api.addEvt($api.dom('#plus-to-close'), 'click', function() {
-            if ($api.hasCls($api.dom('#plus-to-close'), 'aui-icon-plus')) {
-                openPopMenu();
-                $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-plus');
-                $api.addCls($api.dom('#plus-to-close'), 'aui-icon-close');
-            } else {
-                $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-close');
-                $api.addCls($api.dom('#plus-to-close'), 'aui-icon-plus');
-            }
-        })
-    </script>
+        <script type="text/javascript" src="../../aui-20170109-v2.1/script/aui-popup.js"></script>
 
-    <script type="text/javascript">
-        function openPopMenu() {
-            api.openFrame({
-                name: 'pop菜单',
-                url: './frame/pop_menu.html',
-                rect: {
-                    x: 280,
-                    y: 50,
-                    w: 320,
-                    h: 480
+        <script type="text/javascript">
+        </script>
+        <script src="../../script/api.js" charset="utf-8"></script>
+
+
+        <script type="text/javascript">
+            var popup = new auiPopup();
+            var a = new Vue({
+                el: '#container',
+                data() {
+                    return {
+                        currentIndex: 0,
+                        menus: [
+                            '推荐', '此刻', '咨询', '联系人'
+                        ],
+                        recommandList: [{
+                            mainPic: '../../image/other/canguan2.jpg',
+                            title: '时代工场，时代人居住的工场',
+                            createdAt: '2019-12-1 12:32:23',
+                            views: 321,
+                            comment: 31,
+                            user: '韩正',
+                            avatar: '../../image/avatar-demo.png'
+                        }, {
+                            mainPic: '../../image/other/image.jpg',
+                            title: '来勒以后发现有点儿冷，挣的还挺少',
+                            createdAt: '2019-12-1 12:32:23',
+                            views: 99921,
+                            comment: 3991,
+                            user: '李克强',
+                            avatar: '../../image/avatar-demo.png'
+                        }, {
+                            mainPic: '../../image/other/peitu6.jpg',
+                            title: '在这办公就一个字，冷',
+                            createdAt: '2019-12-1 12:32:23',
+                            views: 3231,
+                            comment: 341,
+                            user: '栗战书',
+                            avatar: '../../image/avatar-demo.png'
+                        }, {
+                            mainPic: '../../image/other/peitu3.jpg',
+                            title: '同事们都说好，来了以后走不了',
+                            createdAt: '2019-12-1 12:32:23',
+                            views: 31,
+                            comment: 1,
+                            user: '汪洋',
+                            avatar: '../../image/avatar-demo.png'
+                        }, {
+                            mainPic: '../../image/other/office.jpg',
+                            title: '描述',
+                            createdAt: '2019-12-1 12:32:23',
+                            views: 321,
+                            comment: 31,
+                            user: '王沪宁',
+                            avatar: '../../image/avatar-demo.png'
+                        }, {
+                            mainPic: '../../image/other/lion.jpg',
+                            title: '要想生活过得好，英式教育少不了',
+                            createdAt: '2019-12-1 12:32:23',
+                            views: 21,
+                            comment: 31,
+                            user: '赵乐际',
+                            avatar: '../../image/avatar-demo.png'
+                        }],
+                        newsList: [{
+                            id: 0,
+                            title: '时代工场中税信达驿站 ，企业修炼财税管理内功的合作宝地',
+                            img: '../../image/other/77.png',
+                            date: '2019-10-23'
+                        }, {
+                            id: 1,
+                            title: '时代工场花开故事驿站，花花世界的商务体验',
+                            img: '../../image/other/88.png',
+                            date: '2019-10-23'
+                        }, {
+                            id: 2,
+                            title: '时代工场君馨阁驿站，在古木香中修生养性的办公',
+                            img: '../../image/other/99.png',
+                            date: '2019-10-23'
+                        }]
+                    }
                 },
-            })
-        }
-    </script>
-
-
-    <script type="text/javascript">
-        apiready = function() {
-            open();
-            setCurrent(0)
-            api.addEventListener({
-                name: 'tabframe'
-            }, function(ret, err) {
-                if (ret.index == 3) {
-                    open();
-                } else {
-
-                    closeGroup();
+                methods: {
+                    handleClick(index) {
+                        this.currentIndex = index;
+                        if (index === 3) {
+                            goNextWin('./social_friends.html')
+                            this.currentIndex = 0
+                        }
+                        return
+                    }
                 }
-            });
-        }
-
-        function setCurrent(path) {
-            var navs = document.getElementsByClassName('navbar');
-            for (var j = 0; j < navs.length; j++) {
-                $api.removeCls(navs[j], 'active');
-            }
-            $api.addCls(navs[path], 'active');
-            api.setFrameGroupIndex({
-                name: '社交组',
-                index: path
             })
-        }
+        </script>
 
-        function closeGroup() {
-            api.closeFrameGroup({
-                name: '社交组'
-            });
-        }
 
-        function open() {
-            api.openFrameGroup({
-                name: '社交组',
-                rect: {
-                    x: 0,
-                    y: 70,
-                    w: 'auto',
-                    h: 600
-                },
-                frames: [{
-                    name: '推荐',
-                    url: './social_recommand.html',
-                    bgColor: '#fff'
-                }, {
-                    name: '此刻',
-                    url: './social_now.html',
-                    bgColor: '#fff'
-                }, {
-                    name: '新闻',
-                    url: './social_news.html',
-                    bgColor: '#fff'
-                }]
-            }, function(ret, err) {
-                var index = ret.index;
-            });
-        }
-    </script>
+        <script type="text/javascript">
+            // apiready = function() {
+            //     api.addEventListener({
+            //         name: 'tabframe'
+            //     }, function(ret, err) {
+            //         if (ret.index == 3) {
+            //
+            //         } else {
+            //             // closeGroup();
+            //         }
+            //     });
+            // }
 
+
+
+
+            //
+            // function setCurrent(path) {
+            //     var navs = document.getElementsByClassName('navbar');
+            //     for (let i = 0; i < navs.length - 1; i++) {
+            //         navs[i].onclick = function() {
+            //             for (var j = 0; j < navs.length; j++) {
+            //                 $api.removeCls(navs[j], 'active');
+            //             }
+            //             $api.addCls(this, 'active');
+            //             console.log(i);
+            //             api.setFrameGroupIndex({
+            //                 name: '社交组',
+            //                 index: i
+            //             })
+            //         }
+            //     }
+            // }
+            //
+            // function closeGroup() {
+            //     api.closeFrameGroup({
+            //         name: '社交组'
+            //     });
+            // }
+            //
+            // function open() {
+            //     api.openFrameGroup({
+            //         name: '社交组',
+            //         rect: {
+            //             x: 0,
+            //             y: 70,
+            //             w: 'auto',
+            //             h: 600
+            //         },
+            //         frames: [{
+            //             name: '推荐',
+            //             url: './social_recommand.html',
+            //             bgColor: '#fff'
+            //         }, {
+            //             name: '此刻',
+            //             url: './social_now.html',
+            //             bgColor: '#fff'
+            //         }, {
+            //             name: '新闻',
+            //             url: './social_news.html',
+            //             bgColor: '#fff'
+            //         }]
+            //     }, function(ret, err) {
+            //         var index = ret.index;
+            //     });
+            // }
+        </script>
+        <script type="text/javascript">
+            function Input() {
+                var UISearchBar = api.require('UISearchBar');
+                UISearchBar.open({
+                    placeholder: '北京 时代工场',
+                    historyCount: 10,
+                    showRecordBtn: true,
+                    texts: {
+                        cancelText: '取消',
+                        clearText: '清除搜索记录'
+                    },
+                    styles: {
+                        navBar: {
+                            bgColor: '#FFFFFF',
+                            borderColor: '#ccc'
+                        },
+                        searchBox: {
+                            bgImg: '',
+                            color: '#000',
+                            height: 44
+                        },
+                        cancel: {
+                            bg: 'rgba(0,0,0,0)',
+                            color: '#D2691E',
+                            size: 16
+                        },
+                        list: {
+                            color: '#696969',
+                            bgColor: '#FFFFFF',
+                            borderColor: '#eee',
+                            size: 16
+                        },
+                        clear: {
+                            color: '#000000',
+                            borderColor: '#ccc',
+                            size: 16
+                        }
+                    }
+                }, function(ret, err) {
+                    if (ret) {
+                        goNextWin('../home_page/frame/search_list.html')
+
+                    } else {
+                        alert(JSON.stringify(err));
+                    }
+                });
+            }
+        </script>
+        <script src="../../script/common.js" charset="utf-8"></script>
 </body>
 
 </html>

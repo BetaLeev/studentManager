@@ -1,0 +1,303 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>申请参观</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            background-image: url(../../image/other/background2.png);
+            background-size: 100% 100%;
+        }
+        /*logo图*/
+
+        .top {
+            width: 40px;
+            height: 50px;
+            position: absolute;
+            right: 30px;
+            top: 60px;
+        }
+
+        .top img {
+            width: 30px;
+            height: 20px;
+        }
+
+        .top span {
+            font-size: 10px;
+            color: #fed765;
+        }
+
+        .center {
+            width: 75%;
+            left: 50%;
+            margin-left: -37.5%;
+            height: 400px;
+            position: absolute;
+            top: 23vh;
+            background: rgba(241, 239, 238, 0.7);
+            border-radius: 20px;
+        }
+
+        .center-top {
+            width: 100%;
+            height: 350px;
+            border-bottom: 1px solid #9fa0a0;
+        }
+
+        .center-top1 {
+            width: 100%;
+            clear: both;
+        }
+
+        .center-top1 span {
+            font-size: .7rem;
+            color: #4b4b4b;
+            float: left;
+            margin-top: 40px;
+            margin-left: 30px;
+        }
+
+        .center-top1 input {
+            width: 130px;
+            height: 25px;
+            border-radius: 10px;
+            border: 1px solid #9fa0a0;
+            background-color: #F1EFEE;
+            float: right;
+            margin-top: 34px;
+            margin-right: 30px;
+        }
+
+        .center-top1 div {
+            width: 130px;
+            height: 25px;
+            margin-top: 34px;
+            margin-right: 30px;
+            float: right;
+        }
+
+        .center-top1 img {
+            width: 25px;
+            height: 25px;
+            margin-left: 20px;
+        }
+
+        .center-top1 b {
+            margin-left: 15px;
+        }
+
+        .center-top2 {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+        }
+
+        .center-top3 {
+            text-align: center;
+            line-height: 25px;
+            font-size: 15px;
+            color: #4b4b4b;
+        }
+
+        .center-top4 {
+            text-align: center;
+            line-height: 25px;
+            font-size: 40px;
+            text-shadow: 0 0 6px yellow;
+            color: #fed765;
+        }
+
+        .center-top5 {
+            text-align: center;
+            line-height: 25px;
+            font-size: 20px;
+            color: #4b4b4b;
+        }
+
+        .center-bottom {
+            width: 100%;
+            height: 20%;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .center-bottom button {
+            width: 100px;
+            height: 50px;
+            font-size: 20px;
+            background-color: #fed765;
+            border-radius: 10px;
+            border: none;
+            color: #4b4b4b;
+        }
+
+        .bottom {
+            width: 80%;
+            left: 10%;
+            display: flex;
+            justify-content: space-between;
+            ;
+            position: absolute;
+            bottom: 1vh;
+            text-align: center;
+        }
+
+        .bottom1 {
+            width: 100px;
+            float: left;
+        }
+
+        .bottom1 img {
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .bottom1 span {
+            font-size: 10px;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        input[type=text] {
+            padding-left: 5px
+        }
+    </style>
+</head>
+
+<body>
+    <div tapmode class="top" onclick="goNextWin('')">
+        <img src="../../image/college-logo.png" alt="">
+        <span>站主学院</span>
+    </div>
+    <div class="center" id='visit'>
+        <div class="center-top">
+            <div class="center-top1"><span>姓名/Name</span><input v-model='form.name' type="text"></div>
+            <div class="center-top1"><span>联系电话/Phone</span><input v-model='form.tel' type="text"></div>
+            <div class="center-top1"><span>位置/Place</span><input v-model='form.place' type="text"></div>
+            <div class="center-top1"><span>意向驿站行业/Trades</span><input v-model='form.trade' type="text"></div>
+            <div class="center-top1"><span>数量/Quantity</span>
+                <div>
+                    <img src="../../image/jian.png" alt="" @click='minus()'>
+                    <b>{{form.count}}</b>
+                    <img src="../../image/jia.png" alt="" @click='add()'>
+                </div>
+            </div>
+        </div>
+        <div class="center-bottom">
+            <button type="button" name="button" @click='submit()'>申请参观</button>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="bottom1">
+            <img src="../../image/tel.png" alt=""><br>
+            <span>预约实物</span>
+        </div>
+        <div class="bottom1">
+            <img src="../../image/image-scan.png" alt=""><br>
+            <span>图像采集</span>
+        </div>
+        <div class="bottom1">
+            <img src="../../image/doc.png" alt=""><br>
+            <span>信息核对</span>
+        </div>
+        <div class="bottom1">
+            <img src="../../image/all-know.png" alt=""><br>
+            <span>线上推广</span>
+        </div>
+    </div>
+    <script src="../../script/api.js" charset="utf-8"></script>
+    <script src="../../script/common.js" charset="utf-8"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <script type="text/javascript">
+        function telReg(tel) {
+            var telReg = /^[1][3,4,5,7,8][0-9]{9}$/;
+            if (telReg.test(tel)) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        new Vue({
+            el: '#visit',
+            data() {
+                return {
+                    form: {
+                        name: '',
+                        tel: '',
+                        place: '',
+                        trade: '',
+                        count: 1
+                    }
+                }
+            },
+            methods: {
+                submit() {
+                    if (this.form.name != '' && this.form.place != '' && this.form.trade != '') {
+                        if (telReg(this.form.tel)) {
+                          var model = api.require("model");
+                          model.config({
+                              appKey: 'B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E',
+                          })
+                          model.insert({
+                              class: "era_apply_visit",
+                              value: {
+                                  name: this.form.name,
+                                  tel: this.form.tel,
+                                  trade: this.form.trade,
+                                  place: this.form.place,
+                                  count: this.form.count
+                              }
+                            }, function(ret, err) {
+                                if (err) {
+                                    swal("Oops", "遇到未知错误", "error")
+                                } else if (ret) {
+                                  swal("成功", "申请成功请等待审核", "success")
+                                  this.form = {};
+                                  // goNextWin('./index.html')
+                                }
+                            });
+                        } else {
+                            swal("Oops", "请填写正确手机号", "error")
+                        }
+                    } else {
+                        swal("Oops", "请将信息填写完整", "error")
+
+                    }
+                    console.log(this.form)
+                },
+                add() {
+                    this.form.count += 1;
+                    if (this.form.count >= 5) {
+                        this.form.count = 5;
+                        return
+                    }
+                },
+                minus() {
+
+                    if (this.form.count <= 1) {
+                        this.form.count = 1;
+                    } else {
+                        this.form.count -= 1;
+                        return;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

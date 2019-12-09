@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,6 @@
     <link rel="stylesheet" href="../../css/common.css">
     <title>发布故事</title>
     <style>
-
         .aui-iconfont,
         .aui-bar {
             color: black !important;
@@ -31,9 +31,11 @@
         }
 
         .voice-input-plate {
+            bottom: 0;
+            width: 100%;
             border-top: 1px solid #f5f5f5;
             border-bottom: 1px solid #f5f5f5;
-            position: relative;
+            position: absolute;
             padding: 0 20px;
             display: flex;
             height: 70px;
@@ -62,7 +64,7 @@
         }
 
         .bottom-drawer {
-          width: 100vw;
+            width: 100vw;
             display: flex;
             justify-content: space-around;
             background: #f4f4f4;
@@ -102,18 +104,19 @@
     <div class="container">
         <div class="title">
             <span>标题</span>
-            <!-- <input type="text"> -->
+            <input type="text" name='title'>
         </div>
         <div class="text">
             <span>正文</span>
+            <textarea name="text" rows="8" cols="80"></textarea>
         </div>
 
     </div>
     <div class="voice-input-plate">
-        <div><img src="./img/icon/voice.png" alt=""></div>
+        <div><img src="../../image/voice.png" alt=""></div>
         <div class="voice-input"> <input type="text"></div>
-        <div> <img src="./img/icon/small.png" alt=""></div>
-        <div> <img src="./img/icon/menu-plus.png" alt=""></div>
+        <div> <img src="../../image/small.png" alt=""></div>
+        <div> <img src="../../image/menu-plus.png" alt="" onclick="openBlum()"></div>
     </div>
 
     <!-- <div class="bottom-drawer">
@@ -141,8 +144,8 @@
 </body>
 <script type="text/javascript" src="../script/api.js"></script>
 
-    <script src="../../script/api.js" charset="utf-8"></script>
-    <script src="../../script/common.js" charset="utf-8"></script>
+<script src="../../script/api.js" charset="utf-8"></script>
+<script src="../../script/common.js" charset="utf-8"></script>
 
 
 

@@ -130,36 +130,36 @@
 <body>
   <header class="aui-bar aui-bar-nav aui-bar-light">
       <div class="aui-pull-left aui-btn">
-          <span class="aui-iconfont aui-icon-left"></span>
+          <span class="aui-iconfont aui-icon-left" tapmode onclick="closeCurrentWin()"></span>
       </div>
       <div class="aui-title">选择联系人</div>
       <div class="aui-pull-right ">
-          <span id='publish-btn'>完成</span>
+          <span id='publish-btn' onclick="goNextWin('./social_foundChat.html')">完成</span>
       </div>
   </header>
   <div class="social_foundChat_owner_sousuo">
     <input type="text" placeholder="搜索">
   </div>
-    <div class="social_chat_gongneng"><span>选择一个群聊</span><img class="gongneng" src="../../image/xiayibu.png" alt=""></div>
+    <div class="social_chat_gongneng" tapmode onclick="goNextWin('./social_linkman.html')"><span>选择一个群聊</span><img class="gongneng" src="../../image/xiayibu.png" alt=""></div>
     <p><b>A</b></p>
     <div class="chenyuanbg">
       <div class="chenyuan">
         <div class="yuan1"></div>
-        <div class="touxiang"><img src="../../image/avatar-demo.png" alt=""></div>
+        <div class="touxiang" onclick="goNextWin('./social_clickUser.html')"><img src="../../image/avatar-demo.png" alt=""></div>
         <span>用户q</span>
       </div>
     </div>
     <div class="chenyuanbg">
       <div class="chenyuan">
         <div class="yuan"></div>
-        <div class="touxiang"><img src="../../image/avatar-demo.png" alt=""></div>
+        <div class="touxiang" onclick="goNextWin('./social_clickUser.html')"><img src="../../image/avatar-demo.png" alt=""></div>
         <span>用户q</span>
       </div>
     </div>
     <div class="chenyuanbg">
       <div class="chenyuan">
         <div class="yuan1"></div>
-        <div class="touxiang"><img src="../../image/avatar-demo.png" alt=""></div>
+        <div class="touxiang" onclick="goNextWin('./social_clickUser.html')"><img src="../../image/avatar-demo.png" alt=""></div>
         <span>用户q</span>
       </div>
     </div>
@@ -207,7 +207,7 @@
         <span>用户q</span>
       </div>
     </div>
-
+<script src="../../script/common.js" charset="utf-8"></script>
 
 </body>
 </html>

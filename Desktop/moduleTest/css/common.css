@@ -1,5 +1,13 @@
+[v-cloak] {
+   display: none;
+ }
 a {
     text-decoration: none;
+    color:none;
+}
+a:visited,a:link{
+  /*color: none;*/
+  color: #4b4b4b;
 }
 
 header {

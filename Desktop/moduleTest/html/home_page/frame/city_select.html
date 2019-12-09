@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>城市选择</title>
+</head>
+<body>
+  <script src="../../../script/api.js" charset="utf-8"></script>
+  <script src="../../../script/common.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  apiready = function (){
+    showMoreCity()
+  }
+      function showMoreCity() {
+          var UICityList = api.require('UICityList');
+          UICityList.open({
+              rect: {
+                  x: 0,
+                  y: 25,
+                  w: api.aframeWidth,
+                  h: api.frameHeight
+              },
+              resource: 'widget://json/uicitylist.json',
+              styles: {
+                  searchBar: {
+                      bgColor: '#696969',
+                      cancelColor: '#E3E3E3'
+                  },
+                  location: {
+                      color: '#696969',
+                      size: 12
+                  },
+                  sectionTitle: {
+                      bgColor: '#eee',
+                      color: '#000',
+                      size: 12
+                  },
+                  item: {
+                      bgColor: '#fff',
+                      activeBgColor: '#696969',
+                      color: '#000',
+                      size: 14,
+                      height: 40
+                  },
+                  indicator: {
+                      bgColor: '#fff',
+                      color: '#696969'
+                  }
+              },
+              currentCity: '北京',
+              locationWay: 'GPS',
+              hotTitle: '热门城市',
+              fixedOn: api.frameName,
+              placeholder: '输入城市名或首字母查询'
+          }, function(ret, err) {
+              if (ret.eventType == 'selected') {
+                  var city = ret.cityInfo.city;
+                  console.log(city)
+                  $api.setStorage('currentCity', city);
+                  UICityList.close();
+                  // closeCurrentWin();
+                  // goNextWin('../index.html');
+              }
+          });
+      }
+  </script>
+
+</body>
+</html>

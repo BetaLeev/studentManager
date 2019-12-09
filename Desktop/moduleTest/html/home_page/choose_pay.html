@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
 
     <link rel="stylesheet" href="../../css/common.css">
     <title>支付订单</title>
@@ -77,25 +79,150 @@
         </div>
         <div class="aui-title"> 支付订单</div>
     </header>
-    <div class="top-container">
-        <p class="time">支付剩余时间 30:00</p>
-        <h2 class="price"><span>¥</span> 474.00</h2>
-        <p class="order-num">
-            时代工场 No.1 订单编号 : 2019100101022
+    <div id="order">
+        <div class="top-container">
+            <p class="time">支付剩余时间 {{timer}}</p>
+            <h2 class="price"><span>¥</span>{{sum}}</h2>
+            <p class="order-num">
+                时代工场 No.1 订单编号 : {{orderNumber}}
+            </p>
+        </div>
+        <div class="choose-pay">
+            <button onclick="goNextWin('./card_detail.html')">时代卡</button>
+            <button onclick="wxPay()">微信支付</button>
+            <button onclick="aliPay()">支付宝支付</button>
+            <button onclick="saveOrder(orderNumber,img,title,price,user)">设置Apple Pay</button>
+        </div>
+        <p class="read">我已同意入驻政策， 安全责任条款和取消政策，我也同意支付以下所示的总金额。
         </p>
     </div>
-    <div class="choose-pay">
-        <button onclick="goNextWin('./card_detail.html')">时代卡</button>
-        <button onclick="wxPay()">微信支付</button>
-        <button onclick="aliPay()">支付宝支付</button>
-        <button onclick="applePay()">设置Apple Pay</button>
-    </div>
-    <p class="read">我已同意入驻政策， 安全责任条款和取消政策，我也同意支付以下所示的总金额。
-    </p>
-    <div class="btn btn-normal">
-        确认支付 <b>¥ 474.00</b>
-    </div>
+    <script src="../../script/api.js" charset="utf-8"></script>
     <script src="../../script/common.js" charset="utf-8"></script>
+    <script type="text/javascript">
+
+ //
+ //    data: {
+ //     timer: '30:00',
+ //     time: 1800,
+ //     mytimer: null
+ //   },
+ //   computed: {
+ //     timeOver() {
+ //       clearInterval(this.mytimer);
+ //       this.mytimer = setInterval(() => {
+ //         this.time -= 1;
+ //         let min = parseInt(this.time / 60);
+ //         let sec = parseInt(this.time % 60);
+ //         this.timer = min + ':' + sec;
+ //       }, 1000);
+ //       return this.timer;
+ //     }
+ //   }
+ // });
+
+
+    var id,orderNumber,img,title,subtitle,count,price,sum,user;
+        apiready = function() {
+            id = api.pageParam.id;
+             orderNumber = new Date().getTime() + id;
+             img = api.pageParam.img;
+             title = api.pageParam.title;
+             subtitle = api.pageParam.subtitle;
+             count = api.pageParam.count;
+             price = api.pageParam.price;
+             sum = price * count;
+
+             user = $api.getStorage('openid');
+            console.log('用户是：' + user);
+            console.log('工场id是：' + id);
+            console.log("订单号是" + orderNumber);
+            console.log('标题是' + title);
+            console.log('副标题是' + subtitle);
+            console.log('数量是' + count);
+            console.log("单价是" + price);
+            console.log("总价是" + sum)
+
+            new Vue({
+                el: "#order",
+                computed: {
+
+                },
+                data() {
+                    return {
+                        sum: sum,
+                        orderNumber: orderNumber,
+                        timer:'30:00',
+                    }
+                },
+                updated(){
+
+                },
+                created(){
+
+                    var timer = 1800;
+                    var _this = this;
+                    setInterval(function(){
+                      timer = timer  -1;
+                      var minute = parseInt(timer/60);
+                      var second = parseInt(timer%60);
+                      _this.timer = minute + ':' + second;
+                    },1000)
+                }
+            })
+        }
+    </script>
+    <script type="text/javascript">
+        function saveOrder(orderNumber, img, title, price, user) {
+            var model = api.require("model");
+            model.config({
+                appKey: 'B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E',
+            })
+            model.insert({
+                class: 'era_order',
+                value: {
+                    orderNumber: orderNumber,
+                    title: title,
+                    price: price,
+                    img: img,
+                    // address: address,
+                    user: user,
+                    status: '已完成'
+                }
+            }, function(ret, err) {
+                if (err) {
+                    console.log(err)
+                    swal("Oops", "购买失败", "error")
+                } else if (ret) {
+                    swal("成功", "下单成功", "success");
+                    // api.closeWin();
+                }
+            })
+        }
+        // 阿里支付
+        function aliPay() {
+
+
+            // var aliPayPlus = api.require('aliPayPlus');
+            // var id = 'app_id=2019082266398441'
+            // var sign =
+            //     '&sign=jwypV3WjDrYH4WWfhZ2PIMRIEi8FOLh74xU9e%2fsPOmsQEQBlXAe2%2bPH0ZsqlDsK7cVGBKoJLU8qq1il3adrzHi1%2bHVwizCCd5beSoeeawLLxqx9K5Wz2s1bB9IeQxVrc9bCIx4lleFw6GM8get4gzHlLo4UWdCsgU9Cjn7nbHd%2b4zJNINAwrjGIAJqZ%2fvpvCoqhqULaae%2fgmeN9El1vb92xg%2bRJ5%2bliM9MJSCfVQgMH4KR7yj2h7ir6ERCu8olEFYI4b72v9Q%2bEMS6FuQKoeDev1RgsOqO3%2fU0RZyVq1J73R7MSRoNeZIGAKgQ3Q6XfpfyCxBZs9Q4vBsXi20tyA6Q%3d%3d'
+            // var order = id +
+            //     '&biz_content=%7B%22timeout_express%22%3A%2230m%22%2C%22seller_id%22%3A%22%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%221%22%2C%22body%22%3A%22%E6%88%91%E6%98%AF%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%22%2C%22out_trade_no%22%3A%22IQJZSRC1YMQB5HU%22%7D&&charset=utf-8&format=json&method=alipay.trade.app.pay&notify_url=http://domain.merchant.com/payment_notify&sign_type=RSA2&timestamp=2019-11-27 20:26:31&version=1.0' +
+            //     sign
+            // console.log(order)
+            // aliPayPlus.payOrder({
+            //         orderInfo: order
+            //     },
+            //     function(ret, err) {
+            //         api.alert({
+            //             title: '支付结果',
+            //             msg: ret.code,
+            //             buttons: ['确定']
+            //         });
+            //     });
+
+        }
+    </script>
 </body>
 
 </html>

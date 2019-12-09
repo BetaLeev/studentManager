@@ -8,8 +8,10 @@
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui-slide.css" />
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
     <link rel="stylesheet" href="../../css/common.css">
+    <script type="text/javascript" src="../../aui-20170109-v2.1/script/aui-popup.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
     <style>
-
         /*导航搜索栏部分*/
 
         .aui-bar {
@@ -126,7 +128,7 @@
             right: -10px;
             height: 42px;
             background: #fff;
-            z-index: 999;
+            z-index: 1;
             width: 13px;
         }
 
@@ -184,19 +186,25 @@
             bottom: 10px;
         }
     </style>
+
+    <style>
+    .aui-popup{
+    top: 70px;
+    margin-right: 13px;
+    }</style>
 </head>
 
 <body>
     <header class="aui-bar aui-bar-nav">
-        <div id='currentCity' class="aui-pull-left aui-btn" tapmode onclick="showMoreCity()">
+        <div id='currentCity' class="aui-pull-left aui-btn" tapmode onclick='showMoreCity()'>
             北京 &nbsp
             <span class="aui-iconfont aui-icon-down"></span>
         </div>
-        <div class="aui-title" style="left:4rem; right: 4rem;">
+        <div class="aui-title" style="left:4.4rem; right: 4rem;">
             <div class="aui-searchbar">
                 <div class="aui-searchbar-input aui-border-radius">
                     <i class="aui-iconfont aui-icon-search"></i>
-                    <input type="search" onclick="goNextWin('./search_hot.html')" placeholder=" 区位/企业发展需求" id="search-input">
+                    <input type="search" onclick="Input()" placeholder=" 区位/企业发展需求" id="search-input">
                     <div class="aui-searchbar-clear-btn">
                         <i class="aui-iconfont aui-icon-close"></i>
                     </div>
@@ -205,232 +213,157 @@
             </div>
         </div>
         <div class="aui-pull-right aui-btn">
-            <span id='plus-to-close' class="aui-iconfont aui-icon-plus"></span>
-            <div class="clicked-btn-more-list">
-                <div class="icon-item" tapmode onclick='scanfHandle()'>
-                    <img src="../../image/pay.png" alt=""><span>扫一扫</span>
-                </div>
-                <div class="icon-item">
-                    <img src="../../image/kefu.png" alt=""><span>客服</span>
-                </div>
-                <div class="icon-item" tapmode onclick="goNextWin('./message.html')">
-                    <img class='msg' src="../../image/jiaoliu.png" alt=""><span>消息</span>
+            <span id='plus-to-close' class="aui-iconfont aui-icon-plus" aui-popup-for="m"></span>
+            <div class="aui-popup aui-popup-top-right" id="m">
+                <div class="aui-popup-arrow"></div>
+                <div class="aui-popup-content">
+                    <ul class="aui-list aui-list-noborder">
+                        <li class="aui-list-item" onclick="scanfHandle()">
+                            <div class="aui-list-item-label-icon">
+                                <i class="aui-iconfont aui-icon-my aui-text-warning"></i>
+                            </div>
+                            <div class="aui-list-item-inner aui-list-item-camera">
+                                扫一扫
+                            </div>
+                        </li>
+                        <li class="aui-list-item" onclick="kefu()">
+                            <div class="aui-list-item-label-icon">
+                                <i class="aui-iconfont aui-icon-mail aui-text-phone"></i>
+                            </div>
+                            <div class="aui-list-item-inner">
+                                客服中心
+                            </div>
+                        </li>
+                        <li class="aui-list-item" onclick="goNextWin('./message.html')">
+                            <div class="aui-list-item-label-icon">
+                              <i class="aui-iconfont aui-icon-mail aui-text-info"></i>
+
+                            </div>
+
+                            <div class="aui-list-item-inner">
+                                信息
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
+
+
         </div>
     </header>
 
     <div id="aui-slide">
         <div class="aui-slide-wrap">
-            <div class="aui-slide-node">
-                <img src="../../image/other/offce.jpg" alt="">
+            <div class="aui-slide-node" tapmode onclick='openWinWorkParam(111)'>
+                <img src="../../image/other/canguan2.jpg" alt="">
             </div>
-            <div class="aui-slide-node">
+            <div class="aui-slide-node" tapmode onclick='openWinWorkParam(222)'>
+                <img src="../../image/other/office.jpg" alt="">
+            </div>
+            <div class="aui-slide-node" tapmode onclick='openWinWorkParam(444)'>
                 <img src="../../image/other/linfeng.jpg" alt="">
             </div>
-            <div class="aui-slide-node">
-              <img src="../../image/other/linfeng.jpg" alt="">
-            </div>
         </div>
-        <div class="aui-slide-page-wrap">
-            <!--分页容器-->
-        </div>
+        <div class="aui-slide-page-wrap"></div>
     </div>
+
+
     <div class="ad-text">
         <p>1000+驿站服务</p>
         <p>儿童教育，影视培训</p>
         <p>5000余个会议中心</p>
     </div>
+
+
     <div class="tab">
         <div class="taui-tab" id="tab">
-            <div class="aui-tab-item">北京</div>
-            <div class="aui-tab-item aui-active">山西</div>
-            <div class="aui-tab-item">多伦多</div>
-            <div class="aui-tab-item">会员卡</div>
+            <div class="aui-tab-item aui-active"><a href="#shanxi">山西</a></div>
+            <div class="aui-tab-item"><a href="#doronto">多伦多</a></div>
+            <div class="aui-tab-item"> <a href="#beijing">北京</a></div>
+            <div class="aui-tab-item"><a href="#vip">会员卡</a></div>
         </div>
-        <div class="tab-container">
-            <div class="tab-container-item" onclick="goNextWin('./detail.html')">
+        <div id='tab-container' class="tab-container">
+            <div id='shanxi' class="tab-container-item">
                 <div class="tab-container-item-title">山西</div>
-                <div class="tab-item-plate">
+                <div v-for='item in workPlace.shanxi' tapmode class="tab-item-plate" @click="openWinWorkParam(item.id)">
                     <div class="tab-container-left">
-                      <img src="../../image/other/linfeng.jpg" alt="">
+                        <img :src="item.img" alt="">
                     </div>
                     <div class="tab-container-right">
-                        <p class="tab-container-title">时代工场林凤驿站</p>
-                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
-                        <p class="tab-container-price">¥499起</p>
+                        <p class="tab-container-title">{{item.title}}</p>
+                        <p class="tab-container-subtitle">{{item.subtitle}}</p>
+                        <p class="tab-container-price">¥{{item.price}}起</p>
                     </div>
                 </div>
             </div>
 
-            <div class="tab-container-item">
+            <div id='doronto' class="tab-container-item">
                 <div class="tab-container-item-title">多伦多</div>
-                <div class="tab-item-plate">
+                <div v-for='item in workPlace.doronto' tapmode class="tab-item-plate" @click="openWinWorkParam(item.id)">
                     <div class="tab-container-left">
-                      <img src="../../image/other/offce.jpg" alt="">
+                        <img :src="item.img" alt="">
                     </div>
                     <div class="tab-container-right">
-                        <p class="tab-container-title">时代工场林凤驿站</p>
-                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
-                        <p class="tab-container-price">¥499起</p>
-                    </div>
-                </div>
-                <div class="tab-item-plate">
-                    <div class="tab-container-left">
-                        <img src="./img/linfeng.jpg" alt="">
-                    </div>
-                    <div class="tab-container-right">
-                        <p class="tab-container-title">时代工场林凤驿站</p>
-                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
-                        <p class="tab-container-price">¥499起</p>
+                        <p class="tab-container-title">{{item.title}}</p>
+                        <p class="tab-container-subtitle">{{item.subtitle}}</p>
+                        <p class="tab-container-price">¥{{item.price}}起</p>
                     </div>
                 </div>
             </div>
 
-            <div class="tab-container-item">
+            <div id='beijing' class="tab-container-item">
                 <div class="tab-container-item-title">北京</div>
-                <div class="tab-item-plate">
+                <div v-for='item in workPlace.beijing' tapmode class="tab-item-plate" @click="openWinWorkParam(item.id)">
                     <div class="tab-container-left">
-                        <img src="./img/NO.1.jpg" alt="">
+                        <img :src="item.img" alt="">
                     </div>
                     <div class="tab-container-right">
-                        <p class="tab-container-title">时代工场林风驿站</p>
-                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
-                        <p class="tab-container-price">¥499起</p>
+                        <p class="tab-container-title">{{item.title}}</p>
+                        <p class="tab-container-subtitle">{{item.subtitle}}</p>
+                        <p class="tab-container-price">¥{{item.price}}起</p>
                     </div>
                 </div>
-                <div class="tab-item-plate">
+            </div>
+
+            <div id='vip' class="tab-container-item">
+                <div class="tab-container-item-title">会员卡</div>
+                <div v-for='item in workPlace.vip' tapmode class="tab-item-plate" @click="openWinCardParam(item.id)">
                     <div class="tab-container-left">
-                      <img src="../../image/other/linfeng.jpg" alt="">
+                        <img :src="item.img" alt="">
                     </div>
                     <div class="tab-container-right">
-                        <p class="tab-container-title">时代工场林风驿站</p>
-                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
-                        <p class="tab-container-price">¥499起</p>
-                    </div>
-                </div>
-                <div class="tab-item-plate">
-                    <div class="tab-container-left">
-                      <img src="../../image/other/linfeng.jpg" alt="">
-                    </div>
-                    <div class="tab-container-right">
-                        <p class="tab-container-title">时代工场林风驿站</p>
-                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
-                        <p class="tab-container-price">¥499起</p>
-                    </div>
-                </div>
-                <div class="tab-item-plate">
-                    <div class="tab-container-left">
-                        <img src="../../image/card-demo.png" alt="">
-                    </div>
-                    <div class="tab-container-right">
-                        <p class="tab-container-title">时代工场林风驿站</p>
-                        <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
-                        <p class="tab-container-price">¥499起</p>
+                        <p class="tab-container-title">{{item.title}}</p>
+                        <p class="tab-container-subtitle">{{item.subtitle}}</p>
+                        <p class="tab-container-price">{{item.price}}</p>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <script type="text/javascript" src='../../script/api.js'></script>
     <script type="text/javascript" src="../../aui-20170109-v2.1/script/aui-slide.js"></script>
     <script type="text/javascript" src="../../aui-20170109-v2.1/script/aui-tab.js"></script>
-    <script src="../../script/common.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../aui-20170109-v2.1/script/aui-popup.js"></script>
+    <script type="text/javascript">
+        var popup = new auiPopup();
+    </script>
+
+    <script type="text/javascript">
+        function openWinWorkParam(param) {
+            api.openWin({
+                name: '场地详情页',
+                url: './detail.html',
+                pageParam: {
+                    id: param
+                }
+            });
+        }
+    </script>
     <script type="text/javascript">
         apiready = function() {
-            deBlack();
-        }
-    </script>
-    <script type="text/javascript">
-        function showMoreCity() {
-            var UICityList = api.require('UICityList');
-            UICityList.open({
-                rect: {
-                    x: 0,
-                    y: 25,
-                    w: api.aframeWidth,
-                    h: api.frameHeight
-                },
-                resource: 'widget://json/uicitylist.json',
-                styles: {
-                    searchBar: {
-                        bgColor: '#696969',
-                        cancelColor: '#E3E3E3'
-                    },
-                    location: {
-                        color: '#696969',
-                        size: 12
-                    },
-                    sectionTitle: {
-                        bgColor: '#eee',
-                        color: '#000',
-                        size: 12
-                    },
-                    item: {
-                        bgColor: '#fff',
-                        activeBgColor: '#696969',
-                        color: '#000',
-                        size: 14,
-                        height: 40
-                    },
-                    indicator: {
-                        bgColor: '#fff',
-                        color: '#696969'
-                    }
-                },
-                currentCity: '北京',
-                locationWay: 'GPS',
-                hotTitle: '热门城市',
-                fixedOn: api.frameName,
-                placeholder: '输入城市名或首字母查询'
-            }, function(ret, err) {
-                if (ret.eventType == 'selected') {
-                    var city = ret.cityInfo.city;
-                    $api.text($api.byId('currentCity'), city)
-                    UICityList.close()
-                }
 
-            });
-        }
-    </script>
-
-
-    <script type="text/javascript">
-        // 注意：使用本模块前，需在云编译页面勾选添加访问摄像头权限，若要访问相册也需沟通申请访问相册权限 不能同时使用的模块：wwprint
-        function scanfHandle() {
-            var FNScanner = api.require('FNScanner');
-
-            FNScanner.open({
-                autorotation: true
-            }, function(ret, err) {
-                if (ret) {
-                    if (ret.eventType == 'cancle') {
-                        FNScanner.closeView();
-                    }
-                    // alert(JSON.stringify(ret));
-                } else {
-                    alert(JSON.stringify(err));
-                    FNScanner.closeView();
-                }
-            });
-        }
-
-        function deBlack() {
-            var FNScanner = api.require('FNScanner');
-            api.addEventListener({
-                name: 'resume'
-            }, function(ret, err) {
-                FNScanner.onResume();
-                // alert('应用回到前台');
-            });
-
-            api.addEventListener({
-                name: 'pause'
-            }, function(ret, err) {
-                FNScanner.onPause();
-                // alert('应用进入后台');
-            });
         }
     </script>
     <script type="text/javascript">
@@ -438,9 +371,7 @@
             element: document.getElementById("tab"),
             index: 2,
             repeatClick: false
-        }, function(ret) {
-            console.log(ret);
-        });
+        }, function(ret) {});
     </script>
     <script type="text/javascript">
         var slide = new auiSlide({
@@ -452,30 +383,155 @@
             "loop": true,
             "autoPlay": 3000,
             'dotPosition': 'center',
-            currentPage: currentFun
+            // currentPage: currentFun
         })
 
         function currentFun(index) {
-            console.log(index);
+            // console.log(index);
         }
     </script>
 
+
     <script type="text/javascript">
-        // 顶部+按钮，点击事件
-        // plus-to-close
-        $api.addEvt($api.dom('#plus-to-close'), 'click', function() {
-            if ($api.hasCls($api.dom('#plus-to-close'), 'aui-icon-plus')) {
-                // topMenu();
-                $api.css($api.dom('.clicked-btn-more-list'), 'display:block');
-                $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-plus');
-                $api.addCls($api.dom('#plus-to-close'), 'aui-icon-close');
-            } else {
-                $api.css($api.dom('.clicked-btn-more-list'), 'display:none');
-                $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-close');
-                $api.addCls($api.dom('#plus-to-close'), 'aui-icon-plus');
+        new Vue({
+            el: '#tab-container',
+            data() {
+                return {
+                    banner: [
+                        "../../image/other/offce.jpg", "../../image/other/offce.jpg", "../../image/other/offce.jpg"
+                    ],
+                    workPlace: {
+                        'shanxi': [{
+                            id: 111,
+                            img: '../../image/other/canguan2.jpg',
+                            title: '时代工场林风驿站',
+                            subtitle: '适用于：喝茶会友，休养生息12',
+                            price: "400"
+                        }],
+                        'beijing': [{
+                            id: 222,
+                            img: '../../image/other/office.jpg',
+                            title: '时代工场NO.1',
+                            subtitle: '会展服务，企业海外发展咨询顾问',
+                            price: '499'
+                        }, {
+                            id: 333,
+                            img: '../../image/other/take-pic.png',
+                            title: '时代工场晨时驿站',
+                            subtitle: '儿童教育，影视培训',
+                            price: '800'
+                        }, {
+                            id: 444,
+                            img: '../../image/other/canguan1.png',
+                            title: '时代工场我本驿站',
+                            subtitle: '健康管理，企业内训',
+                            price: '399'
+                        }, ],
+                        'doronto': [{
+                            id: 555,
+                            img: '../../image/other/44.png',
+                            title: '时代工场Infinit驿站',
+                            subtitle: '客户联络业务，扩展办事处，个人创业等',
+                            price: '499'
+                        }, {
+                            id: 666,
+                            img: '../../image/other/55.png',
+                            title: '时代工场英狮驿站',
+                            subtitle: '高中留学生教育计划，专业课程定制',
+                            price: '899'
+                        }],
+                        'vip': [{
+                            id: 6,
+                            img: '../../image/card-demo.png',
+                            title: '钻石卡',
+                            subtitle: '儿童教育，影视培训',
+                            price: '¥899个'
+                        }]
+                    }
+                }
+            },
+            methods: {
+                openWinWorkParam(param) {
+                    api.openWin({
+                        name: '场地详情页',
+                        url: './detail.html',
+                        pageParam: {
+                            id: param
+                        }
+                    });
+                },
+                openWinCardParam(param) {
+                    api.openWin({
+                        name: '会员卡详情页',
+                        url: './card_detail.html',
+                        pageParam: {
+                            id: param
+                        }
+                    });
+                }
             }
         })
     </script>
+    <script type="text/javascript">
+        var $root = $('.tab-container');
+        $('a').click(function() {
+            var href = $.attr(this, 'href');
+            $root.animate({
+                scrollTop: $(href).offset().top
+            }, 500, function() {
+                window.location.hash = href;
+            });
+            return false;
+        });
+    </script>
 
+    <script type="text/javascript">
+        function Input() {
+            var UISearchBar = api.require('UISearchBar');
+            UISearchBar.open({
+                placeholder: '北京 时代工场',
+                historyCount: 10,
+                showRecordBtn: true,
+                texts: {
+                    cancelText: '取消',
+                    clearText: '清除搜索记录'
+                },
+                styles: {
+                    navBar: {
+                        bgColor: '#FFFFFF',
+                        borderColor: '#ccc'
+                    },
+                    searchBox: {
+                        bgImg: '',
+                        color: '#000',
+                        height: 44
+                    },
+                    cancel: {
+                        bg: 'rgba(0,0,0,0)',
+                        color: '#D2691E',
+                        size: 16
+                    },
+                    list: {
+                        color: '#696969',
+                        bgColor: '#FFFFFF',
+                        borderColor: '#eee',
+                        size: 16
+                    },
+                    clear: {
+                        color: '#000000',
+                        borderColor: '#ccc',
+                        size: 16
+                    }
+                }
+            }, function(ret, err) {
+                if (ret) {
+                    goNextWin('./frame/search_list.html')
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+        }
+    </script>
+    <script src="../../script/common.js" charset="utf-8"></script>
 
 </html>

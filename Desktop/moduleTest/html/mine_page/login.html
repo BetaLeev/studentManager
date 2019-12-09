@@ -40,7 +40,6 @@
             margin-left: 45px;
             margin-right: 45px;
             padding-top: 30px;
-
             border-bottom: 1px solid #f1f1f1;
         }
 
@@ -66,7 +65,7 @@
         }
 
         .login-btn {
-          position: relative;
+            position: relative;
             width: 40%;
             height: 50px;
             outline: none;
@@ -116,39 +115,37 @@
         #image .weixin {
             position: relative;
             margin-top: 16px;
-            margin-left: -3%;
             box-sizing: border-box;
-            width: 23%;
+            width: 50px;
             height: 50px;
             background-repeat: no-repeat;
             background-image: url(../../image/wechat.png);
-            background-size: 50% 80%;
+            background-size: 100% 100%;
             background-position: center center;
         }
 
         #image .weibo {
             position: relative;
             margin-top: 14px;
-            margin-left: 0%;
             box-sizing: border-box;
-            width: 25%;
+            width:50px;
             height: 50px;
             background-repeat: no-repeat;
             background-image: url(../../image/weibo.png);
-            background-size: 45% 80%;
+            background-size: 100% 100%;
             background-position: center center;
         }
 
         #image .youxiang {
             position: relative;
             margin-top: 12px;
-            margin-left: 1%;
+            /*margin-left: 1%;*/
             box-sizing: border-box;
-            width: 24%;
+            width: 50px;
             height: 50px;
             background-repeat: no-repeat;
             background-image: url(../../image/email.png);
-            background-size: 50% 80%;
+            background-size: 100% 100%;
             background-position: center center;
         }
 
@@ -190,6 +187,8 @@
             opacity: 0.7;
         }
     </style>
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
+
 </head>
 
 <body>
@@ -219,210 +218,135 @@
             <span class="line"></span>
         </div>
         <div id="image">
-            <span class="weixin" onclick="wechatLogin()">
+            <span class="weixin" onclick="loginByWechat()">
             </span>
-            <span class="weibo">
+            <span class="weibo" onclick="loginByWeibo()">
             </span>
             <span class="youxiang">
             </span>
         </div>
-        <div id="wrap">
+        <!-- <div id="wrap">
             <span id="weixin">微信</span>
             <span id="weibo">微博</span>
             <span id="youxiang">邮箱</span>
-        </div>
+        </div> -->
 
     </div>
-    <!--  <div class="btn-third-party" tapmode onclick="fnwechat_login()">使用微信登录</div> -->
 </body>
-<script type="text/javascript" src="../script/api.js"></script>
-<script type="text/javascript" src="../script/SHA1.js"></script>
-<script type="text/javascript" src="../script/APICloud-rest.js"></script>
+<script src="../../script/api.js" charset="utf-8"></script>
+<script src="../../script/login.js" charset="utf-8"></script>
 <script src="../../script/common.js" charset="utf-8"></script>
 
 <script type="text/javascript">
-    var UILoading;
-    var flowerid;
-    apiready = function() {
-        UILoading = api.require('UILoading');
-    };
-    // 微信一键登入
-    // 微信登入
-    //忘记密码
-    function fnfortpassword() {
-        api.openWin({
-            name: 'loginxgpassword',
-            url: '../html/loginxgpassword.html',
+    apiready = function() {};
+</script>
+<script type="text/javascript">
+    // //微信登陆模块
+    function loginByWechat() {
+        var wxPlus = api.require('wxPlus');
+        wxPlus.auth({
+            apiKey: 'wxf476d7072eeddaae'
+        }, function(ret, err) {
+            if (ret.status) {
+                wxPlus.getToken({
+                    apiKey: 'wxf476d7072eeddaae',
+                    apiSecret: '749f4d30f5f112db7db6aafbaf03eb05',
+                    code: ret.code
+                }, function(ret, err) {
+                    if (ret.status) {
+                        wxPlus.getUserInfo({
+                            accessToken: ret.accessToken,
+                            openId: ret.openId
+                        }, function(ret, err) {
+                            if (ret.status) {
+                             $api.setStorage('openId', ret.status.openid);
+                             $api.getStorage('openId');
 
-        })
-    }
+                                var model = api.require("model");
+                                model.config({
+                                    appKey: 'B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E',
+                                })
+                                model.insert({
+                                    class: 'era_user',
+                                    value: {
+                                        name: ret.nickname,
+                                        avatar: ret.headimgurl,
+                                        identifer: 'wechat',
+                                        openId: ret.openid
+                                    }
+                                }, function(ret, err) {
+                                    if (err) {
+                                        console.log(err)
+                                        swal("Oops", "微信登陆失败", "error")
+                                    } else if (ret) {
+                                        swal("成功", "授权登录成功", "success");
+                                        api.closeToWin({
+                                            name: '../home_page/index.html'
+                                        });
 
-    function fnwechat_login() {
-        // var weiXin = api.require('weiXin');
-        // weiXin.registerApp(function(ret,err){
-        //     if (ret.status) {
-
-        //     } else{
-        //     }
-        // });
-        // weiXin.auth(function(ret,err){
-        //      if (ret.status) {
-        //         weiXin.getUserInfo(function(ret, err) {
-        //             if (ret.status) {
-        //                 api.alert(JSON.stringfiy(ret));
-        //             } else {
-        //                 api.alert(err.msg);
-        //             }
-        //         });
-        //      }else{
-        //         alert(err.msg);
-        //      }
-        // });
-        api.toast({
-            msg: '微信登入功能维护中...',
-            duration: 2000,
-            location: 'middle'
+                                        // goNextWin('./index.html')
+                                    }
+                                })
+                                $api.setStorage('userName', ret.nickname);
+                                $api.setStorage('openid', ret.openid);
+                                $api.setStorage('userAvatar', ret.headimgurl);
+                            } else {
+                                swal("Oops", "微信登陆失败", "error")
+                            }
+                        });
+                    } else {
+                        swal("Oops", "微信登陆失败", "error")
+                    }
+                });
+            } else {
+                swal("Oops", "微信登陆失败", "error")
+            }
         });
     }
-    // 验证输入
-    function checkinput(vphonenumber, vpassword) {
-        if (vphonenumber.length != 0 && vpassword.length != 0) {
-            return true;
-        } else {
-            alert("输入不能为空")
-            return false;
-        }
-    }
-
-    function fnLogin() {
-        var vphonenumber = $api.val($api.byId("phonenumber")).replace(/^\s*|\s*$/g, '');
-        var vpassword = $api.val($api.byId("password")).replace(/^\s*|\s*$/g, '');
-        var flag_check = checkinput(vphonenumber, vpassword);
-        if (flag_check) {
-            UILoading.flower({
-                center: {
-                    x: api.winWidth / 2,
-                    y: api.winHeight / 2
-                },
-                mask: "rgba(0,0,0,0.1)",
-                size: 30,
-                fixed: true
-            }, function(ret) {
-                flowerid = ret.id
-            });
-            var now = Date.now();
-            var appKey = SHA1("A6006620792786" + "UZ" + "B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E" + "UZ" + now) + "." + now;
-            api.ajax({
-                    url: 'https://www.apicloud.com/mcm/api/user/login',
-                    method: 'post',
-                    headers: {
-                        "X-APICloud-APPId": "A6006620792786",
-                        "X-APICloud-APPKey": appKey
-                    },
-                    data: {
-                        values: {
-                            username: vphonenumber,
-                            password: vpassword
-                        }
-                    }
-                },
-                function(ret, err) {
-                    if (ret) {
-                        UILoading.closeFlower({
-                            id: flowerid
-                        });
-                        api.toast({
-                            msg: '登入成功~',
-                            duration: 2000,
-                            location: 'middle'
-                        });
-                        if (!api.getPrefs({
-                                sync: true,
-                                key: 'bind_flag'
-                            })) {
-                            var push = api.require('push');
-                            push.bind({
-                                userName: vphonenumber,
-                                userId: vphonenumber
-                            }, function(ret, err) {
-                                api.setPrefs({
-                                    key: 'bind_flag',
-                                    value: 'true'
-                                });
-                            });
-                        }
-                        var imgpath = api.getPrefs({
-                            sync: true,
-                            key: vphonenumber.toString()
-                        });
-                        if (imgpath) {
-                            api.execScript({
-                                name: 'root',
-                                frameName: 'frame_my',
-                                script: "change_userimg('" + imgpath + "')"
-                            });
-                        }
-                        api.setPrefs({
-                            key: 'userloginstatu',
-                            value: true
-                        });
-                        api.setPrefs({
-                            key: 'user_phone',
-                            value: vphonenumber
-                        });
-                        if (api.pageParam.filename) {
-                            api.closeWin({
-                                name: api.winName
-                            });
-                            if (api.pageParam.title) {
-                                api.openWin({
-                                    name: 'detailPage',
-                                    url: api.pageParam.page_url,
-                                    pageParam: {
-                                        name: api.pageParam.name,
-                                        title: api.pageParam.title,
-                                        filename: api.pageParam.filename,
-                                        winname: api.winName
-                                    }
-                                });
-                            } else {
-                                api.openWin({
-                                    name: 'detailPage',
-                                    url: api.pageParam.page_url,
-                                    pageParam: {
-                                        name: api.pageParam.name,
-                                        filename: api.pageParam.filename,
-                                        winname: api.winName
-                                    }
-                                });
-                            }
-                        } else {
-                            api.execScript({
-                                name: 'root',
-                                frameName: 'frame_my',
-                                script: "change_phone_login('" + vphonenumber + "')"
-                            });
-
-                            api.closeWin({
-                                name: api.winName
-                            });
-                        }
-                    } else {
-                        UILoading.closeFlower({
-                            id: flowerid
-                        });
-                        if (err.statusCode == 401) {
-                            alert("输入的手机号或密码错误！");
-                        } else if (err.statusCode == 401) {
-                            alert("当前网络不佳，请检查网络")
-                        }
-                    }
-
-                }
-            );
-        }
-
-    };
 </script>
+
+
+<script type="text/javascript">
+    function loginByWeibo() {
+        var weiboPlus = api.require('weiboPlus');
+        weiboPlus.auth(function(ret, err) {
+            if (ret.status) {
+                alert(JSON.stringify(ret));
+                var token = ret.accessToken;
+                weiboPlus.getUserInfo({
+                    token: token,
+                    userId: ''
+                }, function(ret, err) {
+                    if (ret.status) {
+                        api.alert(JSON.stringify(ret))
+                            // $api.setStorage('userName', ret.status.user);
+
+                    }
+                });
+            }
+        });
+        //   weiboPlus.auth(function(ret, err) {
+        //       if (ret.status) {
+        //           alert(JSON.stringify(ret));
+        //   //         weiboPlus.getUserInfo({
+        //   //             token: ret.token,
+        //   //             userId: ret.userId
+        //   //         }, function(ret, err) {
+        //   //             if (ret.status) {
+        //   //                 // $api.setStorage('userName', ret.nickname);
+        //   //                 // $api.setStorage('userAvatar', ret.headimgurl);
+        //   //                 // alert($api.getStorage('userAvatar'));
+        //   //                 alert(JSON.stringify(ret))
+        //   //                 goNextWin('./login_success.html')
+        //   //                 alert(JSON.stringify(ret.userInfo));
+        //   //             }
+        //   //         });
+        // }else{
+        //       alert(JSON.stringify(ret));
+        // }
+        //   });
+    }
+</script>
+
 
 </html>

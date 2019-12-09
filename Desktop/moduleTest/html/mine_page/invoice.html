@@ -1,101 +1,143 @@
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>我的发票</title>
-  <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
-  <link rel="stylesheet" href="../../css/common.css">
-  <style>
-      body {
-          margin: 0;
-          padding: 0;
-          background-color: #fff;
-      }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的发票</title>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
 
-      .aui-bar,
-      .aui-bar span {
-          color: #4b4b4b !important;
-      }
-      .tou{
-        width: 100%;
-        height: 50px;
-        background-color: #fff;
-        border-bottom: 1px solid #f7f7f7;
-      }
-      .geren{
-        width: 50%;
-        height: 50px;
-        font-size:15px;
-        text-align: center;
-        line-height: 50px;
-        float: left;
-      }
-      .gongsi{
-        width: 50%;
-        height: 50px;
-        font-size:15px;
-        text-align: center;
-        line-height: 50px;
-        float: left;
-      }
-      .gr{
-        width: 100%;
-        height:534px;
-        margin-top:30px;
-      }
-      .wenben {
-        margin:0 auto;
-        width: 70%;
-        height: 60px;
-        border-bottom: 1px solid #f1f1f1;
-      }
-      .wenben input{
-        width: 70%;
-        height: 90px;
-        color: #4b4b4b;
-        font-size:15px;
-      }
-      .gr p{
-        color: #cbcbcb;
-        font-size:10px;
-        margin-left:155px;
-        margin-top:30px;
-      }
-    button{
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        background-color: #fed765;
-      }
-  </style>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .aui-bar,
+        .aui-bar span {
+            color: #4b4b4b !important;
+        }
+
+        .tou {
+            width: 100%;
+            height: 50px;
+            background-color: #fff;
+            border-bottom: 1px solid #f7f7f7;
+        }
+
+        .geren {
+            width: 50%;
+            height: 50px;
+            font-size: 15px;
+            text-align: center;
+            line-height: 50px;
+            float: left;
+        }
+
+        .gongsi {
+            width: 50%;
+            height: 50px;
+            font-size: 15px;
+            text-align: center;
+            line-height: 50px;
+            float: left;
+        }
+
+        .gr {
+            width: 100%;
+            height: 534px;
+            margin-top: 30px;
+        }
+
+        .wenben {
+            margin: 0 auto;
+            width: 70%;
+            height: 60px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .wenben input {
+            width: 70%;
+            height: 90px;
+            color: #4b4b4b;
+            font-size: 15px;
+        }
+
+        .gr p {
+            color: #cbcbcb;
+            font-size: 10px;
+            margin-left: 155px;
+            margin-top: 30px;
+        }
+
+        button {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            background-color: #fed765;
+        }
+    </style>
 </head>
-<body>
-  <header class="aui-bar aui-bar-nav aui-bar-light">
-      <div class="aui-pull-left aui-btn">
-          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
-      </div>
-      <div class="aui-title">我的发票</div>
-      <div class="aui-pull-right aui-btn">
-          <!-- <img src="./image/kefu.png" alt=""> -->
-      </div>
-  </header>
-  <div class="tou">
-    <div class="geren">
-      <span>个人</span>
-    </div>
-    <div class="gongsi" onclik="goNextWin('./company.html')">
-      <span>公司</span>
-    </div>
-  </div>
-  <div class="gr">
-    <div class="wenben"><input type="text" name="" value="" placeholder="请输入你的姓名"></div>
-    <div class="wenben"><input type="text" name="" value="" placeholder="发票抬头:    个人"></div>
-    <div class="wenben"><input type="text" name="" value="" placeholder="发票内容:   商品明细"></div>
-    <p>发票将在订单完成后48小时内开具</p>
-  </div>
 
-    <button type="button" name="button" class="btn-normal"><b>提交</b></button>
-<script src="../../script/common.js" charset="utf-8"></script>
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title">我的发票</div>
+        <div class="aui-pull-right aui-btn">
+        </div>
+    </header>
+    <div id="container">
+        <div class="tou">
+            <div class="geren" @click='page(1)'>
+                <span>个人</span>
+            </div>
+            <div class="gongsi" @click='page(2)'>
+                <span>公司</span>
+            </div>
+        </div>
+        <div class="gr" v-if='currentPage === 1'>
+            <div class="wenben"><input type="text" name="" value="" placeholder="请输入你的姓名"></div>
+            <div class="wenben"><input type="text" name="" value="" placeholder="发票抬头:    个人"></div>
+            <div class="wenben"><input type="text" name="" value="" placeholder="发票内容:   商品明细"></div>
+            <p>发票将在订单完成后48小时内开具</p>
+        </div>
+
+        <div class="gr" v-if='currentPage === 2'>
+            <div class="wenben"><input type="text" name="" value="" placeholder="请输入公司名"></div>
+            <div class="wenben"><input type="text" name="" value="" placeholder="公司税务登记号"></div>
+            <div class="wenben"><input type="text" name="" value="" placeholder="地址"></div>
+            <div class="wenben"><input type="text" name="" value="" placeholder="电话"></div>
+            <div class="wenben"><input type="text" name="" value="" placeholder="银行账户"></div>
+            <div class="wenben"><input type="text" name="" value="" placeholder="开户行"></div>
+            <p>发票将在订单完成后48小时内开具</p>
+        </div>
+        <button type="button" name="button" class="btn-normal"><b>提交</b></button>
+    </div>
+    <script src="../../script/common.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var PERSIONAL_OR_COMPANY = {
+            PERSIONAL: 1,
+            COMPANY: 2,
+        }
+        new Vue({
+            el: '#container',
+            data() {
+                return {
+                    currentPage: 1
+                }
+            },
+            methods: {
+                page(index) {
+                    this.currentPage = index;
+                }
+            }
+        })
+    </script>
 </body>
+
 </html>

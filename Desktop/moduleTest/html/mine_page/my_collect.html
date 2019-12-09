@@ -98,7 +98,7 @@
 <body>
   <header class="aui-bar aui-bar-nav aui-bar-light">
       <div class="aui-pull-left aui-btn">
-          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+          <span class="aui-iconfont aui-icon-left" tapmode onclick="closeCurrentWin()"></span>
       </div>
       <div class="aui-title">我的收藏</div>
       <div class="aui-pull-right aui-btn">
@@ -110,7 +110,7 @@
       <div class="top1"><h1>我的文章</h1></div>
   </div>
   <div class="details">
-          <div class="order_details">
+          <div class="order_details" tapmode onclick="goNextWin('../home_page/detail.html')">
             <img src="../../image/other/offce.jpg" alt="">
             <div class="right">
               <h1>时代工场林凤驿站</h1>
@@ -161,5 +161,6 @@
             </div>
           </div>
   </div>
+  <script src="../../script/common.js" charset="utf-8"></script>
 </body>
 </html>

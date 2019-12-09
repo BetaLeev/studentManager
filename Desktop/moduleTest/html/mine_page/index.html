@@ -1,0 +1,725 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的首页</title>
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <!-- <link rel="stylesheet" href="../../css/common.css"> -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .aui-iconfont,
+        .aui-bar {
+            color: black !important;
+        }
+        /*.shezhi img {
+            width: 20px;
+            height: 20px;
+        }*/
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: auto;
+            font-family: SourceHanSansSC;
+        }
+
+        .social_clickUser_body_top {
+            width: 100%;
+            margin-top: 12px;
+            height: 100px;
+        }
+
+        .touxiang {
+            width: 66px;
+            height: 65px;
+            border-radius: 34px;
+            margin-left: 60px;
+        }
+
+        .social_clickUser_body_top span {
+            font-size: 1.125rem;
+            color: #4b4b4b;
+            width: 100%;
+            position: absolute;
+            width: 120px;
+            top: 100px;
+            margin-left: -60px;
+            left: 50%;
+        }
+
+        #image {
+            font-size: 1rem;
+            width: 100%;
+            height: 30px;
+            margin-left: 0px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #image .order {
+            position: relative;
+            box-sizing: border-box;
+            margin-left: 3%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #image .purse {
+            position: relative;
+            margin-left: 3%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #image .key {
+            position: relative;
+            margin-left: 4%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #image .buy {
+            position: relative;
+            margin-left: 2%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #wrap {
+            width: 100%;
+            height: 30px;
+            margin-top: -14px;
+            z-index: 999;
+            margin-left: 0px;
+            margin-bottom: -50px;
+            display: flex;
+            font-size: 16px;
+            justify-content: space-around;
+        }
+
+        #wrap #ordering {
+            position: relative;
+            z-index: 999;
+            box-sizing: border-box;
+            margin-left: 3%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #wrap #pursing {
+            position: relative;
+            z-index: 999;
+            margin-left: 3%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #wrap #keying {
+            position: relative;
+            z-index: 999;
+            margin-left: 4%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #wrap #buying {
+            position: relative;
+            margin-left: 2%;
+            width: 20%;
+            z-index: 999;
+            text-align: center;
+            height: 50px;
+        }
+
+        .option .arrow-panel .fenfexian {
+            box-sizing: border-box;
+            padding-right: 20px;
+            width: auto;
+            height: 15px;
+            color: #888;
+            text-align: left;
+        }
+
+        .option {
+            position: relative;
+            box-sizing: border-box;
+            font-size: 1rem;
+            left: -20px;
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .option .icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 50px;
+            background-repeat: no-repeat;
+            background-position: 12px center;
+            background-size: auto 20px;
+        }
+
+        .option .title {
+            box-sizing: border-box;
+            width: 100%;
+            height: 50px;
+            padding-left: 40px;
+            font-size: 0.875rem;
+            color: #444;
+            text-align: left;
+            line-height: 50px;
+        }
+
+        .option .arrow-panel {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            width: auto;
+            height: 60px;
+            background-image: url(../../image/xiayibu.png);
+            background-repeat: no-repeat;
+            background-size: 16px 24px;
+            background-position: right center;
+        }
+
+        .arrow-panel1 {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            width: 60px;
+            height: 60px;
+            background-image: url(../../image/my-order.png);
+            background-repeat: no-repeat;
+            background-size: 20px 24px;
+            background-position: right center;
+        }
+
+        .arrow-panel2 {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            width: 60px;
+            height: 60px;
+            background-image: url(../../image/my-wallet.png);
+            background-repeat: no-repeat;
+            background-size: 25px 24px;
+            background-position: right center;
+        }
+
+        .arrow-panel3 {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            width: 60px;
+            height: 60px;
+            background-image: url(../../image/my-integral.png);
+            background-repeat: no-repeat;
+            background-size: 20px 24px;
+            background-position: right center;
+        }
+
+        .arrow-panel4 {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            width: 60px;
+            height: 60px;
+            background-image: url(../../image/my-settle.png);
+            background-repeat: no-repeat;
+            background-size: 20px 24px;
+            background-position: right center;
+        }
+
+        .option .arrow-panel .text {
+            box-sizing: border-box;
+            padding-right: 20px;
+            width: auto;
+            height: 60px;
+            line-height: 60px;
+            font-size: 13px;
+            color: #888;
+            text-align: left;
+        }
+
+        section {
+            margin-top: 20px;
+        }
+
+        #user-avatar {
+            height: 88px;
+            margin-left: 30px;
+            width: 88px;
+            border-radius: 20px;
+        }
+    </style>
+
+
+    <style>
+        .row {
+            box-sizing: border-box;
+            width: auto;
+            height: 70px;
+            margin-left: 45px;
+            margin-right: 45px;
+            padding-top: 30px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .input {
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #b5b5b6;
+            /*text-align: center;*/
+        }
+
+        .wjmm {
+            width: 100%;
+            float: right;
+            margin-top: 10px;
+            margin-right: 80px;
+            font-size: 14px;
+            text-align: right;
+            color: #707070;
+        }
+
+        .login-btn {
+            position: relative;
+            width: 40%;
+            height: 50px;
+            outline: none;
+            border: none;
+            left: 50%;
+            margin-left: -20%;
+            background-color: #FED765;
+            color: #4b4b4b;
+            font-size: 1rem;
+            line-height: 50px;
+            margin-top: 30px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .qtdl {
+            width: 100%;
+            position: absolute;
+            bottom: 80;
+        }
+
+        .wz {
+            width: 99%;
+            margin-top: 160px;
+            text-align: center;
+        }
+
+        .wz .line {
+            display: inline-block;
+            width: 30%;
+            border-top: 1px solid #ccc;
+        }
+
+        .wz .txt {
+            color: #686868;
+            vertical-align: -4px;
+        }
+
+        #image {
+            margin-top: -10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #image .weixin {
+            position: relative;
+            box-sizing: border-box;
+            margin-top: 14px;
+            width: 50px;
+            height: 50px;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-image: url(../../image/wechat.png);
+            background-position: center center;
+        }
+
+        #image .weibo {
+            position: relative;
+            margin-top: 14px;
+            box-sizing: border-box;
+            background-repeat: no-repeat;
+            background-image: url(../../image/weibo.png);
+            width: 50px;
+            height: 50px;
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+
+        #image .youxiang {
+            position: relative;
+            margin-top: 12px;
+            box-sizing: border-box;
+            background-repeat: no-repeat;
+            background-image: url(../../image/email.png);
+            width: 50px;
+            height: 50px;
+            background-size: 100% 100%;
+            background-position: center center;
+        }
+
+        #wrap {
+            width: 100%;
+            height: 30px;
+            margin-top: -14px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #weixin {
+            margin-top: 30px;
+            position: relative;
+            box-sizing: border-box;
+            width: 50px;
+            height: 50px;
+            background-size: 100% 100%;
+            text-align: center;
+        }
+
+        #weibo {
+            margin-top: 30px;
+            position: relative;
+            margin-left: 3%;
+            width: 20%;
+            height: 15px;
+            text-align: center;
+        }
+
+        #youxiang {
+            margin-top: 30px;
+            position: relative;
+            margin-left: 4%;
+            width: 20%;
+            height: 50px;
+            text-align: center;
+        }
+
+        .highlight {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='container'>
+        <section v-if='userName'>
+            <header class="aui-bar aui-bar-nav aui-bar-light">
+                <div class="aui-pull-left aui-btn" tapmode onclick="goNextWin('./personalsetting.html')">
+                    <i class="aui-iconfont aui-icon-gear"></i>
+                </div>
+                <div class="aui-pull-right ">
+                </div>
+            </header>
+            <div class="social_clickUser_body_top">
+                <div id="img_box">
+                    <img id='user-avatar' :src="userAvatar" alt="">
+                </div>
+                <span id='user-name'>{{userName}}</span>
+            </div>
+            <div id="image">
+                <span class="order" tapmode onclick="goNextWin('./my_PublishArticle.html')">{{publish_count}}</span>
+                <span class="purse" tapmode onclick="goNextWin('./my_collect.html')">{{collect_count}}</span>
+                <span class="key" tapmode onclick="goNextWin('./my_attention.html')">{{attention_count}}</span>
+                <span class="buy" tapmode onclick="goNextWin('./fans.html')">{{fans_count}}</span>
+            </div>
+            <div id="wrap">
+                <span id="ordering" tapmode onclick="goNextWin('./my_PublishArticle.html')">发布</span>
+                <span id="pursing" tapmode onclick="goNextWin('./my_collect.html')">收藏</span>
+                <span id="keying" tapmode onclick="goNextWin('./my_attention.html')">关注</span>
+                <span id="buying" tapmode onclick="goNextWin('./fans.html')">粉丝</span>
+            </div>
+            <!-- 在下面加入分割线 -->
+            <div class="option">
+                <div class="arrow-panel ">
+                    <div class="fengexian "></div>
+                </div>
+            </div>
+
+            <div class="option " tapmode onclick="goNextWin('./my_order.html')">
+                <div class="icon icon-bussiness "></div>
+                <div class="title ">我的订单</div>
+                <div class="arrow-panel1 ">
+                    <div class="text "></div>
+                </div>
+            </div>
+            <div class="option " tapmode onclick="goNextWin('./my_wallet.html') ">
+                <div class="icon icon-qianyue "></div>
+                <div class="title ">我的钱包</div>
+                <div class="arrow-panel2 ">
+                    <div class="text "></div>
+                </div>
+            </div>
+            <div class="option" tapmode onclick="goNextWin('./jifenleyuan.html')">
+                <div class="icon icon-help "></div>
+                <div class="title ">我的积分</div>
+                <div class="arrow-panel3 ">
+                    <div class="text "></div>
+                </div>
+            </div>
+            <div class="option " tapmode onclick="goNextWin('./no_content.html')">
+                <div class="icon icon-yijianfankui "></div>
+                <div class="title ">我的结算</div>
+                <div class="arrow-panel4 ">
+                    <div class="text "></div>
+                </div>
+            </div>
+            <div class="option " tapmode onclick="goNextWin('./recommand.html') ">
+                <div class="icon icon-tuijianyoujiang "></div>
+                <div class="title">推荐有奖</div>
+                <div class="arrow-panel ">
+                    <div class="text "></div>
+                </div>
+            </div>
+            <div class="option " tapmode onclick="goNextWin('./no_content.html')">
+                <div class="icon icon-personalsetting "></div>
+                <div class="title">卡券</div>
+                <div class="arrow-panel ">
+                    <div class="text "></div>
+                </div>
+            </div>
+            <div class="option " tapmode onclick="goNextWin('usinghelp.html')">
+                <div class="icon icon-personalsetting "></div>
+                <div class="title ">使用帮助</div>
+                <div class="arrow-panel ">
+                    <div class="text "></div>
+                </div>
+            </div>
+            <div class="option" tapmode onclick="goNextWin('./feedback.html')">
+                <div class="icon icon-personalsetting "></div>
+                <div class="title ">意见反馈</div>
+                <div class="arrow-panel ">
+                    <div class="text "></div>
+                </div>
+            </div>
+            <div class="option " tapmode onclick="goNextWin('./personalsetting.html')">
+                <div class="icon icon-personalsetting "></div>
+                <div class="title ">个人设置</div>
+                <div class="arrow-panel ">
+                    <div class="text "></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 登陆部分 -->
+        <section v-if='!userName'>
+            <header class="aui-bar aui-bar-nav aui-bar-light">
+                <div class="aui-pull-left aui-btn">
+                    <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+                </div>
+                <div class="aui-title">会员登录</div>
+                <div class="aui-pull-right aui-btn">
+                    <span onclick="goNextWin('./register.html')">注册</span>
+                </div>
+            </header>
+            <div class="top">
+                <div class="row">
+                    <input id="phonenumber" class="input" type="text" placeholder="请输入您的手机号/邮箱">
+                </div>
+                <div class="row">
+                    <input id="password" class="input" type="password" placeholder="请输入您的账户密码">
+                </div>
+                <div class="wjmm" tapmode onclick="fnfortpassword()">忘记密码?</div>
+            </div>
+            <button class='btn-normal login-btn' onclick="goNextWin('./login_success.html')">登陆</button>
+            <div class="qtdl">
+                <div class="wz">
+                    <span class="line"></span>
+                    <span class="txt">其它登录</span>
+                    <span class="line"></span>
+                </div>
+                <div id="image">
+                    <span class="weixin" onclick="loginByWechat()">
+            </span>
+                    <span class="weibo" onclick="loginByWeibo()">
+            </span>
+                    <span class="youxiang">
+            </span>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+
+    <script src="../../script/api.js" charset="utf-8"></script>
+    <script src="../../script/common.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var name = $api.getStorage('userName') || '';
+        var avatar = $api.getStorage('userAvatar') || '';
+        apiready = function(){
+        queryCollectCount()
+
+        }
+        function queryCollectCount() {
+            var model = api.require('model');
+            var query = api.require('query');
+            query.createQuery(function(ret,err){
+              query.whereEqual({
+                  qid:ret.qid,
+                  column: 'openId',
+                  value: 'olBie5uvmWEaz9BrR1a3ey0TACIA'
+              });
+              model.count({
+                  class: "era_my_collect",
+                  qid: ret.qid
+              }, function(ret, err) {
+                  if (ret) {
+                      app.collect_count = ret.count
+                  } else {
+                      alert(JSON.stringify(err));
+                  }
+              });
+            });
+        }
+        var app = new Vue({
+            el: '#container',
+            computed: {},
+            data() {
+                return {
+                    userName: name,
+                    publish_count:1,
+                    collect_count: 0,
+                    attention_count:4,
+                    fans_count:5,
+                    userAvatar: avatar
+                }
+            },
+            methods: {}
+        })
+    </script>
+
+    <script type="text/javascript">
+        // //微信登陆模块
+        function loginByWechat() {
+            var wxPlus = api.require('wxPlus');
+            wxPlus.auth({
+                apiKey: 'wxf476d7072eeddaae'
+            }, function(ret, err) {
+                if (ret.status) {
+                    wxPlus.getToken({
+                        apiKey: 'wxf476d7072eeddaae',
+                        apiSecret: '749f4d30f5f112db7db6aafbaf03eb05',
+                        code: ret.code
+                    }, function(ret, err) {
+                        if (ret.status) {
+                            wxPlus.getUserInfo({
+                                accessToken: ret.accessToken,
+                                openId: ret.openId
+                            }, function(ret, err) {
+                                if (ret.status) {
+                                    var model = api.require("model");
+                                    model.config({
+                                        appKey: 'B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E',
+                                    })
+                                    model.insert({
+                                        class: 'era_user',
+                                        value: {
+                                            name: ret.nickname,
+                                            avatar: ret.headimgurl,
+                                            identifer: 'wechat',
+                                            openId: ret.openid
+                                        }
+                                    }, function(ret, err) {
+                                        if (err) {
+                                            console.log(err)
+                                            swal("Oops", "微信登陆失败", "error")
+                                        } else if (ret) {
+                                            swal("成功", "授权登录成功", "success");
+                                            api.closeWin();
+                                        }
+                                    })
+                                    $api.setStorage('userName', ret.nickname);
+                                    $api.setStorage('openid', ret.openid);
+                                    $api.setStorage('userAvatar', ret.headimgurl);
+                                } else {
+                                    swal("Oops", "微信登陆失败", "error")
+                                }
+                            });
+                        } else {
+                            swal("Oops", "微信登陆失败", "error")
+                        }
+                    });
+                } else {
+                    swal("Oops", "微信登陆失败", "error")
+                }
+            });
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        function loginByWeibo() {
+            var weiboPlus = api.require('weiboPlus');
+            weiboPlus.auth(function(ret, err) {
+                if (ret.status) {
+                    alert(JSON.stringify(ret));
+                    var token = ret.accessToken;
+                    weiboPlus.getUserInfo({
+                        token: token,
+                        userId: ''
+                    }, function(ret, err) {
+                        if (ret.status) {
+                            api.alert(JSON.stringify(ret))
+                                // $api.setStorage('userName', ret.status.user);
+
+                        }
+                    });
+                }
+            });
+            //   weiboPlus.auth(function(ret, err) {
+            //       if (ret.status) {
+            //           alert(JSON.stringify(ret));
+            //   //         weiboPlus.getUserInfo({
+            //   //             token: ret.token,
+            //   //             userId: ret.userId
+            //   //         }, function(ret, err) {
+            //   //             if (ret.status) {
+            //   //                 // $api.setStorage('userName', ret.nickname);
+            //   //                 // $api.setStorage('userAvatar', ret.headimgurl);
+            //   //                 // alert($api.getStorage('userAvatar'));
+            //   //                 alert(JSON.stringify(ret))
+            //   //                 goNextWin('./login_success.html')
+            //   //                 alert(JSON.stringify(ret.userInfo));
+            //   //             }
+            //   //         });
+            // }else{
+            //       alert(JSON.stringify(ret));
+            // }
+            //   });
+        }
+    </script>
+
+
+</body>
+
+</html>

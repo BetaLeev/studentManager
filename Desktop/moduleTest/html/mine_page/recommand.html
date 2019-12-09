@@ -1,191 +1,274 @@
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>推荐有奖</title>
-  <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
-  <link rel="stylesheet" href="../../css/common.css">
-  <style>
-      body {
-          margin: 0;
-          padding: 0;
-          background-color: #fff;
-      }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>推荐有奖</title>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <link href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
 
-      .aui-bar,
-      .aui-bar span {
-          color: #4b4b4b !important;
-      }
-      .aui-btn img{
-        width: 20px;
-        height: 20px;
-      }
-      .haibao{
-        width: 100%;
-        height: 200px;
-        border-bottom: 1px solid #4b4b4b;
-        border-top: 1px solid #4b4b4b;
-      }
-      .haibao h1{
-        text-align: center;
-        line-height:200px;
-      }
-      .shenfen{
-        width: 100%;
-        height:130px;
+        .aui-bar,
+        .aui-bar span {
+            color: #4b4b4b !important;
+        }
 
-      }
-      .shenfen h1{
-        font-size:17px;
-        margin-left:20px;
-        color: #4b4b4b;
-        margin-top:20px;
-      }
-      .shenfen1{
-        width: 50%;
-        height: 50px;
-        text-align: center;
-        line-height:50px;
-        float: left;
-      }
-      .shenfen1 div{
-        width: 20px;
-        height: 20px;
-        border-radius:50%;
-        background-color: #fed765;
-        float: left;
-        margin-left: 20px;
-        margin-top:15px;
-      }
-      .shenfen1 h1{
-        font-size:17px;
-        margin-left:20px;
-        margin-top:0px;
-        color: #4b4b4b;
-        float: left;
-      }
-      .gr{
-        width: 100%;
-        height:150px;
-      }
-      .wenben {
-        margin:0 auto;
-        width: 55%;
-        height: 50px;
-        border-bottom: 1px solid #f1f1f1;
-      }
-      .wenben input{
-        width: 100%;
-        height: 60px;
-        text-align: center;
-        color: #4b4b4b;
-        font-size:15px;
-      }
-      .yixiang{
-        width: 100%;
-        height: 60px;
-      }
-      .yixiang1{
-        width:80%;
-        height: 60px;
-        margin:0 auto;
-      }
-      .yixiang2{
-        width: 20%;
-        height: 50px;
-        float: left;
-        margin-left:10px;
-        border-bottom: 1px solid #f1f1f1;
-      }
-      .yixiang2 input{
-        width: 100%;
-        height: 60px;
-        text-align: center;
-        color: #4b4b4b;
-        font-size:15px;
-      }
-      .yixiang3{
-        width: 23%;
-        height: 50px;
-        float: left;
-        margin-left:20px;
-        border-bottom: 1px solid #f1f1f1;
-      }
-      .yixiang3 input{
-        width: 100%;
-        height: 60px;
-        text-align: center;
-        color: #4b4b4b;
-        font-size:15px;
-      }
-      .yixiang4{
-        width: 34%;
-        height: 50px;
-        float: left;
-        margin-left:20px;
-        border-bottom: 1px solid #f1f1f1;
-      }
-      .yixiang4 input{
-        width: 100%;
-        height: 60px;
-        text-align: center;
-        color: #4b4b4b;
-        font-size:15px;
-      }
-      button{
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        background-color: #fed765;
-      }
-  </style>
+        .aui-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .haibao {
+            width: 100%;
+            height: 200px;
+            border-bottom: 1px solid #4b4b4b;
+            border-top: 1px solid #4b4b4b;
+        }
+
+        .haibao h1 {
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .shenfen {
+            width: 100%;
+            height: 130px;
+        }
+
+        .shenfen h1 {
+            font-size: 17px;
+            margin-left: 20px;
+            color: #4b4b4b;
+            margin-top: 20px;
+        }
+
+        .shenfen1 {
+            width: 50%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            float: left;
+        }
+
+        .shenfen1 div {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fed765;
+            float: left;
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+
+        .shenfen1 h1 {
+            font-size: 17px;
+            margin-left: 20px;
+            margin-top: 0px;
+            color: #4b4b4b;
+            float: left;
+        }
+
+        .gr {
+            width: 100%;
+            height: 150px;
+        }
+
+        .wenben {
+            margin: 0 auto;
+            width: 55%;
+            height: 50px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .wenben input {
+            width: 100%;
+            height: 60px;
+            text-align: center;
+            color: #4b4b4b;
+            font-size: 15px;
+        }
+
+        .yixiang {
+            width: 100%;
+            height: 60px;
+        }
+
+        .yixiang1 {
+            width: 80%;
+            height: 60px;
+            margin: 0 auto;
+        }
+
+        .yixiang2 {
+            width: 20%;
+            height: 50px;
+            float: left;
+            margin-left: 10px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .yixiang2 input {
+            width: 100%;
+            height: 60px;
+            text-align: center;
+            color: #4b4b4b;
+            font-size: 15px;
+        }
+
+        .yixiang3 {
+            width: 23%;
+            height: 50px;
+            float: left;
+            margin-left: 20px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .yixiang3 input {
+            width: 100%;
+            height: 60px;
+            text-align: center;
+            color: #4b4b4b;
+            font-size: 15px;
+        }
+
+        .yixiang4 {
+            width: 34%;
+            height: 50px;
+            float: left;
+            margin-left: 20px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .yixiang4 input {
+            width: 100%;
+            height: 60px;
+            text-align: center;
+            color: #4b4b4b;
+            font-size: 15px;
+        }
+
+        .btn-normal {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            background-color: #fed765;
+        }
+    </style>
 </head>
-<body>
-  <header class="aui-bar aui-bar-nav aui-bar-light">
-      <div class="aui-pull-left aui-btn">
-          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
-      </div>
-      <div class="aui-title">我的钱包</div>
-      <div class="aui-pull-right aui-btn">
-          <span class="aui-iconfont aui-icon-forward"></span>
 
-      </div>
-  </header>
-  <div class="haibao">
-    <h1>(赚积分活动海报)</h1>
-  </div>
-  <div class="shenfen">
-    <h1>你的身份</h1>
-    <div class="shenfen1">
-      <div></div>
-      <h1>时代工场客户</h1>
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title">我的推荐</div>
+        <div class="aui-pull-right aui-btn">
+            <span class="aui-iconfont aui-icon-forward" onclick="wxShare()"></span>
+
+        </div>
+    </header>
+    <div id="recommand">
+        <div class="haibao">
+            <h1>(赚积分活动海报)</h1>
+        </div>
+        <div class="shenfen">
+            <h1>你的身份</h1>
+            <div class="shenfen1">
+                <div> <input name='role' type="radio" value='时代工场客户' v-model="form.role"></div>
+                <h1>时代工场客户</h1>
+            </div>
+            <div class="shenfen1">
+                <div> <input name='role' type="radio" value='时代工场业主' v-model="form.role"></div>
+                <h1>时代工场业主</h1>
+            </div>
+            <div class="shenfen1">
+                <div>
+                    <input name='role' type="radio" value='时代工场员工' v-model="form.role">
+                </div>
+                <h1>时代工场员工</h1>
+            </div>
+            <div class="shenfen1">
+                <div> <input name='role' type="radio" value='其他人员' v-model="form.role"></div>
+                <h1>其他人员</h1>
+            </div>
+        </div>
+        <div class="gr">
+            <div class="wenben"><input type="text" name="name" v-model='form.name' value="" placeholder="请输入您的姓名"></div>
+            <div class="wenben"><input type="text" name="tel" v-model='form.tel' value="" placeholder="请输入您的手机号"></div>
+            <div class="wenben"><input type="text" name="referee" v-model='form.referee' value="" placeholder="请输入被推荐人的姓名"></div>
+        </div>
+        <div class="yixiang">
+            <div class="yixiang1">
+                <div class="yixiang2"><input type="text" name="city" v-model='form.city' value="" placeholder="意向城市"></div>
+                <div class="yixiang3"><input type="text" name="station" v-model='form.station' value="" placeholder="意向工位"></div>
+                <div class="yixiang4"><input type="text" name="trade" v-model='form.trade' value="" placeholder="意向驿站行业"></div>
+            </div>
+        </div>
+        <button class="btn-normal" @click='submitForm'>立即推荐</button>
     </div>
-    <div class="shenfen1">
-      <div></div>
-      <h1>时代工场业主</h1>
-    </div>
-    <div class="shenfen1">
-      <div></div>
-      <h1>时代工场员工</h1>
-    </div>
-    <div class="shenfen1">
-      <div></div>
-      <h1>其他人员</h1>
-    </div>
-  </div>
-  <div class="gr">
-    <div class="wenben"><input type="text" name="" value="" placeholder="请输入您的姓名"></div>
-    <div class="wenben"><input type="text" name="" value="" placeholder="请输入您的手机号"></div>
-    <div class="wenben"><input type="text" name="" value="" placeholder="请输入被推荐人的姓名"></div>
-  </div>
-  <div class="yixiang">
-    <div class="yixiang1">
-      <div class="yixiang2"><input type="text" name="" value="" placeholder="意向城市"></div>
-      <div class="yixiang3"><input type="text" name="" value="" placeholder="意向工位"></div>
-      <div class="yixiang4"><input type="text" name="" value="" placeholder="意向驿站行业"></div>
-    </div>
-  </div>
-  <button class="btn-normal">立即推荐</button>
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#recommand',
+            data() {
+                return {
+                    form: {
+                        name: '',
+                        tel: '',
+                        role: '',
+                        referee: '',
+                        city: "",
+                        station: '',
+                        trade: ''
+                    }
+                }
+            },
+            methods: {
+                submitForm() {
+                  if(this.form.name == '' || this.form.tel){
+                    swal("错误", "发布遇到问题", "error")
+
+                  }else{
+                    var model = api.require("model");
+                    model.config({
+                        appKey: 'B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E',
+                    })
+                    model.insert({
+                        class: "era_my_recommand",
+                        value: {
+                            name: this.form.name,
+                            tel: this.form.tel,
+                            role: this.form.role,
+                            referee: this.form.referee,
+                            city: this.form.city,
+                            station: this.form.station,
+                            trade: this.form.trade
+                        }
+                    }, function(ret, err) {
+                        if (err) {
+                            swal("Oops", "发布遇到问题", "error")
+                        } else if (ret) {
+                            swal("成功", "发布成功请等待审核", "success")
+                        }
+                    });
+                    console.log(this.form);
+                    this.form = {}
+                  }
+
+                }
+            }
+        })
+    </script>
+    <script src="../../script/common.js" charset="utf-8"></script>
 </body>
+
 </html>

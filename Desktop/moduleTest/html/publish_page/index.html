@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
     <title>发布首页</title>
     <style>
         body {
@@ -54,7 +57,6 @@
 
         .center-top1 {
             width: 100%;
-
             clear: both;
         }
 
@@ -91,7 +93,6 @@
         }
 
         .country {
-            width: 50px;
             height: 25px;
             border-radius: 10px;
             text-align: center;
@@ -99,40 +100,6 @@
             background: #fff;
             margin-left: 45px;
             margin-top: 10px;
-        }
-
-        .city {
-            width: 50px;
-            height: 25px;
-            border-radius: 10px;
-            text-align: center;
-            line-height: 30px;
-            background: #fff;
-            margin-left: 45px;
-            margin-top: 10px;
-        }
-
-        .place {
-            width: 50px;
-            height: 25px;
-            border-radius: 10px;
-            text-align: center;
-            line-height: 30px;
-            background: #fff;
-            margin-left: 45px;
-            margin-top: 10px;
-        }
-
-        .threeMemu2 {
-            width: 30%;
-            height: 50px;
-            float: left;
-        }
-
-        .threeMemu3 {
-            width: 30%;
-            height: 50px;
-            float: left;
         }
 
         .center-top2 {
@@ -209,28 +176,38 @@
             text-align: center;
             line-height: 50px;
         }
+
+        input[type=text] {
+            padding-left: 15px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="top">
+    <div tapmode class="top" onclick="goNextWin('./publish_home.html')">
         <img src="../../image/college-logo.png" alt="">
         <span>站主学院</span>
     </div>
-    <div class="center">
+    <div class="center" id='form'>
         <div class="center-top">
-            <div class="center-top1"><span>姓名/Name</span><input type="text"></div>
-            <div class="center-top1"><span>联系电话/Phone</span><input type="text"></div>
-            <div class="center-top1"><span>闲置办公面积/Space</span><input type="text"></div>
+            <div class="center-top1"><span>姓名/Name</span><input type="text" v-model='form.name'></div>
+            <div class="center-top1"><span>联系电话/Phone</span><input type="text" v-model='form.tel'></div>
+            <div class="center-top1"><span>闲置办公面积/Space</span><input type="text" v-model='form.space'></div>
             <div class="threeMemu">
                 <div class="threeMemu1">
-                    <div class="country">中国﹀</div>
+                    <select class="country" v-model='form.country'>
+                    <option  v-for='item in jsonEd.country' :value="item">{{item}}</option>
+                  </select>
                 </div>
-                <div class="threeMemu2">
-                    <div class="city">北京﹀</div>
+                <div class="threeMemu1">
+                    <select class="country" v-model='form.city'>
+                    <option  v-for='item in jsonEd.city' :value="item">{{item}}</option>
+                  </select>
                 </div>
-                <div class="threeMemu3">
-                    <div class="place">丰台﹀</div>
+                <div class="threeMemu1">
+                    <select class="country" v-model='form.area'>
+                    <option  v-for='item in jsonEd.area' :value="item">{{item}}</option>
+                  </select>
                 </div>
             </div>
             <div class="center-top2">
@@ -239,7 +216,7 @@
             </div>
         </div>
         <div class="center-bottom">
-            <button type="button" name="button" onclick="goNextWin('./publish_home.html')">开始发布</button>
+            <button type="button" name="button" @click="submitForm()">开始发布</button>
         </div>
     </div>
     <div class="bottom">
@@ -262,18 +239,99 @@
     </div>
     <script src="../../script/api.js" charset="utf-8"></script>
     <script src="../../script/common.js" charset="utf-8"></script>
-    <!-- <script type="text/javascript">
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-      function routerTo(path){
-        var path = 'publish_store.html'
-        api.openWin({
-          name:'发布',
-          url:'./publish_store.html'
+    <script type="text/javascript">
+        function telReg(tel) {
+            var telReg = /^[1][3,4,5,7,8][0-9]{9}$/;
+            if (telReg.test(tel)) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        var app = new Vue({
+            el: '#form',
+            computed: {
+                jsonEd() {
+                    var country = this.form.country;
+                    var city = this.form.city;
+                    if (country === '中国') {
+                        var cityList = ['北京', '山西'];
+                        this.json.city = ['北京', '山西'];
+                        if (city === '北京') {
+                            this.json.area = ['丰台', '朝阳', '海淀']
+                        } else if (city === '山西') {
+                            this.json.area = ['太原']
+                        }
+                    } else if (country === '加拿大') {
+                        console.log(country)
+                        this.json.city = ['安大略省'];
+                        console.log(this.json.city)
+                        this.json.area = ['多伦多', '渥太华']
+                        console.log(this.json.area)
+
+                    }
+                    return this.json;
+                }
+            },
+            data() {
+                return {
+                    json: {
+                        country: [
+                            '中国', '加拿大'
+                        ],
+                        city: ['北京'],
+                        area: ['丰台', '朝阳']
+                    },
+                    form: {
+                        name: '',
+                        tel: '',
+                        space: '',
+                        country: '中国',
+                        city: '北京',
+                        area: '丰台',
+                    }
+                }
+            },
+            methods: {
+                submitForm() {
+                    var tel = this.form.tel;
+                    if (telReg(tel)) {
+                        var form = this.form;
+                        var model = api.require("model");
+                        model.config({
+                            appKey: 'B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E',
+                        })
+                        model.insert({
+                            class: "era_pub_msg",
+                            value: {
+                                name: this.form.name,
+                                tel: this.form.tel,
+                                space: this.form.space,
+                                country: this.form.country,
+                                city: this.form.city,
+                                area: this.form.area
+                            }
+                        }, function(ret, err) {
+                            if (err) {
+                                swal("Oops", "发布遇到问题", "error")
+                            } else if (ret) {
+                                swal("成功", "发布成功请等待审核", "success")
+                            }
+                        });
+                        this.form = {}
+                        return;
+                    } else {
+                        this.form.tel = '';
+                        swal("错误", "手机号输入有误", "error")
+                    }
+
+                }
+            }
         })
-      }
-
-
-    </script> -->
+    </script>
 </body>
 
 </html>

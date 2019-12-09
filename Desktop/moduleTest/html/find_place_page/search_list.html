@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>搜索框列表</title>
+  <style>
+  body{
+    margin: 0;
+    padding: 0;
+  }
+  header {
+      width: 100%;
+      height: 70px;
+      background-color: #fff;
+  }
+
+  header * {
+      color: #4b4b4b !important;
+  }
+  .head{
+      width: 100%;
+      height: 80px;
+      position: fixed;
+      background: #fff;
+      z-index: 9999;
+  }
+  .head input{
+      width: 250px;
+      height:40px;
+      font-size:1rem;
+      border:none;
+      background: #EAEAEA;
+      border-radius:4px;
+      margin-left:20px;
+      margin-top:30px;
+      color: #cdcdcd;
+  }
+  .head span{
+      font-size:15px;
+      margin-left:16px;
+  }
+  .tab {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      /*display: flex;*/
+      overflow: hidden;
+  }
+
+  .taui-tab {
+      width: 100%;
+  }
+
+  .tab-container {
+      height: 420px;
+      width: 100%;
+      position: relative;
+      padding: 10px;
+      background: #ffffff;
+      height: auto;
+      overflow-y: scroll;
+  }
+
+  .tab-container-item {
+      width: 100%;
+  }
+
+  .aui-tab-item {
+      font-size: .875rem;
+      text-align: center;
+  }
+
+  .aui-active {
+      font-size: 1.18rem;
+      color: black !important;
+      background: #fff;
+      border-bottom: 2px solid #e4e4e4!important;
+  }
+
+  .aui-active::after {
+      content: '';
+      position: absolute;
+      top: 0px;
+      right: -10px;
+      height: 42px;
+      background: #fff;
+      z-index: 999;
+      width: 13px;
+  }
+
+  .tab-item-plate {
+      display: flex;
+  }
+
+  .tab-item-plate div {
+      width: 50%;
+      height: 115px;
+      padding-top: 10px;
+      padding-right: 5px;
+      padding-left: 5px;
+      padding-bottom: 12px;
+  }
+
+  .tab-container-item-title {
+      text-indent: .875rem;
+      position: relative;
+  }
+
+  .tab-container-item-title::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      margin-left: 20px;
+      background-color: #e4e4e4;
+      border: 1px solid #e4e4e4;
+      width: 60%;
+  }
+
+  .tab-container-left {}
+
+  .tab-container-left img {
+      height: 100%;
+      width: 100%;
+      background-size: contain;
+  }
+
+  .tab-container-right {
+      position: relative;
+  }
+
+  .tab-container-title {
+      font-size: .75rem;
+  }
+
+  .tab-container-subtitle {
+      font-size: .5rem;
+  }
+
+  .tab-container-price {
+      position: absolute;
+      font-size: .6rem;
+      bottom: 10px;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="head">
+        <input id='search-input' type="text" placeholder="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp区位/企业发展需求">
+        <span onclick="closeCurrentWin()">取&nbsp消</span>
+    </div>
+  </header>
+  <div class="tab">
+      <div class="tab-container">
+          <div class="tab-container-item" tapmode onclick="goNextWin('../detail.html')">
+              <div class="tab-item-plate">
+                  <div class="tab-container-left">
+                    <img src="../../../image/other/linfeng.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林凤驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="tab-container-item" tapmode onclick="goNextWin('../detail.html')">
+
+              <div class="tab-item-plate">
+                  <div class="tab-container-left">
+                    <img src="../../../image/other/office.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林凤驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+              <div class="tab-item-plate">
+                  <div class="tab-container-left">
+                      <img src="../../../image/other/linfeng.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林凤驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="tab-container-item" tapmode onclick="goNextWin('../detail.html')">
+
+              <div class="tab-item-plate">
+                  <div class="tab-container-left">
+                      <img src="../../../image/other/lion.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林风驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+              <div class="tab-item-plate" tapmode onclick="goNextWin('../detail.html')">
+                  <div class="tab-container-left">
+                    <img src="../../../image/other/linfeng.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林风驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+              <div class="tab-item-plate" tapmode onclick="goNextWin('../detail.html')">
+                  <div class="tab-container-left">
+                    <img src="../../../image/other/linfeng.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林风驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+              <div tapmode class="tab-item-plate" tapmode onclick="goNextWin('../detail.html')">
+                  <div class="tab-container-left">
+                      <img src="../../../image/other/image.jpg" alt="">
+                  </div>
+                  <div class="tab-container-right">
+                      <p class="tab-container-title">时代工场林风驿站</p>
+                      <p class="tab-container-subtitle">适用于：喝茶会友，休养生息</p>
+                      <p class="tab-container-price">¥499起</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <script type="text/javascript" src='../../../script/api.js'></script>
+  <script type="text/javascript" src="../../../aui-20170109-v2.1/script/aui-slide.js"></script>
+  <script type="text/javascript" src="../../../aui-20170109-v2.1/script/aui-tab.js"></script>
+  <script src="../../../script/common.js" charset="utf-8"></script>
+
+</body>
+</html>

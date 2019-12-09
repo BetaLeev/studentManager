@@ -25,7 +25,6 @@
             border-bottom: 1px solid gray;
             padding-bottom: 5px;
             margin-bottom: 40px;
-            /*display: */
         }
 
         .text {
@@ -109,11 +108,12 @@
     <div class="container">
         <div class="title">
             <span>标题</span>
-            <!-- <input type="text"> -->
+            <input type="text" name='title'>
         </div>
         <div class="text">
             <span>正文</span>
-            <img src="" alt="" id="img">
+            <textarea name="text" rows="8" cols="80"></textarea>
+            <!-- <img src="" alt="" id="img"> -->
         </div>
     </div>
 
@@ -150,7 +150,6 @@
                     rotation: true
                 }, function(ret) {
                     if (ret) {
-                      // alert(JSON.stringify(ret))
                       document.getElementById('img').src = ret.list[0].path;
                       UIAlbumBrowser.transPath({
                               path: ret.list[0].path

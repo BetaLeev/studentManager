@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,26 +17,27 @@
             padding-top: 25px;
             width: 100%;
             height: 70px;
-
             background: #fdd66e !important;
         }
-        .aui-title{
-          margin: 0 auto !important;
-          right: 0 !important;
-          left:0 !important;
-          width: 80% !important;
+
+        .aui-title {
+            margin: 0 auto !important;
+            right: 0 !important;
+            left: 0 !important;
+            width: 80% !important;
         }
+
         .menu {
             display: flex;
             justify-content: space-around;
         }
+
         .menu p {
             text-align: center;
             font-size: 1rem;
             line-height: 50px;
             color: #707070;
         }
-
 
         .active {
             font-size: 1.2rem !important;
@@ -46,27 +46,8 @@
             margin-top: -3px;
             color: #fff;
         }
-
-        .clicked-btn-more-list {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 1px;
-            width: 120px;
-            background: #ffffff;
-        }
-
-        .icon-item {
-            display: flex;
-            padding: 10px 15px;
-            margin: 0 auto;
-            line-height: 30px;
-        }
-
-        .icon-item img {
-            height: 30px;
-            margin-right: 5px;
-            width: 35px;
+        .aui-popup {
+            top: 70px;
         }
     </style>
 </head>
@@ -79,57 +60,80 @@
         </div>
         <div class="aui-title">
             <div class="menu">
-                <p class="navbar">推荐</p >
-                <p class="navbar active">此刻</p >
-                <p class="navbar">资讯</p >
-                <p class="navbar">联系人</p >
+                <p class="navbar">推荐</p>
+                <p class="navbar active">此刻</p>
+                <p class="navbar">资讯</p>
+                <p class="navbar">联系人</p>
             </div>
         </div>
+
         <div class="aui-pull-right aui-btn">
-            <span id='plus-to-close' class="aui-iconfont aui-icon-plus"></span>
-            <div class="clicked-btn-more-list">
-                <div class="icon-item">
-                    <img src="./img/icon/pay.png" alt=""><span>发此刻</span>
-                </div>
-                <div class="icon-item">
-                    <img src="./img/icon/kefu.png" alt=""><span>建群聊</span>
-                </div>
-                <div class="icon-item" tapmode>
-                    <img  src="./img/icon/jiaoliu.png" alt=""><span>扫一扫</span>
-                </div>
-                <div class="icon-item" tapmode>
-                    <img  src="./img/icon/jiaoliu.png" alt=""><span>邀请参观</span>
-                </div>
-                <div class="icon-item" tapmode>
-                    <img  src="./img/icon/jiaoliu.png" alt=""><span>免费参观</span>
-                </div>
-            </div>
+            <span id='plus-to-close' class="aui-iconfont aui-icon-plus" aui-popup-for="hideMenu"></span>
+            <div class="aui-popup aui-popup-top-right" id="hideMenu">
+                <div class="aui-popup-arrow"></div>
+                <div class="aui-popup-content">
+                    <ul class="aui-list aui-list-noborder">
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-label-icon">
+                                <i class="aui-iconfont aui-icon-my aui-text-warning"></i>
+                            </div>
+                            <div class="aui-list-item-inner aui-list-item-middle">
+                                发此刻
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-label-icon">
+                                <i class="aui-iconfont aui-icon-mail aui-text-info"></i>
+                            </div>
+                            <div class="aui-list-item-inner">
+                                建群聊
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-label-icon">
+                                <i class="aui-iconfont aui-icon-star aui-text-danger"></i>
+                            </div>
+                            <div class="aui-list-item-inner">
+                                扫一扫
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-label-icon">
+                                <i class="aui-iconfont aui-icon-star aui-text-danger"></i>
+                            </div>
+                            <div class="aui-list-item-inner">
+                                邀请参观
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-label-icon">
+                                <i class="aui-iconfont aui-icon-star aui-text-danger"></i>
+                            </div>
+                            <div class="aui-list-item-inner">
+                                免费参观
+                        </li>
+                    </ul>
+                    </div>
+                    </div>
+                    </div>
     </header>
-<script src="../../../script/api.js" charset="utf-8"></script>
+    <script src="../../../script/api.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../../aui-20170109-v2.1/script/aui-popup.js"></script>
     <script type="text/javascript">
-        $api.addEvt($api.dom('#plus-to-close'), 'click', function() {
-            if ($api.hasCls($api.dom('#plus-to-close'), 'aui-icon-plus')) {
-                $api.css($api.dom('.clicked-btn-more-list'), 'display:block');
-                $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-plus');
-                $api.addCls($api.dom('#plus-to-close'), 'aui-icon-close');
-            } else {
-                $api.css($api.dom('.clicked-btn-more-list'), 'display:none');
-                $api.removeCls($api.dom('#plus-to-close'), 'aui-icon-close');
-                $api.addCls($api.dom('#plus-to-close'), 'aui-icon-plus');
-            }
-        })
+        var popup = new auiPopup();
     </script>
+
     <script type="text/javascript">
-    var navs = document.getElementsByClassName('navbar');
-    for (let i = 0; i < navs.length; i++) {
-        navs[i].onclick = function() {
-            for (var j = 0; j < navs.length; j++) {
-                $api.removeCls(navs[j], 'active');
+        var navs = document.getElementsByClassName('navbar');
+        for (let i = 0; i < navs.length; i++) {
+            navs[i].onclick = function() {
+                for (var j = 0; j < navs.length; j++) {
+                    $api.removeCls(navs[j], 'active');
+                }
+                $api.addCls(this, 'active');
             }
-            $api.addCls(this, 'active');
         }
-    }
     </script>
+
+
 </body>
 
 </html>

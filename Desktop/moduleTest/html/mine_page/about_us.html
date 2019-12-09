@@ -79,11 +79,11 @@
 <body>
     <header class="aui-bar aui-bar-nav aui-bar-light">
         <div class="aui-pull-left aui-btn">
-            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+            <span class="aui-iconfont aui-icon-left" tapmode onclick="closeCurrentWin()"></span>
         </div>
         <div class="aui-title">关于我们</div>
         <div class="aui-pull-right aui-btn">
-            <span class="aui-iconfont aui-icon-question"></span>
+            <span class="aui-iconfont aui-icon-question" tapmode onclick="goNextWin('./explain.html')"></span>
         </div>
     </header>
     <div class="top">
@@ -91,32 +91,35 @@
         <h1>版本号 V2.0</h1>
     </div>
     <div class="content">
-        <!-- <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时代工场Erawork，是以AI大数据为科技驱动的闲置空间共享办公运营平台。通过www.erawork.cn或App或时代工场服务号，线上+线下，您不仅能实现零押金全球办公，还能尽情享受企业社交带来的发展快感。与时代一起成长吧，我们将带你重新定义办公的意义。</p> -->
         <div class="pingfen">
             <h1>去评分</h1>
-            <img src="./image/xiayibu.png" alt="">
+            <div class="aui-pull-right">
+                <span style='font-size:1.2rem' class="aui-iconfont aui-icon-right"></span>
+            </div>
         </div>
         <div class="pingfen">
             <h1>功能介绍</h1>
-            <img src="./image/xiayibu.png" alt="">
+            <div class="aui-pull-right">
+                <span style='font-size:1.2rem' class="aui-iconfont aui-icon-right"></span>
+            </div>
         </div>
         <div class="pingfen">
             <h1>版本更新</h1>
-            <img src="./image/xiayibu.png" alt="">
+            <div class="aui-pull-right">
+                <span style='font-size:1.2rem' class="aui-iconfont aui-icon-right"></span>
+            </div>
         </div>
         <div class="pingfen">
             <h1>投诉意见</h1>
-            <img src="./image/xiayibu.png" alt="">
+            <div class="aui-pull-right">
+                <span style='font-size:1.2rem' class="aui-iconfont aui-icon-right"></span>
+            </div>
         </div>
 
     </div>
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script src="../../script/common.js" charset="utf-8"></script>
-<script type="text/javascript">
-    apiready = function() {
 
-    };
-</script>
 
 </html>

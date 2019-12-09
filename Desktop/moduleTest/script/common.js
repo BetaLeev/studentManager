@@ -3,6 +3,7 @@
 function closeCurrentWin(name) {
     api.closeWin({
         name: name || api.winName
+
     });
     return
 }
@@ -20,7 +21,41 @@ function goNextWin(path) {
     } else {
         return
     }
+}
 
+// 注意：使用本模块前，需在云编译页面勾选添加访问摄像头权限，若要访问相册也需沟通申请访问相册权限 不能同时使用的模块：wwprint
+function scanfHandle() {
+    var FNScanner = api.require('FNScanner');
+    FNScanner.open({
+        autorotation: true
+    }, function(ret, err) {
+        if (ret) {
+            if (ret.eventType == 'cancle') {
+                FNScanner.closeView();
+            }
+            // alert(JSON.stringify(ret));
+        } else {
+            alert(JSON.stringify(err));
+            FNScanner.closeView();
+        }
+    });
+}
+
+function deBlack() {
+    var FNScanner = api.require('FNScanner');
+    api.addEventListener({
+        name: 'resume'
+    }, function(ret, err) {
+        FNScanner.onResume();
+        // alert('应用回到前台');
+    });
+
+    api.addEventListener({
+        name: 'pause'
+    }, function(ret, err) {
+        FNScanner.onPause();
+        // alert('应用进入后台');
+    });
 }
 
 
@@ -31,7 +66,7 @@ function showMoreCity() {
             x: 0,
             y: 25,
             w: api.frameWidth,
-            h: api.frameHeight
+            h: api.frameHeight + 40
         },
         resource: 'widget://json/uicitylist.json',
         styles: {
@@ -63,12 +98,15 @@ function showMoreCity() {
         currentCity: '北京',
         locationWay: 'GPS',
         hotTitle: '热门城市',
-        fixedOn: api.frameName,
+        fixedOn: api.index,
         placeholder: '输入城市名或首字母查询'
     }, function(ret, err) {
         if (ret.eventType == 'selected') {
             var city = ret.cityInfo.city;
-            $api.text($api.byId('currentCity'), city)
+            $api.setStorage('city',city);
+                var span = "&nbsp <span class='aui-iconfont aui-icon-down'></span>"
+                var lastCity = $api.getStorage('city') + span
+            $api.html($api.byId('currentCity'), lastCity)
             UICityList.close()
         }
 
@@ -356,38 +394,41 @@ function setAnnotations() {
 
 // 支付部分
 // 微信支付
-function wxPay(){
-  var wxPayPlus = api.require('wxPayPlus');
-  wxPayPlus.payOrder({
-      apiKey: '',
-      orderId: '',
-      mchId: '',
-      nonceStr: '',
-      timeStamp: '',
-      package: '',
-      sign: ''
-  }, function(ret, err) {
-      if (ret.status) {
-          //支付成功
-      } else {
-          alert(err.code);
-      }
-  });
+function wxPay() {
+    var wxPayPlus = api.require('wxPayPlus');
+    wxPayPlus.getOrderId({
+    info: ''
+}, function(ret, err) {});
+    // wxPayPlus.payOrder({
+    //     apiKey: 'wxf476d7072eeddaae',
+    //     orderId: '',
+    //     mchId: '1561120381',
+    //     nonceStr: '',
+    //     timeStamp: '',
+    //     package: '',
+    //     sign: ''
+    // }, function(ret, err) {
+    //     if (ret.status) {
+    //         //支付成功
+    //     } else {
+    //         alert(err.code);
+    //     }
+    // });
 }
 
 // 阿里支付
-function aliPay() {
-    var aliPayPlus = api.require('aliPayPlus');
-    aliPayPlus.payOrder({
-        orderInfo: 'app_id=2015052600090779&biz_content=%7B%22timeout_express%22%3A%2230m%22%2C%22seller_id%22%3A%22%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%221%22%2C%22body%22%3A%22%E6%88%91%E6%98%AF%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%22%2C%22out_trade_no%22%3A%22IQJZSRC1YMQB5HU%22%7D&charset=utf-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2Fdomain.merchant.com%2Fpayment_notify&sign_type=RSA2&timestamp=2016-08-25%2020%3A26%3A31&version=1.0&sign=cYmuUnKi5QdBsoZEAbMXVMmRWjsuUj%2By48A2DvWAVVBuYkiBj13CFDHu2vZQvmOfkjE0YqCUQE04kqm9Xg3tIX8tPeIGIFtsIyp%2FM45w1ZsDOiduBbduGfRo1XRsvAyVAv2hCrBLLrDI5Vi7uZZ77Lo5J0PpUUWwyQGt0M4cj8g%3D'
-    }, function(ret, err) {
-        api.alert({
-            title: '支付结果',
-            msg: ret.code,
-            buttons: ['确定']
-        });
-    });
-}
+// function aliPay() {
+//     var aliPayPlus = api.require('aliPayPlus');
+//     aliPayPlus.payOrder({
+//         orderInfo: 'app_id=2015052600090779&biz_content=%7B%22timeout_express%22%3A%2230m%22%2C%22seller_id%22%3A%22%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22total_amount%22%3A%220.01%22%2C%22subject%22%3A%221%22%2C%22body%22%3A%22%E6%88%91%E6%98%AF%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%22%2C%22out_trade_no%22%3A%22IQJZSRC1YMQB5HU%22%7D&charset=utf-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2Fdomain.merchant.com%2Fpayment_notify&sign_type=RSA2&timestamp=2016-08-25%2020%3A26%3A31&version=1.0&sign=cYmuUnKi5QdBsoZEAbMXVMmRWjsuUj%2By48A2DvWAVVBuYkiBj13CFDHu2vZQvmOfkjE0YqCUQE04kqm9Xg3tIX8tPeIGIFtsIyp%2FM45w1ZsDOiduBbduGfRo1XRsvAyVAv2hCrBLLrDI5Vi7uZZ77Lo5J0PpUUWwyQGt0M4cj8g%3D'
+//     }, function(ret, err) {
+//         api.alert({
+//             title: '支付结果',
+//             msg: ret.code,
+//             buttons: ['确定']
+//         });
+//     });
+// }
 
 
 
@@ -402,85 +443,130 @@ function aliPay() {
 
 
 function wxShare() {
-  var wxPlus = api.require('wxPlus');
-  wxPlus.isInstalled(function(ret, err) {
-      if (ret.installed) {
-          alert("当前设备已安装微信客户端");
-      } else {
-          alert('当前设备未安装微信客户端');
-      }
-  });
-wxShareText()
+    var wxPlus = api.require('wxPlus');
+    wxPlus.isInstalled(function(ret, err) {
+        if (ret.installed) {
+          wxShareText()
+        } else {
+            api.alert('当前设备未安装微信客户端');
+        }
+    });
 }
 
-function wxShareText(){
-  var wxPlus = api.require('wxPlus');
-wxPlus.shareText({
-    apiKey: '',
-    scene: 'timeline',
-    text: '我分享的文本'
-}, function(ret, err) {
-    if (ret.status) {
-        alert('分享成功');
-    } else {
-        alert(err.code);
-    }
-});
+function wxShareText() {
+    var wxPlus = api.require('wxPlus');
+    wxPlus.shareText({
+        apiKey: 'wxf476d7072eeddaae',
+        scene: 'timeline',
+        text: '我分享的文本'
+    }, function(ret, err) {
+        if (ret.status) {
+            // alert('分享成功');
+        } else {
+            if(err.code===0){
+              api.alert('分享成功')
+            }else{
+              api.alert('分享失败')
+            }
+        }
+    });
 }
 
-function wxShareImg(){
-  var wxPlus = api.require('wxPlus');
-wxPlus.shareImage({
-    apiKey: '',
-    scene: 'session',
-    thumb: 'widget://a.jpg',
-    contentUrl: 'widget://b.jpg'
-}, function(ret, err) {
-    if (ret.status) {
-        alert('分享成功');
-    } else {
-        alert(err.code);
-    }
-});
+function wxShareImg(imgUrl) {
+  console.log(imgUrl)
+    // var wxPlus = api.require('wxPlus');
+    // wxPlus.shareImage({
+    //   apiKey: 'wxf476d7072eeddaae',
+    //     scene: 'session',
+    //     thumb: imgUrl,
+    //     contentUrl: imgUrl
+    // }, function(ret, err) {
+    //     if (ret.status) {
+    //         alert('分享成功');
+    //     } else {
+    //         alert(err.code);
+    //     }
+    // });
 }
 
-function wxAuthLogin(){
-  var wxPlus = api.require('wxPlus');
-wxPlus.auth({
-    apiKey: ''
-}, function(ret, err) {
-    if (ret.status) {
-        alert(JSON.stringify(ret));
-    } else {
-        alert(err.code);
-    }
-});
+
+function openLoading() {
+    var loadingLabel = api.require('loadingLabel');
+    loadingLabel.open({
+        centerY: 400
+    }, function(ret, err) {
+        if (ret) {
+            alert(JSON.stringify(ret));
+        } else {
+            alert(JSON.stringify(err));
+        }
+    });
 }
 
-function getWxToken(){
-  var wxPlus = api.require('wxPlus');
-wxPlus.getToken({
-    apiKey: '',
-    apiSecret: '',
-    code: "12346857684"
-}, function(ret, err) {
-    if (ret.status) {
-        alert(JSON.stringify(ret));
-    } else {
-        alert(err.code);
-    }
-});
+function stopLoadding(index) {
+    var loadingLabel = api.require('loadingLabel');
+    loadingLabel.stop({
+        id: 1
+    });
 }
 
-function wechatLogin(){
-  var wxPlus = api.require('wxPlus');
-wxPlus.auth({
-    apiKey: 'wxf476d7072eeddaae'
-}, function(ret, err) {
-    if (ret.status) {
-        alert(JSON.stringify(ret));
-    } else {
-        alert(err.code);
-    }
-});
+function startLoadding(index) {
+    var loadingLabel = api.require('loadingLabel');
+    loadingLabel.start({
+        id: index
+    });
 }
+
+function closeLoadding(index) {
+    var loadingLabel = api.require('loadingLabel');
+    loadingLabel.close({
+        id: index
+    });
+}
+
+function showLoadding(index) {
+    var loadingLabel = api.require('loadingLabel');
+    loadingLabel.show({
+        id: index
+    });
+}
+
+function hideLoadding(index) {
+    var loadingLabel = api.require('loadingLabel');
+    loadingLabel.hide({
+        id: index
+    });
+}
+
+
+  function kefu(){
+    //创建美洽
+    var mq = api.require('meiQia');
+    //配置初始化美洽需要的appkey
+    var param = {
+        appkey: "a799a79e458092399faa878cde9fe30f"
+    };
+    //初始化美洽
+    mq.initMeiQia(param, function(ret, err) {
+        // if (ret) {
+        //     //初始化成功
+        //     alert(JSON.stringify(ret));
+        // } else {
+        //     //初始化失败
+        //     alert(JSON.stringify(err));
+        // }
+    })
+    //标题颜色
+    var titleColor = {
+    color: "#4b4b4b"
+};
+mq.setTitleColor(titleColor);
+//标题背景颜色
+var titleBarColor = {
+    color: "f1f1f1"
+};
+mq.setTitleBarColor(titleBarColor);
+//弹出聊天界面
+mq.show({showAvatar:false,showTitle:true});
+
+  }

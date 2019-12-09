@@ -107,11 +107,11 @@
 <body>
   <header class="aui-bar aui-bar-nav aui-bar-light">
       <div class="aui-pull-left aui-btn">
-          <span class="aui-iconfont aui-icon-left"></span>
+          <span class="aui-iconfont aui-icon-left" tapmode onclick="closeCurrentWin()"></span>
       </div>
       <div class="aui-title">群聊123(0)</div>
       <div class="aui-pull-right ">
-        <i class="aui-iconfont aui-icon-more"></i>
+        <i class="aui-iconfont aui-icon-more" tapmode onclick="goNextWin('./social_chat_details.html')"></i>
           <!-- <span id='publish-btn'><img src="./img/gengduo.png" alt=""></span> -->
       </div>
   </header>
@@ -149,5 +149,6 @@
           <p>个人名片</p>
       </div>
   </div>
+  <script src="../../script/common.js" charset="utf-8"></script>
 </body>
 </html>

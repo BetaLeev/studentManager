@@ -100,6 +100,9 @@
     .highlight {
         opacity: 0.7;
     }
+    #option1:nth-child(1){
+      display: none;
+    }
     </style>
 </head>
 
@@ -109,8 +112,8 @@
           <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
       </div>
       <div class="aui-title">使用帮助</div>
-      <div class="aui-pull-right aui-btn">
-          <img src="./image/kefu.png" alt="">
+      <div class="aui-pull-right aui-btn" tapmode onclick="kefu()">
+          <img src="../../image/kefu.png" alt="">
       </div>
   </header>
     <section id="section_box">
@@ -120,6 +123,9 @@
 <script src="../../script/common.js" charset="utf-8"></script>
 <script type="text/javascript">
     var section_box_obj = document.getElementById("section_box")
+    section_box_obj.onclick = function(){
+      kefu()
+    }
     var older_number = "";
     var list_word = ["在线保修","订工位","订会议室","订洽谈室","扫码支付","常见问题"];
     var list_son_title=["<div id='title_son_box_1' hidden='true'>\
@@ -150,6 +156,7 @@
             </div>"]
     var content_value = '';
     for(var i=0;i<list_word.length;i++){
+
         content_value += '<div id="option'+(i+1).toString()+'">\
             <div class="title" tapmode onclick="fnshow('+(i+1).toString()+')">'+list_word[i]+'</div>\
             <div id="arrow-panel_'+(i+1).toString()+'">\

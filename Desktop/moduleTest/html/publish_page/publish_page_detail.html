@@ -213,7 +213,7 @@
         <!-- <div class="aui-title">Title</div> -->
         <div class="aui-pull-right aui-btn">
             <span class="aui-iconfont aui-icon-forward" onclick="wxShare()"></span> &nbsp&nbsp
-            <span class="aui-iconfont aui-icon-like"></span>
+            <span class="aui-iconfont aui-icon-like" onclick="collect()"></span>
         </div>
     </header>
     <div class='header-img'>
@@ -235,7 +235,7 @@
                     <p>2019年10月31日</p>
                 </div>
                 <div>
-                    <button class="subscribe">关注</button>
+                    <button class="subscribe" onclick="collect()">关注</button>
                 </div>
             </div>
             <div class="publish_text">
@@ -280,7 +280,13 @@
             <img class='like' src="../../image/good.png" alt="">
         </div>
     </div>
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../../script/common.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      function collect(){
+        swal("关注成功!",'', "success");
+      }
+    </script>
 </body>
 
 </html>

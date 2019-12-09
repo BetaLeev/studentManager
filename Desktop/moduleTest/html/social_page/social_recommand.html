@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
 
     <title>社交推荐</title>
     <style>
@@ -26,11 +27,8 @@
             box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
         }
 
-        .banner >img {
-            /*width: 100%;*/
+        .banner>img {
             height: 100%;
-            /*position: absolute;*/
-            /*transform: translate(0, -35%);*/
         }
 
         .container {
@@ -38,6 +36,7 @@
         }
 
         .recommand-item {
+            padding-top: 5px;
             border-bottom: 2px solid #f9f9f9;
         }
 
@@ -45,7 +44,7 @@
 
         .user-basc {
             display: flex;
-            height: 66px;
+            height: 55px;
         }
 
         .user-avatar {
@@ -55,7 +54,6 @@
         }
 
         .user-avatar img {
-            margin-top: 18px;
             width: 100%;
             height: 100%;
         }
@@ -73,13 +71,17 @@
             margin-top: -10px;
         }
 
+        .desc-top p {
+            padding: 3px;
+        }
+
         .desc-top button {
             background-color: #fff;
             border: 1px solid #f7f7f7;
             color: #fdd66e;
+            margin-top: -30px;
             height: 30px;
             width: 60px;
-            margin-top: -50px;
         }
 
         .desc-img {
@@ -98,6 +100,7 @@
         .now-item-bottom {
             display: flex;
             width: 100%;
+            padding: 5px;
         }
 
         .now-date,
@@ -107,7 +110,7 @@
 
         .now-right {
             text-align: right;
-            padding-right: 20px;
+            padding: 0px 30px;
             display: flex;
         }
 
@@ -118,7 +121,7 @@
 
         .desc-views,
         .desc-comment {
-      float: left;
+            float: left;
             width: 20px;
             height: 20px;
         }
@@ -131,62 +134,96 @@
             <img src="../../image/other/peitu1.jpg" alt="">
         </div>
     </header>
-    <div class="container">
-        <div class="recommand-item" onclick="goNextWin('../home_page/detail.html')">
+    <div class="container" id='recommand-container'>
+        <div class="recommand-item" v-for='item in recommandList'>
             <div class="user-info">
                 <div class="user-basc">
                     <div class="user-avatar">
-                        <img src="../../image/avatar-demo.png" alt="">
+                        <img :src="item.avatar" alt="">
                     </div>
-                    <p class="user-name">用户名123</p>
+                    <p class="user-name">{{item.user}}</p>
                 </div>
-                <div class="user-desc">
+                <div class="user-desc" onclick="goNextWin('./social_news_detail.html')">
                     <div class="desc-top">
-                        <p>今天参展驿站了，对上市有了新感受</p>
+                        <p>{{item.title}}</p>
                         <button>关注</button>
                     </div>
                     <div class="desc-img">
-                        <img src="../../image/other/take-pic.png" alt="">
+                        <img :src="item.mainPic" alt="">
                     </div>
                     <div class="now-item-bottom">
-                        <p class="now-date">1小时前</p>
+                        <p class="now-date">{{item.createdAt}}</p>
                         <p class="now-right">
-                          <span><i class="aui-iconfont aui-icon-display"></i> 2014</span>
-                          <span><img class="desc-comment" src="../../image/comment.png" alt=""> 51</span>
-                      </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="recommand-item" onclick="goNextWin('../home_page/detail.html')">
-            <div class="user-info">
-                <div class="user-basc">
-                    <div class="user-avatar">
-                        <img src="../../image/avatar-demo.png" alt="">
-                    </div>
-                    <p class="user-name">用户名123</p>
-                </div>
-                <div class="user-desc">
-                    <div class="desc-top">
-                        <p>今天参展驿站了，对上市有了新感受</p>
-                        <button>关注</button>
-                    </div>
-                    <div class="desc-img">
-                        <img src="../../image/other/take-pic.png" alt="">
-                    </div>
-                    <div class="now-item-bottom">
-                        <p class="now-date">1小时前</p>
-                        <p class="now-right">
-                          <span><i class="aui-iconfont aui-icon-display"></i> 2014</span>
-                          <span><img class="desc-comment" src="../../image/comment.png" alt=""> 51</span>
-                      </p>
+                            <span><i class="aui-iconfont aui-icon-display"></i>{{item.views}}</span>
+                            <span>            <i class="aui-iconfont aui-icon-comment"></i>
+ {{item.comment}}</span>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
+
     </div>
     <script src="../../script/common.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#recommand-container',
+            data() {
+                return {
+                    recommandList: [{
+                        mainPic: '../../image/other/canguan2.jpg',
+                        title: '时代工场，时代人居住的工场',
+                        createdAt: '2019-12-1 12:32:23',
+                        views: 321,
+                        comment: 31,
+                        user: '韩正',
+                        avatar: '../../image/avatar-demo.png'
+                    }, {
+                        mainPic: '../../image/other/image.jpg',
+                        title: '来勒以后发现有点儿冷，挣的还挺少',
+                        createdAt: '2019-12-1 12:32:23',
+                        views: 99921,
+                        comment: 3991,
+                        user: '李克强',
+                        avatar: '../../image/avatar-demo.png'
+                    }, {
+                        mainPic: '../../image/other/peitu6.jpg',
+                        title: '在这办公就一个字，冷',
+                        createdAt: '2019-12-1 12:32:23',
+                        views: 3231,
+                        comment: 341,
+                        user: '栗战书',
+                        avatar: '../../image/avatar-demo.png'
+                    }, {
+                        mainPic: '../../image/other/peitu3.jpg',
+                        title: '同事们都说好，来了以后走不了',
+                        createdAt: '2019-12-1 12:32:23',
+                        views: 31,
+                        comment: 1,
+                        user: '汪洋',
+                        avatar: '../../image/avatar-demo.png'
+                    }, {
+                        mainPic: '../../image/other/office.jpg',
+                        title: '描述',
+                        createdAt: '2019-12-1 12:32:23',
+                        views: 321,
+                        comment: 31,
+                        user: '王沪宁',
+                        avatar: '../../image/avatar-demo.png'
+                    }, {
+                        mainPic: '../../image/other/lion.jpg',
+                        title: '要想生活过得好，英式教育少不了',
+                        createdAt: '2019-12-1 12:32:23',
+                        views: 21,
+                        comment: 31,
+                        user: '赵乐际',
+                        avatar: '../../image/avatar-demo.png'
+                    }]
+                }
+            }
+        })
+    </script>
 </body>
 
 </html>

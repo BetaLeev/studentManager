@@ -144,38 +144,38 @@
           <!-- <img src="./image/kefu.png" alt=""> -->
       </div>
   </header>
-     <div class="option">
+     <div class="option" onclick="duiba()">
         <span class="tp1"></span>
         <span class="wz">积分值</span>
         <span class="num">100</span>
         <span class="jf">积分</span>
      </div>
-     <div class="option">
+     <div class="option" onclick="goNextWin('./zhuanjifen.html')">
         <span class="tp2"></span>
-        <span class="wz" onclick="goNextWin('./zhuanjifen.html')">赚积分</span>
+        <span class="wz">赚积分</span>
         <span class="right"></span>
      </div>
-     <div class="option">
+     <div class="option" onclick="goNextWin('./explain.html')">
         <span class="tp3"></span>
         <span class="wz">积分兑换</span>
         <span class="right"></span>
      </div>
-     <div class="option">
+     <div class="option" onclick="goNextWin('./explain.html')">
         <span class="tp4"></span>
         <span class="wz">游戏</span>
         <span class="right"></span>
      </div>
-     <div class="option">
+     <div class="option" onclick="goNextWin('./explain.html')">
         <span class="tp5"></span>
         <span class="wz">夺宝</span>
         <span class="right"></span>
      </div>
-     <div class="option">
+     <div class="option" onclick="goNextWin('./explain.html')">
         <span class="tp6"></span>
         <span class="wz">兑保险</span>
         <span class="right"></span>
      </div>
-     <div class="option">
+     <div class="option" onclick="goNextWin('./explain.html')">
         <span class="tp7"></span>
         <span class="wz">红包</span>
         <span class="right"></span>
@@ -183,5 +183,21 @@
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script src="../../script/common.js" charset="utf-8"></script>
-
+<script type="text/javascript">
+    function duiba(){
+      var duibaSales = api.require('duibaSales');
+   duibaSales.open({
+       naviBarBgColor:'#ff0000',
+       titleColor:'#ffffff',
+       titleSize:16,
+       navHeight:44,
+       backBtnBg:'widget://res/goback.png',
+       duibaLinkUrl: 'http://www.duiba.com.cn/test/demoRedirectSAdfjosfdjdsa'
+   },function(ret) {
+       if (ret) {
+           api.alert({msg:JSON.stringify(ret)});
+       }
+  });
+    }
+</script>
 </html>

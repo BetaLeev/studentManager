@@ -68,8 +68,8 @@
       font-size: 20px;
       color: #9fa0a0;
       position: absolute;
-      left:155px;
-      top:420px;
+      left:85px;
+      top:350px;
     }
     p{
       font-size: 10px;
@@ -81,21 +81,123 @@
 <body>
   <header class="aui-bar aui-bar-nav aui-bar-light">
       <div class="aui-pull-left aui-btn">
-          <span class="aui-iconfont aui-icon-left"></span>
+          <span class="aui-iconfont aui-icon-left" tapmode onclick="closeCurrentWin()"></span>
       </div>
       <div class="aui-title">二维码名片</div>
-
   </header>
   <div class="card">
     <div class="top">
-      <div class="name">
+      <div class="name" id="img_box">
         <img src="../../image/avatar-demo.png" alt="">
       </div>
       <h1>群聊123</h1>
     </div>
-    <div class="bottom"><span>二维码</span></div>
+    <div class="bottom" onclick='QR()'><span><img src="/storage/emulated/0/UZMap/A6006620792786/../image/alert.png" alt=""></span></div>
     <p>该二维码7天内(10月23日前)有效,重新进入将更新</p>
   </div>
 </body>
+<script src="../../script/common.js" charset="utf-8"></script>
+<script>
+var system_name;
+var UILoading;
+var flowerid;
+var img_obj = document.getElementById("img_box");
+var textarea_obj = document.getElementById("area_value");
+var img_flag = false;
+var file_url;;
+var textarea_value;
+img_obj.innerHTML = "<img class='touxiang' src='../../image/avatar-demo.png' alt=''>"
+var imgurl = [];
+var height;
+apiready = function() {
+    height = api.winHeight
+    system_name = api.systemType
+    UILoading = api.require('UILoading');
+}
+img_obj.onclick = function() {
+    if (img_flag === false) {
+        var UIAlbumBrowser = api.require('UIAlbumBrowser');
+        UIAlbumBrowser.open({
+            max: 1,
+            type: 'image',
+            styles: {
+                bg: '#ffffff',
+                mark: {
+                    icon: '',
+                    position: 'bottom_left',
+                    size: 20
+                },
+                nav: {
+                    /*bg: 'rgba(255,255,255,1)',*/
+                    bg: 'rgba(0,0,0,0.6)',
+                    titleColor: '#fff',
+                    /*#000000*/
+                    titleSize: 18,
+                    cancelColor: '#fff',
+                    cancelSize: 16,
+                    finishColor: '#fff',
+                    finishSize: 16
+                }
+            },
+            rotation: true
+        }, function(ret) {
+            console.log(JSON.stringify(ret));
+            if (ret) {
+                var syt = api.systemType;
+                if (syt != 'ios') {
+                    if (ret.list) {
+                        if (ret) {
+                            if (ret.list.length > 0) {
+                                imgurl = ret.list[0].path
+                                img_obj.innerHTML = "<img class='touxiang' src='" + imgurl + "' />"
+                                img_flag = true;
+                            }
 
+                        }
+                    }
+                } else {
+                    if (ret.list) {
+                        UIAlbumBrowser.transPath({
+                            path: ret.list[0].path
+                        }, function(ret, err) {
+                            if (ret) {
+                                imgurl = ret.path
+                                img_obj.innerHTML = "<img class='touxiang' src='" + imgurl + "' />"
+                                img_flag = true;
+                            } else {
+                                alert(JSON.stringify(err));
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    } else {
+        img_obj.innerHTML = "<img class='touxiang' src='../../image/avatar-demo.png' />"
+        img_flag = false
+    }
+
+}
+</script>
+<script>
+  function QR(){
+    var FNScanner = api.require('FNScanner');
+FNScanner.encodeImg({
+    type: 'qr_image',
+    content: 'http://www.apicloud.com/',
+    saveToAlbum: true,
+    saveImg: {
+        path: 'fs://../image/alert.png',
+        w: 200,
+        h: 200
+    }
+}, function(ret, err) {
+    if (ret.status) {
+        alert(JSON.stringify(ret));
+    } else {
+        alert(JSON.stringify(err));
+    }
+});
+  }
+</script>
 </html>

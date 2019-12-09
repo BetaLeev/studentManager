@@ -273,9 +273,8 @@
 
 <body>
     <header class="aui-bar aui-bar-nav aui-bar-light">
-        <div class="aui-pull-left aui-btn" onclick="">
-          <i class="aui-iconfont aui-icon-gear"></i>
-            <!-- <span class="shezhi"><img src="./image/shezhi.png" alt=""></span> -->
+        <div class="aui-pull-left aui-btn" tapmode onclick="goNextWin('./personalsetting.html')">
+            <i class="aui-iconfont aui-icon-gear"></i>
         </div>
         <div class="aui-pull-right ">
         </div>
@@ -284,10 +283,9 @@
         <!-- 在这里添加一下订单、钱包、钥匙、买单的静态页面 使用横向列表float属性-->
         <div class="social_clickUser_body_top">
             <div id="img_box">
-
+                <!-- <img id='user-avatar' src="1" alt=""> -->
             </div>
-            <!-- <h1>登录</h1> -->
-            <span>13333338888</span>
+            <span id='user-name'>13333338888</span>
         </div>
         <div id="image">
             <span class="order" tapmode onclick="goNextWin('./my_PublishArticle.html')">0</span>
@@ -351,7 +349,7 @@
                 <div class="text "></div>
             </div>
         </div>
-        <div class="option " tapmode onclick="">
+        <div class="option " tapmode onclick="goNextWin('./my_CoardStock.html')">
             <div class="icon icon-personalsetting "></div>
             <div class="title ">卡券</div>
             <div class="arrow-panel ">
@@ -372,7 +370,8 @@
                 <div class="text "></div>
             </div>
         </div>
-        <div class="option " tapmode onclick="goNextWin('./personalsetting.html') ">
+        <div class="option " tapmode onclick="goNextWin('./personalsetting.html')">
+
             <div class="icon icon-personalsetting "></div>
             <div class="title ">个人设置</div>
             <div class="arrow-panel ">
@@ -560,6 +559,19 @@
     // };
 </script>
 <script type="text/javascript">
+    apiready = function() {
+        $api.text($api.byId('user-name'), $api.getStorage('userName'));
+        var avatar = document.getElementById('img_box');
+        if($api.getStorage('userAvatar')){
+          avatar.innerHTML = "<img class='touxiang' src='" + $api.getStorage('userAvatar') + "' />"
+
+        }else{
+          avatar.innerHTML = "<img class='touxiang' src='../../image/avatar-demo.png' />"
+
+        }
+    }
 </script>
+
+<script src="../../script/common.js" charset="utf-8"></script>
 
 </html>

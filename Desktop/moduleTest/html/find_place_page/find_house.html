@@ -8,8 +8,10 @@
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
     <link rel="stylesheet" href="../../css/common.css">
     <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
     <style>
         /*导航搜索栏部分*/
+
         .aui-bar {
             padding: 0 10px;
             height: 50px;
@@ -35,11 +37,6 @@
             height: 220px;
         }
 
-        /*.map img {
-            width: 100%;
-            height: 180px;
-        }*/
-
         .look {
             width: 100%;
             padding: 10px;
@@ -51,9 +48,10 @@
             display: flex;
             justify-content: space-around;
         }
-      .look:last-child{
-        border-bottom: none;
-      }
+
+        .look:last-child {
+            border-bottom: none;
+        }
 
         .to-order {
             border-left: 1px solid #e2e2e2;
@@ -61,12 +59,11 @@
             height: 100%;
             height: 120px;
             line-height: 120px;
-            /*vertical-align: middle;*/
         }
 
         .look img {
-          padding-left: 10px;
-            width: 100px;
+            padding-left: 10px;
+            width: 130px;
             height: 120px;
             margin-top: 5px;
             /*border: 1px solid black;*/
@@ -78,7 +75,7 @@
 
         .img {
             width: 100%;
-            max-width: 30%;
+            max-width: 40%;
             overflow: hidden;
         }
 
@@ -120,11 +117,11 @@
             北京
             <span class="aui-iconfont aui-icon-down"></span>
         </div>
-        <div class="aui-title" style="left:4rem; right: 4rem;">
+        <div class="aui-title" style="left:4.3rem; right: 4rem;">
             <div class="aui-searchbar">
                 <div class="aui-searchbar-input aui-border-radius">
                     <i class="aui-iconfont aui-icon-search"></i>
-                    <input type="search" placeholder=" 区位/企业发展需求" id="search-input" onclick="goNextWin('./search_option.html')">
+                    <input type="search" placeholder=" 区位/企业发展需求" id="search-input" onclick='Input()'>
                     <div class="aui-searchbar-clear-btn">
                         <i class="aui-iconfont aui-icon-close"></i>
                     </div>
@@ -136,67 +133,255 @@
 
         </div>
     </header>
-    <div class="map">
+    <div class="map" id="baidu">
         <!-- <img src="../../image1/map.png" alt="" /> -->
     </div>
 
-    <div class="location">
-        <div class="look" onclick="goNextWin('../home_page/detail.html')">
+    <div class="location" id='location'>
+        <div class="look" v-for='item in locationList' @click='openWinWorkParam(item.id)'>
             <div class="img">
-              <img src="../../image/other/linfeng.jpg" alt="">
+                <img :src="item.img" alt="">
             </div>
             <div class="xinxi">
-                <span class="big2">时代工场NO.1</span>
-                <p class="small">会展服务,企业海外发展咨询顾问</p>
-                <p class="small">北京市，丰台区</p>
-                <span class="small">航丰路1号院2号楼，时代财富天地B座</span>
-                <p class="small"> <i class="aui-iconfont aui-icon-location"></i> 距离 ＜100M </p>
+                <span class="big2">{{item.title}}</span>
+                <p class="small">{{item.subtitle}}</p>
+                <p class="small">{{item.city}}</p>
+                <span class="small">{{item.address}}</span>
+                <p class="small"> <i class="aui-iconfont aui-icon-location"></i> 距离 ＜ {{item.distance}} M </p>
             </div>
             <div class="to-order">
                 <p>去下单</p>
             </div>
         </div>
-        <div class="look" onclick="goNextWin('../home_page/detail.html')">
-            <div class="img">
-              <img src="../../image/other/linfeng.jpg" alt="">
-            </div>
-            <div class="xinxi">
-                <span class="big2">时代工场NO.1</span>
-                <p class="small">会展服务,企业海外发展咨询顾问</p>
-                <p class="small">北京市，丰台区</p>
-                <span class="small">航丰路1号院2号楼，时代财富天地B座</span>
-                <p class="small"> <i class="aui-iconfont aui-icon-location"></i> 距离 ＜100M </p>
-            </div>
-            <div class="to-order">
-                <p>去下单</p>
-            </div>
-        </div>  <div class="look" onclick="goNextWin('../home_page/detail.html')">
-              <div class="img">
-                <img src="../../image/other/linfeng.jpg" alt="">
-              </div>
-              <div class="xinxi">
-                  <span class="big2">时代工场NO.1</span>
-                  <p class="small">会展服务,企业海外发展咨询顾问</p>
-                  <p class="small">北京市，丰台区</p>
-                  <span class="small">航丰路1号院2号楼，时代财富天地B座</span>
-                  <p class="small"> <i class="aui-iconfont aui-icon-location"></i> 距离 ＜100M </p>
-              </div>
-              <div class="to-order">
-                  <p>去下单</p>
-              </div>
-          </div>
     </div>
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/common.js"></script>
 <script type="text/javascript">
-apiready = function(){
-  initMap(70);
-  setAnnotations();
+    apiready = function() {
+        var map = api.require('bMap');
+        map.open({
+            rect: {
+                x: 0,
+                y: 71,
+                w: api.frameWidth,
+                h: 210
+            },
+            center: {
+                lon: 116.4421310000,
+                lat: 39.8994480000
+            },
+            fixed: false,
+            zoomLevel: 12,
+            fixedOn: api.frameName,
+            showUserLocation: true,
+        })
+        map.setMapAttr({
+            scrollEnable: true,
+        });
+        map.show();
+        map.addAnnotations({
+            annotations: [{
+                id: 1,
+                lon: 116.48799699769714,
+                lat: 39.91788560424633
+            }, {
+                id: 2,
+                lon: 116.61531558033901,
+                lat: 39.892147754799296
+            }, {
+                id: 3,
+                lon: 116.30828249143899,
+                lat: 39.837845935836064
+            }, {
+                id: 4,
+                lon: 116.50733270939249,
+                lat: 39.811230186220655
+            }],
+            icon: 'widget://',
+            draggable: true
+        });
+        map.setBubble({
+            id: 1,
+            bgImg: 'widget://image/choose_active.png',
+            rect: {
+                x: 5,
+                y: 5,
+                w: 30,
+                h: 30
+            },
+            content: {
+                title: '展腾驿站',
+                subTitle: '位于朝阳区',
+                illus: 'http://ico.ooopic.com/ajax/iconpng/?id=145044.png'
+            },
+            styles: {
+                titleColor: '#4b4b4b',
+                titleSize: 14,
+                subTitleColor: '#999',
+                subTitleSize: 12,
+                illusAlign: 'center',
+            }
+        });
+        map.setBubble({
+            id: 2,
+            bgImg: 'widget://image/choose_active.png',
+            rect: {
+                x: 5,
+                y: 5,
+                w: 30,
+                h: 30
+            },
+            content: {
+                title: '晨时驿站',
+                subTitle: '位于朝阳区',
+                illus: 'http://ico.ooopic.com/ajax/iconpng/?id=145044.png'
+            },
+            styles: {
+                titleColor: '#4b4b4b',
+                titleSize: 14,
+                subTitleColor: '#999',
+                subTitleSize: 12,
+                illusAlign: 'center'
+            }
+        });
+        map.setBubble({
+            id: 3,
+            bgImg: 'widget://image/choose_active.png',
+            rect: {
+                x: 5,
+                y: 5,
+                w: 30,
+                h: 30
+            },
+            content: {
+                title: '我本驿站',
+                illus: 'http://ico.ooopic.com/ajax/iconpng/?id=145044.png'
+            },
+            styles: {
+                titleColor: '#4b4b4b',
+                titleSize: 14,
+                // subTitleColor: '#999',
+                // subTitleSize: 12,
+                illusAlign: 'center'
+            }
+        });
+        map.setBubble({
+            id: 4,
+            bgImg: 'widget://image/choose_active.png',
+            rect: {
+                x: 5,
+                y: 5,
+                w: 30,
+                h: 30
+            },
+            content: {
+                title: '琇空间',
+                illus: 'http://ico.ooopic.com/ajax/iconpng/?id=145044.png'
+            },
+            styles: {
+                titleColor: '#4b4b4b',
+                titleSize: 14,
+                // subTitleColor: '#999',
+                // subTitleSize: 12,
+                illusAlign: 'center'
+            }
+        });
 
-}
+    }
+</script>
+<script type="text/javascript">
+    new Vue({
+        el: '#location',
+        data() {
+            return {
+                locationList: [{
+                    id: 333,
+                    img: '../../image/other/take-pic.png',
+                    title: '时代工场晨时驿站',
+                    subtitle: '儿童教育，影视培训',
+                    city: '北京市，丰台区',
+                    address: '航丰路1号院2号楼，时代财富天地B座',
+                    distance: 300
+                }, {
+                    id: 222,
+                    img: '../../image/other/office.jpg',
+                    title: '时代工场NO.1',
+                    subtitle: '会展服务,企业海外发展咨询顾问',
+                    city: '北京市，丰台区',
+                    address: '航丰路1号院2号楼，时代财富天地B座',
+                    distance: 100
+                }, {
+                    id: 444,
+                    img: '../../image/other/canguan1.png',
+                    title: '时代工场我本驿站',
+                    subtitle: '健康管理，企业内训',
+                    city: '北京市，丰台区',
+                    address: '航丰路1号院2号楼，时代财富天地B座',
+                    distance: 800
+                }]
+            }
+        },
+        methods: {
+            openWinWorkParam(param) {
+                api.openWin({
+                    name: '场地详情页',
+                    url: '../home_page/detail.html',
+                    pageParam: {
+                        id: param
+                    }
+                });
+            },
+        }
+    })
+</script>
+<script type="text/javascript">
+    function Input() {
+        var UISearchBar = api.require('UISearchBar');
+        UISearchBar.open({
+            placeholder: '北京 时代工场',
+            historyCount: 10,
+            showRecordBtn: true,
+            texts: {
+                cancelText: '取消',
+                clearText: '清除搜索记录'
+            },
+            styles: {
+                navBar: {
+                    bgColor: '#FFFFFF',
+                    borderColor: '#ccc'
+                },
+                searchBox: {
+                    bgImg: '',
+                    color: '#000',
+                    height: 44
+                },
+                cancel: {
+                    bg: 'rgba(0,0,0,0)',
+                    color: '#D2691E',
+                    size: 16
+                },
+                list: {
+                    color: '#696969',
+                    bgColor: '#FFFFFF',
+                    borderColor: '#eee',
+                    size: 16
+                },
+                clear: {
+                    color: '#000000',
+                    borderColor: '#ccc',
+                    size: 16
+                }
+            }
+        }, function(ret, err) {
+            if (ret) {
+                goNextWin('../home_page/frame/search_list.html')
 
-
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
 </script>
 
 </html>

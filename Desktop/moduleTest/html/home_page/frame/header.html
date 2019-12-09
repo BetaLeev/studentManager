@@ -1,0 +1,164 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>头部</title>
+  <link rel="stylesheet" type="text/css" href="../../../aui-20170109-v2.1/css/aui.css" />
+  <link rel="stylesheet" href="../../../css/common.css">
+  <style media="screen">
+  /*导航搜索栏部分*/
+  .aui-bar {
+      padding: 0 10px;
+      height: 50px;
+  }
+
+  .aui-bar,
+  .aui-searchbar {
+      background: #fdd66e;
+  }
+
+  .aui-bar-nav,
+  .aui-iconfont {
+      color: black !important
+  }
+
+
+          .clicked-btn-more-list::before {
+              content: '';
+              position: absolute;
+              top: -30px;
+              width: 0;
+              height: 0;
+              border: 20px solid transparent;
+              border-bottom: 20px solid #fff;
+          }
+
+          .clicked-btn-more-list {
+              display: none;
+              position: absolute;
+              top: 50px;
+              right: 1px;
+              width: 120px;
+              background: #ffffff;
+          }
+
+          .icon-item {
+              display: flex;
+              padding: 10px 15px;
+              margin: 0 auto;
+              line-height: 30px;
+          }
+
+          .icon-item img {
+              height: 30px;
+              margin-right: 5px;
+              width: 35px;
+          }
+  </style>
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav">
+      <div id='currentCity' class="aui-pull-left aui-btn" tapmode onclick="exPlace()">
+          北京 &nbsp
+          <span class="aui-iconfont aui-icon-down"></span>
+      </div>
+      <div class="aui-title" style="left:4.4rem; right: 4rem;">
+          <div class="aui-searchbar">
+              <div class="aui-searchbar-input aui-border-radius">
+                  <i class="aui-iconfont aui-icon-search"></i>
+                  <input type="search" onclick="goNextWin('./search_hot.html')" placeholder=" 区位/企业发展需求" id="search-input">
+                  <div class="aui-searchbar-clear-btn">
+                      <i class="aui-iconfont aui-icon-close"></i>
+                  </div>
+              </div>
+              <div class="aui-searchbar-btn" tapmode>取消</div>
+          </div>
+      </div>
+      <div class="aui-pull-right aui-btn">
+          <span id='plus-to-close' class="aui-iconfont aui-icon-plus"></span>
+          <div class="clicked-btn-more-list">
+              <div class="icon-item" tapmode onclick='scanfHandle()'>
+                  <img src="../../image/pay.png" alt=""><span>扫一扫</span>
+              </div>
+              <div class="icon-item">
+                  <img src="../../image/kefu.png" alt="" tapmode onclick="kefu()"><span>客服</span>
+              </div>
+              <div class="icon-item" tapmode onclick="goNextWin('./message.html')">
+                  <img class='msg' src="../../image/jiaoliu.png" alt=""><span>消息</span>
+              </div>
+          </div>
+      </div>
+  </header>
+  <script src="../../../script/api.js" charset="utf-8"></script>
+<script type="text/javascript">
+function exPlace(current) {
+  showMoreCity()
+  function showMoreCity() {
+      var UICityList = api.require('UICityList');
+      UICityList.open({
+          rect: {
+              x: 0,
+              y: 25,
+              w: api.aframeWidth,
+              h: 1024
+          },
+          resource: 'widget://json/uicitylist.json',
+          styles: {
+              searchBar: {
+                  bgColor: '#696969',
+                  cancelColor: '#E3E3E3'
+              },
+              location: {
+                  color: '#696969',
+                  size: 12
+              },
+              sectionTitle: {
+                  bgColor: '#eee',
+                  color: '#000',
+                  size: 12
+              },
+              item: {
+                  bgColor: '#fff',
+                  activeBgColor: '#696969',
+                  color: '#000',
+                  size: 14,
+                  height: 40
+              },
+              indicator: {
+                  bgColor: '#fff',
+                  color: '#696969'
+              }
+          },
+          currentCity: '北京',
+          locationWay: 'GPS',
+          hotTitle: '热门城市',
+          fixedOn: api.frameName,
+          placeholder: '输入城市名或首字母查询'
+      }, function(ret, err) {
+          if (ret.eventType == 'selected') {
+              var city = ret.cityInfo.city;
+              console.log(city)
+              $api.setStorage('currentCity', city);
+              UICityList.close();
+              // closeCurrentWin('./index.html')
+              // goNextWin('../index.html')
+          }
+      });
+  }
+
+    // goNextWin('./frame/city_select.html');
+    // var currentCity = document.getElementById('currentCity');
+    // var city = $api.getStorage('currentCity')
+    // var span = "&nbsp <span class='aui-iconfont aui-icon-down'></span>"
+    // if (city) {
+    //     currentCity.innerHTML = city + span;
+    // } else {
+    //     city = current || '北京'
+    // }
+    // currentCity.innerHTML = city + span;
+    // return city;
+}
+</script>
+</body>
+</html>

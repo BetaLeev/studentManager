@@ -59,10 +59,10 @@
         }
 
         .social_chat_yonghu2 img {
-            width: 30px;
-            height: 30px;
-            margin-left: 10px;
-            margin-top: 10px;
+            width: 50px;
+            height: 50px;
+            /*margin-left: 10px;
+            margin-top: 10px;*/
             float: left;
         }
 
@@ -163,15 +163,15 @@
 <body>
     <header class="aui-bar aui-bar-nav aui-bar-light">
         <div class="aui-pull-left aui-btn">
-            <span class="aui-iconfont aui-icon-left"></span>
+            <span class="aui-iconfont aui-icon-left" tapmode onclick="closeCurrentWin()"></span>
         </div>
         <div class="aui-title">群聊信息(3)</div>
 
     </header>
     <div class="social_chat_yonghu">
-        <div class="social_chat_yonghu1"><img src="../../image/avatar-demo.png" alt=""></div><b class="s1">用户1</b>
-        <div class="social_chat_yonghu1"><img src="../../image/avatar-demo.png" alt=""></div><b class="s2">用户2</b>
-        <div class="social_chat_yonghu1"><img src="../../image/avatar-demo.png" alt=""></div><b class="s3">用户3</b>
+        <div class="social_chat_yonghu1" onclick="goNextWin('./social_clickUser.html')"><img src="../../image/avatar-demo.png" alt=""></div><b class="s1">用户1</b>
+        <div class="social_chat_yonghu1" onclick="goNextWin('./social_clickUser.html')"><img src="../../image/avatar-demo.png" alt=""></div><b class="s2">用户2</b>
+        <div class="social_chat_yonghu1" onclick="goNextWin('./social_clickUser.html')"><img src="../../image/avatar-demo.png" alt=""></div><b class="s3">用户3</b>
         <div class="social_chat_yonghu2"><img src="../../image/avatar-demo.png" alt=""></div>
     </div>
     <div class="social_chat_neirong">
@@ -185,6 +185,7 @@
     </div>
 </body>
 <script src="../../script/api.js" charset="utf-8"></script>
+<script src="../../script/common.js" charset="utf-8"></script>
 <script type="text/javascript">
     apiready = function() {
         $api.addEvt($api.byId('qunguanli'), 'click', function() {

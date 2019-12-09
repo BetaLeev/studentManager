@@ -67,9 +67,9 @@
   </style>
 </head>
 <body>
-  <header class="aui-bar aui-bar-nav aui-bar-light">
+  <header class="aui-bar aui-bar-nav aui-bar-light" >
       <div class="aui-pull-left aui-btn">
-          <span class="aui-iconfont aui-icon-left"></span>
+          <span class="aui-iconfont aui-icon-left" tapmode onclick="closeCurrentWin()"></span>
       </div>
       <div class="aui-title">群管理</div>
       <!-- <div class="aui-pull-right ">
@@ -77,11 +77,12 @@
       </div> -->
   </header>
   <div class="social_chat_neirong">
-        <div class="social_chat_gongneng"><span>群聊名称</span><div class="huadong">群聊123</div></div>
-      <div class="social_chat_gongneng"><span>设置群头像</span><img class="gongneng" src="../../image/xiayibu.png" alt=""></div>
+        <div class="social_chat_gongneng"><span>群聊名称</span><div class="huadong" tapmode onclick="changeName()"></div></div>
+      <div class="social_chat_gongneng" tapmode onclick="goNextWin('./social_foundChat_scanQR.html')"><span>设置群头像</span><img class="gongneng" src="../../image/xiayibu.png" alt=""></div>
       <div class="social_chat_gongneng" id="qunzhu"><span>群主位置转让</span><img class="gongneng1" src="../../image/xiayibu.png" alt=""></div>
   </div>
 </body>
+<script src="../../script/common.js" charset="utf-8"></script>
 <script src="../../script/api.js" charset="utf-8"></script>
 <script type="text/javascript">
     apiready = function() {
@@ -94,6 +95,63 @@
 
         })
 
+    }
+    function changeName(){
+      var dialogBox = api.require('dialogBox');
+dialogBox.list({
+    tapClose: true,
+    texts: {
+        title: '修改群名称',
+        enter: '确定'
+    },
+    listTitles: ['新群名：'],
+    styles: {
+        bg: '#fff',
+        corner: 0,
+        w: 300,
+        h: 260,
+        title: {
+            h: 44,
+            size: 14,
+            color: '#000'
+        },
+        list: {
+            h: 100,
+            row: 1,
+            title: {
+                marginL: 10,
+                size: 14,
+                color: '#696969'
+            },
+            content: {
+                marginL: 10,
+                size: 14,
+                color: '#000'
+            }
+        },
+        dividingLine: {
+            width: 0.5,
+            color: '#696969'
+        },
+        enter: {
+            w: 135,
+            h: 55,
+            bg: '#f1f1f1',
+            color: '#007FFF',
+            size: 12
+        }
+    }
+}, function(ret) {
+    api.alert({
+        msg: JSON.stringify(ret)
+    });
+    if (ret.eventType == 'enter') {
+        var dialogBox = api.require('dialogBox');
+        dialogBox.close({
+            dialogName: 'list'
+        });
+    }
+});
     }
 </script>
 </html>

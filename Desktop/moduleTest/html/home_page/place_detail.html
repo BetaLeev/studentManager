@@ -7,10 +7,13 @@
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
     <script type="text/javascript" src="../../aui-20170109-v2.1/script/api.js"></script>
     <link rel="stylesheet" href="../../css/common.css">
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
     <title>入驻详情页</title>
     <style>
         .container {
             width: 100%;
+
             margin: 0 auto;
         }
 
@@ -20,7 +23,6 @@
             padding: 0 5%;
             background: #ffffff;
             border-bottom: 1px solid #f1f1f1;
-            /*border-bottom: 1px solid #9FAOAO;*/
         }
 
         p,
@@ -31,6 +33,7 @@
 
         body {
             position: relative;
+            height: 100vh;
             background: #f7f7f7;
             padding: 0;
             margin: 0
@@ -86,33 +89,22 @@
         .in-count {
             float: right;
             font-size: .875rem;
-            display: block;
+            display: flex;
             padding-right: 1.4rem;
         }
 
-        .in-count::before {
-            content: '➕';
-            height: 20px;
-            width: 20px;
-            color: white;
-            right: 1rem;
-            position: absolute;
+        .in-count img {
+            margin-top: 10px;
+            margin: 12px 10px;
         }
 
-        .in-count::after {
-            content: '➖';
-            right: 3.2rem;
-            height: 20px;
-            color: white;
-            width: 20px;
-            position: absolute;
-        }
+
 
         .can-time {
             color: #fdd66e;
         }
-        /*消费详情*/
 
+        /*消费详情*/
         .plate-title {
             line-height: 50px;
             font-size: .8rem;
@@ -125,8 +117,8 @@
             height: 55px;
             clear: both;
         }
-        /*消费总计*/
 
+        /*消费总计*/
         .cost-sum {
             height: 120px;
         }
@@ -140,11 +132,12 @@
             float: right;
             font-size: 1.125rem;
         }
-        /*预定入驻*/
 
+        /*预定入驻*/
         .confirm_book {
             position: absolute;
-            bottom: 0;
+            bottom: 0px;
+            left: 0px;
             outline: none;
             border: none;
             width: 100%;
@@ -165,55 +158,101 @@
         </div>
     </header>
 
-    <div class="container">
+    <div id='container' class="container">
         <div class="plate book-detail">
             <h2 class="book-detail-title">
-            时代工场NO.1
+            {{title}}
           </h2>
             <div class="book-detail-content">
                 <h4 class="name">
-                <!-- 时代工场NO.1 -->
               </h4>
-                <p>会展服务，企业海外发展咨询顾问</p>
+                <p>{{subtitle}}</p>
                 <p>可用时间: <span class="can-time">24h</span></p>
                 <p class="rate"><span class="rate-star">*******</span> 22条评价</p>
             </div>
-            <div class="book-detail-img"> <img src="../../image/other/offce.jpg" alt="">
+            <div class="book-detail-img"> <img :src="img" alt="">
             </div>
         </div>
 
-        <div class="plate book-time" onclick="goNextWin('./choose_date.html')">
-            <p class="plate-title">入驻时间 <i class="aui-pull-right aui-iconfont aui-icon-right"></i></p>
-        </div>
+
 
         <div class="plate book-count">
-            <p class="plate-title">入驻数量 <span class="in-count">1</span></p>
+            <p class="plate-title">入驻数量 <span class="in-count" id='in-count'><img  height='20px' src="../../image/jian.png" alt="" @click="minus()"> <span id='count-value'> {{count}} </span><img height='20px' src="../../image/jia.png" alt="" @click='add()'></span>
+            </p>
         </div>
 
         <div class="plate cost-detail">
             <p class="plate-title">
                 费用与税款明细 ❓
             </p>
-            <p class="big-font"> <code class="sign_money">¥</code> 499.00 x 1 月 <span class="sum"> <code class="sign_money">¥</code>199</span></p>
-            <p> <code class="sign_money"></code> 节日特惠 9.5折 <span class="sum"> <code class="sign_money">¥</code>233</span></p>
-            <p> <code class="sign_money"></code> 会员折扣特惠 9.5折 <span class="sum"> <code class="sign_money">¥</code>421</span></p>
+            <p class="big-font"> <code class="sign_money">¥</code> {{price}} x 1 月 <span class="sum"> <code class="sign_money">¥</code>{{price}}</span></p>
+            <!-- <p> <code class="sign_money"></code> 节日特惠 9.5折 <span class="sum"> <code class="sign_money">¥</code>233</span></p> -->
+            <!-- <p> <code class="sign_money"></code> 会员折扣特惠 9.5折 <span class="sum"> <code class="sign_money">¥</code>421</span></p> -->
+
+            <footer>
+              <button class="btn-normal confirm_book" tapmode @click="chooseDateHandle()">选择入驻时间</button>
+                <!-- <button class="btn-normal confirm_book" tapmode onclick="goNextWin('./book_detail.html')">预订入驻</button> -->
+            </footer>
+
         </div>
 
-        <div class="plate cost-sum">
-            <p> 总价（CNY） <span class="sum"> <code class="sign_money">¥</code> 474</span></p>
-        </div>
+        <!-- <div class="plate cost-sum"> -->
+
+          <!-- <input type="text" name="daterange" value="01/01/2019 - 01/15/2019" /> -->
+
+            <!-- <p> 总价（CNY） <span class="sum"> <code class="sign_money">¥</code> 474</span></p> -->
+        <!-- </div> -->
     </div>
-    <footer>
-        <button class="btn-normal confirm_book">预订入驻</button>
-    </footer>
+
     <script src="../../script/common.js" charset="utf-8"></script>
     <script type="text/javascript">
-        $api.addEvt($api.dom('.confirm_book'), 'click', function() {
-            api.openWin({
-                name: '预定入驻',
-                url: './book_detail.html'
-            })
+    apiready = function(){
+      var id = api.pageParam.id;
+      var img = api.pageParam.img;
+      var title = api.pageParam.title;
+      var subtitle = api.pageParam.subtitle;
+      var price = api.pageParam.price;
+
+      var detail = new Vue({
+        el:"#container",
+        data(){
+          return{
+            id:id,
+            img:img,
+            title:title,
+            subtitle:subtitle,
+            count:1,
+            price:price,
+          }
+        },
+        methods:{
+          add(){
+            this.count+=1;
+          },minus(){
+            this.count-=1;
+          },
+          chooseDateHandle(){
+            console.log(this.img)
+            toChooseDate(this.id,this.img,this.title,this.subtitle,this.count,this.price)
+          }
+        }
+      })
+    }
+
+    function toChooseDate(id,img,title,subtitle,count,price) {
+        api.openWin({
+            name: '预定订单详情页',
+            url: './choose_date.html',
+            pageParam: {
+                id: id,
+                img:img,
+                title:title,
+                subtitle:subtitle,
+                count:count,
+                price:price
+            }
         });
+    }
     </script>
 </body>
 

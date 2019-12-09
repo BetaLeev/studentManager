@@ -1,64 +1,121 @@
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>隐藏菜单</title>
-  <style>
-  .clicked-btn-more-list::before {
-      content: '';
-      left: 50%;
-      position: absolute;
-      top: -30px;
-      width: 0;
-      height: 0;
-      border: 20px solid transparent;
-      border-bottom: 20px solid #fff;
-  }
-  .clicked-btn-more-list {
-    padding: 5px;
-      position: absolute;
-      top: 20px;
-      height: 230px;
-      width: 140px;
-      background: #fff;
-  }
-  .icon-item{
-    padding: 5px;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../../aui-20170109-v2.1/css/aui.css" />
 
+    <title>隐藏菜单</title>
+    <style>
+    .hide-menu{
+      width: 100%;
+      height: 100%;
+      /*background: rgba(0, 0, 0, 0.1);*/
+      opacity: .3
+    }
+        .clicked-btn-more-list::before {
+            content: '';
+            left: 50%;
+            position: absolute;
+            top: -30px;
+            width: 0;
+            /*height: 0;*/
+            border: 20px solid transparent;
+            border-bottom: 20px solid #fff;
+        }
 
-  .icon-item span{
-    text-align: center;
-    line-height: 30px;
-padding-left: 3px;
-    letter-spacing: 2px
-  }
-  .icon-item img{
-    height: 30px;
-    vertical-align: middle;
-    width: 30px;
-    padding: 3px;
-  }
-  </style>
+        .clicked-btn-more-list {
+            padding: 5px;
+            position: absolute;
+            top: 20px;
+            height: 230px;
+            width: 140px;
+            background: #fff;
+        }
+
+        .icon-item {
+            padding: 5px;
+            display: flex;
+        }
+
+        .icon-item span {
+            text-align: center;
+            line-height: 30px;
+            padding-left: 3px;
+            letter-spacing: 2px
+        }
+
+        .icon-item img {
+            height: 30px;
+            vertical-align: middle;
+            width: 30px;
+            padding: 3px;
+        }
+    </style>
 </head>
+
 <body>
+  <!-- <div  class="aui-popup aui-popup-top-right" id="menu">
+      <div class="aui-popup-arrow"></div>
+      <div class="aui-popup-content">
+          <ul class="aui-list aui-list-noborder">
+              <li class="aui-list-item">
+                  <div class="aui-list-item-label-icon">
+                      <i class="aui-iconfont aui-icon-my aui-text-warning"></i>
+                  </div>
+                  <div class="aui-list-item-inner aui-list-item-middle">
+                      会员中心
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-label-icon">
+                      <i class="aui-iconfont aui-icon-mail aui-text-info"></i>
+                  </div>
+                  <div class="aui-list-item-inner">
+                      会话消息
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-label-icon">
+                      <i class="aui-iconfont aui-icon-star aui-text-danger"></i>
+                  </div>
+                  <div class="aui-list-item-inner">
+                      我的收藏
+                  </div>
+              </li>
+          </ul>
+      </div>
+  </div> -->
+<div class="hide-menu">
   <div class="clicked-btn-more-list">
-      <div class="icon-item">
+      <div class="icon-item" tapmode onclick="goNextWin('../publish_now.html')">
           <img src="../../../image/take-photo.png" alt=""><span>发此刻</span>
       </div>
-      <div class="icon-item">
+      <div class="icon-item" tapmode onclick="goNextWin('../social_choice_linkman.html')">
           <img src="../../../image/group-chat.png" alt=""><span>建群聊</span>
       </div>
-      <div class="icon-item" tapmode>
+      <div class="icon-item" tapmode onclick='scanfHandle()'>
           <img src="../../../image/scan.png" alt=""><span>扫一扫</span>
       </div>
-      <div class="icon-item" tapmode>
+      <div class="icon-item" tapmode onclick="goNextWin('../social_visit.html')">
           <img src="../../../image/invite.png" alt=""><span>邀请参观</span>
       </div>
-      <div class="icon-item" tapmode>
+      <div class="icon-item" tapmode onclick="goNextWin('../applicationVisit.html')">
           <img src="../../../image/free-invite.png" alt=""><span>免费参观</span>
       </div>
   </div>
+</div>
+
+
+    <script type="text/javascript" src="../../../aui-20170109-v2.1/script/aui-popup.js"></script>
+
+    <script type="text/javascript">
+        // var popup = new auiPopup();
+        // popup.show(document.getElementById('menu'))
+
+    </script>
+    <script src="../../../script/common.js" charset="utf-8"></script>
 </body>
+
 </html>

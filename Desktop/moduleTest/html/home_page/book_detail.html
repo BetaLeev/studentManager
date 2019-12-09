@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
     <link rel="stylesheet" href="../../css/common.css">
     <script type="text/javascript" src="../../aui-20170109-v2.1/script/api.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
     <title>预定详情页</title>
     <style>
         .container {
@@ -211,37 +213,36 @@
         </div>
     </header>
 
-    <div class="container">
+    <div class="container" id='container'>
         <div class="plate book-detail">
             <h2 class="book-detail-title" style="font-size:1.22rem;margin-bottom:20px">
           </h2>
             <div class="book-detail-content">
                 <h4 class="name">
-                时代工场NO.1
+                {{title}}
               </h4>
-                <p>会展服务，企业海外发展咨询顾问</p>
+                <p>{{subtitle}}</p>
                 <p>可用时间: <span class="can-time">24h</span></p>
                 <p class="rate"><span class="rate-star">*******</span> 22条评价</p>
             </div>
-            <div class="book-detail-img"> <img src="../../image/other/offce.jpg" alt="">
+            <div class="book-detail-img"> <img :src="img" alt="">
             </div>
         </div>
 
         <div class="plate book-time">
-            <!-- <p class="plate-title">入驻时间</p> -->
             <div class="book-time-item">
                 <p class="book-time-item-title">入驻日期</p>
-                <p class="book-time-item-content">2019.10.21</p>
+                <p class="book-time-item-content">{{start}}</p>
             </div>
 
             <div class="book-time-item">
                 <p class="book-time-item-title">退订日期</p>
-                <p class="book-time-item-content">2020.11.21</p>
+                <p class="book-time-item-content">{{end}}</p>
             </div>
 
             <div class="book-time-item">
                 <p class="book-time-item-title">入驻数量</p>
-                <p class="book-time-item-content">1</p>
+                <p class="book-time-item-content">{{count}}</p>
             </div>
 
         </div>
@@ -249,14 +250,14 @@
 
         <div class="plate cost-detail">
 
-            <p class="big-font"> <code class="sign_money">¥</code> 499.00 x 1 月 <span class="sum"> <code class="sign_money">¥</code>199</span></p>
-            <p> <code class="sign_money"></code> 节日特惠 9.5折 <span class="sum"> <code class="sign_money">¥</code>233</span></p>
-            <p> <code class="sign_money"></code> 会员折扣特惠 9.5折 <span class="sum"> <code class="sign_money">¥</code>421</span></p>
+            <p class="big-font"> <code class="sign_money">¥</code> {{price}} x 1 月 <span class="sum"> <code class="sign_money">¥</code>{{price}}</span></p>
+            <!-- <p> <code class="sign_money"></code> 节日特惠 9.5折 <span class="sum"> <code class="sign_money">¥</code>233</span></p> -->
+            <!-- <p> <code class="sign_money"></code> 会员折扣特惠 9.5折 <span class="sum"> <code class="sign_money">¥</code>421</span></p> -->
 
         </div>
 
         <div class="plate cost-sum">
-            <p> 总价（CNY） <span class="sum"> <code class="sign_money">¥</code> 474</span></p>
+            <p> 总价（CNY） <span class="sum"> <code class="sign_money">¥</code> {{price * count}}</span></p>
         </div>
 
 
@@ -268,24 +269,74 @@
 
         </div>
 
-        <div class="plate book-user-contact">
+        <!-- <div class="plate book-user-contact">
             <p class="plate-title">手机电话/phone <input type="text" placeholder='点击填写信息'></p>
             <p class="plate-title">Email <input type="text" placeholder='点击填写信息'></p>
-        </div>
+        </div> -->
+        <footer>
+            <button class="btn-normal confirm_book" @click='toOrderHandle()'>去支付</button>
+        </footer>
     </div>
-    <footer>
-        <button class="btn-normal confirm_book" onclick="goNextWin('./card_detail.html')">去支付</button>
-    </footer>
+
 
     <script src="../../script/common.js" charset="utf-8"></script>
-    <!-- <script type="text/javascript">
-        $api.addEvt($api.dom('.confirm_book'), 'click', function() {
-            api.openWin({
-                name: '支付页面',
-                url: './pay.html'
+
+    <script type="text/javascript">
+        apiready = function() {
+            var id = api.pageParam.id;
+            var img = api.pageParam.img;
+            var title = api.pageParam.title;
+            var subtitle = api.pageParam.subtitle;
+            var count = api.pageParam.count;
+            var price = api.pageParam.price;
+            var start = $api.getStorage('startTime') || new Date();
+            var end = $api.getStorage('endTime') || new Date();
+            var sum = count * price;
+
+            function order() {
+                api.openWin({
+                    name: '选择支付方式',
+                    url: './choose_pay.html',
+                    pageParam: {
+                        id: id,
+                        title: title,
+                        img: img,
+                        subtitle: subtitle,
+                        start: start,
+                        end: end,
+                        count: count,
+                        price: price,
+                        sum: sum
+                    }
+                });
+
+            }
+
+            new Vue({
+                el: "#container",
+                data() {
+                    return {
+                        id: id,
+                        title: title,
+                        img: img,
+                        subtitle: subtitle,
+                        start: start,
+                        end: end,
+                        count: count,
+                        price: price,
+                        sum: sum
+                    }
+                },
+                methods: {
+                    toOrderHandle() {
+                        order();
+                    }
+                }
             })
-        });
-    </script> -->
+        }
+
+
+    </script>
 </body>
 
 </html>

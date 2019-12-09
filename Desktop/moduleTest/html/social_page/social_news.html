@@ -4,13 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>资讯 -- leev</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <link rel="stylesheet" href="../../css/common.css">
+    <title>资讯</title>
     <style>
         .container {
             padding: 20px;
             background: #fff;
         }
 
+        header {
+            padding-top: 25px;
+            width: 100%;
+            height: 70px;
+            z-index: 9999;
+            background: #fdd66e !important;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .menu p {
+            text-align: center;
+            font-size: 1rem;
+            line-height: 50px;
+            color: #707070;
+        }
+
+        .active {
+            font-size: 1.2rem !important;
+            line-height: 50px;
+            font-weight: bold;
+            margin-top: -3px;
+            color: #fff;
+        }
         .news-item {
             padding-bottom: 5px;
             width: 95%;
@@ -22,7 +52,7 @@
         }
 
         .news-img {
-            height: 360px;
+            height: 250px;
             display: block;
             margin: 0 auto;
             width: 100%;
@@ -37,27 +67,59 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="news-item" onclick="routerTo()">
-            <p class="news-title">购物指南 ---- 十月限时优惠</p>
-            <img class='news-img' src="../../image/other/lion.jpg" alt="">
-            <p class="news-date">2019-10-23</p>
-        </div>
-        <div class="news-item">
-            <p class="news-title">购物指南 ---- 十月限时优惠</p>
-            <img class='news-img' src="../../image/other/lion.jpg" alt="">
-            <p class="news-date">2019-10-23</p>
+
+    <div class="container" id='news-list'>
+        <div class="news-item" v-for='item in newsList' @click='openWinNewsParam(item.id)'>
+            <p class="news-title">{{item.title}} </p>
+            <img class='news-img' :src="item.img" alt="">
+            <p class="news-date">{{item.date}}</p>
         </div>
     </div>
     <script src="../../script/api.js" charset="utf-8"></script>
+    <script src="../../script/common.js" charset="utf-8"></script>
     <script type="text/javascript">
-        function routerTo() {
-            api.openWin({
-                name: 'newssss',
-                url: './social_news_detail.html'
-            })
-        }
+        new Vue({
+            el: '#news-list',
+            data() {
+                return {
+
+                    newsList: [{
+                      id:0,
+                        title: '时代工场中税信达驿站 ，企业修炼财税管理内功的合作宝地',
+                        img: '../../image/other/77.png',
+                        date: '2019-10-23'
+                    }, {
+                      id:1,
+                        title: '时代工场花开故事驿站，花花世界的商务体验',
+                        img: '../../image/other/88.png',
+                        date: '2019-10-23'
+                    }, {
+                      id:2,
+                        title: '时代工场君馨阁驿站，在古木香中修生养性的办公',
+                        img: '../../image/other/99.png',
+                        date: '2019-10-23'
+                    }]
+                }
+            },
+            methods:{
+              openWinNewsParam(param) {
+                  api.openWin({
+                      name: '新闻详情页',
+                      url: './social_news_detail.html',
+                      pageParam: {
+                          id: param
+                      }
+                  });
+
+              },
+            }
+        })
     </script>
+    <script type="text/javascript" src="../../aui-20170109-v2.1/script/aui-popup.js" ></script>
+    <script type="text/javascript">
+        var popup = new auiPopup();
+    </script>
+
 </body>
 
 </html>

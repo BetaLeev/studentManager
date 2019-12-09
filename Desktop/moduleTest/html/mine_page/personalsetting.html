@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
@@ -29,202 +30,175 @@
             color: #4b4b4b !important;
         }
 
-    .option {
-        position: relative;
-        box-sizing: border-box;
-        width: 100%;
-        height: 61px;
-        border-bottom: 1px solid #ddd;
-    }
+        .option {
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            height: 61px;
+            border-bottom: 1px solid #ddd;
+        }
 
-    .option .icon {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 40px;
-        height: 60px;
-        background-repeat: no-repeat;
-        background-position: 12px center;
-        background-size: auto 20px;
-    }
+        .option .icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 60px;
+            background-repeat: no-repeat;
+            background-position: 12px center;
+            background-size: auto 20px;
+        }
 
+        .option .title {
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            height: 60px;
+            padding-left: 10px;
+            font-size: 20px;
+            color: #444;
+            text-align: left;
+            line-height: 60px;
+        }
 
+        .option .arrow-panel {
+            position: absolute;
+            top: 0;
+            right: 12px;
+            width: auto;
+            height: 60px;
+            /*background-image: url(./img/right.png);*/
+            background-repeat: no-repeat;
+            background-size: 20px 24px;
+            background-position: right center;
+        }
 
-    .option .title {
-        position: relative;
-        box-sizing: border-box;
-        width: 100%;
-        height: 60px;
-        padding-left: 10px;
-        font-size: 20px;
-        color: #444;
-        text-align: left;
-        line-height: 60px;
-    }
+        .option .arrow-panel .text {
+            box-sizing: border-box;
+            padding-right: 20px;
+            width: auto;
+            height: 60px;
+            line-height: 60px;
+            font-size: 1rem;
+            color: #888;
+            text-align: left;
+        }
 
-    .option .arrow-panel {
-        position: absolute;
-        top: 0;
-        right: 12px;
-        width: auto;
-        height: 60px;
-        /*background-image: url(./img/right.png);*/
-        background-repeat: no-repeat;
-        background-size: 20px 24px;
-        background-position: right center;
-    }
+        .text>.aui-iconfont {
+            font-weight: bold !important;
+            color: #FED765 !important;
+        }
 
-    .option .arrow-panel .text {
-        box-sizing: border-box;
-        padding-right: 20px;
-        width: auto;
-        height: 60px;
-        line-height: 60px;
-        font-size: 20px;
-        color: #888;
-        text-align: left;
-    }
-    .text > .aui-iconfont{
-      font-weight: bold !important;
-      color:#FED765 !important;
-    }
-    .arrow-panel1 {
-        position: absolute;
-        top: 0;
-        right: 30px;
-        width: 50px;
-        height: 60px;
-        background-image: url(../../image/avatar-demo.png);
-        background-repeat: no-repeat;
-        background-size: 40px 35px;
-        background-position: right center;
-    }
-    .button {
-        margin-left: 30%;
-        width: 40%;
-        height: 50px;
-        margin-top: 220px;
-        background-color: #FED765;
-        line-height: 50px;
-        color: #707070;
-        font-size: 20px;
-        text-align: center;
-        border-radius: 8px;
-    }
+        .arrow-panel1 {
+            position: absolute;
+            top: 5;
+            right: 30px;
+            width: 50px;
+            height: 60px;
+            background-repeat: no-repeat;
+            background-size: 40px 35px;
+            background-position: right center;
+        }
 
-    .highlight {
-        opacity: 0.7;
-    }
-    #img_avc{
-        position: absolute;
-        width: 40px;
-        height:40px;
-        border-radius: 40px;
-        top: 10px;
-        right: 40px;
-        object-fit: cover;
-    }
+        .button {
+            margin-left: 30%;
+            width: 40%;
+            height: 50px;
+            margin-top: 220px;
+            background-color: #FED765;
+            line-height: 50px;
+            color: #707070;
+            font-size: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .highlight {
+            opacity: 0.7;
+        }
+
+        #img_avc {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            top: 10px;
+            right: 40px;
+            object-fit: cover;
+        }
+        .aui-icon-right{
+          font-size: 1.4rem;
+          font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
-  <header class="aui-bar aui-bar-nav aui-bar-light">
-      <div class="aui-pull-left aui-btn">
-          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
-      </div>
-      <div class="aui-title">个人设置</div>
-      <div class="aui-pull-right aui-btn">
-      </div>
-  </header>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+        </div>
+        <div class="aui-title">个人设置</div>
+        <div class="aui-pull-right aui-btn">
+        </div>
+    </header>
     <section>
-        <div class="option" tapmode onclick="fngolaw()">
+        <div class="option">
             <div class="icon icon-coupon"></div>
             <div class="title">头像</div>
-            <div class="arrow-panel1">
-                <div class="text"></div>
+            <div class="arrow-panel1" id='user-avatar'>
+                <!-- <img src="../../image/avatar-demo.png" alt=""> -->
             </div>
         </div>
         <div class="option" tapmode onclick="fngoabout()">
             <div class="icon icon-address"></div>
             <div class="title">昵称</div>
             <div class="arrow-panel">
-                <div class="text">时代工场   <i class="aui-iconfont aui-icon-right"></i></div>
+                <div class="text"> <span id='user-name'>时代工场 </span> <i class="aui-iconfont aui-icon-right"></i></div>
 
             </div>
         </div>
-         <div class="option" tapmode onclick="goNextWin('./certification.html')">
+        <div class="option" tapmode onclick="goNextWin('./certification.html')">
             <div class="icon icon-address"></div>
             <div class="title">实名认证</div>
             <div class="arrow-panel">
-                <div class="text">时代  <i class="aui-iconfont aui-icon-right"></i></div>
+                <div class="text">时代 <i class="aui-iconfont aui-icon-right"></i></div>
             </div>
         </div>
-         <div class="option" tapmode onclick="goNextWin('./zhanghaoxinxiguanli.html')">
+        <div class="option" tapmode onclick="goNextWin('./zhanghaoxinxiguanli.html')">
             <div class="icon icon-address"></div>
             <div class="title">账号信息管理</div>
             <div class="arrow-panel">
-                <div class="text">  <i class="aui-iconfont aui-icon-right"></i></div>
+                <div class="text"> <i class="aui-iconfont aui-icon-right"></i></div>
             </div>
         </div>
-        <div class="button" tapmode onclick="goNextWin('./login.html')">退出登录</div>
+        <div class="button" tapmode onclick="logout()">退出登录</div>
     </section>
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
-<script type="text/javascript"  src="../../script/common.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../script/common.js" charset="utf-8"></script>
 
 <script type="text/javascript">
-apiready = function() {
+    apiready = function() {
+        var username = document.getElementById('user-name');
+        var useravatar = document.getElementById('user-avatar');
+        if ($api.getStorage('userAvatar')) {
+            useravatar.innerHTML = "<img src='" + $api.getStorage('userAvatar') + "' />"
+            username.innerHTML = $api.getStorage('userName');
+        } else {
+            useravatar.innerHTML = "<img src='../../image/avatar-demo.png'/>"
+            username.innerHTML = '时代工场';
+        }
+    };
 
-};
+    function logout() {
+        $api.clearStorage();
+        // goNextWin('./login.html')
+        // closeCurrentWin('login_success.html');
+        goNextWin('./index.html')
+        closeCurrentWin('./perosonalseeting.html')
 
-
-function fngolaw(){
-    api.openWin({
-        name: 'law_page_main',
-        url: 'law_page_main.html',
-        bounces:false
-    });
-}
-//账号信息管理
-function fnzhxxgl(){
-     api.openWin({
-        name: 'zhanghaoxinxiguanli',
-        url: 'zhanghaoxinxiguanli_frame.html',
-        bounces:false
-    });
-}
-function fnsmrz(){
-    api.openWin({
-        name: 'certification_frame',
-        url: 'certification_frame.html',
-        bounces:false
-    });
-}
-function remove_data(){
-        api.removePrefs({
-            key: 'userloginstatu'
-        });
-        api.removePrefs({
-            key: 'user_phone'
-        });
     }
-function fnlgout(){
-    remove_data();
-    api.execScript({
-        name: 'root',
-        frameName: 'frame_my',
-        script: "change_phone_login('请登录')"
-    });
-    api.execScript({
-        name: 'root',
-        frameName: 'frame_my',
-        script: "change_userimg('../image/tx.png')"
-    });
-    api.closeWin({
-        name: api.winName
-    });
-};
-
 </script>
 
 </html>

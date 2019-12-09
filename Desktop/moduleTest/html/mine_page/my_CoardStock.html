@@ -17,17 +17,117 @@
       .aui-bar span {
           color: #4b4b4b !important;
       }
+      .kaquan{
+        width: 100%;
+        height: 750px;
+      }
+      .vip{
+        width: 100%;
+        height: 250px;
+        border-bottom: 2px solid #f1f1f1;
+      }
+      .vip span{
+        float: left;
+        font-size:20px;
+        color: #4b4b4b;
+        margin-left: 20px;
+        margin-top: 9px;
+      }
+      .vip p{
+        float: left;
+        font-size:14px;
+        color: #185078;
+        margin-left:230px;
+        margin-top:18px;
+      }
+      .vip img{
+        width: 70%;
+        height: 150px;
+        float: left;
+        margin-left:65px;
+        margin-top:15px;
+      }
+      .quan{
+        width: 100%;
+        height: 250px;
+        border-bottom: 2px solid #f1f1f1;
+      }
+      .quan span{
+        float: left;
+        font-size:20px;
+        color: #4b4b4b;
+        margin-left: 20px;
+        margin-top: 9px;
+      }
+      .quan p{
+        float: left;
+        font-size:14px;
+        color: #185078;
+        margin-left:270px;
+        margin-top:18px;
+      }
+      .quan img{
+        width: 70%;
+        height: 150px;
+        float: left;
+        margin-left:65px;
+        margin-top:15px;
+      }
+      .manjian{
+        width: 100%;
+        height: 250px;
+        border-bottom: 2px solid #f1f1f1;
+      }
+      .manjian span{
+        float: left;
+        font-size:20px;
+        color: #4b4b4b;
+        margin-left: 20px;
+        margin-top: 9px;
+      }
+      .manjian p{
+        float: left;
+        font-size:14px;
+        color: #185078;
+        margin-left:230px;
+        margin-top:18px;
+      }
+      .manjian img{
+        width: 70%;
+        height: 150px;
+        float: left;
+        margin-left:65px;
+        margin-top:15px;
+      }
   </style>
 </head>
 <body>
   <header class="aui-bar aui-bar-nav aui-bar-light">
       <div class="aui-pull-left aui-btn">
-          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+          <span class="aui-iconfont aui-icon-left" tapmode onclick="closeCurrentWin()"></span>
       </div>
       <div class="aui-title">我的卡券</div>
       <div class="aui-pull-right aui-btn">
           <!-- <img src="./image/kefu.png" alt=""> -->
       </div>
   </header>
+  <div class="kaquan">
+    <div class="vip">
+      <span>会员卡</span>
+      <p tapmode onclick="goNextWin('../home_page/card_detail.html')">查看全部（6）</p>
+      <img src="../../image/card-demo.png" alt="">
+    </div>
+    <div class="quan">
+      <span>券</span>
+      <p tapmode onclick="goNextWin('../home_page/card_detail.html')">查看全部（6）</p>
+      <img src="../../image/card-demo.png" alt="">
+    </div>
+    <!-- <div class="manjian">
+      <span>满减券</span>
+      <p tapmode onclick="goNextWin('../home_page/card_detail.html')">查看全部（6）</p>
+      <img src="../../image/card-demo.png" alt="">
+    </div> -->
+  </div>
+  <script src="../../script/common.js" charset="utf-8"></script>
 </body>
 </html>

@@ -50,17 +50,16 @@
   <feature name="wxPlus">
   <param name="urlScheme" value="wxf476d7072eeddaae"/>
   <param name="apiKey" value="wxf476d7072eeddaae"/>
-  <param name="apiSecret" value="a354f72aa1b4c2b8eaad137ac81434cd"/>
+  <param name="apiSecret" value="749f4d30f5f112db7db6aafbaf03eb05"/>
 </feature>
 
 <feature name="weiboPlus">
-  <param name="urlScheme" value="wb1132217156" />
+  <param name="urlScheme" value="wb3837914122" />
   <param name="apiKey" value="3837914122" />
-  <param name="registUrl" value="http://www.apicloud.com" />
+  <param name="registUrl" value="http://eraworkapp.cn" />
 </feature>
 
 <!-- App Secret：5cbb718f44e2bc50105fff9e8d64cde8 -->
-
     <feature name='aliPayPlus'>
       <param name="urlScheme" value="AliPayPlusA6006620792786" />
     </feature>
