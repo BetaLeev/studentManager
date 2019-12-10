@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
     <link rel="stylesheet" href="../../css/common.css">
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
+
     <title>发布故事</title>
     <style>
         .aui-iconfont,
@@ -92,33 +95,34 @@
 </head>
 
 <body>
-    <header class="aui-bar aui-bar-nav aui-bar-light">
-        <div class="aui-pull-left aui-btn">
-            <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
-        </div>
-        <div class="aui-title">发故事</div>
-        <div class="aui-pull-right ">
-            <span id='publish-btn' onclick="goNextWin('./publish_success.html')">发布</span>
-        </div>
-    </header>
-    <div class="container">
-        <div class="title">
-            <span>标题</span>
-            <input type="text" name='title'>
-        </div>
-        <div class="text">
-            <span>正文</span>
-            <textarea name="text" rows="8" cols="80"></textarea>
-        </div>
+    <div id='st'>
+        <header class="aui-bar aui-bar-nav aui-bar-light">
+            <div class="aui-pull-left aui-btn">
+                <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+            </div>
+            <div class="aui-title">发故事</div>
+            <div class="aui-pull-right ">
+                <span id='publish-btn' @click="publish()">发布</span>
+            </div>
+        </header>
+        <div class="container">
+            <div class="title">
+                <span>标题</span>
+                <input type="text" name='title' v-model='title'>
+            </div>
+            <div class="text">
+                <span>正文</span>
+                <textarea name="text" rows="8" cols="80" v-model='text'></textarea>
+            </div>
 
+        </div>
+        <div class="voice-input-plate">
+            <div><img src="../../image/voice.png" alt=""></div>
+            <div class="voice-input"> <input type="text"></div>
+            <div> <img src="../../image/small.png" alt=""></div>
+            <div> <img src="../../image/menu-plus.png" alt="" onclick="openBlum()"></div>
+        </div>
     </div>
-    <div class="voice-input-plate">
-        <div><img src="../../image/voice.png" alt=""></div>
-        <div class="voice-input"> <input type="text"></div>
-        <div> <img src="../../image/small.png" alt=""></div>
-        <div> <img src="../../image/menu-plus.png" alt="" onclick="openBlum()"></div>
-    </div>
-
     <!-- <div class="bottom-drawer">
         <div>
             <img src="./img/icon/pic.png" alt="">
@@ -142,8 +146,48 @@
     </div> -->
 
 </body>
-<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
 
+<script type="text/javascript">
+    var user = $api.getStorage('userName') || 'leev';
+
+    var st = new Vue({
+        el: '#st',
+        data() {
+            return {
+                title: '',
+                text: ''
+            }
+        },
+        methods: {
+            publish() {
+                console.log(user)
+                var title = st.title;
+                var text = st.text;
+                var model = api.require('model');
+                model.insert({
+                    class: 'era_story',
+                    value: {
+                        title:title,
+                        text:text,
+                        user: user,
+                        img: ''
+                    }
+                }, function(ret, err) {
+                    if (ret) {
+                        st.title = '';
+                        st.text = ''
+                        alert('发布成功，请等待审核')
+                        goNextWin('./publish_success.html')
+                    } else {
+                        alert(JSON.stringify(err));
+                    }
+                });
+
+            }
+        }
+    })
+</script>
 <script src="../../script/api.js" charset="utf-8"></script>
 <script src="../../script/common.js" charset="utf-8"></script>
 

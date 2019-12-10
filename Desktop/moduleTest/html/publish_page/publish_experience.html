@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
     <link rel="stylesheet" href="../../css/common.css">
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
+
     <title>发布经验</title>
     <style>
         .aui-iconfont,
@@ -31,9 +34,9 @@
             height: 500px;
         }
 
-        #img{
-          height: 90vw;
-          margin: 0 auto;
+        #img {
+            height: 90vw;
+            margin: 0 auto;
         }
 
         .voice-input-plate {
@@ -96,74 +99,108 @@
 </head>
 
 <body>
-    <header class="aui-bar aui-bar-nav aui-bar-light">
-        <div class="aui-pull-left aui-btn">
-            <span class="aui-iconfont aui-icon-left" tapmode onclick="closeCurrentWin()"></span>
+    <div>
+        <header class="aui-bar aui-bar-nav aui-bar-light">
+            <div class="aui-pull-left aui-btn">
+                <span class="aui-iconfont aui-icon-left" tapmode onclick="closeCurrentWin()"></span>
+            </div>
+            <div class="aui-title">发经验</div>
+            <div class="aui-pull-right ">
+                <span tapmode onclick='publish()'>发布</span>
+            </div>
+        </header>
+        <div class="container">
+            <div class="title">
+                <span>标题</span>
+                <input type="text" id='title' name='title' v-model='title'>
+            </div>
+            <div class="text">
+                <span>正文</span>
+                <textarea name="text" id='text' rows="8" cols="80" v-model='text'></textarea>
+            </div>
         </div>
-        <div class="aui-title">发经验</div>
-        <div class="aui-pull-right ">
-            <span tapmode onclick="goNextWin('./publish_success.html')">发布</span>
-        </div>
-    </header>
-    <div class="container">
-        <div class="title">
-            <span>标题</span>
-            <input type="text" name='title'>
-        </div>
-        <div class="text">
-            <span>正文</span>
-            <textarea name="text" rows="8" cols="80"></textarea>
-            <!-- <img src="" alt="" id="img"> -->
+        <div class="voice-input-plate">
+            <div><img src="../../image/voice.png" alt=""></div>
+            <div class="voice-input"> <input type="text"></div>
+            <div> <img src="../../image/small.png" alt=""></div>
+            <div> <img src="../../image/menu-plus.png" alt="" onclick="openBlum()"></div>
         </div>
     </div>
 
-    <div class="voice-input-plate">
-        <div><img src="../../image/voice.png" alt=""></div>
-        <div class="voice-input"> <input type="text"></div>
-        <div> <img src="../../image/small.png" alt=""></div>
-        <div> <img src="../../image/menu-plus.png" alt="" onclick="openBlum()"></div>
-    </div>
+
+
+
+    <script src="../../script/api.js" charset="utf-8"></script>
     <script src="../../script/common.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var user = $api.getStorage('userName') || 'leev';
+
+        function publish() {
+            var title = document.getElementById('title').value
+            var text = document.getElementById('text').value
+            var model = api.require('model');
+            model.config({
+                appKey: 'B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E',
+            })
+            model.insert({
+                class: 'era_exp',
+                value: {
+                    title: title,
+                    text: text,
+                    user: user,
+                    img: ''
+                }
+            }, function(ret, err) {
+                if (ret) {
+                    alert('发布成功请等待审核')
+                    title = '';
+                    text = '';
+                    goNextWin('./publish_success.html')
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+
+        }
+    </script>
+
     <script type="text/javascript">
         function openBlum() {
             var UIAlbumBrowser = api.require('UIAlbumBrowser');
-
             UIAlbumBrowser.open({
-                    max: 9,
-                    styles: {
-                        bg: '#fff',
-                        mark: {
-                            icon: '',
-                            position: 'bottom_left',
-                            size: 20
-                        },
-                        nav: {
-                            bg: 'rgba(0,0,0,0.6)',
-                            titleColor: '#fff',
-                            titleSize: 18,
-                            cancelColor: '#fff',
-                            cancelSize: 16,
-                            finishColor: '#fff',
-                            finishSize: 16
-                        }
+                max: 9,
+                styles: {
+                    bg: '#fff',
+                    mark: {
+                        icon: '',
+                        position: 'bottom_left',
+                        size: 20
                     },
-                    rotation: true
-                }, function(ret) {
-                    if (ret) {
-                      document.getElementById('img').src = ret.list[0].path;
-                      UIAlbumBrowser.transPath({
-                              path: ret.list[0].path
-                          }, function(ret, err) {
-                              if (ret) {
-                          document.getElementById('img').src = ret.path;
-                      }
-                        else {
+                    nav: {
+                        bg: 'rgba(0,0,0,0.6)',
+                        titleColor: '#fff',
+                        titleSize: 18,
+                        cancelColor: '#fff',
+                        cancelSize: 16,
+                        finishColor: '#fff',
+                        finishSize: 16
+                    }
+                },
+                rotation: true
+            }, function(ret) {
+                if (ret) {
+                    document.getElementById('img').src = ret.list[0].path;
+                    UIAlbumBrowser.transPath({
+                        path: ret.list[0].path
+                    }, function(ret, err) {
+                        if (ret) {
+                            document.getElementById('img').src = ret.path;
+                        } else {
                             alert(JSON.stringify(err));
                         }
                     });
-
-            }
-        });
+                }
+            });
         }
     </script>
 </body>

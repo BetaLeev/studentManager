@@ -1,9 +1,11 @@
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>实名认证</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
     <style>
@@ -20,8 +22,8 @@
             padding-top: 25px !important;
             border-bottom: 1px solid #f7f7f7;
             background-color: #f0f0f0;
-
         }
+
         header * {
             color: #4b4b4b !important;
         }
@@ -30,7 +32,6 @@
         .aui-bar span {
             color: #4b4b4b !important;
         }
-
 
         section {
             height: auto;
@@ -56,7 +57,7 @@
         section .option01 .name {
             width: 100%;
             line-height: 20px;
-            font-size: 0.875rem; 
+            font-size: 0.875rem;
             text-align: center;
             color: #707070;
             margin-top: 10px;
@@ -87,7 +88,7 @@
             justify-content: space-around;
         }
 
-        #wrap .face {
+        .face {
             float: left;
             width: 49%;
             height: 50px;
@@ -95,7 +96,7 @@
             text-align: center;
         }
 
-        #wrap .faceback {
+        .faceback {
             float: right;
             width: 49%;
             height: 50px;
@@ -122,30 +123,115 @@
 </head>
 
 <body>
-  <header class="aui-bar aui-bar-nav aui-bar-light">
-      <div class="aui-pull-left aui-btn">
-          <span class="aui-iconfont aui-icon-left" onclick='closeCurrentWin()'></span>
-      </div>
-      <div class="aui-title">实名认证</div>
-      <div class="aui-pull-right aui-btn">
-      </div>
-  </header>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+        <div class="aui-pull-left aui-btn">
+            <span class="aui-iconfont aui-icon-left" onclick='closeCurrentWin()'></span>
+        </div>
+        <div class="aui-title">实名认证</div>
+        <div class="aui-pull-right aui-btn">
+        </div>
+    </header>
     <section>
         <div class="option01">
             <div class="name">请上传身份证信息完成实名认证</div>
         </div>
-        <img class="img01" src="../../image/other/id-card-01.png" />
-        <img class="img02" src="../../image/other/id-card-02.png" />
+        <img class="img01" type='file' id='card1' onclick="openBlum('card1')" src="../../image/other/id-card-01.png" />
+        <img class="img02" id='card2' onclick="openBlum('card2')" src="../../image/other/id-card-02.png" />
         <div id="wrap">
             <span class="face">身份证人像面</span>
             <span class="faceback">身份证国徽面</span>
         </div>
-        <div class="button" tapmode onclick="fnLogout();">提交信息</div>
+        <div class="button" tapmode onclick="fnSubmit();">提交信息</div>
     </section>
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/SHA1.js"></script>
+<script type="text/javascript" src="../../script/APICloud-rest.js"></script>
+
 <script src="../../script/common.js" charset="utf-8"></script>
 <script type="text/javascript">
+    var user = $api.getStorage('user') || 'leev';
+    var openid = $api.getStorage('openid');
+    var now = Date.now();
+    var appKey = SHA1("A6006620792786" + "UZ" + "B4BE1D4A-18F6-42D1-48CF-DF6C6EA9983E" + "UZ" + now) + "." + now
+    var img1 = new formData();
+    var img2 = new formData()
+    apiready = function() {
+    //     $.ajax({
+    //             url: 'https://www.apicloud.com/mcm/api/era_story',
+    //             // url:"http://d.apicloud.com/mcm/api/file",
+    //             method: 'post',
+    //             headers: {
+    //                 "X-APICloud-APPId": "A6006620792786",
+    //                 "X-APICloud-APPKey": appKey
+    //             },
+    //             data: {
+    //                   title:'111',
+    //                   text:'aaa',
+    //                   img:img
+    //             }
+    //           }).done(function (data, status, header) {
+    //             console.log(JSON.stringify(data));
+    //             console.log(JSON.stringify(status))
+    //       //success body
+    // }).fail(function (header, status, errorThrown) {
+    //       //fail body
+    // })
 
+
+    }
+
+    function fnSubmit() {
+        var card1 = document.getElementById('card1').src;
+        var card2 = document.getElementById('card2').src;
+        // 需要截取来判断
+            console.log('图片上传成功');
+            var model = api.require('model');
+
+
+    }
+
+    function openBlum(id) {
+        var UIAlbumBrowser = api.require('UIAlbumBrowser');
+        UIAlbumBrowser.open({
+            max: 9,
+            styles: {
+                bg: '#fff',
+                mark: {
+                    icon: '',
+                    position: 'bottom_left',
+                    size: 20
+                },
+                nav: {
+                    bg: 'rgba(0,0,0,0.6)',
+                    titleColor: '#fff',
+                    titleSize: 18,
+                    cancelColor: '#fff',
+                    cancelSize: 16,
+                    finishColor: '#fff',
+                    finishSize: 16
+                }
+            },
+            rotation: true
+        }, function(ret) {
+            if (ret) {
+              console.log(ret)
+              alert(JSON.stringify(ret))
+
+                document.getElementById(id).src = ret.list[0].path;
+                UIAlbumBrowser.transPath({
+                    path: ret.list[0].path
+                }, function(ret, err) {
+                    if (ret) {
+                        document.getElementById(id).src = ret.path;
+                        console.log(id + '已上传')
+                    } else {
+                        alert(JSON.stringify(err));
+                    }
+                });
+            }
+        })
+    }
 </script>
+
 </html>

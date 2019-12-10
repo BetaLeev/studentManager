@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<security>
+  <item name="wxPayPlus_appId" value="wxf476d7072eeddaae"/>
+  <item name="wxPayPlus_mchId" value="1561120381"/>
+  <item name="wxPayPlus_partnerKey" value="shidaigongchangapp15611203818888"/>
+  <item name="wxPayPlus_notifyUrl" value="https://api.mch.weixin.qq.com/pay/unifiedorder"/>
+  <!-- <item name="其它服务需加密的参数配置 " value="***"/> -->
+
+</security>

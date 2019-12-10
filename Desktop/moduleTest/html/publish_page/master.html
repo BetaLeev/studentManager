@@ -6,9 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
-
-    <title>发布首页</title>
+    <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <title>成为站主</title>
     <style>
+    header {
+        padding-top: 25px !important;
+        border-bottom: 2px solid #4b4b4b;
+        opacity: .1
+    }
+
+    header * {
+        color: #4b4b4b !important;
+    }
         body {
             width: 100%;
             height: 100vh;
@@ -133,13 +142,14 @@
 
         .center-bottom {
             width: 100%;
+            margin-top: -30px;
             height: 20%;
             text-align: center;
             line-height: 100px;
         }
 
         .center-bottom button {
-            width: 100px;
+            width: 200px;
             height: 50px;
             font-size: 20px;
             background-color: #fed765;
@@ -153,7 +163,6 @@
             left: 10%;
             display: flex;
             justify-content: space-between;
-            ;
             position: absolute;
             bottom: 1vh;
             text-align: center;
@@ -185,9 +194,18 @@
 </head>
 
 <body>
+  <header class="aui-bar aui-bar-nav aui-bar-light">
+      <div class="aui-pull-left aui-btn">
+          <span class="aui-iconfont aui-icon-left" onclick="closeCurrentWin()"></span>
+      </div>
+      <div class="aui-title"></div>
+      <div class="aui-pull-right ">
+          <span id='publish-btn' ></span>
+      </div>
+  </header>
     <div tapmode class="top" onclick="goNextWin('./publish_home.html')">
         <img src="../../image/college-logo.png" alt="">
-        <span>站主学院</span>
+        <span>成为站主</span>
     </div>
     <div class="center" id='form'>
         <div class="center-top">
@@ -211,13 +229,10 @@
                   </select>
                 </div>
             </div>
-            <div class="center-top2">
-                <p class="center-top3">看看您可以获得所少回报率</p>
-                <span class="center-top4">20</span><span class="center-top5">%</span>
-            </div>
+
         </div>
         <div class="center-bottom">
-            <button type="button" name="button" @click="submitForm()">开始发布</button>
+            <button type="button" name="button" @click="submitForm()">立即成为站主</button>
         </div>
     </div>
     <div class="bottom">
@@ -403,6 +418,7 @@
                             if (err) {
                                 swal("Oops", "发布遇到问题", "error")
                             } else if (ret) {
+                              alert(JSON.stringify(ret))
                                 swal("成功", "发布成功请等待审核", "success")
                             }
                         });

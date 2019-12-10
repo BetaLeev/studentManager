@@ -99,40 +99,39 @@
     <script src="../../script/api.js" charset="utf-8"></script>
     <script src="../../script/common.js" charset="utf-8"></script>
     <script type="text/javascript">
+        //
+        //    data: {
+        //     timer: '30:00',
+        //     time: 1800,
+        //     mytimer: null
+        //   },
+        //   computed: {
+        //     timeOver() {
+        //       clearInterval(this.mytimer);
+        //       this.mytimer = setInterval(() => {
+        //         this.time -= 1;
+        //         let min = parseInt(this.time / 60);
+        //         let sec = parseInt(this.time % 60);
+        //         this.timer = min + ':' + sec;
+        //       }, 1000);
+        //       return this.timer;
+        //     }
+        //   }
+        // });
 
- //
- //    data: {
- //     timer: '30:00',
- //     time: 1800,
- //     mytimer: null
- //   },
- //   computed: {
- //     timeOver() {
- //       clearInterval(this.mytimer);
- //       this.mytimer = setInterval(() => {
- //         this.time -= 1;
- //         let min = parseInt(this.time / 60);
- //         let sec = parseInt(this.time % 60);
- //         this.timer = min + ':' + sec;
- //       }, 1000);
- //       return this.timer;
- //     }
- //   }
- // });
 
-
-    var id,orderNumber,img,title,subtitle,count,price,sum,user;
+        var id, orderNumber, img, title, subtitle, count, price, sum, user;
         apiready = function() {
             id = api.pageParam.id;
-             orderNumber = new Date().getTime() + id;
-             img = api.pageParam.img;
-             title = api.pageParam.title;
-             subtitle = api.pageParam.subtitle;
-             count = api.pageParam.count;
-             price = api.pageParam.price;
-             sum = price * count;
+            orderNumber = new Date().getTime() + id;
+            img = api.pageParam.img;
+            title = api.pageParam.title;
+            subtitle = api.pageParam.subtitle;
+            count = api.pageParam.count;
+            price = api.pageParam.price;
+            sum = price * count;
 
-             user = $api.getStorage('openid');
+            user = $api.getStorage('openid');
             console.log('用户是：' + user);
             console.log('工场id是：' + id);
             console.log("订单号是" + orderNumber);
@@ -151,22 +150,22 @@
                     return {
                         sum: sum,
                         orderNumber: orderNumber,
-                        timer:'30:00',
+                        timer: '30:00',
                     }
                 },
-                updated(){
+                updated() {
 
                 },
-                created(){
+                created() {
 
                     var timer = 1800;
                     var _this = this;
-                    setInterval(function(){
-                      timer = timer  -1;
-                      var minute = parseInt(timer/60);
-                      var second = parseInt(timer%60);
-                      _this.timer = minute + ':' + second;
-                    },1000)
+                    setInterval(function() {
+                        timer = timer - 1;
+                        var minute = parseInt(timer / 60);
+                        var second = parseInt(timer % 60);
+                        _this.timer = minute + ':' + second;
+                    }, 1000)
                 }
             })
         }
@@ -197,6 +196,33 @@
                     // api.closeWin();
                 }
             })
+        }
+
+        function wxPay() {
+            var wxPayPlus = api.require('wxPayPlus');
+            wxPayPlus.config({
+                apiKey: 'wxf476d7072eeddaae',
+                mchId: '1561120381',
+                partnerKey: 'shidaigongchangapp15611203818888',
+                notifyUrl: 'https://api.mch.weixin.qq.com/pay/unifiedorder'
+            }, function(ret, err) {
+                if (ret.status) {
+                    alert('配置商户支付参数成功');
+                } else {
+                    alert(err.code);
+                }
+            });
+            wxPayPlus.pay({
+                description: title,
+                totalFee: '1',
+                tradeNo: orderNumber
+            }, function(ret, err) {
+                if (ret.status) {
+                    // alert(ret.result);
+                } else {
+                    // alert(err.code);
+                }
+            });
         }
         // 阿里支付
         function aliPay() {

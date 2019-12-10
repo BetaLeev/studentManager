@@ -7,7 +7,13 @@
     <title>个人设置</title>
     <link rel="stylesheet" type="text/css" href="../../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../../aui-20170109-v2.1/css/aui.css" />
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
+
     <style>
+    .text>.aui-iconfont{
+      right: -12px;
+    }
         body {
             text-align: center;
             margin: 0;
@@ -147,15 +153,14 @@
             <div class="icon icon-coupon"></div>
             <div class="title">头像</div>
             <div class="arrow-panel1" id='user-avatar'>
-                <!-- <img src="../../image/avatar-demo.png" alt=""> -->
             </div>
         </div>
-        <div class="option" tapmode onclick="fngoabout()">
+        <div class="option" tapmode >
             <div class="icon icon-address"></div>
             <div class="title">昵称</div>
             <div class="arrow-panel">
-                <div class="text"> <span id='user-name'>时代工场 </span> <i class="aui-iconfont aui-icon-right"></i></div>
-
+                <div class="text">
+                  <span id='user-name'>时代工场 </span> <i class="aui-iconfont aui-icon-right"></i></div>
             </div>
         </div>
         <div class="option" tapmode onclick="goNextWin('./certification.html')">
@@ -193,8 +198,7 @@
 
     function logout() {
         $api.clearStorage();
-        // goNextWin('./login.html')
-        // closeCurrentWin('login_success.html');
+
         goNextWin('./index.html')
         closeCurrentWin('./perosonalseeting.html')
 

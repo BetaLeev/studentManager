@@ -29,8 +29,8 @@
         .haibao {
             width: 100%;
             height: 200px;
-            border-bottom: 1px solid #4b4b4b;
-            border-top: 1px solid #4b4b4b;
+            /*border-bottom: 1px solid #4b4b4b;
+            border-top: 1px solid #4b4b4b;*/
         }
 
         .haibao h1 {
@@ -177,7 +177,7 @@
     </header>
     <div id="recommand">
         <div class="haibao">
-            <h1>(赚积分活动海报)</h1>
+            <!-- <h1>(赚积分活动海报)</h1> -->
         </div>
         <div class="shenfen">
             <h1>你的身份</h1>
@@ -217,6 +217,9 @@
     <script src="https://cdn.bootcss.com/sweetalert/2.1.2/sweetalert.min.js"></script>
 
     <script type="text/javascript">
+    apiready = function(){
+      banner()
+    }
         new Vue({
             el: '#recommand',
             data() {
@@ -267,6 +270,52 @@
                 }
             }
         })
+
+function banner(){
+  var UIScrollPicture = api.require('UIScrollPicture');
+  UIScrollPicture.open({
+      rect: {
+          x: 0,
+          y: 75,
+          w: api.winWidth,
+          h: 200
+      },
+      data: {
+          paths: [
+              'widget://image/background.png',
+              'widget://image/background.png',
+              'widget://image/background.png',
+
+          ]
+      },
+      styles: {
+
+          indicator: {
+             dot:{
+               w:20,
+               h:10,
+               r:5,
+               margin:20
+            },
+              align: 'center',
+              color: '#FFFFFF',
+              activeColor: '#fdd66e'
+          }
+      },
+      contentMode: 'scaleToFill',
+      interval: 3,
+      fixedOn: api.frameName,
+      loop: true,
+      fixed: false
+  }, function(ret, err) {
+      if (ret) {
+          // alert(JSON.stringify(ret));
+      } else {
+          alert(JSON.stringify(err));
+      }
+  });
+}
+
     </script>
     <script src="../../script/common.js" charset="utf-8"></script>
 </body>
